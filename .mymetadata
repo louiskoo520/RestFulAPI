@@ -3,7 +3,7 @@
   type="WEB"
   name="WebRestService"
   id="myeclipse.1430362944468"
-  context-root="/WebRestService1"
+  context-root="/WebRestService"
   j2ee-spec="5.0"
   archive="WebRestService.war">
   <attributes>
