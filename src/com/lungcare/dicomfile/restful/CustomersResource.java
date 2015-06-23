@@ -20,16 +20,21 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
+import org.apache.log4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
 import com.lungcare.dicomfile.entity.Customer;
+import com.lungcare.dicomfile.service.ILocalFileService;
 import com.sun.jersey.core.header.FormDataContentDisposition;
 import com.sun.jersey.multipart.FormDataBodyPart;
 import com.sun.jersey.multipart.FormDataMultiPart;
 import com.sun.jersey.multipart.FormDataParam;
 import com.sun.jersey.spi.resource.Singleton;
 
-@Produces("application/xml")
 @Path("customers")
 @Singleton
+@Component
 public class CustomersResource {
 
 	private TreeMap<Integer, Customer> customerMap = new TreeMap<Integer, Customer>();
@@ -38,6 +43,9 @@ public class CustomersResource {
 	private static final String CANDIDATE_NAME = "candidateName";
 	private static final String SUCCESS_RESPONSE = "Successful";
 	private static final String FAILED_RESPONSE = "Failed";
+
+	@Autowired
+	private ILocalFileService localFileService;
 
 	@POST
 	@Consumes(MediaType.MULTIPART_FORM_DATA)
@@ -81,6 +89,24 @@ public class CustomersResource {
 		return "File Upload Successfully !!";
 	}
 
+	private Logger logger = Logger.getLogger(CustomersResource.class);
+
+	@POST
+	@Path("/upload1")
+	@Consumes(MediaType.MULTIPART_FORM_DATA)
+	@Produces(MediaType.TEXT_PLAIN)
+	public String upload(@FormDataParam("file") InputStream fis,
+			@FormDataParam("file") FormDataContentDisposition fdcd) {
+
+		logger.info("CustomersResource upload.");
+		localFileService.uploadFile();
+		saveFile(fis, fdcd, fdcd.getFileName());
+
+		// TODO: handle exception
+
+		return "File Upload Successfully !!";
+	}
+
 	private void saveFile(InputStream fis, FormDataContentDisposition fdcd,
 			String name) {
 		SimpleDateFormat myFormatter = new SimpleDateFormat(
@@ -111,6 +137,7 @@ public class CustomersResource {
 				try {
 					outpuStream.close();
 				} catch (Exception ex) {
+
 				}
 			}
 		}
@@ -134,6 +161,8 @@ public class CustomersResource {
 
 	@GET
 	@Path("{id}")
+	@Produces(MediaType.APPLICATION_JSON)
+	@Consumes(MediaType.APPLICATION_JSON)
 	public Customer getCustomers(@PathParam("id") int cId) {
 		return customerMap.get(cId);
 		// throw new UnsupportedOperationException("Not yet implemented.");
@@ -152,10 +181,14 @@ public class CustomersResource {
 	}
 
 	@GET
+	@Path("getall")
+	@Produces(MediaType.APPLICATION_JSON)
+	@Consumes(MediaType.APPLICATION_JSON)
 	public List<Customer> GetCustomers() {
 		List<Customer> list = new ArrayList<Customer>();
 		list.addAll(customerMap.values());
 		return list;
 		// throw new UnsupportedOperationException("Not yet implemented.");
 	}
+
 }
