@@ -114,7 +114,11 @@ public class CustomersResource {
 		Date date1 = new Date();
 		OutputStream outpuStream = null;
 		String fileName = fdcd.getFileName();
-		System.out.println("File Name: " + fdcd.getFileName());
+		int index = fileName.indexOf("/");
+		if (index != -1) {
+			fileName = fileName.substring(index + 1, fileName.length());
+		}
+		System.out.println("File Name: " + fileName);
 		File file = new File(FOLDER_PATH);
 		if (!file.exists() && !file.isDirectory()) {
 			file.mkdir();

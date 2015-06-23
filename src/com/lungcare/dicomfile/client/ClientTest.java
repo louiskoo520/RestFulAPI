@@ -21,7 +21,7 @@ public class ClientTest {
 
 		Client client = Client.create();
 		WebResource resource = client
-				.resource("http://localhost:8080/WebRestService1/services/customers/upload1");
+				.resource("http://localhost:8080/WebRestService/services/customers/upload1");
 		// System.out.println(resource.get(String.class));
 
 		FormDataMultiPart formDataMultiPart = new FormDataMultiPart();
@@ -34,8 +34,10 @@ public class ClientTest {
 		 * formDataMultiPart.bodyPart(bodyPart);
 		 */
 
-		FileDataBodyPart fileDataBodyPart1 = new FileDataBodyPart("file",
-				new File("c:\\dll.log"),
+		FileDataBodyPart fileDataBodyPart1 = new FileDataBodyPart(
+				"file",
+				new File(
+						"C:\\1.2.840.113619.2.334.3.269091143.997.1412721251.405.4\\9"),
 				MediaType.APPLICATION_OCTET_STREAM_TYPE);
 		/*
 		 * FileDataBodyPart fileDataBodyPart2 = new FileDataBodyPart("file", new
@@ -52,5 +54,4 @@ public class ClientTest {
 
 		// MediaType of the body part will be derived from the file.
 	}
-
 }

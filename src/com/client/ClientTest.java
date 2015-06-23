@@ -2,13 +2,6 @@ package com.client;
 
 import java.io.File;
 
-import javax.ws.rs.core.MediaType;
-
-import com.sun.jersey.api.client.Client;
-import com.sun.jersey.api.client.WebResource;
-import com.sun.jersey.multipart.FormDataMultiPart;
-import com.sun.jersey.multipart.file.FileDataBodyPart;
-
 public class ClientTest {
 	public static void main(String[] args) {
 		/*
@@ -19,35 +12,8 @@ public class ClientTest {
 		 * System.out.println(result.get(String.class));
 		 */
 
-		Client client = Client.create();
-		WebResource resource = client
-				.resource("http://localhost:8080/WebRestService1/services/customers/multipleFiles");
-
-		FormDataMultiPart formDataMultiPart = new FormDataMultiPart();
-
-		/*
-		 * String conString = "This is the content"; FormDataBodyPart bodyPart =
-		 * new FormDataBodyPart("file", new
-		 * ByteArrayInputStream(conString.getBytes()),
-		 * MediaType.APPLICATION_OCTET_STREAM_TYPE);
-		 * formDataMultiPart.bodyPart(bodyPart);
-		 */
-
-		FileDataBodyPart fileDataBodyPart1 = new FileDataBodyPart("file",
-				new File("H:\\Data\\XK0001\\seg2\\122.bmp"),
-				MediaType.APPLICATION_OCTET_STREAM_TYPE);
-		FileDataBodyPart fileDataBodyPart2 = new FileDataBodyPart("file",
-				new File("H:\\Data\\XK0001\\seg2\\123.bmp"),
-				MediaType.APPLICATION_OCTET_STREAM_TYPE);
-
-		formDataMultiPart.bodyPart(fileDataBodyPart1);
-		formDataMultiPart.bodyPart(fileDataBodyPart2);
-		String reString = resource.type(MediaType.MULTIPART_FORM_DATA)
-		// .accept(MediaType.APPLICATION_XML)
-				.post(String.class, formDataMultiPart);
-		System.out.println(reString);
-
-		// MediaType of the body part will be derived from the file.
+		File file = new File("C:\\WEB-INF\\logs\\ssh.log");
+		System.out.println(file.exists());
 	}
 
 }
