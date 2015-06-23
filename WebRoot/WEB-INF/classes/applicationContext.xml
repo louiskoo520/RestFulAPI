@@ -24,4 +24,7 @@
   
   <bean id="localFileService" class="com.lungcare.dicomfile.service.impl.LocalFileServiceImp"></bean>
   <bean id="localFileTransferDAO" class="com.lungcare.dicomfile.dao.impl.LocalFileTransferDAOImp"></bean>
+  
+  <bean id="remoteFileService" class="com.lungcare.dicomfile.service.impl.RemoteFileServiceImp"></bean>
+  <bean id="remoteFileTransferDAO" class="com.lungcare.dicomfile.dao.impl.RemoteFileTransferDAOImp"></bean>
 </beans>

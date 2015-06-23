@@ -9,7 +9,6 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.Map;
 import java.util.TreeMap;
 
 import javax.ws.rs.Consumes;
@@ -26,8 +25,8 @@ import org.springframework.stereotype.Component;
 
 import com.lungcare.dicomfile.entity.Customer;
 import com.lungcare.dicomfile.service.ILocalFileService;
+import com.lungcare.dicomfile.service.IRemoteFileService;
 import com.sun.jersey.core.header.FormDataContentDisposition;
-import com.sun.jersey.multipart.FormDataBodyPart;
 import com.sun.jersey.multipart.FormDataMultiPart;
 import com.sun.jersey.multipart.FormDataParam;
 import com.sun.jersey.spi.resource.Singleton;
@@ -45,6 +44,8 @@ public class CustomersResource {
 	private static final String FAILED_RESPONSE = "Failed";
 
 	@Autowired
+	private IRemoteFileService remoteFileService;
+	@Autowired
 	private ILocalFileService localFileService;
 
 	@POST
@@ -53,26 +54,7 @@ public class CustomersResource {
 	@Path("/multipleFiles")
 	public String registerWebService(FormDataMultiPart formParams) {
 
-		Map<String, List<FormDataBodyPart>> fieldsByName = formParams
-				.getFields();
-
-		// Usually each value in fieldsByName will be a list of length 1.
-		// Assuming each field in the form is a file, just loop through them.
-
-		for (List<FormDataBodyPart> fields : fieldsByName.values()) {
-			for (FormDataBodyPart field : fields) {
-				InputStream is = field.getEntityAs(InputStream.class);
-				String fileName = field.getName();
-				FormDataContentDisposition fdcd = field
-						.getFormDataContentDisposition();
-				saveFile(is, fdcd, fileName);
-				// TODO: SAVE FILE HERE
-
-				// if you want media type for validation, it's
-				// field.getMediaType()
-			}
-		}
-
+		remoteFileService.uploadFile(formParams);
 		return SUCCESS_RESPONSE;
 	}
 
@@ -99,7 +81,7 @@ public class CustomersResource {
 			@FormDataParam("file") FormDataContentDisposition fdcd) {
 
 		logger.info("CustomersResource upload.");
-		localFileService.uploadFile();
+		// localFileService.uploadFile();
 		saveFile(fis, fdcd, fdcd.getFileName());
 
 		// TODO: handle exception
@@ -114,11 +96,7 @@ public class CustomersResource {
 		Date date1 = new Date();
 		OutputStream outpuStream = null;
 		String fileName = fdcd.getFileName();
-		int index = fileName.indexOf("/");
-		if (index != -1) {
-			fileName = fileName.substring(index + 1, fileName.length());
-		}
-		System.out.println("File Name: " + fileName);
+		System.out.println("File Name: " + fdcd.getFileName());
 		File file = new File(FOLDER_PATH);
 		if (!file.exists() && !file.isDirectory()) {
 			file.mkdir();
