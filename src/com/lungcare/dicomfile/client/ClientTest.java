@@ -23,7 +23,7 @@ public class ClientTest {
 		WebResource resource = client
 				.resource("http://localhost:8080/WebRestService/services/remotefile/multipleFiles");
 		// System.out.println(resource.get(String.class));
-		System.out.println("aa");
+		System.out.println("bb");
 		FormDataMultiPart formDataMultiPart = new FormDataMultiPart();
 
 		/*
