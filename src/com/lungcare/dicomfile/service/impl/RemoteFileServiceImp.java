@@ -20,4 +20,10 @@ public class RemoteFileServiceImp implements IRemoteFileService {
 	public void downloadFile() {
 
 	}
+
+	public void test() {
+		// TODO Auto-generated method stub
+		System.out.println("RemoteFileServiceImp test()");
+		remoteFileTransferDAO.test();
+	}
 }

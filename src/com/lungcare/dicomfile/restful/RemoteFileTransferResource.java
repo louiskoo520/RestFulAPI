@@ -10,12 +10,17 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.ws.rs.Consumes;
+import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
+import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.MultivaluedMap;
+import javax.xml.ws.WebServiceContext;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,25 +45,49 @@ public class RemoteFileTransferResource {
 	@Autowired
 	private IRemoteFileService remoteFileService;
 	private Map<String, ReceiveEntity> receivedMap = new HashMap<String, ReceiveEntity>();
+	@Resource
+	private WebServiceContext wsCtxt;
 
 	@POST
 	@Consumes(MediaType.MULTIPART_FORM_DATA)
 	@Produces("text/plain")
 	@Path("/multipleFiles")
 	public String uploadMultiFiles(FormDataMultiPart formParams,
-			HttpServletRequest request) {
+			@Context HttpServletRequest request) {
+		System.out.println("uploadMultiFiles");
 
 		ReceiveEntity receiveEntity = new ReceiveEntity();
+		MultivaluedMap<String, String> mapHeaders = formParams.getHeaders();
+		/*
+		 * MessageContext msgCtxt = wsCtxt.getMessageContext();
+		 * HttpServletRequest request = (HttpServletRequest) msgCtxt
+		 * .get(MessageContext.SERVLET_REQUEST);
+		 * 
+		 * String hostName = request.getServerName(); int port =
+		 * request.getServerPort();
+		 */
 		receiveEntity.setId(Integer.toString(request.hashCode()));
 
 		String remoteHostString = request.getRemoteHost();
 		receiveEntity.setIp(remoteHostString);
 		int port = request.getRemotePort();
 		receiveEntity.setPort(port);
+
+		receiveEntity.setId(formParams.toString());
 		receiveEntity.setTotalFiles(formParams.getFields().size());
 		receivedMap.put(receiveEntity.getId(), receiveEntity);
 		remoteFileService.uploadFile(formParams, receiveEntity);
 		return SUCCESS_RESPONSE;
+	}
+
+	@GET
+	@Path("add")
+	@Produces("text/html")
+	@Consumes("application/xml")
+	public String AddCustomers() {
+
+		return "Customer added with Id ";
+		// throw new UnsupportedOperationException("Not yet implemented.");
 	}
 
 	private static final String FOLDER_PATH = "C:\\my_files\\";

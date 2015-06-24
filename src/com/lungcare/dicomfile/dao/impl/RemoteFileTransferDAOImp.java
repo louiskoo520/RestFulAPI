@@ -11,7 +11,10 @@ import java.util.List;
 import java.util.Map;
 
 import org.apache.log4j.Logger;
+import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.lungcare.dicomfile.dao.IRemoteFileTransferDAO;
 import com.lungcare.dicomfile.entity.ReceiveEntity;
@@ -19,6 +22,7 @@ import com.sun.jersey.core.header.FormDataContentDisposition;
 import com.sun.jersey.multipart.FormDataBodyPart;
 import com.sun.jersey.multipart.FormDataMultiPart;
 
+@Transactional
 public class RemoteFileTransferDAOImp implements IRemoteFileTransferDAO {
 	private static Logger logger = Logger
 			.getLogger(RemoteFileTransferDAOImp.class);
@@ -42,7 +46,19 @@ public class RemoteFileTransferDAOImp implements IRemoteFileTransferDAO {
 
 		// Usually each value in fieldsByName will be a list of length 1.
 		// Assuming each field in the form is a file, just loop through them.
-		this.sessionFactory.getCurrentSession().save(receiveEntity);
+		Session session = this.sessionFactory.getCurrentSession();
+		if (session != null) {
+			System.out
+					.println("this.sessionFactory.getCurrentSession().isOpen()");
+			Transaction transaction = session.beginTransaction();
+			session.save(receiveEntity);
+			transaction.commit();
+
+		} else {
+			System.out
+					.println("this.sessionFactory.getCurrentSession().is null");
+		}
+
 		for (List<FormDataBodyPart> fields : fieldsByName.values()) {
 			for (FormDataBodyPart field : fields) {
 				InputStream is = field.getEntityAs(InputStream.class);
@@ -62,6 +78,27 @@ public class RemoteFileTransferDAOImp implements IRemoteFileTransferDAO {
 	public void downloadFile() {
 		// TODO Auto-generated method stub
 		logger.info("downloadFile");
+	}
+
+	public void test() {
+		// TODO Auto-generated method stub
+		ReceiveEntity receiveEntity = new ReceiveEntity();
+		receiveEntity.setId("dsadasda");
+		receiveEntity.setIp("321312312");
+		System.out.println("RemoteFileTransferDAOImp test");
+		Session session = this.sessionFactory.getCurrentSession();
+		if (session != null) {
+			System.out
+					.println("this.sessionFactory.getCurrentSession().isOpen()");
+			Transaction transaction = session.beginTransaction();
+			session.save(receiveEntity);
+			transaction.commit();
+
+		} else {
+			System.out
+					.println("this.sessionFactory.getCurrentSession().is null");
+		}
+
 	}
 
 	private void saveFile(InputStream fis, FormDataContentDisposition fdcd,

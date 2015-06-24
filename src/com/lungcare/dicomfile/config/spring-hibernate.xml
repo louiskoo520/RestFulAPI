@@ -47,6 +47,7 @@
 			
 			<prop key="hibernate.hbm2ddl.auto">update</prop>
 			
+			 <prop key="hibernate.current_session_context_class">thread</prop>
 			<!-- <prop key="hibernate.cache.use_query_cache">true</prop> -->
 			
 			<!-- <prop key="hibernate.cache.use_second_level_cache">
@@ -78,7 +79,7 @@
       <property name="configLocations">
          <list>
            <value>
-             classpath*:com/eastcom/config/hibernate.cfg.xml
+             classpath*:com/lungcare/dicomfile/config/hibernate.cfg.xml
            </value>
          </list>
       </property>
@@ -101,4 +102,5 @@
          </props>
       </property>
     </bean>
+    
 </beans>

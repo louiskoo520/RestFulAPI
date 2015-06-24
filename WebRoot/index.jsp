@@ -22,7 +22,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   
   <body>
      <h1>Upload File</h1>
-    <form action="services/customers/multipleFiles" method="post" enctype="multipart/form-data">
+    <form action="services/remotefile/multipleFiles" method="post" enctype="multipart/form-data">
         <p>Select a file : <input type="file" name="file" multiple="multiple" /></p>
         <input type="submit" value="Upload File" />
     </form>

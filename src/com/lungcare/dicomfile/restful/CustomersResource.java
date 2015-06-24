@@ -17,6 +17,7 @@ import org.springframework.stereotype.Component;
 
 import com.lungcare.dicomfile.entity.Customer;
 import com.lungcare.dicomfile.service.ILocalFileService;
+import com.lungcare.dicomfile.service.IRemoteFileService;
 
 @Path("customers")
 @Component
@@ -43,12 +44,16 @@ public class CustomersResource {
 
 	@Autowired
 	private ILocalFileService localFileService;
+	@Autowired
+	private IRemoteFileService remoteFileService;
 
 	@GET
 	@Path("{id}")
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Customer getCustomers(@PathParam("id") int cId) {
+		System.out.println("getCustomers by id : " + cId);
+
 		return customerMap.get(cId);
 		// throw new UnsupportedOperationException("Not yet implemented.");
 	}
@@ -61,6 +66,7 @@ public class CustomersResource {
 		int id = customerMap.size();
 		customer.setId(id);
 		customerMap.put(id, customer);
+
 		return "Customer " + customer.getName() + " added with Id " + id;
 		// throw new UnsupportedOperationException("Not yet implemented.");
 	}
@@ -73,6 +79,16 @@ public class CustomersResource {
 		List<Customer> list = new ArrayList<Customer>();
 		list.addAll(customerMap.values());
 		return list;
+		// throw new UnsupportedOperationException("Not yet implemented.");
+	}
+
+	@GET
+	@Path("test")
+	@Produces(MediaType.APPLICATION_JSON)
+	@Consumes(MediaType.APPLICATION_JSON)
+	public String test() {
+		remoteFileService.test();
+		return "success lx ";
 		// throw new UnsupportedOperationException("Not yet implemented.");
 	}
 

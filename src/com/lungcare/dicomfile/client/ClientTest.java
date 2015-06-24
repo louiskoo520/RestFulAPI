@@ -23,7 +23,7 @@ public class ClientTest {
 		WebResource resource = client
 				.resource("http://localhost:8080/WebRestService/services/remotefile/multipleFiles");
 		// System.out.println(resource.get(String.class));
-		System.out.println("bb");
+		// System.out.println("bb");
 		FormDataMultiPart formDataMultiPart = new FormDataMultiPart();
 
 		/*
@@ -51,6 +51,7 @@ public class ClientTest {
 		System.out.println(reString);
 
 		// MediaType of the body part will be derived from the file.
+
 	}
 
 }

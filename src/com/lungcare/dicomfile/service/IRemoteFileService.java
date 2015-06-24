@@ -8,4 +8,6 @@ public interface IRemoteFileService {
 			ReceiveEntity receiveEntity);
 
 	public void downloadFile();
+
+	public void test();
 }

@@ -8,4 +8,6 @@ public interface IRemoteFileTransferDAO {
 			ReceiveEntity receiveEntity);
 
 	public void downloadFile();
+
+	public void test();
 }
