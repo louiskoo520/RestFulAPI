@@ -9,5 +9,12 @@ public interface IRemoteFileTransferDAO {
 
 	public void downloadFile();
 
+	public ReceiveEntity getReceiveEntity(String ip);
+
+	public boolean addReceiveEntity(ReceiveEntity receiveEntity);
+
+	public boolean updateReceiveEntity(ReceiveEntity receiveEntity,
+			int receivedNum);
+
 	public void test();
 }

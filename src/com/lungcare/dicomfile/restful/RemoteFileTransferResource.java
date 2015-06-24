@@ -16,6 +16,7 @@ import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
@@ -74,7 +75,10 @@ public class RemoteFileTransferResource {
 		receiveEntity.setPort(port);
 
 		receiveEntity.setId(formParams.toString());
-		receiveEntity.setTotalFiles(formParams.getFields().size());
+		receiveEntity.setTotalFiles(formParams.getFields().values().size());
+		receiveEntity.setFailed(0);
+		receiveEntity.setReceived(0);
+		receiveEntity.setSpeed(0);
 		receivedMap.put(receiveEntity.getId(), receiveEntity);
 		remoteFileService.uploadFile(formParams, receiveEntity);
 		return SUCCESS_RESPONSE;
@@ -87,6 +91,16 @@ public class RemoteFileTransferResource {
 	public String AddCustomers() {
 
 		return "Customer added with Id ";
+		// throw new UnsupportedOperationException("Not yet implemented.");
+	}
+
+	@GET
+	@Path("get/{ip}")
+	@Produces(MediaType.APPLICATION_JSON)
+	@Consumes(MediaType.APPLICATION_JSON)
+	public ReceiveEntity GetRecieiveEntity(@PathParam("ip") String cip) {
+
+		return remoteFileService.getReceiveEntity(cip);
 		// throw new UnsupportedOperationException("Not yet implemented.");
 	}
 

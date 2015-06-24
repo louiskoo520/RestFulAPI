@@ -7,10 +7,12 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
 import org.apache.log4j.Logger;
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -43,33 +45,35 @@ public class RemoteFileTransferDAOImp implements IRemoteFileTransferDAO {
 		System.out.println("RemoteFileTransferDAOImp uploadFile.........");
 		Map<String, List<FormDataBodyPart>> fieldsByName = formParams
 				.getFields();
-
+		int totalNum = 0;
+		for (List<FormDataBodyPart> fields : fieldsByName.values()) {
+			for (FormDataBodyPart field : fields) {
+				++totalNum;
+			}
+		}
+		receiveEntity.setTotalFiles(totalNum);
+		receiveEntity.setSavedFolder(FOLDER_PATH);
+		addReceiveEntity(receiveEntity);
 		// Usually each value in fieldsByName will be a list of length 1.
 		// Assuming each field in the form is a file, just loop through them.
-		Session session = this.sessionFactory.getCurrentSession();
-		if (session != null) {
-			System.out
-					.println("this.sessionFactory.getCurrentSession().isOpen()");
-			Transaction transaction = session.beginTransaction();
-			session.save(receiveEntity);
-			transaction.commit();
-
-		} else {
-			System.out
-					.println("this.sessionFactory.getCurrentSession().is null");
-		}
-
+		int index = 1;
+		int failedNum = 0;
 		for (List<FormDataBodyPart> fields : fieldsByName.values()) {
 			for (FormDataBodyPart field : fields) {
 				InputStream is = field.getEntityAs(InputStream.class);
 				String fileName = field.getName();
 				FormDataContentDisposition fdcd = field
 						.getFormDataContentDisposition();
-				saveFile(is, fdcd, fileName);
+				if (!saveFile(is, fdcd, fileName)) {
+					updateFailedReceiveEntity(receiveEntity, failedNum);
+				}
+				updateReceiveEntity(receiveEntity, index);
+
 				// TODO: SAVE FILE HERE
 
 				// if you want media type for validation, it's
 				// field.getMediaType()
+				++index;
 			}
 		}
 
@@ -78,6 +82,35 @@ public class RemoteFileTransferDAOImp implements IRemoteFileTransferDAO {
 	public void downloadFile() {
 		// TODO Auto-generated method stub
 		logger.info("downloadFile");
+	}
+
+	public ReceiveEntity getReceiveEntity(String ip) {
+		// TODO Auto-generated method stub
+		Session session = this.sessionFactory.getCurrentSession();
+		if (session != null) {
+			System.out
+					.println("this.sessionFactory.getCurrentSession().isOpen()");
+			Transaction transaction = session.beginTransaction();
+			Query query = session
+					.createQuery("from ReceiveEntity t where t.ip=?");
+			query.setString(0, ip);
+			List<ReceiveEntity> list = query.list();
+			transaction.commit();
+			for (Iterator iterator = list.iterator(); iterator.hasNext();) {
+				ReceiveEntity receiveEntity = (ReceiveEntity) iterator.next();
+				System.out.println(receiveEntity.getIp() + "  "
+						+ receiveEntity.getTotalFiles());
+			}
+			if (list != null) {
+				return list.get(0);
+			}
+		} else {
+			System.out
+					.println("this.sessionFactory.getCurrentSession().is null");
+			return null;
+		}
+
+		return null;
 	}
 
 	public void test() {
@@ -101,7 +134,7 @@ public class RemoteFileTransferDAOImp implements IRemoteFileTransferDAO {
 
 	}
 
-	private void saveFile(InputStream fis, FormDataContentDisposition fdcd,
+	private boolean saveFile(InputStream fis, FormDataContentDisposition fdcd,
 			String name) {
 		SimpleDateFormat myFormatter = new SimpleDateFormat(
 				"yyyy-MM-dd HH:mm:ss");
@@ -130,6 +163,7 @@ public class RemoteFileTransferDAOImp implements IRemoteFileTransferDAO {
 			outpuStream.close();
 		} catch (IOException iox) {
 			iox.printStackTrace();
+			return false;
 		} finally {
 			if (outpuStream != null) {
 				try {
@@ -142,7 +176,83 @@ public class RemoteFileTransferDAOImp implements IRemoteFileTransferDAO {
 
 		Date date2 = new Date();
 		System.out.println(date2.getTime() - date1.getTime());
+		return true;
+	}
+
+	public boolean addReceiveEntity(ReceiveEntity receiveEntity) {
+		// TODO Auto-generated method stub
+		Session session = this.sessionFactory.getCurrentSession();
+		if (session != null) {
+			System.out
+					.println("this.sessionFactory.getCurrentSession().isOpen()");
+			Transaction transaction = session.beginTransaction();
+			session.save(receiveEntity);
+			transaction.commit();
+			return true;
+		} else {
+			System.out
+					.println("this.sessionFactory.getCurrentSession().is null");
+
+		}
+
+		return false;
+	}
+
+	public boolean updateReceiveEntity(ReceiveEntity receiveEntity,
+			int receivedNum) {
+		// TODO Auto-generated method stub
+		// ReceiveEntity receive = getReceiveEntity(receiveEntity.getIp());
+		// receive.setReceived(receivedNum);
+		Session session = this.sessionFactory.getCurrentSession();
+		if (session != null) {
+			System.out
+					.println("this.sessionFactory.getCurrentSession().isOpen()");
+			Transaction transaction = session.beginTransaction();
+			Query query = session
+					.createQuery("update ReceiveEntity t set t.received = ? where t.id=?");
+			query.setParameter(0, receivedNum);
+			String id = receiveEntity.getId();
+			query.setParameter(1, id);
+			int result = query.executeUpdate();
+			// session.update(receive);
+			transaction.commit();
+			return true;
+		} else {
+			System.out
+					.println("this.sessionFactory.getCurrentSession().is null");
+
+		}
+
+		return false;
 
 	}
 
+	public boolean updateFailedReceiveEntity(ReceiveEntity receiveEntity,
+			int failedNum) {
+		// TODO Auto-generated method stub
+		// ReceiveEntity receive = getReceiveEntity(receiveEntity.getIp());
+		// receive.setReceived(receivedNum);
+		Session session = this.sessionFactory.getCurrentSession();
+		if (session != null) {
+			System.out
+					.println("this.sessionFactory.getCurrentSession().isOpen()");
+			Transaction transaction = session.beginTransaction();
+			Query query = session
+					.createQuery("update ReceiveEntity t set t.failed = ? where t.id=?");
+			query.setParameter(0, failedNum);
+			String id = receiveEntity.getId();
+			query.setParameter(1, id);
+			int result = query.executeUpdate();
+			// session.update(receive);
+			transaction.commit();
+			return true;
+		} else {
+			System.out
+					.println("this.sessionFactory.getCurrentSession().is null");
+
+		}
+
+		return false;
+
+	}
 }

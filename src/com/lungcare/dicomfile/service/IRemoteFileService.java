@@ -9,5 +9,7 @@ public interface IRemoteFileService {
 
 	public void downloadFile();
 
+	public ReceiveEntity getReceiveEntity(String ip);
+
 	public void test();
 }
