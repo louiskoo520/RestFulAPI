@@ -11,8 +11,10 @@ import java.util.List;
 import java.util.Map;
 
 import org.apache.log4j.Logger;
+import org.hibernate.SessionFactory;
 
 import com.lungcare.dicomfile.dao.IRemoteFileTransferDAO;
+import com.lungcare.dicomfile.entity.ReceiveEntity;
 import com.sun.jersey.core.header.FormDataContentDisposition;
 import com.sun.jersey.multipart.FormDataBodyPart;
 import com.sun.jersey.multipart.FormDataMultiPart;
@@ -23,7 +25,14 @@ public class RemoteFileTransferDAOImp implements IRemoteFileTransferDAO {
 
 	private static final String FOLDER_PATH = "C:\\my_files\\";
 
-	public void uploadFile(FormDataMultiPart formParams) {
+	private SessionFactory sessionFactory;
+
+	public void setSessionFactory(SessionFactory sessionFactory) {
+		this.sessionFactory = sessionFactory;
+	}
+
+	public void uploadFile(FormDataMultiPart formParams,
+			ReceiveEntity receiveEntity) {
 		// TODO Auto-generated method stub
 		logger.info("uploadFile");
 
@@ -33,7 +42,7 @@ public class RemoteFileTransferDAOImp implements IRemoteFileTransferDAO {
 
 		// Usually each value in fieldsByName will be a list of length 1.
 		// Assuming each field in the form is a file, just loop through them.
-
+		this.sessionFactory.getCurrentSession().save(receiveEntity);
 		for (List<FormDataBodyPart> fields : fieldsByName.values()) {
 			for (FormDataBodyPart field : fields) {
 				InputStream is = field.getEntityAs(InputStream.class);

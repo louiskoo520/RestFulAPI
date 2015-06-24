@@ -21,7 +21,7 @@ public class ClientTest {
 
 		Client client = Client.create();
 		WebResource resource = client
-				.resource("http://localhost:8080/WebRestService1/services/customers/upload1");
+				.resource("http://localhost:8080/WebRestService/services/remotefile/multipleFiles");
 		// System.out.println(resource.get(String.class));
 
 		FormDataMultiPart formDataMultiPart = new FormDataMultiPart();

@@ -10,7 +10,13 @@
        http://www.springframework.org/schema/context/spring-context.xsd">
   
   <context:annotation-config />
-  <context:component-scan base-package="com.lungcare.dicomfile.restful" />
+  <context:component-scan base-package="com.lungcare.dicomfile" />
+  <context:property-placeholder location="classpath*:com/lungcare/dicomfile/config/jdbc.properties"/>
+    
+    <!-- <import resource="classpath*:com/lungcare/dicomfile/config/spring-user.xml"/> -->
+    <import resource="classpath*:com/lungcare/dicomfile/config/spring-hibernate.xml"/>
+    
+  
   
   <!-- <bean id="localFileTransferDAOImp" class="com.lungcare.dicomfile.dao.impl.LocalFileTransferDAOImp"></bean>
   <bean class="com.lungcare.dicomfile.service.impl.LocalFileServiceImp">
@@ -26,5 +32,8 @@
   <bean id="localFileTransferDAO" class="com.lungcare.dicomfile.dao.impl.LocalFileTransferDAOImp"></bean>
   
   <bean id="remoteFileService" class="com.lungcare.dicomfile.service.impl.RemoteFileServiceImp"></bean>
-  <bean id="remoteFileTransferDAO" class="com.lungcare.dicomfile.dao.impl.RemoteFileTransferDAOImp"></bean>
+  <bean id="remoteFileTransferDAO" class="com.lungcare.dicomfile.dao.impl.RemoteFileTransferDAOImp">
+     <property name="sessionFactory" ref="sessionFactory"></property>
+  </bean>
+  
 </beans>

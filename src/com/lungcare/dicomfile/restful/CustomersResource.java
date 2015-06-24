@@ -1,13 +1,6 @@
 package com.lungcare.dicomfile.restful;
 
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import java.util.TreeMap;
 
@@ -19,115 +12,15 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
-import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.lungcare.dicomfile.entity.Customer;
 import com.lungcare.dicomfile.service.ILocalFileService;
-import com.lungcare.dicomfile.service.IRemoteFileService;
-import com.sun.jersey.core.header.FormDataContentDisposition;
-import com.sun.jersey.multipart.FormDataMultiPart;
-import com.sun.jersey.multipart.FormDataParam;
-import com.sun.jersey.spi.resource.Singleton;
 
 @Path("customers")
-@Singleton
 @Component
 public class CustomersResource {
-
-	private TreeMap<Integer, Customer> customerMap = new TreeMap<Integer, Customer>();
-
-	private static final String FILE_UPLOAD_PATH = "/Users/arun_kumar/Pictures";
-	private static final String CANDIDATE_NAME = "candidateName";
-	private static final String SUCCESS_RESPONSE = "Successful";
-	private static final String FAILED_RESPONSE = "Failed";
-
-	@Autowired
-	private IRemoteFileService remoteFileService;
-	@Autowired
-	private ILocalFileService localFileService;
-
-	@POST
-	@Consumes(MediaType.MULTIPART_FORM_DATA)
-	@Produces("text/plain")
-	@Path("/multipleFiles")
-	public String registerWebService(FormDataMultiPart formParams) {
-
-		remoteFileService.uploadFile(formParams);
-		return SUCCESS_RESPONSE;
-	}
-
-	private static final String FOLDER_PATH = "C:\\my_files\\";
-
-	@POST
-	@Path("/upload")
-	@Consumes(MediaType.MULTIPART_FORM_DATA)
-	@Produces(MediaType.TEXT_PLAIN)
-	public String uploadFile(@FormDataParam("file") InputStream fis,
-			@FormDataParam("file") FormDataContentDisposition fdcd) {
-
-		saveFile(fis, fdcd, fdcd.getFileName());
-		return "File Upload Successfully !!";
-	}
-
-	private Logger logger = Logger.getLogger(CustomersResource.class);
-
-	@POST
-	@Path("/upload1")
-	@Consumes(MediaType.MULTIPART_FORM_DATA)
-	@Produces(MediaType.TEXT_PLAIN)
-	public String upload(@FormDataParam("file") InputStream fis,
-			@FormDataParam("file") FormDataContentDisposition fdcd) {
-
-		logger.info("CustomersResource upload.");
-		// localFileService.uploadFile();
-		saveFile(fis, fdcd, fdcd.getFileName());
-
-		// TODO: handle exception
-
-		return "File Upload Successfully !!";
-	}
-
-	private void saveFile(InputStream fis, FormDataContentDisposition fdcd,
-			String name) {
-		SimpleDateFormat myFormatter = new SimpleDateFormat(
-				"yyyy-MM-dd HH:mm:ss");
-		Date date1 = new Date();
-		OutputStream outpuStream = null;
-		String fileName = fdcd.getFileName();
-		System.out.println("File Name: " + fdcd.getFileName());
-		File file = new File(FOLDER_PATH);
-		if (!file.exists() && !file.isDirectory()) {
-			file.mkdir();
-		}
-		String filePath = FOLDER_PATH + fileName;
-
-		try {
-			int read = 0;
-			byte[] bytes = new byte[1024];
-			outpuStream = new FileOutputStream(new File(filePath));
-			while ((read = fis.read(bytes)) != -1) {
-				outpuStream.write(bytes, 0, read);
-			}
-			outpuStream.flush();
-			outpuStream.close();
-		} catch (IOException iox) {
-			iox.printStackTrace();
-		} finally {
-			if (outpuStream != null) {
-				try {
-					outpuStream.close();
-				} catch (Exception ex) {
-
-				}
-			}
-		}
-
-		Date date2 = new Date();
-		System.out.println(date2.getTime() - date1.getTime());
-
-	}
 
 	public CustomersResource() {
 		Customer customer = new Customer();
@@ -140,6 +33,16 @@ public class CustomersResource {
 		customer1.setAddress("Sheffield, UK1");
 		AddCustomers(customer1);
 	}
+
+	private TreeMap<Integer, Customer> customerMap = new TreeMap<Integer, Customer>();
+
+	private static final String FILE_UPLOAD_PATH = "/Users/arun_kumar/Pictures";
+	private static final String CANDIDATE_NAME = "candidateName";
+	private static final String SUCCESS_RESPONSE = "Successful";
+	private static final String FAILED_RESPONSE = "Failed";
+
+	@Autowired
+	private ILocalFileService localFileService;
 
 	@GET
 	@Path("{id}")
