@@ -84,7 +84,7 @@ public class RemoteFileTransferDAOImp implements IRemoteFileTransferDAO {
 		logger.info("downloadFile");
 	}
 
-	public ReceiveEntity getReceiveEntity(String ip) {
+	public ReceiveEntity getReceiveEntity(String id) {
 		// TODO Auto-generated method stub
 		Session session = this.sessionFactory.getCurrentSession();
 		if (session != null) {
@@ -92,8 +92,8 @@ public class RemoteFileTransferDAOImp implements IRemoteFileTransferDAO {
 					.println("this.sessionFactory.getCurrentSession().isOpen()");
 			Transaction transaction = session.beginTransaction();
 			Query query = session
-					.createQuery("from ReceiveEntity t where t.ip=?");
-			query.setString(0, ip);
+					.createQuery("from ReceiveEntity t where t.id=?");
+			query.setString(0, id);
 			List<ReceiveEntity> list = query.list();
 			transaction.commit();
 			for (Iterator iterator = list.iterator(); iterator.hasNext();) {

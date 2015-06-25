@@ -52,9 +52,9 @@ public class RemoteFileTransferResource {
 	@POST
 	@Consumes(MediaType.MULTIPART_FORM_DATA)
 	@Produces("text/plain")
-	@Path("/multipleFiles")
+	@Path("/multipleFiles/{id}")
 	public String uploadMultiFiles(FormDataMultiPart formParams,
-			@Context HttpServletRequest request) {
+			@Context HttpServletRequest request, @PathParam("id") String cid) {
 		System.out.println("uploadMultiFiles");
 
 		ReceiveEntity receiveEntity = new ReceiveEntity();
@@ -67,14 +67,14 @@ public class RemoteFileTransferResource {
 		 * String hostName = request.getServerName(); int port =
 		 * request.getServerPort();
 		 */
-		receiveEntity.setId(Integer.toString(request.hashCode()));
+		// receiveEntity.setId(Integer.toString(request.hashCode()));
+		receiveEntity.setId(cid);
 
 		String remoteHostString = request.getRemoteHost();
 		receiveEntity.setIp(remoteHostString);
 		int port = request.getRemotePort();
 		receiveEntity.setPort(port);
 
-		receiveEntity.setId(formParams.toString());
 		receiveEntity.setTotalFiles(formParams.getFields().values().size());
 		receiveEntity.setFailed(0);
 		receiveEntity.setReceived(0);
@@ -95,13 +95,13 @@ public class RemoteFileTransferResource {
 	}
 
 	@GET
-	@Path("get/{ip}")
+	@Path("get/{id}")
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
-	public ReceiveEntity GetRecieiveEntity(@PathParam("ip") String cip) {
+	// throw new UnsupportedOperationException("Not yet implemented.");
+	public ReceiveEntity GetRecieiveEntity(@PathParam("id") String cid) {
 
-		return remoteFileService.getReceiveEntity(cip);
-		// throw new UnsupportedOperationException("Not yet implemented.");
+		return remoteFileService.getReceiveEntity(cid);
 	}
 
 	private static final String FOLDER_PATH = "C:\\my_files\\";

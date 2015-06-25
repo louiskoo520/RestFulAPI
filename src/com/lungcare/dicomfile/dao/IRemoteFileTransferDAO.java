@@ -9,7 +9,7 @@ public interface IRemoteFileTransferDAO {
 
 	public void downloadFile();
 
-	public ReceiveEntity getReceiveEntity(String ip);
+	public ReceiveEntity getReceiveEntity(String id);
 
 	public boolean addReceiveEntity(ReceiveEntity receiveEntity);
 

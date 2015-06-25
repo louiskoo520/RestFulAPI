@@ -21,10 +21,10 @@ public class RemoteFileServiceImp implements IRemoteFileService {
 
 	}
 
-	public ReceiveEntity getReceiveEntity(String ip) {
+	public ReceiveEntity getReceiveEntity(String id) {
 		// TODO Auto-generated method stub
 
-		return remoteFileTransferDAO.getReceiveEntity(ip);
+		return remoteFileTransferDAO.getReceiveEntity(id);
 	}
 
 	public void test() {
