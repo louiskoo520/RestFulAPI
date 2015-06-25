@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>uploadFolder.html</title>
+
+<meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
+<meta http-equiv="description" content="this is my page">
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<link type="text/css" rel="stylesheet" href="css/load-bar.css" />
+<link type="text/css" rel="stylesheet" href="css/inputFile.css" />
+<style type="text/css">
+	input[type="submit"]{
+		background-color:#AAAAAA;
+		color:white;
+	}
+</style>
+<script type="text/javascript" src="js/jquery-1.4.3.js"></script>
+<script type="text/javascript" language="Javascript">
+	function progressBar(){
+				
+	}
+		function getNumb(){
+			$.ajax({
+				type : 'get',
+				url : '/WebRestService/services/remotefile/get/192.168.1.3',
+				data : {},
+				dataType : 'JSON',
+				success : function(result) {
+				alert('start');
+					var dataObj = eval("(" + result + ")");
+						alert(dataObj.totalFiles);										
+				}
+			});
+		}
+</script>
+
+</head>
+
+<body>
+	<h1>uploadFolder</h1>
+	<br>
+	
+	<form action="services/remotefile/multipleFiles" method="post" enctype="multipart/form-data">
+		<a href="javascript:;" class="file">
+			选择多文件: <input type="file" name="fileMulti" multiple="multiple" />
+		</a>
+		<input type="submit" value="提交" onclick="progressBar()" />
+	</form>
+	<br></br>
+	<form action="services/remotefile/multipleFiles" method="post" enctype="multipart/form-data"  >
+		<a href="javascript:;" class="file">
+			选择文件夹: 
+				<input type="file" name="fileFolder" webkitdirectory directory multiple />
+		</a>
+		<input type="submit" value="提交" />
+	</form>
+		<div class="wrapper">
+			<div class="load-bar">
+				<div class="load-bar-inner" data-loading="0">
+					<span id="counter"></span>
+				</div>
+			</div>
+			<h1>UpLoading...</h1>
+		</div>
+
+		<p>	<input type="button" value="test" onclick="getNumb()"/></p>
+</body>
+</html>

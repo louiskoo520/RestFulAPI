@@ -101,7 +101,7 @@ public class RemoteFileTransferDAOImp implements IRemoteFileTransferDAO {
 				System.out.println(receiveEntity.getIp() + "  "
 						+ receiveEntity.getTotalFiles());
 			}
-			if (list != null) {
+			if (list != null && list.size() > 0) {
 				return list.get(0);
 			}
 		} else {
