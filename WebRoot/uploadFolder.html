@@ -20,7 +20,7 @@
 var current_guid = "5a6b27c0-ad60-ca2f-e9e4-0f973d3b75a4";
     var interval;
 	function progressBar(){
-	  interval = setInterval(showProgress, 50);	
+	  interval = setInterval(showProgress, 500);	
 	}
 		function showProgress(){
 			getNumb();
@@ -62,7 +62,8 @@ var current_guid = "5a6b27c0-ad60-ca2f-e9e4-0f973d3b75a4";
 		function toPercent(data){
 		    var strData = parseFloat(data)*10000;
 		    strData = Math.round(strData);
-		    strData/=100.00;
+		    strData/=100;
+		    strData = strData.toFixed(0);
 		    var ret = strData.toString()+"%";
 		    return ret;
 		}
@@ -97,12 +98,12 @@ var current_guid = "5a6b27c0-ad60-ca2f-e9e4-0f973d3b75a4";
 		<input type="submit" value="提交" onclick="progressBar()"/>
 	</form>
 	<br></br>
-	<form action="services/remotefile/multipleFiles" method="post" enctype="multipart/form-data"  >
+	<form  method="post" enctype="multipart/form-data" onsubmit="get_action(this)" >
 		<a href="javascript:;" class="file">
 			选择文件夹: 
-				<input type="file" name="fileFolder" webkitdirectory directory multiple />
+				<input type="file" name="fileFolder"  webkitdirectory directory multiple />
 		</a>
-		<input type="submit" value="提交" />
+		<input type="submit" value="提交" onclick="progressBar()"/>
 	</form>
 
 		 <div class="process-bar skin-green">
