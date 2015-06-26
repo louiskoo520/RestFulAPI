@@ -70,9 +70,18 @@ public class RemoteFileTransferResource {
 		// receiveEntity.setId(Integer.toString(request.hashCode()));
 		receiveEntity.setId(cid);
 
-		String remoteHostString = request.getRemoteHost();
+		String remoteHostString = "";
+		if (request.getHeader("x-forwarded-for") == null) {
+			remoteHostString = request.getRemoteAddr();
+		} else {
+			remoteHostString = request.getHeader("x-forwarded-for");
+		}
+		System.out.println("ip : " + remoteHostString);
+
 		receiveEntity.setIp(remoteHostString);
+
 		int port = request.getRemotePort();
+
 		receiveEntity.setPort(port);
 
 		receiveEntity.setTotalFiles(formParams.getFields().values().size());
