@@ -51,6 +51,7 @@ public class RemoteFileTransferDAOImp implements IRemoteFileTransferDAO {
 				++totalNum;
 			}
 		}
+		receiveEntity.setDate(new Date());
 		receiveEntity.setTotalFiles(totalNum);
 		receiveEntity.setSavedFolder(FOLDER_PATH);
 		addReceiveEntity(receiveEntity);

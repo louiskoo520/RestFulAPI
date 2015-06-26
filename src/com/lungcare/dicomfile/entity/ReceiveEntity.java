@@ -1,5 +1,7 @@
 package com.lungcare.dicomfile.entity;
 
+import java.util.Date;
+
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
@@ -15,6 +17,15 @@ public class ReceiveEntity {
 	private int port;
 	private String savedFolder;
 	private int totalFiles;
+	private Date date;
+
+	public Date getDate() {
+		return date;
+	}
+
+	public void setDate(Date date) {
+		this.date = date;
+	}
 
 	public String getId() {
 		return id;
