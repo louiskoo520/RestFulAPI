@@ -256,4 +256,9 @@ public class RemoteFileTransferDAOImp implements IRemoteFileTransferDAO {
 		return false;
 
 	}
+
+	public List<ReceiveEntity> GetAllReceiveEntity() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

@@ -1,5 +1,7 @@
 package com.lungcare.dicomfile.service;
 
+import java.util.List;
+
 import com.lungcare.dicomfile.entity.ReceiveEntity;
 import com.sun.jersey.multipart.FormDataMultiPart;
 
@@ -12,4 +14,6 @@ public interface IRemoteFileService {
 	public ReceiveEntity getReceiveEntity(String id);
 
 	public void test();
+
+	public List<ReceiveEntity> GetAllReceiveEntity();
 }

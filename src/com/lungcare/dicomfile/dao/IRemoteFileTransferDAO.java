@@ -1,5 +1,7 @@
 package com.lungcare.dicomfile.dao;
 
+import java.util.List;
+
 import com.lungcare.dicomfile.entity.ReceiveEntity;
 import com.sun.jersey.multipart.FormDataMultiPart;
 
@@ -17,4 +19,6 @@ public interface IRemoteFileTransferDAO {
 			int receivedNum);
 
 	public void test();
+
+	public List<ReceiveEntity> GetAllReceiveEntity();
 }

@@ -1,5 +1,7 @@
 package com.lungcare.dicomfile.service.impl;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.lungcare.dicomfile.dao.IRemoteFileTransferDAO;
@@ -31,5 +33,10 @@ public class RemoteFileServiceImp implements IRemoteFileService {
 		// TODO Auto-generated method stub
 		System.out.println("RemoteFileServiceImp test()");
 		remoteFileTransferDAO.test();
+	}
+
+	public List<ReceiveEntity> GetAllReceiveEntity() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }
