@@ -23,6 +23,7 @@ import com.lungcare.dicomfile.entity.ReceiveEntity;
 import com.sun.jersey.core.header.FormDataContentDisposition;
 import com.sun.jersey.multipart.FormDataBodyPart;
 import com.sun.jersey.multipart.FormDataMultiPart;
+import com.sun.jersey.multipart.file.FileDataBodyPart;
 
 @Transactional
 public class RemoteFileTransferDAOImp implements IRemoteFileTransferDAO {
@@ -51,9 +52,10 @@ public class RemoteFileTransferDAOImp implements IRemoteFileTransferDAO {
 				++totalNum;
 			}
 		}
+		String idString = receiveEntity.getId();
 		receiveEntity.setDate(new Date());
 		receiveEntity.setTotalFiles(totalNum);
-		receiveEntity.setSavedFolder(FOLDER_PATH);
+		receiveEntity.setSavedFolder(FOLDER_PATH+idString+"\\");
 		addReceiveEntity(receiveEntity);
 		// Usually each value in fieldsByName will be a list of length 1.
 		// Assuming each field in the form is a file, just loop through them.
@@ -63,9 +65,8 @@ public class RemoteFileTransferDAOImp implements IRemoteFileTransferDAO {
 			for (FormDataBodyPart field : fields) {
 				InputStream is = field.getEntityAs(InputStream.class);
 				String fileName = field.getName();
-				FormDataContentDisposition fdcd = field
-						.getFormDataContentDisposition();
-				if (!saveFile(is, fdcd, fileName)) {
+				FormDataContentDisposition fdcd = field.getFormDataContentDisposition();
+				if (!saveFile(is, fdcd, fileName,idString)) {
 					updateFailedReceiveEntity(receiveEntity, failedNum);
 				}
 				updateReceiveEntity(receiveEntity, index);
@@ -136,7 +137,7 @@ public class RemoteFileTransferDAOImp implements IRemoteFileTransferDAO {
 	}
 
 	private boolean saveFile(InputStream fis, FormDataContentDisposition fdcd,
-			String name) {
+			String name,String folder) {
 		SimpleDateFormat myFormatter = new SimpleDateFormat(
 				"yyyy-MM-dd HH:mm:ss");
 		Date date1 = new Date();
@@ -147,11 +148,12 @@ public class RemoteFileTransferDAOImp implements IRemoteFileTransferDAO {
 			fileName = fileName.substring(index + 1, fileName.length());
 		}
 		System.out.println("File Name: " + fileName);
-		File file = new File(FOLDER_PATH);
+		System.out.println(folder);
+		File file = new File(FOLDER_PATH+folder+"\\");
 		if (!file.exists() && !file.isDirectory()) {
 			file.mkdir();
 		}
-		String filePath = FOLDER_PATH + fileName;
+		String filePath = FOLDER_PATH +folder+"\\"+ fileName;
 
 		try {
 			int read = 0;
