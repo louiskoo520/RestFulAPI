@@ -22,10 +22,13 @@
 			data : {},
 			dataType : 'JSON',
 			success : function(result) {
-			if(result!=null){
+			$('#tb1').empty();
+			if(result == "" || result == null){
+				alert("there is no data in the table!");
+			}
+			else{
 				var dataObj = eval("(" + result + ")");
 				dataObj=dataObj['receiveEntity'];
-				$('#tb1').empty();
 				$.each(dataObj, function(ii, item) {
 					$('#tb1').append(
 							'<tr><td>' + item.id + '</td><td>'
@@ -39,6 +42,7 @@
 									+ item.date + '</td></tr>');
 				});
 			  }
+			  
 			}
 		});
 }
