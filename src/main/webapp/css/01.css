@@ -3,7 +3,7 @@ body{text-align:center;}
 div{margin:0px auto;}
 
 #dataList {
-	width:96%;
+	width:90%;
 	background-color:white;
 	color:black;
 	border-collapse:collapse;
@@ -11,7 +11,7 @@ div{margin:0px auto;}
 }
 #dataList td { 
 	height:30px;
-	width:12%;
+	width:10%;
 	border:1px solid #ccc;
 	text-align:center;
 }

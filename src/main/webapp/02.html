@@ -12,29 +12,33 @@
 <script type="text/javascript" src="js/jquery-1.4.3.js"></script>
 <script type="text/javascript" language="javascript">
 	$(function() {
-		//setInterval(refresh, 1000);
-		refresh();
+		setInterval(refresh, 1000);
+		//refresh();
 	});
 	function refresh() {
 		$.ajax({
 			type : 'get',
-			url : '/RestWebService1/services/customers/receive',
+			url : '/transfer/rest/remotefile/getAllReceiveEntity',
 			data : {},
 			dataType : 'JSON',
 			success : function(result) {
+			if(result!=null){
 				var dataObj = eval("(" + result + ")");
-				dataObj=dataObj['receiveP'];
+				dataObj=dataObj['receiveEntity'];
 				$('#tb1').empty();
 				$.each(dataObj, function(ii, item) {
 					$('#tb1').append(
-							'<tr><td>' + item.ipFrom + '</td><td>'
-									+ item.folder + '</td><td>'
-									+ item.numOfFiles + '</td><td>'
-									+ item.receive + '</td><td>' + item.speed
-									+ '</td><td>' + item.failed + '</td><td>'
-									+ item.message + '</td><td>'
-									+ item.progressBar + '</td></tr>');
+							'<tr><td>' + item.id + '</td><td>'
+									+ item.ip + '</td><td>'
+									+ item.port + '</td><td>'
+									+ item.received + '</td><td>'
+									+ item.failed + '</td><td>' 
+									+ item.savedFolder + '</td><td>'
+									+ item.speed + '</td><td>'
+									+ item.totalFiles + '</td><td>'
+									+ item.date + '</td></tr>');
 				});
+			  }
 			}
 		});
 }
@@ -47,20 +51,21 @@
 	<div>
 		<table id="dataList">
 			<tr class="header">
-				<td colspan="8">receive</td>
+				<td colspan="9">receive</td>
 			</tr>
 			<tr class="header2">
-				<td colspan="8">&nbsp;</td>
+				<td colspan="9">&nbsp;</td>
 			</tr>
 			<tr>
-				<td>From(IP/port)</td>
-				<td>Folder</td>
-				<td>Numb of files</td>
+				<td>ID</td>
+				<td>IP</td>
+				<td>Port</td>
 				<td>Received</td>
-				<td>Speed</td>
 				<td>Failed</td>
-				<td>Message</td>
-				<td>Progress Bar</td>
+				<td>SavedFolder</td>
+				<td>Speed</td>
+				<td>TotalFiles</td>
+				<td>Date</td>
 			</tr>
 			<tbody id="tb1">
 			</tbody>
@@ -71,10 +76,10 @@
 
 		<table id="dataList">
 			<tr class="header">
-				<td colspan="8">send</td>
+				<td colspan="9">send</td>
 			</tr>
 			<tr class="header2">
-				<td colspan="8">&nbsp;</td>
+				<td colspan="9">&nbsp;</td>
 			</tr>
 			<tr>
 				<td>To(IP/port)</td>
@@ -85,6 +90,7 @@
 				<td>Failed</td>
 				<td>Message</td>
 				<td>Progress Bar</td>
+				<td>Date</td>
 			</tr>
 			<tbody id="tb2">
 			</tbody>

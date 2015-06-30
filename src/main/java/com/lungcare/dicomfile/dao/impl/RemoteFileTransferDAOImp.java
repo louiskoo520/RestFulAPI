@@ -222,7 +222,6 @@ public class RemoteFileTransferDAOImp implements IRemoteFileTransferDAO {
 		} else {
 			System.out
 					.println("this.sessionFactory.getCurrentSession().is null");
-
 		}
 
 		return false;
@@ -259,7 +258,26 @@ public class RemoteFileTransferDAOImp implements IRemoteFileTransferDAO {
 	}
 
 	public List<ReceiveEntity> GetAllReceiveEntity() {
-		// TODO Auto-generated method stub
+		Session session = this.sessionFactory.getCurrentSession();
+		if (session != null) {
+			System.out.println("this.sessionFactory.getCurrentSession().isOpen()");
+			Transaction transaction = session.beginTransaction();
+			Query query = session.createQuery("select reEntity from ReceiveEntity reEntity order by date desc");
+			List<ReceiveEntity> list = query.list();
+			transaction.commit();
+			for (Iterator<ReceiveEntity> iterator = list.iterator(); iterator.hasNext();) {
+				ReceiveEntity receiveEntity = (ReceiveEntity) iterator.next();
+				System.out.println(receiveEntity.getIp() + "  " + receiveEntity.getTotalFiles());
+			}
+
+			if (list != null && list.size() > 0) {
+				return list;
+			}
+		} else {
+			System.out.println("this.sessionFactory.getCurrentSession().is null");
+			return null;
+		}
+
 		return null;
 	}
 }
