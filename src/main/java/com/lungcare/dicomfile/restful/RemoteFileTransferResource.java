@@ -1,5 +1,8 @@
 package com.lungcare.dicomfile.restful;
 
+
+
+import java.util.List;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -183,5 +186,13 @@ public class RemoteFileTransferResource {
 		System.out.println(date2.getTime() - date1.getTime());
 
 	}
-
+	
+	@GET
+	@Path("/getAllReceiveEntity")
+	@Produces(MediaType.APPLICATION_JSON)
+	@Consumes(MediaType.APPLICATION_JSON)
+	public List<ReceiveEntity> GetAllReceiveEntity(){
+		
+		return  remoteFileService.GetAllReceiveEntity();
+	}
 }

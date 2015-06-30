@@ -37,6 +37,6 @@ public class RemoteFileServiceImp implements IRemoteFileService {
 
 	public List<ReceiveEntity> GetAllReceiveEntity() {
 		// TODO Auto-generated method stub
-		return null;
+		return remoteFileTransferDAO.GetAllReceiveEntity();
 	}
 }

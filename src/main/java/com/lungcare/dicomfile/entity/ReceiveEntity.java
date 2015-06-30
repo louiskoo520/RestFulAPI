@@ -18,6 +18,10 @@ public class ReceiveEntity {
 	private String savedFolder;
 	private int totalFiles;
 	private Date date;
+	private int received;
+	private int speed;
+	private int failed;
+	private String message;
 
 	public Date getDate() {
 		return date;
@@ -99,8 +103,5 @@ public class ReceiveEntity {
 		this.message = message;
 	}
 
-	private int received;
-	private int speed;
-	private int failed;
-	private String message;
+
 }
