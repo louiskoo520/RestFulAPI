@@ -1,0 +1,15 @@
+G:\wjlProgramFiles\local-git-repository\src\main\java\com\lungcare\dicomfile\dao\ILocalFileTransferDAO.java
+G:\wjlProgramFiles\local-git-repository\src\main\java\com\lungcare\dicomfile\restful\RemoteFileTransferResource.java
+G:\wjlProgramFiles\local-git-repository\src\main\java\com\lungcare\dicomfile\dao\impl\RemoteFileTransferDAOImp.java
+G:\wjlProgramFiles\local-git-repository\src\main\java\com\lungcare\dicomfile\service\impl\LocalFileServiceImp.java
+G:\wjlProgramFiles\local-git-repository\src\main\java\com\lungcare\dicomfile\dao\IRemoteFileTransferDAO.java
+G:\wjlProgramFiles\local-git-repository\src\main\java\com\lungcare\dicomfile\entity\ReceiveEntity.java
+G:\wjlProgramFiles\local-git-repository\src\main\java\com\lungcare\dicomfile\service\IRemoteFileService.java
+G:\wjlProgramFiles\local-git-repository\src\main\java\com\lungcare\dicomfile\service\ILocalFileService.java
+G:\wjlProgramFiles\local-git-repository\src\main\java\com\lungcare\dicomfile\client\ClientTest.java
+G:\wjlProgramFiles\local-git-repository\src\main\java\com\lungcare\dicomfile\dao\impl\LocalFileTransferDAOImp.java
+G:\wjlProgramFiles\local-git-repository\src\main\java\com\lungcare\dicomfile\entity\Customer.java
+G:\wjlProgramFiles\local-git-repository\src\main\java\com\lungcare\dicomfile\util\ZipUtils.java
+G:\wjlProgramFiles\local-git-repository\src\main\java\com\lungcare\dicomfile\service\impl\RemoteFileServiceImp.java
+G:\wjlProgramFiles\local-git-repository\src\main\java\com\lungcare\dicomfile\restful\CustomersResource.java
+G:\wjlProgramFiles\local-git-repository\src\main\java\com\lungcare\dicomfile\App.java
