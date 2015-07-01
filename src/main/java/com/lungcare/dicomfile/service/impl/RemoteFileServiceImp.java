@@ -2,6 +2,8 @@ package com.lungcare.dicomfile.service.impl;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.lungcare.dicomfile.dao.IRemoteFileTransferDAO;
@@ -14,29 +16,24 @@ public class RemoteFileServiceImp implements IRemoteFileService {
 	@Autowired
 	private IRemoteFileTransferDAO remoteFileTransferDAO;
 
-	public void uploadFile(FormDataMultiPart formParams,
-			ReceiveEntity receiveEntity) {
+	public void uploadFile(FormDataMultiPart formParams,ReceiveEntity receiveEntity) {
 		remoteFileTransferDAO.uploadFile(formParams, receiveEntity);
 	}
 
-	public void downloadFile() {
-
+	public byte[] downloadFile(HttpServletRequest req) {
+		return remoteFileTransferDAO.downloadFile(req);
 	}
 
 	public ReceiveEntity getReceiveEntity(String id) {
-		// TODO Auto-generated method stub
-
 		return remoteFileTransferDAO.getReceiveEntity(id);
 	}
 
 	public void test() {
-		// TODO Auto-generated method stub
 		System.out.println("RemoteFileServiceImp test()");
 		remoteFileTransferDAO.test();
 	}
 
 	public List<ReceiveEntity> GetAllReceiveEntity() {
-		// TODO Auto-generated method stub
 		return remoteFileTransferDAO.GetAllReceiveEntity();
 	}
 }

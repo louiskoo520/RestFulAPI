@@ -5,11 +5,12 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
-import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+
+import javax.servlet.http.HttpServletRequest;
 
 import org.apache.log4j.Logger;
 import org.hibernate.Query;
@@ -20,32 +21,29 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.lungcare.dicomfile.dao.IRemoteFileTransferDAO;
 import com.lungcare.dicomfile.entity.ReceiveEntity;
+import com.lungcare.dicomfile.util.ZipUtils;
 import com.sun.jersey.core.header.FormDataContentDisposition;
 import com.sun.jersey.multipart.FormDataBodyPart;
 import com.sun.jersey.multipart.FormDataMultiPart;
-import com.sun.jersey.multipart.file.FileDataBodyPart;
 
 @Transactional
 public class RemoteFileTransferDAOImp implements IRemoteFileTransferDAO {
-	private static Logger logger = Logger
-			.getLogger(RemoteFileTransferDAOImp.class);
 
-	private static final String FOLDER_PATH = "C:\\my_files\\";
-
+	private static Logger logger = Logger.getLogger(RemoteFileTransferDAOImp.class);
+//	private static final String FOLDER_PATH = "C:\\my_files\\";
+	//private static final String FOLDER_PATH = this.getClass().getClassLoader().getResource("/").getPath();
 	private SessionFactory sessionFactory;
 
 	public void setSessionFactory(SessionFactory sessionFactory) {
 		this.sessionFactory = sessionFactory;
 	}
 
-	public void uploadFile(FormDataMultiPart formParams,
-			ReceiveEntity receiveEntity) {
+	public void uploadFile(FormDataMultiPart formParams,ReceiveEntity receiveEntity) {
 		// TODO Auto-generated method stub
 		logger.info("uploadFile");
-
+		String folder_path =new File("").getAbsolutePath() +"/src/main/webapp/testFile/";
 		System.out.println("RemoteFileTransferDAOImp uploadFile.........");
-		Map<String, List<FormDataBodyPart>> fieldsByName = formParams
-				.getFields();
+		Map<String, List<FormDataBodyPart>> fieldsByName = formParams.getFields();
 		int totalNum = 0;
 		for (List<FormDataBodyPart> fields : fieldsByName.values()) {
 			for (FormDataBodyPart field : fields) {
@@ -55,7 +53,7 @@ public class RemoteFileTransferDAOImp implements IRemoteFileTransferDAO {
 		String idString = receiveEntity.getId();
 		receiveEntity.setDate(new Date());
 		receiveEntity.setTotalFiles(totalNum);
-		receiveEntity.setSavedFolder(FOLDER_PATH+idString+"\\");
+		receiveEntity.setSavedFolder(folder_path + idString + "\\");
 		addReceiveEntity(receiveEntity);
 		// Usually each value in fieldsByName will be a list of length 1.
 		// Assuming each field in the form is a file, just loop through them.
@@ -65,8 +63,9 @@ public class RemoteFileTransferDAOImp implements IRemoteFileTransferDAO {
 			for (FormDataBodyPart field : fields) {
 				InputStream is = field.getEntityAs(InputStream.class);
 				String fileName = field.getName();
-				FormDataContentDisposition fdcd = field.getFormDataContentDisposition();
-				if (!saveFile(is, fdcd, fileName,idString)) {
+				FormDataContentDisposition fdcd = field
+						.getFormDataContentDisposition();
+				if (!saveFile(is, fdcd, fileName, idString)) {
 					updateFailedReceiveEntity(receiveEntity, failedNum);
 				}
 				updateReceiveEntity(receiveEntity, index);
@@ -78,12 +77,14 @@ public class RemoteFileTransferDAOImp implements IRemoteFileTransferDAO {
 				++index;
 			}
 		}
-
+		System.out.println("zipstart");
+		ZipUtils.createZip(folder_path+idString, folder_path+idString+".zip");
 	}
-
-	public void downloadFile() {
+	
+	public byte[] downloadFile(HttpServletRequest req){
 		// TODO Auto-generated method stub
 		logger.info("downloadFile");
+			return null;
 	}
 
 	public ReceiveEntity getReceiveEntity(String id) {
@@ -137,9 +138,9 @@ public class RemoteFileTransferDAOImp implements IRemoteFileTransferDAO {
 	}
 
 	private boolean saveFile(InputStream fis, FormDataContentDisposition fdcd,
-			String name,String folder) {
-		SimpleDateFormat myFormatter = new SimpleDateFormat(
-				"yyyy-MM-dd HH:mm:ss");
+			String name, String folder) {
+
+		//SimpleDateFormat myFormatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		Date date1 = new Date();
 		OutputStream outpuStream = null;
 		String fileName = fdcd.getFileName();
@@ -149,11 +150,12 @@ public class RemoteFileTransferDAOImp implements IRemoteFileTransferDAO {
 		}
 		System.out.println("File Name: " + fileName);
 		System.out.println(folder);
-		File file = new File(FOLDER_PATH+folder+"\\");
+		String folder_path =new File("").getAbsolutePath() +"/src/main/webapp/testFile/";
+		File file = new File(folder_path + folder + "\\");
 		if (!file.exists() && !file.isDirectory()) {
 			file.mkdir();
 		}
-		String filePath = FOLDER_PATH +folder+"\\"+ fileName;
+		String filePath = folder_path + folder + "\\" + fileName;
 
 		try {
 			int read = 0;
@@ -217,7 +219,7 @@ public class RemoteFileTransferDAOImp implements IRemoteFileTransferDAO {
 			query.setParameter(0, receivedNum);
 			String id = receiveEntity.getId();
 			query.setParameter(1, id);
-			int result = query.executeUpdate();
+			// int result = query.executeUpdate();
 			// session.update(receive);
 			transaction.commit();
 			return true;
@@ -245,7 +247,7 @@ public class RemoteFileTransferDAOImp implements IRemoteFileTransferDAO {
 			query.setParameter(0, failedNum);
 			String id = receiveEntity.getId();
 			query.setParameter(1, id);
-			int result = query.executeUpdate();
+			// int result = query.executeUpdate();
 			// session.update(receive);
 			transaction.commit();
 			return true;
@@ -262,24 +264,31 @@ public class RemoteFileTransferDAOImp implements IRemoteFileTransferDAO {
 	public List<ReceiveEntity> GetAllReceiveEntity() {
 		Session session = this.sessionFactory.getCurrentSession();
 		if (session != null) {
-			System.out.println("this.sessionFactory.getCurrentSession().isOpen()");
+			System.out
+					.println("this.sessionFactory.getCurrentSession().isOpen()");
 			Transaction transaction = session.beginTransaction();
-			Query query = session.createQuery("select reEntity from ReceiveEntity reEntity order by date desc");
+			Query query = session
+					.createQuery("select reEntity from ReceiveEntity reEntity order by date desc");
+			@SuppressWarnings("unchecked")
 			List<ReceiveEntity> list = query.list();
 			transaction.commit();
-			for (Iterator<ReceiveEntity> iterator = list.iterator(); iterator.hasNext();) {
+			for (Iterator<ReceiveEntity> iterator = list.iterator(); iterator
+					.hasNext();) {
 				ReceiveEntity receiveEntity = (ReceiveEntity) iterator.next();
-				System.out.println(receiveEntity.getIp() + "  " + receiveEntity.getTotalFiles());
+				System.out.println(receiveEntity.getIp() + "  "
+						+ receiveEntity.getTotalFiles());
 			}
 
 			if (list != null && list.size() > 0) {
 				return list;
 			}
 		} else {
-			System.out.println("this.sessionFactory.getCurrentSession().is null");
+			System.out
+					.println("this.sessionFactory.getCurrentSession().is null");
 			return null;
 		}
 
 		return null;
 	}
+
 }
