@@ -1,4 +1,5 @@
 com\lungcare\dicomfile\dao\IRemoteFileTransferDAO.class
+com\lungcare\dicomfile\util\ZipUtils.class
 com\lungcare\dicomfile\service\IRemoteFileService.class
 com\lungcare\dicomfile\dao\impl\LocalFileTransferDAOImp.class
 com\lungcare\dicomfile\restful\RemoteFileTransferResource.class
