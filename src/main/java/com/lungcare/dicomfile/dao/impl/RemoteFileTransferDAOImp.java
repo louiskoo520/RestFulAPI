@@ -9,8 +9,6 @@ import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
-import java.util.Random;
-import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.ws.rs.core.MediaType;
@@ -38,34 +36,56 @@ public class RemoteFileTransferDAOImp implements IRemoteFileTransferDAO {
 
 	private static Logger logger = Logger.getLogger(RemoteFileTransferDAOImp.class);
 	private static final String FOLDER_PATH = new File("").getAbsolutePath() +"/src/main/webapp/testFile/";
+	//private static final String SEND_IP = "192.168.1.13";
+	//private static final int SEND_PORT = 8787;
 	private SessionFactory sessionFactory;
 
 	public void setSessionFactory(SessionFactory sessionFactory) {
 		this.sessionFactory = sessionFactory;
 	}
 
-	public void uploadFile(FormDataMultiPart formParams,ReceiveEntity receiveEntity) {
+	public void uploadFile(FormDataMultiPart formParams,HttpServletRequest request,String cid) {
 		// TODO Auto-generated method stub
 		logger.info("uploadFile");
-		//String folder_path =new File("").getAbsolutePath() +"/src/main/webapp/testFile/";
-		System.out.println("RemoteFileTransferDAOImp uploadFile.........");
+
+		ReceiveEntity receiveEntity = new ReceiveEntity();
+		receiveEntity.setId(cid);//设置id
+		
+		String remoteHostString = "";
+		if (request.getHeader("x-forwarded-for") == null) {
+			remoteHostString = request.getRemoteAddr();
+		} else {
+			remoteHostString = request.getHeader("x-forwarded-for");
+		}
+		System.out.println("ip : " + remoteHostString);
+		receiveEntity.setIp(remoteHostString);//设置ip
+
+		int port = request.getRemotePort();
+		receiveEntity.setPort(port);//设置port
+		
+//		receiveEntity.setTotalFiles(formParams.getFields().values().size());//设置totalfiles
+		
+		receiveEntity.setFailed(0);//设置failed
+		
+		receiveEntity.setReceived(0);//设置received
+		
+		receiveEntity.setSpeed(0);//设置speed
+		
 		Map<String, List<FormDataBodyPart>> fieldsByName = formParams.getFields();
 		int totalNum = 0;
 		for (List<FormDataBodyPart> fields : fieldsByName.values()) {
 			for(int i=0;i<fields.size();i++){
 				totalNum++;
 			}
-/*			for (FormDataBodyPart field : fields) {
-				++totalNum;
-			}*/
 		}
-		String idString = receiveEntity.getId();
-		receiveEntity.setDate(new Date());
-		receiveEntity.setTotalFiles(totalNum);
-		receiveEntity.setSavedFolder(FOLDER_PATH + idString + "\\");
+		receiveEntity.setTotalFiles(totalNum);//设置totalfiles
+		
+		receiveEntity.setDate(new Date());//设置时间
+		receiveEntity.setSavedFolder(FOLDER_PATH + cid + "\\");//设置接受路径
 		addReceiveEntity(receiveEntity);
 		// Usually each value in fieldsByName will be a list of length 1.
 		// Assuming each field in the form is a file, just loop through them.
+		
 		int index = 1;
 		int failedNum = 0;
 		for (List<FormDataBodyPart> fields : fieldsByName.values()) {
@@ -74,20 +94,26 @@ public class RemoteFileTransferDAOImp implements IRemoteFileTransferDAO {
 				String fileName = field.getName();
 				FormDataContentDisposition fdcd = field
 						.getFormDataContentDisposition();
-				if (!saveFile(is, fdcd, fileName, idString)) {
-					updateFailedReceiveEntity(receiveEntity, failedNum);
+				if (!saveFile(is, fdcd, fileName, cid)) {
+					failedNum+=1;
+					updateFailedReceiveEntity(receiveEntity, failedNum);//更新failed
 				}
 				
-				updateReceiveEntity(receiveEntity, index);
+				updateReceiveEntity(receiveEntity, index);//更新received
 				
 				++index;
 			}
 		}
-		sendToOther(idString);
+		try {
+			Thread.sleep(5000);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+		//sendToOther(cid, SEND_IP, SEND_PORT);
 		System.out.println("zipstart");
-		ZipUtils.createZip(FOLDER_PATH+idString, FOLDER_PATH+idString+".zip");
+		ZipUtils.createZip(FOLDER_PATH+cid, FOLDER_PATH+cid+".zip");
 	}
-	
+		
 	public byte[] downloadFile(HttpServletRequest req){
 		// TODO Auto-generated method stub
 		logger.info("downloadFile");
@@ -273,57 +299,56 @@ public class RemoteFileTransferDAOImp implements IRemoteFileTransferDAO {
 		return null;
 	}
 	
-	public SendEntity setSendEntity(String id,String ip){
+	public void setSendEntity(String id,String ip,int port,int totalFiles,int sendNum,int failedNum){
 		SendEntity sendEntity = new SendEntity();
 		Date date = new Date();
-		sendEntity.setId(id);
-		sendEntity.setDate(date);
-		sendEntity.setFailed(0);
-		sendEntity.setIp(ip);
-		Random random = new Random();
-		int ranNum = random.nextInt(80000);
-		sendEntity.setPort(ranNum);
-		sendEntity.setSavedFolder(FOLDER_PATH);
-		sendEntity.setSend(500);
-		sendEntity.setSpeed(0);
-		sendEntity.setTotalFiles(505);
+		sendEntity.setId(id);//
+		sendEntity.setDate(date);//
+		sendEntity.setFailed(failedNum);//
+		sendEntity.setIp(ip);//
+		sendEntity.setPort(port);//
+		sendEntity.setSavedFolder(FOLDER_PATH);//
+		sendEntity.setSend(sendNum);//
+		sendEntity.setSpeed(0);//
+		sendEntity.setTotalFiles(totalFiles);//
 		Session session = this.sessionFactory.getCurrentSession();
 		if (session != null) {
-			System.out.println("session is open!");
 			Transaction transaction = session.beginTransaction();
 			session.save(sendEntity);
 			//session.flush();
 			transaction.commit();
-			//return sendEntity;
 		} else {
-			System.out
-					.println("this.sessionFactory.getCurrentSession().is null");
+			System.out.println("this.sessionFactory.getCurrentSession().is null");
 		}	
-		return sendEntity;
 	}
 	
-	public void sendToOther(String id){
+	public void sendToOther(String id,String ip,int port){
 		Client client = Client.create();
-		UUID uuid = UUID.randomUUID();
-		WebResource resource = client.resource("http://192.168.1.5:8787/transfer/rest/remotefile/multipleFiles/"+uuid);
-		FormDataMultiPart formDataMultiPart = new FormDataMultiPart();
-		
-		String pathString=new File("").getAbsolutePath();
-		pathString += "/src/main/webapp/testFile/"+uuid;
-
+		//UUID id = UUID.randomUUID();
+		String postString = "http://"+ip+":"+port+"/transfer/rest/remotefile/multipleFiles/"+id;
+		WebResource resource = client.resource(postString);
+		FormDataMultiPart formDataMultiPart = new FormDataMultiPart();	
+		String pathString = FOLDER_PATH+id;
+		int totalFiles = 0;
+		int sendNum = 0;
+		int failedNum = 0;
 		File file = new File(pathString);
 		if(!file.isDirectory()){
-			FileDataBodyPart fileDataBodyPart = new FileDataBodyPart("file",
-					new File(pathString),
+			FileDataBodyPart fileDataBodyPart = new FileDataBodyPart("file",new File(pathString),
 					MediaType.APPLICATION_OCTET_STREAM_TYPE);		
 			formDataMultiPart.bodyPart(fileDataBodyPart);
 		}else{
 			File[] files = file.listFiles();
+			totalFiles = files.length;
+			FileDataBodyPart fileDataBodyPart;
 			for(int i=0;i<files.length;i++){
-				FileDataBodyPart fileDataBodyPart = new FileDataBodyPart("file",
+				fileDataBodyPart = new FileDataBodyPart("file",
 						new File(pathString+"\\"+files[i].getName()),MediaType.APPLICATION_OCTET_STREAM_TYPE);
 				formDataMultiPart.bodyPart(fileDataBodyPart);
 			}
+			sendNum = totalFiles;
+			failedNum = totalFiles - sendNum;
+			setSendEntity(id, ip, port, totalFiles, sendNum, failedNum);
 			String reString = resource.type(MediaType.MULTIPART_FORM_DATA).post(String.class, formDataMultiPart);
 			System.out.println(reString);
 		}
@@ -359,13 +384,7 @@ public class RemoteFileTransferDAOImp implements IRemoteFileTransferDAO {
 		return null;
 	}
 	
-	public void test() {
-		// TODO Auto-generated method stub
-//		ReceiveEntity receiveEntity = new ReceiveEntity();
-//		receiveEntity.setId("dsadasda");
-//		receiveEntity.setIp("321312312");
-//		System.out.println("RemoteFileTransferDAOImp test");
-		
+	public void test() {	
 		SendEntity sendEntity = new SendEntity();
 		Date date = new Date();
 		sendEntity.setId("123457");
@@ -380,19 +399,13 @@ public class RemoteFileTransferDAOImp implements IRemoteFileTransferDAO {
 		sendEntity.setTotalFiles(505);
 		Session session = this.sessionFactory.getCurrentSession();
 		if (session != null) {
-//			System.out
-//					.println("this.sessionFactory.getCurrentSession().isOpen()");
-//			Transaction transaction = session.beginTransaction();
-//			session.save(receiveEntity);
-//			transaction.commit();
 			System.out.println("session is open!");
 			Transaction transaction = session.beginTransaction();
 			session.save(sendEntity);
 			//session.flush();
 			transaction.commit();
 		} else {
-			System.out
-					.println("this.sessionFactory.getCurrentSession().is null");
+			System.out.println("this.sessionFactory.getCurrentSession().is null");
 		}
 
 	}

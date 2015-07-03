@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project-module
   type="WEB"
-  name="transfermaven Maven Webapp"
+  name="WebRestService"
   id="myeclipse.1435385958919"
   context-root="/transfermaven"
   j2ee-spec="6.0"
-  archive="transfermaven Maven Webapp.war">
+  archive="WebRestService.war">
   <attributes>
     <attribute name="webrootdir" value="src/main/webapp" />
   </attributes>
