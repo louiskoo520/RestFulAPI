@@ -1,10 +1,18 @@
 package com.lungcare.dicomfile.entity;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
 
 @XmlRootElement
+@Entity
+@Table
 public class Customer {
+	@Id
 	private int id;
+	private String name;
+	private String address;
 
 	public int getId() {
 		return id;
@@ -30,6 +38,4 @@ public class Customer {
 		this.address = address;
 	}
 
-	private String name;
-	private String address;
 }

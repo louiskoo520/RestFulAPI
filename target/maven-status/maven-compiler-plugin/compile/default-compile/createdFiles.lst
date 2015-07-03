@@ -3,6 +3,7 @@ com\lungcare\dicomfile\util\ZipUtils.class
 com\lungcare\dicomfile\service\IRemoteFileService.class
 com\lungcare\dicomfile\dao\impl\LocalFileTransferDAOImp.class
 com\lungcare\dicomfile\restful\RemoteFileTransferResource.class
+com\lungcare\dicomfile\entity\SendEntity.class
 com\lungcare\dicomfile\service\impl\LocalFileServiceImp.class
 com\lungcare\dicomfile\dao\impl\RemoteFileTransferDAOImp.class
 com\lungcare\dicomfile\App.class

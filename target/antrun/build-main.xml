@@ -1,6 +1,0 @@
-<?xml version="1.0" encoding="UTF-8" ?>
-<project name="maven-antrun-" default="main"  >
-<target name="main">
-  <copy file="G:\wjlProgramFiles\local-git-repository\target/transfermaven.war" tofile="C:\apache-tomcat-7.0.59/webapps/transfermaven.war"/>
-</target>
-</project>
