@@ -5,11 +5,11 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 
 import com.lungcare.dicomfile.entity.ReceiveEntity;
+import com.lungcare.dicomfile.entity.SendEntity;
 import com.sun.jersey.multipart.FormDataMultiPart;
 
 public interface IRemoteFileService {
-	public void uploadFile(FormDataMultiPart formParams,
-			ReceiveEntity receiveEntity);
+	public void uploadFile(FormDataMultiPart formParams,ReceiveEntity receiveEntity);
 
 	public byte[] downloadFile(HttpServletRequest req);
 
@@ -17,5 +17,7 @@ public interface IRemoteFileService {
 
 	public void test();
 
-	public List<ReceiveEntity> GetAllReceiveEntity();
+	public List<ReceiveEntity> getAllReceiveEntity();
+		
+	public List<SendEntity> getAllSendEntity();
 }

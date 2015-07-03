@@ -38,10 +38,6 @@ public class CustomersResource {
 
 	private TreeMap<Integer, Customer> customerMap = new TreeMap<Integer, Customer>();
 
-	private static final String FILE_UPLOAD_PATH = "/Users/arun_kumar/Pictures";
-	private static final String CANDIDATE_NAME = "candidateName";
-	private static final String SUCCESS_RESPONSE = "Successful";
-	private static final String FAILED_RESPONSE = "Failed";
 
 	@Autowired
 	private ILocalFileService localFileService;
