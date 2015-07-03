@@ -2,9 +2,7 @@ package com.lungcare.dicomfile.restful;
 
 
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.ws.rs.Consumes;
@@ -35,7 +33,7 @@ public class RemoteFileTransferResource {
 
 	@Autowired
 	private IRemoteFileService remoteFileService;
-	private Map<String, ReceiveEntity> receivedMap = new HashMap<String, ReceiveEntity>();
+	//private Map<String, ReceiveEntity> receivedMap = new HashMap<String, ReceiveEntity>();
 	
 //	@Resource
 //	private WebServiceContext wsCtxt;
@@ -46,33 +44,8 @@ public class RemoteFileTransferResource {
 	@Path("/multipleFiles/{id}")
 	public String uploadMultiFiles(FormDataMultiPart formParams,
 			@Context HttpServletRequest request, @PathParam("id") String cid) {
-		System.out.println("uploadMultiFiles");
-
-		ReceiveEntity receiveEntity = new ReceiveEntity();
-		//MultivaluedMap<String, String> mapHeaders = formParams.getHeaders();
-		receiveEntity.setId(cid);
-
-		String remoteHostString = "";
-		if (request.getHeader("x-forwarded-for") == null) {
-			remoteHostString = request.getRemoteAddr();
-		} else {
-			remoteHostString = request.getHeader("x-forwarded-for");
-		}
-		System.out.println("ip : " + remoteHostString);
-
-		receiveEntity.setIp(remoteHostString);
-
-		int port = request.getRemotePort();
-
-		receiveEntity.setPort(port);
-
-		receiveEntity.setTotalFiles(formParams.getFields().values().size());
-		receiveEntity.setFailed(0);
-		receiveEntity.setReceived(0);
-		receiveEntity.setSpeed(0);
-		receivedMap.put(receiveEntity.getId(), receiveEntity);
-		remoteFileService.uploadFile(formParams, receiveEntity);
-		
+		//receivedMap.put(receiveEntity.getId(), receiveEntity);
+		remoteFileService.uploadFile(formParams, request , cid);	
 		return SUCCESS_RESPONSE;
 	}
 	

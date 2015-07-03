@@ -10,7 +10,7 @@ import com.sun.jersey.multipart.FormDataMultiPart;
 
 public interface IRemoteFileTransferDAO {
 	
-	public void uploadFile(FormDataMultiPart formParams,ReceiveEntity receiveEntity);
+	public void uploadFile(FormDataMultiPart formParams,HttpServletRequest request,String cid);
 	public byte[] downloadFile(HttpServletRequest req);
 
 	

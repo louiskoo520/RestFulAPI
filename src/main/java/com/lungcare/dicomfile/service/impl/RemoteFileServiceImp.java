@@ -17,8 +17,8 @@ public class RemoteFileServiceImp implements IRemoteFileService {
 	@Autowired
 	private IRemoteFileTransferDAO remoteFileTransferDAO;
 
-	public void uploadFile(FormDataMultiPart formParams,ReceiveEntity receiveEntity) {
-		remoteFileTransferDAO.uploadFile(formParams, receiveEntity);
+	public void uploadFile(FormDataMultiPart formParams,HttpServletRequest request, String cid) {
+		remoteFileTransferDAO.uploadFile(formParams, request, cid);
 	}
 
 	public byte[] downloadFile(HttpServletRequest req) {
