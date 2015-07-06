@@ -94,46 +94,51 @@
 		</div>
 		<!-- /.container-fluid -->	
 	</nav>
-	<ul class="nav nav-tabs">
-		<li><a href="UploadFiles.html">UploadFiles</a></li>
-		<li class="active"><a href="ReceivedAndSend.html">ReceivedAndSend</a></li>
-	</ul>
-	<table class="table table-bordered table-hover">
-		<tr style="background-color:#fbedce">
-			<td colspan="9">receive</td>
-		</tr>
-		<tr>
-			<td>ID</td>
-			<td>IP</td>
-			<td>Port</td>
-			<td>Received</td>
-			<td>Failed</td>
-			<td>SavedFolder</td>
-			<td>Speed</td>
-			<td>TotalFiles</td>
-			<td>Date</td>
-		</tr>
-		<tbody id="tb1">
-		</tbody>
-	</table>
-	<table class="table table-bordered table-hover">
-		<tr style="background-color:#fbedce">
-			<td colspan="9">send</td>
-		</tr>
-		<tr>
-			<td>ID</td>
-			<td>IP</td>
-			<td>Port</td>
-			<td>Send</td>
-			<td>Failed</td>
-			<td>SavedFolder</td>
-			<td>Speed</td>
-			<td>TotalFiles</td>
-			<td>Date</td>
-		</tr>
-		<tbody id="tb2">
-		</tbody>
-	</table>
+	<div style="width:90%;">
+
+		<ul class="nav nav-tabs">
+			<li><a href="UploadFiles.html">UploadFiles</a>
+			</li>
+			<li class="active"><a href="ReceivedAndSend.html">ReceivedAndSend</a>
+			</li>
+		</ul>
+		<table class="table table-bordered table-hover">
+			<tr style="background-color:#3399CC">
+				<td colspan="9">receive</td>
+			</tr>
+			<tr>
+				<td>ID</td>
+				<td>IP</td>
+				<td>Port</td>
+				<td>Received</td>
+				<td>Failed</td>
+				<td>SavedFolder</td>
+				<td>Speed</td>
+				<td>TotalFiles</td>
+				<td>Date</td>
+			</tr>
+			<tbody id="tb1">
+			</tbody>
+		</table>
+		<table class="table table-bordered table-hover">
+			<tr style="background-color:#3399CC">
+				<td colspan="9">send</td>
+			</tr>
+			<tr>
+				<td>ID</td>
+				<td>IP</td>
+				<td>Port</td>
+				<td>Send</td>
+				<td>Failed</td>
+				<td>SavedFolder</td>
+				<td>Speed</td>
+				<td>TotalFiles</td>
+				<td>Date</td>
+			</tr>
+			<tbody id="tb2">
+			</tbody>
+		</table>
+	</div>
 </body>
 
 <script type="text/javascript" language="javascript">
@@ -173,6 +178,7 @@
 				}
 			});
 		}
+		
 		function refreshSend() {
 		$.ajax({
 			type : 'get',
