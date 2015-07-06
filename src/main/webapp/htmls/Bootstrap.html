@@ -92,6 +92,7 @@
 		<!-- /.container-fluid -->	
 	</nav>
 
+	<div style="width: 90%; margin:0 auto">
 
 	<ul class="nav nav-tabs">
 		<li class="active"><a href="#UploadFiles" data-toggle="tab">UploadFiles</a>
@@ -102,24 +103,22 @@
 
 
 	<div id="myTabContent" class="tab-content">
-		<div class="tab-pane fade in active" id="UploadFiles">
-			<form role="form" method="post" enctype="multipart/form-data"
-				onsubmit="get_action(this)">
+		<div class="tab-pane fade in active" id="UploadFiles" style="text-align:center;">
+			<form class="form-inline" role="form" method="post" enctype="multipart/form-data"
+				onsubmit="get_action(this)" >
 				<div class="form-group">
-					<label for="inputfile">多文件上传</label> <input type="file"
-						id="inputfile" class="btn btn-primary" name="fileMulti"
-						multiple="multiple" /> <input type="submit" value="提交"
-						class="btn btn-default" />
+					<label  for="inputfile">多文件上传</label> 
+					<input type="file" id="inputfile" class="btn btn-primary" name="fileMulti" multiple="multiple" /> 
+					<input type="submit" value="提交" class="btn btn-default"/>
 				</div>
 			</form>
 			<p></p>
-			<form role="form" method="post" enctype="multipart/form-data"
+			<form class="form-inline" role="form" method="post" enctype="multipart/form-data"
 				onsubmit="get_action(this)">
 				<div class="form-group">
-					<label for="inputfile">文件夹上传</label> <input type="file"
-						id="inputfile" class="btn btn-primary" name="fileFolder"
-						webkitdirectory directory multiple /> <input type="submit"
-						value="提交" class="btn btn-default" />
+					<label  for="inputfile">文件夹上传</label> 
+					<input type="file" id="inputfile" class="btn btn-primary" name="fileFolder" webkitdirectory directory multiple /> 
+					<input type="submit" value="提交" class="btn btn-default" />
 				</div>
 			</form>
 			<div class="progress">
@@ -168,6 +167,7 @@
 		</div>
 	</div>
 	
+	</div>
 	
 </body>
 
