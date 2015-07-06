@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <title>UploadFiles.html</title>
+	
+    <meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
+    <meta http-equiv="description" content="this is my page">
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    
+    	    <!-- 新 Bootstrap 核心 CSS 文件 -->
+	<link rel="stylesheet" href="../css/bootstrap.min.css">
+	<!-- 可选的Bootstrap主题文件（一般不用引入） -->
+	<link rel="stylesheet" href="../css/bootstrap-theme.min.css">
+	<!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
+	<script type="text/javascript" src="../js/jquery-1.9.1.js"></script>
+	<!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+	<script  src="../js/bootstrap.min.js"></script>
+  </head>
+  
+  <body>
+    <!-- navigate each page should have -->
+	<nav class="navbar navbar-default navbar-static-top navbar-inverse">
+		<div class="container-fluid">
+			<!-- Brand and toggle get grouped for better mobile display -->
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle collapsed"
+					data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"
+					aria-expanded="false">
+					<span class="sr-only">Toggle navigation</span> 
+					<span class="icon-bar"></span> 
+					<span class="icon-bar"></span> 
+					<span class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" href="#">Lungcare</a>
+			</div>
+
+			<!-- Collect the nav links, forms, and other content for toggling -->
+			<div class="collapse navbar-collapse"
+				id="bs-example-navbar-collapse-1">
+				<ul class="nav navbar-nav">
+					<li class="active"><a href="#">File <span class="sr-only">(current)</span>
+					</a>
+					</li>
+					<li><a href="#">Link</a>
+					</li>
+					<li class="dropdown"><a href="#" class="dropdown-toggle"
+						data-toggle="dropdown" role="button" aria-haspopup="true"
+						aria-expanded="false">Dropdown <span class="caret"></span>
+					</a>
+						<ul class="dropdown-menu">
+							<li><a href="#">Action</a>
+							</li>
+							<li><a href="#">Another action</a>
+							</li>
+							<li><a href="#">Something else here</a>
+							</li>
+							<li role="separator" class="divider"></li>
+							<li><a href="#">Separated link</a>
+							</li>
+							<li role="separator" class="divider"></li>
+							<li><a href="#">One more separated link</a>
+							</li>
+						</ul></li>
+				</ul>
+				<form class="navbar-form navbar-left" role="search">
+					<div class="form-group">
+						<input type="text" class="form-control" placeholder="Search">
+					</div>
+					<button type="submit" class="btn btn-default">Submit</button>
+				</form>
+				<ul class="nav navbar-nav navbar-right">
+					<li><a href="#">Link</a>
+					</li>
+					<li class="dropdown"><a href="#" class="dropdown-toggle"
+						data-toggle="dropdown" role="button" aria-haspopup="true"
+						aria-expanded="false">Dropdown <span class="caret"></span>
+					</a>
+						<ul class="dropdown-menu">
+							<li><a href="#">Action</a>
+							</li>
+							<li><a href="#">Another action</a>
+							</li>
+							<li><a href="#">Something else here</a>
+							</li>
+							<li role="separator" class="divider"></li>
+							<li><a href="#">Separated link</a>
+							</li>
+						</ul></li>
+				</ul>
+			</div>
+			<!-- /.navbar-collapse -->
+		</div>
+		<!-- /.container-fluid -->	
+	</nav>
+	
+	<div style="width:90%;" style="margin:auto;">
+	
+		<ul class="nav nav-tabs">
+			<li class="active"><a href="UploadFiles.html">UploadFiles</a></li>
+			<li><a href="ReceivedAndSend.html">ReceivedAndSend</a></li>
+		</ul>
+
+		<form role="form" method="post" enctype="multipart/form-data" onsubmit="get_action(this)">
+			<div class="form-group">
+				<label for="inputfile">多文件上传</label> 
+				<input type="file" id="inputfile" class="btn btn-primary" name="fileMulti" multiple="multiple" /> 
+				<input type="submit" value="提交" class="btn btn-default" />
+			</div>
+		</form>
+		<p></p>
+		<form role="form" method="post" enctype="multipart/form-data"
+			onsubmit="get_action(this)">
+			<div class="form-group">
+				<label for="inputfile">文件夹上传</label> 
+				<input type="file" id="inputfile" class="btn btn-primary" name="fileFolder" webkitdirectory directory multiple /> 
+				<input type="submit" value="提交" class="btn btn-default" />
+			</div>
+		</form>
+		<div class="progress">
+			<div class="progress-bar" role="progressbar" aria-valuenow="60"
+				aria-valuemin="0" aria-valuemax="100" style="width: 0%;">0%</div>
+		</div>
+	</div>
+</body>
+
+	<script type="text/javascript" language="Javascript">
+		var current_guid;
+   		var interval;
+
+		function get_action(form) {
+			current_guid = guid();
+			form.action = "/transfer/rest/remotefile/multipleFiles/"
+					+ current_guid;
+			progressBar();
+		}
+		
+		function progressBar() {
+			interval = setInterval(changeProgress, 1000);
+		}
+		function changeProgress() {
+			$.ajax({
+				url : '/transfer/rest/remotefile/get/'+current_guid,
+				type : 'get',
+				data : {},
+				dataType : 'JSON',
+				success : function(result) {
+					//var dataObj = eval("(" + result + ")");
+					//alert(dataObj.received);
+					var dataObj = result;
+					var arrayObj = new Array(2);
+					arrayObj = [dataObj.received, dataObj.totalFiles];
+					if (arrayObj == null) {
+						return;
+					}
+					//alert(arrayObj[0] +"  "+arrayObj[1]);
+					var received = parseInt(arrayObj[0]);
+					var totalFiles = parseInt(arrayObj[1]);
+					var dataProgress = received / totalFiles;
+					var stringProgress = toPercent(dataProgress);
+
+					$('.progress-bar').html(stringProgress);
+					$('.progress-bar').css("width", stringProgress);
+
+					if (received >= totalFiles) {
+						clearInterval(interval);
+					}
+
+				}
+			});
+		}
+
+		function toPercent(data) {
+			var strData = parseFloat(data) * 10000;
+			strData = Math.round(strData);
+			strData /= 100;
+			strData = strData.toFixed(0);
+			var ret = strData.toString() + "%";
+			return ret;
+		}
+
+		//Jquery生成Guid方法：
+		function s4() {
+			return Math.floor((1 + Math.random()) * 0x10000).toString(16)
+					.substring(1);
+		};
+		function guid() {
+			return s4() + s4() + '-' + s4() + '-' + s4() + '-' + s4() + '-'
+					+ s4() + s4() + s4();
+		}
+		
+	</script>
+
+</html>

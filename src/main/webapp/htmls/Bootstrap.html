@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <title>Bootstrap.html</title>
+	
+    <meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
+    <meta http-equiv="description" content="this is my page">
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">  
+    	    <!-- 新 Bootstrap 核心 CSS 文件 -->
+	<link rel="stylesheet" href="../css/bootstrap.min.css">
+	<!-- 可选的Bootstrap主题文件（一般不用引入） -->
+	<link rel="stylesheet" href="../css/bootstrap-theme.min.css">
+	<!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
+	<script type="text/javascript" src="../js/jquery-1.9.1.js"></script>
+	<!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+	<script  src="../js/bootstrap.min.js"></script>
+  </head>
+  
+  <body>
+    <!-- navigate each page should have -->
+	<nav class="navbar navbar-default navbar-static-top navbar-inverse">
+		<div class="container-fluid">
+			<!-- Brand and toggle get grouped for better mobile display -->
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle collapsed"
+					data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"
+					aria-expanded="false">
+					<span class="sr-only">Toggle navigation</span> 
+					<span class="icon-bar"></span> 
+					<span class="icon-bar"></span> 
+					<span class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" href="#">Lungcare</a>
+			</div>
+
+			<!-- Collect the nav links, forms, and other content for toggling -->
+			<div class="collapse navbar-collapse"
+				id="bs-example-navbar-collapse-1">
+				<ul class="nav navbar-nav">
+					<li class="active"><a href="#">File <span class="sr-only">(current)</span>
+					</a>
+					</li>
+					<li><a href="#">Link</a>
+					</li>
+					<li class="dropdown"><a href="#" class="dropdown-toggle"
+						data-toggle="dropdown" role="button" aria-haspopup="true"
+						aria-expanded="false">Dropdown <span class="caret"></span>
+					</a>
+						<ul class="dropdown-menu">
+							<li><a href="#">Action</a>
+							</li>
+							<li><a href="#">Another action</a>
+							</li>
+							<li><a href="#">Something else here</a>
+							</li>
+							<li role="separator" class="divider"></li>
+							<li><a href="#">Separated link</a>
+							</li>
+							<li role="separator" class="divider"></li>
+							<li><a href="#">One more separated link</a>
+							</li>
+						</ul></li>
+				</ul>
+				<form class="navbar-form navbar-left" role="search">
+					<div class="form-group">
+						<input type="text" class="form-control" placeholder="Search">
+					</div>
+					<button type="submit" class="btn btn-default">Submit</button>
+				</form>
+				<ul class="nav navbar-nav navbar-right">
+					<li><a href="#">Link</a>
+					</li>
+					<li class="dropdown"><a href="#" class="dropdown-toggle"
+						data-toggle="dropdown" role="button" aria-haspopup="true"
+						aria-expanded="false">Dropdown <span class="caret"></span>
+					</a>
+						<ul class="dropdown-menu">
+							<li><a href="#">Action</a>
+							</li>
+							<li><a href="#">Another action</a>
+							</li>
+							<li><a href="#">Something else here</a>
+							</li>
+							<li role="separator" class="divider"></li>
+							<li><a href="#">Separated link</a>
+							</li>
+						</ul></li>
+				</ul>
+			</div>
+			<!-- /.navbar-collapse -->
+		</div>
+		<!-- /.container-fluid -->	
+	</nav>
+
+	<div style="width: 90%; margin:0 auto">
+
+	<ul class="nav nav-tabs">
+		<li class="active"><a href="#UploadFiles" data-toggle="tab">UploadFiles</a>
+		</li>
+		<li><a href="#ReceivedAndSend" data-toggle="tab">ReceivedAndSend</a>
+		</li>
+	</ul>
+
+
+	<div id="myTabContent" class="tab-content">
+		<div class="tab-pane fade in active" id="UploadFiles" style="text-align:center;">
+			<form class="form-inline" role="form" method="post" enctype="multipart/form-data"
+				onsubmit="get_action(this)" >
+				<div class="form-group">
+					<label  for="inputfile">多文件上传</label> 
+					<input type="file" id="inputfile" class="btn btn-primary" name="fileMulti" multiple="multiple" /> 
+					<input type="submit" value="提交" class="btn btn-default"/>
+				</div>
+			</form>
+			<p></p>
+			<form class="form-inline" role="form" method="post" enctype="multipart/form-data"
+				onsubmit="get_action(this)">
+				<div class="form-group">
+					<label  for="inputfile">文件夹上传</label> 
+					<input type="file" id="inputfile" class="btn btn-primary" name="fileFolder" webkitdirectory directory multiple /> 
+					<input type="submit" value="提交" class="btn btn-default" />
+				</div>
+			</form>
+			<div class="progress">
+				<div class="progress-bar" role="progressbar" aria-valuenow="60"
+					aria-valuemin="0" aria-valuemax="100" style="width: 0%;">0%</div>
+			</div>
+		</div>
+
+		<div class="tab-pane fade" id="ReceivedAndSend" onclick="showTables()">
+			<table class="table table-bordered table-hover">
+				<tr style="background-color:#3399CC">
+					<td colspan="9">receive</td>
+				</tr>
+				<tr>
+					<td>ID</td>
+					<td>IP</td>
+					<td>Port</td>
+					<td>Received</td>
+					<td>Failed</td>
+					<td>SavedFolder</td>
+					<td>Speed</td>
+					<td>TotalFiles</td>
+					<td>Date</td>
+				</tr>
+				<tbody id="tb1">
+				</tbody>
+			</table>
+			<table class="table table-bordered table-hover">
+				<tr style="background-color:#3399CC">
+					<td colspan="9">send</td>
+				</tr>
+				<tr>
+					<td>ID</td>
+					<td>IP</td>
+					<td>Port</td>
+					<td>Send</td>
+					<td>Failed</td>
+					<td>SavedFolder</td>
+					<td>Speed</td>
+					<td>TotalFiles</td>
+					<td>Date</td>
+				</tr>
+				<tbody id="tb2">
+				</tbody>
+			</table>
+		</div>
+	</div>
+	
+	</div>
+	
+</body>
+
+<script type="text/javascript" language="javascript">
+	
+
+	$(function() {
+		$('a[data-toggle="tab"]').on('shown.bs.tab', function(e) {
+			// 获取已激活的标签页的名称
+			var activeTab = $(e.target).text();
+			if(activeTab=="ReceivedAndSend"){
+				refreshReceive();
+				refreshSend();
+			}
+		});
+	});
+
+
+
+	function refreshReceive() {
+		$.ajax({
+			type : 'get',
+			url : '/transfer/rest/remotefile/getAllReceiveEntity',
+			data : {},
+			dataType : 'JSON',
+			success : function(result) {
+				$('#tb1').empty();
+				if (result == "" || result == null) {
+					alert("there is no data in the table receiveEntity!");
+				} else {
+					//var dataObj = eval("(" + result + ")");
+					var dataObj = result['receiveEntity'];
+					//var dataObj = result[0];
+					$.each(dataObj, function(ii, item) {
+						$('#tb1').append(
+								'<tr><td>' + item.id + '</td><td>' + item.ip
+										+ '</td><td>' + item.port + '</td><td>'
+										+ item.received + '</td><td>'
+										+ item.failed + '</td><td>'
+										+ item.savedFolder + '</td><td>'
+										+ item.speed + '</td><td>'
+										+ item.totalFiles + '</td><td>'
+										+ item.date + '</td></tr>');
+					});
+				}
+
+			}
+		});
+	}
+
+	function refreshSend() {
+		$.ajax({
+			type : 'get',
+			url : '/transfer/rest/remotefile/getAllSendEntity',
+			data : {},
+			dataType : 'JSON',
+			success : function(result) {
+				$('#tb2').empty();
+				if (result == "" || result == null) {
+					alert("there is no data in the table sendEntity!");
+				} else {
+					//var dataObj = eval("(" + result + ")");
+					var dataObj = result['sendEntity'];
+					//var dataObj = result[0];
+					$.each(dataObj, function(ii, item) {
+						$('#tb2').append(
+								'<tr><td>' + item.id + '</td><td>' + item.ip
+										+ '</td><td>' + item.port + '</td><td>'
+										+ item.send + '</td><td>' + item.failed
+										+ '</td><td>' + item.savedFolder
+										+ '</td><td>' + item.speed
+										+ '</td><td>' + item.totalFiles
+										+ '</td><td>' + item.date
+										+ '</td></tr>');
+					});
+				}
+
+			}
+		});
+	}
+
+
+
+	var current_guid;
+	function get_action(form) {
+		current_guid = guid();
+		form.action = "/transfer/rest/remotefile/multipleFiles/" + current_guid;
+		progressBar();
+	}
+
+	function progressBar() {
+		var interval = setInterval(changeProgress, 500);
+	}
+	
+	function changeProgress() {
+		$.ajax({
+			url : '/transfer/rest/remotefile/get/' + current_guid,
+			type : 'get',
+			data : {},
+			dataType : 'JSON',
+			success : function(result) {
+				//var dataObj = eval("(" + result + ")");
+				//alert(dataObj.received);
+				var dataObj = result;
+				var arrayObj = new Array(2);
+				arrayObj = [ dataObj.received, dataObj.totalFiles ];
+				if (arrayObj == null) {
+					return;
+				}
+				//alert(arrayObj[0] +"  "+arrayObj[1]);
+				var received = parseInt(arrayObj[0]);
+				var totalFiles = parseInt(arrayObj[1]);
+				var dataProgress = received / totalFiles;
+				var stringProgress = toPercent(dataProgress);
+
+				$('.progress-bar').html(stringProgress);
+				$('.progress-bar').css("width", stringProgress);
+
+				if (received >= totalFiles) {
+					clearInterval(interval);
+				}
+
+			}
+
+		});
+	}
+
+	function toPercent(data) {
+		var strData = parseFloat(data) * 10000;
+		strData = Math.round(strData);
+		strData /= 100;
+		strData = strData.toFixed(0);
+		var ret = strData.toString() + "%";
+		return ret;
+	}
+
+	//Jquery生成Guid方法：
+	function s4() {
+		return Math.floor((1 + Math.random()) * 0x10000).toString(16)
+				.substring(1);
+	};
+	
+	function guid() {
+		return s4() + s4() + '-' + s4() + '-' + s4() + '-' + s4() + '-' + s4()
+				+ s4() + s4();
+	}
+</script>
+
+
+
+</html>

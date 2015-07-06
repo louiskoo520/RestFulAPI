@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <title>ReceiveAndSend.html</title>
+	
+    <meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
+    <meta http-equiv="description" content="this is my page">
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    
+	    <!-- 新 Bootstrap 核心 CSS 文件 -->
+	<link rel="stylesheet" href="../css/bootstrap.min.css">
+	<link rel="stylesheet" href="../css/01.css">
+	<!-- 可选的Bootstrap主题文件（一般不用引入） -->
+	<link rel="stylesheet" href="../css/bootstrap-theme.min.css">
+	<!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
+	<script src="../js/jquery-1.4.3.js"></script>
+	<!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+	<script src="../js/bootstrap.min.js"></script>
+
+  </head>
+  
+  <body>
+    <!-- navigate each page should have -->
+	<nav class="navbar navbar-default navbar-static-top navbar-inverse">
+		<div class="container-fluid">
+			<!-- Brand and toggle get grouped for better mobile display -->
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle collapsed"
+					data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"
+					aria-expanded="false">
+					<span class="sr-only">Toggle navigation</span> 
+					<span class="icon-bar"></span> 
+					<span class="icon-bar"></span> 
+					<span class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" href="#">Lungcare</a>
+			</div>
+
+			<!-- Collect the nav links, forms, and other content for toggling -->
+			<div class="collapse navbar-collapse"
+				id="bs-example-navbar-collapse-1">
+				<ul class="nav navbar-nav">
+					<li class="active"><a href="#">File <span class="sr-only">(current)</span>
+					</a>
+					</li>
+					<li><a href="#">Link</a>
+					</li>
+					<li class="dropdown"><a href="#" class="dropdown-toggle"
+						data-toggle="dropdown" role="button" aria-haspopup="true"
+						aria-expanded="false">Dropdown <span class="caret"></span>
+					</a>
+						<ul class="dropdown-menu">
+							<li><a href="#">Action</a>
+							</li>
+							<li><a href="#">Another action</a>
+							</li>
+							<li><a href="#">Something else here</a>
+							</li>
+							<li role="separator" class="divider"></li>
+							<li><a href="#">Separated link</a>
+							</li>
+							<li role="separator" class="divider"></li>
+							<li><a href="#">One more separated link</a>
+							</li>
+						</ul></li>
+				</ul>
+				<form class="navbar-form navbar-left" role="search">
+					<div class="form-group">
+						<input type="text" class="form-control" placeholder="Search">
+					</div>
+					<button type="submit" class="btn btn-default">Submit</button>
+				</form>
+				<ul class="nav navbar-nav navbar-right">
+					<li><a href="#">Link</a>
+					</li>
+					<li class="dropdown"><a href="#" class="dropdown-toggle"
+						data-toggle="dropdown" role="button" aria-haspopup="true"
+						aria-expanded="false">Dropdown <span class="caret"></span>
+					</a>
+						<ul class="dropdown-menu">
+							<li><a href="#">Action</a>
+							</li>
+							<li><a href="#">Another action</a>
+							</li>
+							<li><a href="#">Something else here</a>
+							</li>
+							<li role="separator" class="divider"></li>
+							<li><a href="#">Separated link</a>
+							</li>
+						</ul></li>
+				</ul>
+			</div>
+			<!-- /.navbar-collapse -->
+		</div>
+		<!-- /.container-fluid -->	
+	</nav>
+	<div style="width:90%;">
+
+		<ul class="nav nav-tabs">
+			<li><a href="UploadFiles.html">UploadFiles</a>
+			</li>
+			<li class="active"><a href="ReceivedAndSend.html">ReceivedAndSend</a>
+			</li>
+		</ul>
+		<table class="table table-bordered table-hover">
+			<tr style="background-color:#3399CC">
+				<td colspan="9">receive</td>
+			</tr>
+			<tr>
+				<td>ID</td>
+				<td>IP</td>
+				<td>Port</td>
+				<td>Received</td>
+				<td>Failed</td>
+				<td>SavedFolder</td>
+				<td>Speed</td>
+				<td>TotalFiles</td>
+				<td>Date</td>
+			</tr>
+			<tbody id="tb1">
+			</tbody>
+		</table>
+		<table class="table table-bordered table-hover">
+			<tr style="background-color:#3399CC">
+				<td colspan="9">send</td>
+			</tr>
+			<tr>
+				<td>ID</td>
+				<td>IP</td>
+				<td>Port</td>
+				<td>Send</td>
+				<td>Failed</td>
+				<td>SavedFolder</td>
+				<td>Speed</td>
+				<td>TotalFiles</td>
+				<td>Date</td>
+			</tr>
+			<tbody id="tb2">
+			</tbody>
+		</table>
+	</div>
+</body>
+
+<script type="text/javascript" language="javascript">
+	$(function() {
+		//setInterval(refresh, 1000);
+		refreshReceive();
+		refreshSend();
+	});
+		function refreshReceive() {
+			$.ajax({
+				type : 'get',
+				url : '/transfer/rest/remotefile/getAllReceiveEntity',
+				data : {},
+				dataType : 'JSON',
+				success : function(result) {
+				$('#tb1').empty();
+				if(result == "" || result == null){
+					alert("there is no data in the table receiveEntity!");
+				}
+				else{
+					var dataObj = eval("(" + result + ")");
+					dataObj=dataObj['receiveEntity'];
+					$.each(dataObj, function(ii, item) {
+						$('#tb1').append(
+								'<tr><td>' + item.id + '</td><td>'
+										+ item.ip + '</td><td>'
+										+ item.port + '</td><td>'
+										+ item.received + '</td><td>'
+										+ item.failed + '</td><td>' 
+										+ item.savedFolder + '</td><td>'
+										+ item.speed + '</td><td>'
+										+ item.totalFiles + '</td><td>'
+										+ item.date + '</td></tr>');
+					});
+				  }
+				  
+				}
+			});
+		}
+		
+		function refreshSend() {
+		$.ajax({
+			type : 'get',
+			url : '/transfer/rest/remotefile/getAllSendEntity',
+			data : {},
+			dataType : 'JSON',
+			success : function(result) {
+			$('#tb2').empty();
+			if(result == "" || result == null){
+				alert("there is no data in the table sendEntity!");
+			}
+			else{
+				var dataObj = eval("(" + result + ")");
+				dataObj=dataObj['sendEntity'];
+				$.each(dataObj, function(ii, item) {
+					$('#tb2').append(
+							'<tr><td>' + item.id + '</td><td>'
+									+ item.ip + '</td><td>'
+									+ item.port + '</td><td>'
+									+ item.send + '</td><td>'
+									+ item.failed + '</td><td>' 
+									+ item.savedFolder + '</td><td>'
+									+ item.speed + '</td><td>'
+									+ item.totalFiles + '</td><td>'
+									+ item.date + '</td></tr>');
+				});
+			  }
+			  
+			}
+		});
+	}
+			
+</script>
+</html>
