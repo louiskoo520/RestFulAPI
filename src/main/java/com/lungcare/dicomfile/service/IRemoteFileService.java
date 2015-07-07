@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
+import com.lungcare.dicomfile.entity.BmpPathEntity;
 import com.lungcare.dicomfile.entity.ReceiveEntity;
 import com.lungcare.dicomfile.entity.SendEntity;
 import com.sun.jersey.multipart.FormDataMultiPart;
@@ -20,4 +21,6 @@ public interface IRemoteFileService {
 	public List<ReceiveEntity> getAllReceiveEntity();
 		
 	public List<SendEntity> getAllSendEntity();
+	
+	public List<BmpPathEntity> getAllBmpPath(String id);
 }

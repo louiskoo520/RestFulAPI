@@ -5,6 +5,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
@@ -21,6 +22,7 @@ import org.hibernate.Transaction;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.lungcare.dicomfile.dao.IRemoteFileTransferDAO;
+import com.lungcare.dicomfile.entity.BmpPathEntity;
 import com.lungcare.dicomfile.entity.ReceiveEntity;
 import com.lungcare.dicomfile.entity.SendEntity;
 import com.lungcare.dicomfile.util.ZipUtils;
@@ -386,6 +388,24 @@ public class RemoteFileTransferDAOImp implements IRemoteFileTransferDAO {
 		return null;
 	}
 	
+	
+	@Override
+	public List<BmpPathEntity> getAllBmpPath(String id) {
+		// TODO Auto-generated method stub
+		File folder = new File(FOLDER_PATH+id);
+		String[] bmpStrings = folder.list();
+		BmpPathEntity bmpPathEntity = new BmpPathEntity();
+		List<BmpPathEntity> bmpList = new ArrayList<BmpPathEntity>();
+		for(int i=0;i<bmpStrings.length;i++){
+			bmpPathEntity = new BmpPathEntity();
+			bmpPathEntity.setBmpPath(bmpStrings[i]);
+			System.out.println(bmpStrings[i]);
+			bmpList.add(bmpPathEntity);
+		}
+		return bmpList;
+	}
+	
+	
 	public void test() {	
 		SendEntity sendEntity = new SendEntity();
 		Date date = new Date();
@@ -411,4 +431,5 @@ public class RemoteFileTransferDAOImp implements IRemoteFileTransferDAO {
 		}
 
 	}
+
 }
