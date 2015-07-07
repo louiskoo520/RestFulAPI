@@ -1,5 +1,5 @@
-#Mon Jul 06 12:49:53 CST 2015
+#Tue Jul 07 09:14:25 CST 2015
 eclipse.preferences.version=1
-validator.Checked=src/main/webapp/js/bootstrap.min.js,src/main/webapp/js/npm.js,src/main/webapp/js/jquery-1.4.3.js,src/main/webapp/js/jquery-1.9.1.js,src/main/webapp/js/bootstrap.js
+validator.Checked=src/main/webapp/js
 validator.Revalidate=true
 validator.Unchecked=

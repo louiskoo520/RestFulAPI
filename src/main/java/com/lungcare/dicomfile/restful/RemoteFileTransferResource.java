@@ -17,6 +17,7 @@ import javax.ws.rs.core.MediaType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import com.lungcare.dicomfile.entity.BmpPathEntity;
 import com.lungcare.dicomfile.entity.ReceiveEntity;
 import com.lungcare.dicomfile.entity.SendEntity;
 import com.lungcare.dicomfile.service.IRemoteFileService;
@@ -99,7 +100,8 @@ public class RemoteFileTransferResource {
 	public ReceiveEntity GetRecieiveEntity(@PathParam("id") String cid) {
 		return remoteFileService.getReceiveEntity(cid);
 	}
-
+	
+	
 	@GET
 	@Path("/getAllReceiveEntity")
 	@Produces(MediaType.APPLICATION_JSON)
@@ -114,6 +116,14 @@ public class RemoteFileTransferResource {
 	@Consumes(MediaType.APPLICATION_JSON)
 	public List<SendEntity> getAllSendEntity(){
 		return  remoteFileService.getAllSendEntity();
+	}
+	
+	@GET
+	@Path("/getAllBmpPath/{id}")
+	@Produces(MediaType.APPLICATION_JSON)
+	@Consumes(MediaType.APPLICATION_JSON)
+	public List<BmpPathEntity> getAllBmpPath(@PathParam("id") String id){
+		return  remoteFileService.getAllBmpPath(id);
 	}
 	
 	@GET
