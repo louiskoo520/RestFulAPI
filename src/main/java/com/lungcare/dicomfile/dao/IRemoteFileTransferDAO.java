@@ -16,7 +16,7 @@ public interface IRemoteFileTransferDAO {
 	
 	public boolean addReceiveEntity(ReceiveEntity receiveEntity);
 	public ReceiveEntity getReceiveEntity(String id);
-	public List<ReceiveEntity> GetAllReceiveEntity();
+	public List<ReceiveEntity> getAllReceiveEntity();
 	public boolean updateReceiveEntity(ReceiveEntity receiveEntity,int receivedNum);
 
 

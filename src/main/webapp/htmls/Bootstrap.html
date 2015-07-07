@@ -97,7 +97,9 @@
 	<ul class="nav nav-tabs">
 		<li class="active"><a href="#UploadFiles" data-toggle="tab">UploadFiles</a>
 		</li>
-		<li><a href="#ReceivedAndSend" data-toggle="tab">ReceivedAndSend</a>
+		<li><a href="#Received" data-toggle="tab">Received</a>
+		</li>
+		<li><a href="#Send" data-toggle="tab">Send</a>
 		</li>
 	</ul>
 
@@ -127,28 +129,36 @@
 			</div>
 		</div>
 
-		<div class="tab-pane fade" id="ReceivedAndSend" onclick="showTables()">
+		<div class="tab-pane fade" id="Received" style="text-align: center;">
+				<table class="table table-bordered table-hover">
+					<tr style="background-color:#3399CC">
+						<td colspan="9" style="color: white;">receive</td>
+					</tr>
+					<tr>
+						<td>ID</td>
+						<td>IP</td>
+						<td>Port</td>
+						<td>Received</td>
+						<td>Failed</td>
+						<td>SavedFolder</td>
+						<td>Speed</td>
+						<td>TotalFiles</td>
+						<td>Date</td>
+					</tr>
+					<tbody id="tb1">
+					</tbody>
+				</table>
+				<ul class="pagination">
+					<li><a href="#" id="lastPage1">&laquo;</a></li>
+					<li><a href="#" id="currentPage1">1</a></li>
+					<li><a href="#" id="nextPage1">&raquo;</a></li>
+				</ul>
+		</div>
+		
+		<div class="tab-pane fade" id="Send" style="text-align: center;">
 			<table class="table table-bordered table-hover">
 				<tr style="background-color:#3399CC">
-					<td colspan="9">receive</td>
-				</tr>
-				<tr>
-					<td>ID</td>
-					<td>IP</td>
-					<td>Port</td>
-					<td>Received</td>
-					<td>Failed</td>
-					<td>SavedFolder</td>
-					<td>Speed</td>
-					<td>TotalFiles</td>
-					<td>Date</td>
-				</tr>
-				<tbody id="tb1">
-				</tbody>
-			</table>
-			<table class="table table-bordered table-hover">
-				<tr style="background-color:#3399CC">
-					<td colspan="9">send</td>
+					<td colspan="9" style="color: white;">send</td>
 				</tr>
 				<tr>
 					<td>ID</td>
@@ -164,6 +174,11 @@
 				<tbody id="tb2">
 				</tbody>
 			</table>
+			<ul class="pagination">
+				<li><a href="#" id="lastPage2">&laquo;</a></li>
+				<li><a href="#" id="currentPage2">1</a></li>
+				<li><a href="#" id="nextPage2">&raquo;</a></li>
+			</ul>
 		</div>
 	</div>
 	
@@ -173,51 +188,134 @@
 
 <script type="text/javascript" language="javascript">
 	
-
+	var currentPage1 = parseInt($('#currentPage1').html());
+	var currentPage2 = parseInt($('#currentPage2').html());
+	var pageSize = 5;
+	
 	$(function() {
 		$('a[data-toggle="tab"]').on('shown.bs.tab', function(e) {
 			// 获取已激活的标签页的名称
 			var activeTab = $(e.target).text();
-			if(activeTab=="ReceivedAndSend"){
-				refreshReceive();
-				refreshSend();
+			if(activeTab=="Received"){			
+				findReceiveByCurrentPage(currentPage1,pageSize);
+			}
+			if(activeTab=="Send"){
+				findSendByCurrentPage(currentPage2,pageSize);
 			}
 		});
+		
+		$('#lastPage1').click(function(){
+			currentPage1 -= 1;
+			findReceiveByCurrentPage(currentPage1,pageSize);
+			$('#currentPage1').html(currentPage1+'');
+		});
+		
+		$('#nextPage1').click(function(){
+			currentPage1 += 1;
+			findReceiveByCurrentPage(currentPage1,pageSize);
+			$('#currentPage1').html(currentPage1+'');
+		});
+		
+		$('#lastPage2').click(function(){
+			currentPage2 -= 1;
+			findSendByCurrentPage(currentPage2,pageSize);
+			$('#currentPage2').html(currentPage2+'');
+		});
+		
+		$('#nextPage2').click(function(){
+			currentPage2 += 1;
+			findSendByCurrentPage(currentPage2,pageSize);
+			$('#currentPage2').html(currentPage2+'');
+		});
 	});
-
-
-
-	function refreshReceive() {
+	
+	function findReceiveByCurrentPage(currentPage, pageSize) {
 		$.ajax({
 			type : 'get',
 			url : '/transfer/rest/remotefile/getAllReceiveEntity',
 			data : {},
 			dataType : 'JSON',
 			success : function(result) {
-				$('#tb1').empty();
 				if (result == "" || result == null) {
 					alert("there is no data in the table receiveEntity!");
 				} else {
-					//var dataObj = eval("(" + result + ")");
-					var dataObj = result['receiveEntity'];
-					//var dataObj = result[0];
-					$.each(dataObj, function(ii, item) {
+					dataObj = result['receiveEntity'];
+					$('#tb1').empty();
+					var maxPage = Math.ceil(dataObj.length / pageSize);
+					if (currentPage < 1) {
+						currentPage = 1;
+						
+					}
+					if (currentPage > maxPage) {
+						currentPage = maxPage;
+						
+					}
+					var firstIndex = (currentPage - 1) * pageSize;
+					var lastIndex = currentPage * pageSize;
+			
+					if (currentPage == maxPage) {
+						lastIndex = dataObj.length;
+					}
+					for ( var i = firstIndex; i < lastIndex; i++) {
+						var item = dataObj[i];
 						$('#tb1').append(
+								'<tr><td>' + item.id + '</td><td>' + item.ip + '</td><td>'
+										+ item.port + '</td><td>' + item.received
+										+ '</td><td>' + item.failed + '</td><td>'
+										+ item.savedFolder + '</td><td>' + item.speed
+										+ '</td><td>' + item.totalFiles + '</td><td>'
+										+ item.date + '</td></tr>');
+					}
+				}
+			}
+		});
+	}
+	
+	function findSendByCurrentPage(currentPage,pageSize){
+		$.ajax({
+			type : 'get',
+			url : '/transfer/rest/remotefile/getAllSendEntity',
+			data : {},
+			dataType : 'JSON',
+			success : function(result) {
+				if (result == "" || result == null) {
+					alert("there is no data in the table sendEntity!");
+				} else {
+					var dataObj = result['sendEntity'];
+					$('#tb2').empty();
+					var maxPage = Math.ceil(dataObj.length / pageSize);
+					if (currentPage < 1) {
+						currentPage = 1;
+						
+					}
+					if (currentPage > maxPage) {
+						currentPage = maxPage;
+						
+					}
+					var firstIndex = (currentPage - 1) * pageSize;
+					var lastIndex = currentPage * pageSize;
+			
+					if (currentPage == maxPage) {
+						lastIndex = dataObj.length;
+					}
+					for ( var i = firstIndex; i < lastIndex; i++) {
+						var item = dataObj[i];
+						$('#tb2').append(
 								'<tr><td>' + item.id + '</td><td>' + item.ip
 										+ '</td><td>' + item.port + '</td><td>'
-										+ item.received + '</td><td>'
-										+ item.failed + '</td><td>'
-										+ item.savedFolder + '</td><td>'
-										+ item.speed + '</td><td>'
-										+ item.totalFiles + '</td><td>'
-										+ item.date + '</td></tr>');
-					});
+										+ item.send + '</td><td>' + item.failed
+										+ '</td><td>' + item.savedFolder
+										+ '</td><td>' + item.speed
+										+ '</td><td>' + item.totalFiles
+										+ '</td><td>' + item.date
+										+ '</td></tr>');
+					}
 				}
 
 			}
 		});
 	}
-
+	
 	function refreshSend() {
 		$.ajax({
 			type : 'get',
@@ -249,8 +347,6 @@
 		});
 	}
 
-
-
 	var current_guid;
 	function get_action(form) {
 		current_guid = guid();
@@ -261,7 +357,7 @@
 	function progressBar() {
 		var interval = setInterval(changeProgress, 500);
 	}
-	
+
 	function changeProgress() {
 		$.ajax({
 			url : '/transfer/rest/remotefile/get/' + current_guid,
@@ -309,7 +405,7 @@
 		return Math.floor((1 + Math.random()) * 0x10000).toString(16)
 				.substring(1);
 	};
-	
+
 	function guid() {
 		return s4() + s4() + '-' + s4() + '-' + s4() + '-' + s4() + '-' + s4()
 				+ s4() + s4();

@@ -34,7 +34,7 @@ public class RemoteFileServiceImp implements IRemoteFileService {
 	}
 
 	public List<ReceiveEntity> getAllReceiveEntity() {
-		return remoteFileTransferDAO.GetAllReceiveEntity();
+		return remoteFileTransferDAO.getAllReceiveEntity();
 	}
 
 	public List<SendEntity> getAllSendEntity(){

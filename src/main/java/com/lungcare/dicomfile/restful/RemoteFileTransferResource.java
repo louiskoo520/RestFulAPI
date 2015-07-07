@@ -99,7 +99,8 @@ public class RemoteFileTransferResource {
 	public ReceiveEntity GetRecieiveEntity(@PathParam("id") String cid) {
 		return remoteFileService.getReceiveEntity(cid);
 	}
-
+	
+	
 	@GET
 	@Path("/getAllReceiveEntity")
 	@Produces(MediaType.APPLICATION_JSON)

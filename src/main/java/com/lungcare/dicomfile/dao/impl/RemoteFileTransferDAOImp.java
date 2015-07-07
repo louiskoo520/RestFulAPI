@@ -38,6 +38,7 @@ public class RemoteFileTransferDAOImp implements IRemoteFileTransferDAO {
 	private static final String FOLDER_PATH = new File("").getAbsolutePath() +"/src/main/webapp/testFile/";
 	//private static final String SEND_IP = "192.168.1.13";
 	//private static final int SEND_PORT = 8787;
+	//private static final int PAGESIZE = 4;
 	private SessionFactory sessionFactory;
 
 	public void setSessionFactory(SessionFactory sessionFactory) {
@@ -269,7 +270,7 @@ public class RemoteFileTransferDAOImp implements IRemoteFileTransferDAO {
 
 	}
 
-	public List<ReceiveEntity> GetAllReceiveEntity() {
+	public List<ReceiveEntity> getAllReceiveEntity() {
 		Session session = this.sessionFactory.getCurrentSession();
 		if (session != null) {
 			System.out
@@ -298,6 +299,7 @@ public class RemoteFileTransferDAOImp implements IRemoteFileTransferDAO {
 
 		return null;
 	}
+	
 	
 	public void setSendEntity(String id,String ip,int port,int totalFiles,int sendNum,int failedNum){
 		SendEntity sendEntity = new SendEntity();
