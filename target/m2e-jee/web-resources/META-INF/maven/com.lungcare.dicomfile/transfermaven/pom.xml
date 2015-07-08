@@ -232,7 +232,16 @@
 				</exclusion>
 			</exclusions>
 		</dependency>
-    
+       <dependency>
+             <groupId>com.lungcare.algorithm</groupId>
+             <artifactId>morphological-segmentation</artifactId>
+             <version>0.0.1.RELEASE</version>
+       </dependency>
+       <dependency>
+             <groupId>com.lungcare.matlab</groupId>
+             <artifactId>javabuilder-matlab</artifactId>
+             <version>0.0.1.RELEASE</version>
+       </dependency>
   </dependencies>
   
     <build>

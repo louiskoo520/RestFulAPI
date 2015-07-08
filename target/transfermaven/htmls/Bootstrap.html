@@ -202,6 +202,30 @@
 	//以下内容为显示图片
 	//var bmpId = fb3bf004-f2f6-6112-0546-3d36f7672331;
 	$(function(){
+		getAllBmpPath();
+	});
+	
+	function getAllBmpPath(){
+		var id = "efed2711-b150-1b1f-521a-6aa2343236d2";	
+		$.ajax({
+			type : 'get',
+			url : '/transfer/rest/remotefile/getAllBmpPath/'+id,
+			data : {},
+			dataType : 'JSON',
+			success : function(result) {
+				var dataObj = result['bmpPathEntity'];
+				var tablebody = '<div>';
+				$.each(dataObj,function(i,item){
+					tablebody +='<img width="256px" height="256px"  src="../testFile/'+id+'/'+item.bmpPath+'" >';
+				});
+				tablebody += '</div>';
+				$('#Bmps').append(tablebody);
+			}
+			
+		});
+	}
+	
+	function showAllBmp(id,length){
 		var tablebody;
 		var indexString;
 		for(var i=0;i<85;i++){
@@ -213,19 +237,6 @@
 			tablebody+='</div>';
 		}
 		$('#Bmps').append(tablebody);
-	});
-	
-	function getAllBmpPath(){
-		$.ajax({
-			type : 'get',
-			url : '/transfer/rest/remotefile/getAllReceiveEntity',
-			data : {},
-			dataType : 'JSON',
-			success : function(result) {
-				
-			}
-			
-		});
 	}
 	
 	function pad(num,n){
