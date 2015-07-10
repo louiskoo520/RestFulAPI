@@ -19,8 +19,9 @@ public interface IRemoteFileService {
 	public void test();
 
 	public List<ReceiveEntity> getAllReceiveEntity();
+	public List<ReceiveEntity> getCompleteReceiveEntity();
 		
 	public List<SendEntity> getAllSendEntity();
 	
-	public List<BmpPathEntity> getAllBmpPath(String id);
+	public List<BmpPathEntity> getAllBmpPath(String path);
 }

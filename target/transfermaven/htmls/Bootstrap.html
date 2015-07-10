@@ -106,6 +106,8 @@
 		</li>
 		<li><a href="#ShowBmp" data-toggle="tab">ShowBmp</a>
 		</li>
+		<li><a href="#Complete" data-toggle="tab">Complete</a>
+		</li>
 	</ul>
 
 
@@ -187,9 +189,45 @@
 		</div>
 		
 		<div class="tab-pane fade" id="ShowBmp">
-			<div id="Bmps" style="text-align: center;">
+				<ul class="nav nav-tabs">
+					<li class="active"><a href="#axial" data-toggle="tab">axial</a></li>
+					<li><a href="#coronal" data-toggle="tab">coronal</a></li>
+					<li><a href="#sagittal" data-toggle="tab">sagittal</a></li>
+				</ul>
+				<div class="tab-pane fade in active" id="axial" style="text-align: center;">
 			
+				</div>
+				<div class="tab-pane fade" id="coronal" style="text-align: center;">
+			
+				</div>
+				<div class="tab-pane fade" id="sagittal" style="text-align: center;">
+			
+				</div>
+		</div>
+		
+		<div class="tab-pane fade" id="Complete" style="text-align: center;">
+			<div style="width:50%;margin:0 auto;">
+				<input type="text" id="getCompleteID" class="form-control" placeholder="请输入id"/>
+				<button type="submit" class="btn btn-default" id="conmitID">提交</button>
 			</div>
+				<table class="table table-bordered table-hover">
+					<tr style="background-color:#3399CC">
+						<td colspan="4" style="color: white;">complete</td>
+					</tr>
+					<tr>
+						<td>ID</td>
+						<td>Date</td>
+						<td>TotalFiles</td>
+						<td>Complete</td>
+					</tr>
+					<tbody id="tb3">
+					</tbody>
+				</table>
+				<ul class="pagination">
+					<li><a href="#" id="lastPage3">&laquo;</a></li>
+					<li><a href="#" id="currentPage3">1</a></li>
+					<li><a href="#" id="nextPage3">&raquo;</a></li>
+				</ul>
 		</div>
 	</div>
 	
@@ -202,6 +240,64 @@
 	//以下内容为显示图片
 	//var bmpId = fb3bf004-f2f6-6112-0546-3d36f7672331;
 	$(function(){
+		var id = null;
+		$('#conmitID').click(function(){
+			id = $('#getCompleteID').val();
+			alert(id);
+			$(".nav-tabs li:eq(3) a").tab('show');
+		});
+		$('a[data-toggle="tab"]').on('shown.bs.tab', function(e) {
+			// 获取已激活的标签页的名称
+			var activeTab = $(e.target).text();
+					$('#axial').empty();			
+					$('#coronal').empty();			
+					$('#sagittal').empty();			
+			if(id != null){
+				if(activeTab=="axial"){
+					showAllBmp(id,"axial");
+				}
+				if(activeTab=="coronal"){
+					showAllBmp(id,"coronal");
+				}
+				if(activeTab=="sagittal"){
+					showAllBmp(id,"sagittal");
+				}
+			}
+		});	
+		
+	});
+	
+	function showAllBmp(id,folderPath){
+		var path = id+","+folderPath;
+		$.ajax({
+			type : 'get',
+			url : '/transfer/rest/remotefile/getAllBmpPath/'+path,
+			data : {},
+			dataType : 'JSON',
+			success : function(result) {
+				var dataObj = result['bmpPathEntity'];
+				var tablebody = '<div>';
+				$.each(dataObj,function(i,item){
+					tablebody +='<img width="128px" height="128px"  src="../allBmps/'+id+'/'+folderPath+'/'+item.bmpPath+'" >';
+				});
+				tablebody += '</div>';
+				if(folderPath == "axial"){
+					$('#axial').append(tablebody);
+				}
+				else if(folderPath == "coronal"){
+					$('#coronal').append(tablebody);
+				}
+				else if(folderPath == "sagittal"){
+					$('#sagittal').append(tablebody);
+				}else{
+					alert('there is no bmp');
+				}
+			}		
+		});
+	}
+	
+	
+/* 	function showAllBmp(id,length){
 		var tablebody;
 		var indexString;
 		for(var i=0;i<85;i++){
@@ -213,19 +309,6 @@
 			tablebody+='</div>';
 		}
 		$('#Bmps').append(tablebody);
-	});
-	
-	function getAllBmpPath(){
-		$.ajax({
-			type : 'get',
-			url : '/transfer/rest/remotefile/getAllReceiveEntity',
-			data : {},
-			dataType : 'JSON',
-			success : function(result) {
-				
-			}
-			
-		});
 	}
 	
 	function pad(num,n){
@@ -235,12 +318,13 @@
 			len++
 		}
 		return num;
-	}
+	} */
 	
 	
 	//以下内容为显示Received和Send表格
 	var currentPage1 = parseInt($('#currentPage1').html());
 	var currentPage2 = parseInt($('#currentPage2').html());
+	var currentPage3 = parseInt($('#currentPage3').html());
 	var pageSize = 5;
 	$(function() {
 		$('a[data-toggle="tab"]').on('shown.bs.tab', function(e) {
@@ -251,6 +335,9 @@
 			}
 			if(activeTab=="Send"){
 				findSendByCurrentPage(currentPage2,pageSize);
+			}
+			if(activeTab=="Complete"){
+				findSendByCurrentPage(currentPage3,pageSize);
 			}
 		});
 		
@@ -276,6 +363,17 @@
 			currentPage2 += 1;
 			findSendByCurrentPage(currentPage2,pageSize);
 			$('#currentPage2').html(currentPage2+'');
+		});
+		$('#lastPage3').click(function(){
+			currentPage3 -= 1;
+			findCompleteByCurrentPage(currentPage3,pageSize);
+			$('#currentPage3').html(currentPage3+'');
+		});
+		
+		$('#nextPage3').click(function(){
+			currentPage3 += 1;
+			findCompleteByCurrentPage(currentPage3,pageSize);
+			$('#currentPage3').html(currentPage3+'');
 		});
 	});
 	
@@ -315,6 +413,46 @@
 										+ item.savedFolder + '</td><td>' + item.speed
 										+ '</td><td>' + item.totalFiles + '</td><td>'
 										+ item.date + '</td></tr>');
+					}
+				}
+			}
+		});
+	}
+	
+	function findCompleteByCurrentPage(currentPage, pageSize) {
+		$.ajax({
+			type : 'get',
+			url : '/transfer/rest/remotefile/getCompleteReceiveEntity',
+			data : {},
+			dataType : 'JSON',
+			success : function(result) {
+				if (result == "" || result == null) {
+					alert("there is no data in the table receiveEntity!");
+				} else {
+					dataObj = result['receiveEntity'];
+					$('#tb3').empty();
+					var maxPage = Math.ceil(dataObj.length / pageSize);
+					if (currentPage < 1) {
+						currentPage = 1;
+						
+					}
+					if (currentPage > maxPage) {
+						currentPage = maxPage;
+						
+					}
+					var firstIndex = (currentPage - 1) * pageSize;
+					var lastIndex = currentPage * pageSize;
+			
+					if (currentPage == maxPage) {
+						lastIndex = dataObj.length;
+					}
+					for ( var i = firstIndex; i < lastIndex; i++) {
+						var item = dataObj[i];
+						$('#tb3').append(
+								'<tr><td>' + item.id + '</td><td>' 
+										   + item.date + '</td><td>'
+										   + item.totalFiles + '</td><td>'
+										   + item.complete + '</td></tr>');
 					}
 				}
 			}
@@ -366,6 +504,7 @@
 		});
 	}
 	
+	
 	//以下内容为上传文件
 	var current_guid;
 	function get_action(form) {
@@ -378,7 +517,7 @@
 	}
 	function changeProgress() {
 		$.ajax({
-			url : '/transfer/rest/remotefile/get/' + current_guid,
+			url : '/transfer/rest/remotefile/getReceiveEntity/' + current_guid,
 			type : 'get',
 			data : {},
 			dataType : 'JSON',
