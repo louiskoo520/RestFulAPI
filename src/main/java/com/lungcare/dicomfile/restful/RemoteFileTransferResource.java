@@ -94,7 +94,7 @@ public class RemoteFileTransferResource {
 	}
 
 	@GET
-	@Path("get/{id}")
+	@Path("getReceiveEntity/{id}")
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
 	public ReceiveEntity GetRecieiveEntity(@PathParam("id") String cid) {
@@ -111,6 +111,14 @@ public class RemoteFileTransferResource {
 	}
 	
 	@GET
+	@Path("/getCompleteReceiveEntity")
+	@Produces(MediaType.APPLICATION_JSON)
+	@Consumes(MediaType.APPLICATION_JSON)
+	public List<ReceiveEntity> GetCompleteReceiveEntity(){
+		return  remoteFileService.getCompleteReceiveEntity();
+	}
+	
+	@GET
 	@Path("/getAllSendEntity")
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
@@ -119,11 +127,11 @@ public class RemoteFileTransferResource {
 	}
 	
 	@GET
-	@Path("/getAllBmpPath/{id}")
+	@Path("/getAllBmpPath/{path}")
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
-	public List<BmpPathEntity> getAllBmpPath(@PathParam("id") String id){
-		return  remoteFileService.getAllBmpPath(id);
+	public List<BmpPathEntity> getAllBmpPath(@PathParam("path") String path){
+		return  remoteFileService.getAllBmpPath(path);
 	}
 	
 	@GET

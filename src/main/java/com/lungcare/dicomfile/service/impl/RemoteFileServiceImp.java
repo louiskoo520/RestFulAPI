@@ -37,15 +37,19 @@ public class RemoteFileServiceImp implements IRemoteFileService {
 	public List<ReceiveEntity> getAllReceiveEntity() {
 		return remoteFileTransferDAO.getAllReceiveEntity();
 	}
+	
+	public List<ReceiveEntity> getCompleteReceiveEntity(){
+		return remoteFileTransferDAO.getCompleteReceiveEntity();
+	}
 
 	public List<SendEntity> getAllSendEntity(){
 		return remoteFileTransferDAO.getAllSendEntity();
 	}
 
 	@Override
-	public List<BmpPathEntity> getAllBmpPath(String id) {
+	public List<BmpPathEntity> getAllBmpPath(String path) {
 		// TODO Auto-generated method stub
-		return remoteFileTransferDAO.getAllBmpPath(id);
+		return remoteFileTransferDAO.getAllBmpPath(path);
 	}
 	
 	

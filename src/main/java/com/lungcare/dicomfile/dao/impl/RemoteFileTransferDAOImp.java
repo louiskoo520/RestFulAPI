@@ -19,8 +19,10 @@ import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.lungcare.dicomfile.dao.IAlgorithmDAO;
 import com.lungcare.dicomfile.dao.IRemoteFileTransferDAO;
 import com.lungcare.dicomfile.entity.BmpPathEntity;
 import com.lungcare.dicomfile.entity.ReceiveEntity;
@@ -37,12 +39,16 @@ import com.sun.jersey.multipart.file.FileDataBodyPart;
 public class RemoteFileTransferDAOImp implements IRemoteFileTransferDAO {
 
 	private static Logger logger = Logger.getLogger(RemoteFileTransferDAOImp.class);
-	private static final String FOLDER_PATH = new File("").getAbsolutePath() +"/src/main/webapp/testFile/";
+	private static final String SAVEFOLDER_PATH = new File("").getAbsolutePath() +"/src/main/webapp/testFile/";
+	//private static final String SAVEFOLDER_PATH = "G:\\wjlProgramFiles\\local-test-data\\testFile\\";
+	private static final String BMPFOLDER_PATH = new File("").getAbsolutePath() +"/src/main/webapp/allBmps/";
+	//private static final String BMPFOLDER_PATH = "G:\\wjlProgramFiles\\local-test-data\\allBmps\\";
 	//private static final String SEND_IP = "192.168.1.13";
 	//private static final int SEND_PORT = 8787;
 	//private static final int PAGESIZE = 4;
 	private SessionFactory sessionFactory;
-
+	@Autowired
+	private IAlgorithmDAO algorithmDAOImp;
 	public void setSessionFactory(SessionFactory sessionFactory) {
 		this.sessionFactory = sessionFactory;
 	}
@@ -51,7 +57,7 @@ public class RemoteFileTransferDAOImp implements IRemoteFileTransferDAO {
 		// TODO Auto-generated method stub
 		logger.info("uploadFile");
 
-		ReceiveEntity receiveEntity = new ReceiveEntity();
+		final ReceiveEntity receiveEntity = new ReceiveEntity();
 		receiveEntity.setId(cid);//设置id
 		
 		String remoteHostString = "";
@@ -65,6 +71,8 @@ public class RemoteFileTransferDAOImp implements IRemoteFileTransferDAO {
 
 		int port = request.getRemotePort();
 		receiveEntity.setPort(port);//设置port
+		
+		receiveEntity.setComplete(false);//设置complete
 		
 //		receiveEntity.setTotalFiles(formParams.getFields().values().size());//设置totalfiles
 		
@@ -84,7 +92,7 @@ public class RemoteFileTransferDAOImp implements IRemoteFileTransferDAO {
 		receiveEntity.setTotalFiles(totalNum);//设置totalfiles
 		
 		receiveEntity.setDate(new Date());//设置时间
-		receiveEntity.setSavedFolder(FOLDER_PATH + cid + "\\");//设置接受路径
+		receiveEntity.setSavedFolder(SAVEFOLDER_PATH + cid + "\\");//设置接受路径
 		addReceiveEntity(receiveEntity);
 		// Usually each value in fieldsByName will be a list of length 1.
 		// Assuming each field in the form is a file, just loop through them.
@@ -107,14 +115,30 @@ public class RemoteFileTransferDAOImp implements IRemoteFileTransferDAO {
 				++index;
 			}
 		}
-		try {
-			Thread.sleep(5000);
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
+//		try {
+//			Thread.sleep(5000);
+//		} catch (InterruptedException e) {
+//			e.printStackTrace();
+//		}
 		//sendToOther(cid, SEND_IP, SEND_PORT);
-		System.out.println("zipstart");
-		ZipUtils.createZip(FOLDER_PATH+cid, FOLDER_PATH+cid+".zip");
+		final String ctPathString = SAVEFOLDER_PATH + cid + "\\";
+		final String bmpSavePath = BMPFOLDER_PATH +cid + "\\";
+		new Thread(
+				new Runnable() {
+					public void run() {
+						System.out.println("segStart........................................................................");
+						algorithmDAOImp.dicomSegmentation(ctPathString, bmpSavePath);
+						updateCompleteReceiveEntity(receiveEntity);
+						System.out.println("segOver..........................................................................");
+					}
+				}
+		).start();
+
+		
+		System.out.println("zipstart...");
+		ZipUtils.createZip(SAVEFOLDER_PATH+cid, SAVEFOLDER_PATH+cid+".zip");
+		System.out.println("zipover");
+		
 	}
 		
 	public byte[] downloadFile(HttpServletRequest req){
@@ -166,12 +190,12 @@ public class RemoteFileTransferDAOImp implements IRemoteFileTransferDAO {
 		}
 		System.out.println("File Name: " + fileName);
 		System.out.println(folder);
-		String folder_path =new File("").getAbsolutePath() +"/src/main/webapp/testFile/";
-		File file = new File(folder_path + folder + "\\");
+		//String SAVEFOLDER_PATH =new File("").getAbsolutePath() +"/src/main/webapp/testFile/";
+		File file = new File(SAVEFOLDER_PATH + folder + "\\");
 		if (!file.exists() && !file.isDirectory()) {
 			file.mkdir();
 		}
-		String filePath = folder_path + folder + "\\" + fileName;
+		String filePath = SAVEFOLDER_PATH + folder + "\\" + fileName;
 
 		try {
 			int read = 0;
@@ -243,6 +267,28 @@ public class RemoteFileTransferDAOImp implements IRemoteFileTransferDAO {
 		return false;
 
 	}
+	
+	public boolean updateCompleteReceiveEntity(ReceiveEntity receiveEntity) {
+		Session session = this.sessionFactory.getCurrentSession();
+		if (session != null) {
+			System.out
+					.println("this.sessionFactory.getCurrentSession().isOpen()");
+			Transaction transaction = session.beginTransaction();
+			Query query = session
+					.createQuery("update ReceiveEntity t set t.complete =? where t.id=?");
+			query.setParameter(0, 1);
+			String id = receiveEntity.getId();
+			query.setParameter(1, id);
+			query.executeUpdate();
+			transaction.commit();
+			return true;
+		} else {
+			System.out.println("this.sessionFactory.getCurrentSession().is null");
+		}
+
+		return false;
+
+	}
 
 	public boolean updateFailedReceiveEntity(ReceiveEntity receiveEntity,
 			int failedNum) {
@@ -302,6 +348,35 @@ public class RemoteFileTransferDAOImp implements IRemoteFileTransferDAO {
 		return null;
 	}
 	
+	public List<ReceiveEntity> getCompleteReceiveEntity() {
+		Session session = this.sessionFactory.getCurrentSession();
+		if (session != null) {
+			System.out
+					.println("this.sessionFactory.getCurrentSession().isOpen()");
+			Transaction transaction = session.beginTransaction();
+			Query query = session
+					.createQuery("select reEntity from ReceiveEntity reEntity where reEntity.complete=1 order by date desc");
+			@SuppressWarnings("unchecked")
+			List<ReceiveEntity> list = query.list();
+			transaction.commit();
+			for (Iterator<ReceiveEntity> iterator = list.iterator(); iterator
+					.hasNext();) {
+				ReceiveEntity receiveEntity = (ReceiveEntity) iterator.next();
+				System.out.println(receiveEntity.getIp() + "  "
+						+ receiveEntity.getTotalFiles());
+			}
+
+			if (list != null && list.size() > 0) {
+				return list;
+			}
+		} else {
+			System.out
+					.println("this.sessionFactory.getCurrentSession().is null");
+			return null;
+		}
+
+		return null;
+	}
 	
 	public void setSendEntity(String id,String ip,int port,int totalFiles,int sendNum,int failedNum){
 		SendEntity sendEntity = new SendEntity();
@@ -311,7 +386,7 @@ public class RemoteFileTransferDAOImp implements IRemoteFileTransferDAO {
 		sendEntity.setFailed(failedNum);//
 		sendEntity.setIp(ip);//
 		sendEntity.setPort(port);//
-		sendEntity.setSavedFolder(FOLDER_PATH);//
+		sendEntity.setSavedFolder(SAVEFOLDER_PATH);//
 		sendEntity.setSend(sendNum);//
 		sendEntity.setSpeed(0);//
 		sendEntity.setTotalFiles(totalFiles);//
@@ -332,7 +407,7 @@ public class RemoteFileTransferDAOImp implements IRemoteFileTransferDAO {
 		String postString = "http://"+ip+":"+port+"/transfer/rest/remotefile/multipleFiles/"+id;
 		WebResource resource = client.resource(postString);
 		FormDataMultiPart formDataMultiPart = new FormDataMultiPart();	
-		String pathString = FOLDER_PATH+id;
+		String pathString = SAVEFOLDER_PATH+id;
 		int totalFiles = 0;
 		int sendNum = 0;
 		int failedNum = 0;
@@ -390,16 +465,16 @@ public class RemoteFileTransferDAOImp implements IRemoteFileTransferDAO {
 	
 	
 	@Override
-	public List<BmpPathEntity> getAllBmpPath(String id) {
+	public List<BmpPathEntity> getAllBmpPath(String path) {
 		// TODO Auto-generated method stub
-		File folder = new File(FOLDER_PATH+id);
+		path = path.replace(",","/");
+		File folder = new File(BMPFOLDER_PATH+path);	
 		String[] bmpStrings = folder.list();
-		BmpPathEntity bmpPathEntity = new BmpPathEntity();
 		List<BmpPathEntity> bmpList = new ArrayList<BmpPathEntity>();
 		for(int i=0;i<bmpStrings.length;i++){
-			bmpPathEntity = new BmpPathEntity();
+			BmpPathEntity bmpPathEntity = new BmpPathEntity();
 			bmpPathEntity.setBmpPath(bmpStrings[i]);
-			System.out.println(bmpStrings[i]);
+			System.out.println(bmpPathEntity.getBmpPath());
 			bmpList.add(bmpPathEntity);
 		}
 		return bmpList;

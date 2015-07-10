@@ -18,10 +18,11 @@ public interface IRemoteFileTransferDAO {
 	public boolean addReceiveEntity(ReceiveEntity receiveEntity);
 	public ReceiveEntity getReceiveEntity(String id);
 	public List<ReceiveEntity> getAllReceiveEntity();
+	public List<ReceiveEntity> getCompleteReceiveEntity();
 	public boolean updateReceiveEntity(ReceiveEntity receiveEntity,int receivedNum);
 
 
-	public List<BmpPathEntity> getAllBmpPath(String id);
+	public List<BmpPathEntity> getAllBmpPath(String path);
 
 	public void test();
 

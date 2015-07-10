@@ -36,4 +36,8 @@
      <property name="sessionFactory" ref="sessionFactory"></property>
   </bean>
   
+  <bean id="algorithmService" class="com.lungcare.dicomfile.service.impl.AlgorithmServiceImp"></bean>
+  <bean id="algorithmDAO" class="com.lungcare.dicomfile.dao.impl.AlgorithmDAOImp">
+  </bean>
+  
 </beans>
