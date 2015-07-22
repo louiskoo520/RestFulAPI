@@ -30,7 +30,7 @@ public class RemoteFileTransferResource {
 
 	}
 
-	private static final String SUCCESS_RESPONSE = "Successful";
+	//private static final String SUCCESS_RESPONSE = "Successful";
 
 	@Autowired
 	private IRemoteFileService remoteFileService;
@@ -43,47 +43,10 @@ public class RemoteFileTransferResource {
 	@Consumes(MediaType.MULTIPART_FORM_DATA)
 	@Produces("text/plain")
 	@Path("/multipleFiles/{id}")
-	public String uploadMultiFiles(FormDataMultiPart formParams,
+	public void uploadMultiFiles(FormDataMultiPart formParams,
 			@Context HttpServletRequest request, @PathParam("id") String cid) {
-		//receivedMap.put(receiveEntity.getId(), receiveEntity);
 		remoteFileService.uploadFile(formParams, request , cid);	
-		return SUCCESS_RESPONSE;
 	}
-	
-//	@GET
-//	@Path("/downloadZip")
-//	@Produces(MediaType.APPLICATION_JSON)
-//	@Consumes(MediaType.APPLICATION_JSON)
-//	public List<String> downloadZip() throws JSONException{
-//		//String pathString = RemoteFileTransferResource.class.getClass().getResource("/").getPath().replace("target/classes/", "src/main/webapp/testFile/");
-//		String pathString=new File("").getAbsolutePath();
-//		//String pathString ="G:/wjlProgramFiles/local-git-repository/src/main/webapp/testFile/";
-//		pathString += "/src/main/webapp/testFile/";
-//		//ZipUtils.createZip(pathString+cid, pathString+cid+".zip");
-//		List<String> zipList = getAllZip(pathString);
-//		return zipList;
-//	}
-//	
-//	public List<String> getAllZip(String path) {
-//		File file = new File(path);
-//		String test[];
-//		List<String> zipList = new ArrayList<String>(); 
-//		test = file.list();
-//		for (int i = 0; i < test.length; i++) {
-//			File testFile = new File(path+test[i]);
-//			if(!testFile.isDirectory()){
-//				zipList.add(test[i]);
-//			}
-//		}
-//		return zipList;
-//	}
-	
-//	@GET
-//	@Path("/download")
-//	@Produces(MediaType.APPLICATION_OCTET_STREAM)
-//	public byte[] download(@Context HttpServletRequest req)throws Exception {
-//		return remoteFileService.downloadFile(req);
-//	}
 
 	@GET
 	@Path("add")
@@ -116,6 +79,14 @@ public class RemoteFileTransferResource {
 	@Consumes(MediaType.APPLICATION_JSON)
 	public List<ReceiveEntity> GetCompleteReceiveEntity(){
 		return  remoteFileService.getCompleteReceiveEntity();
+	}
+	
+	@POST
+	@Path("deleteCompleteData/{id}")
+	@Consumes(MediaType.MULTIPART_FORM_DATA)
+	@Produces("text/plain")
+	public void deleteCompleteData(@PathParam("id") String cid) {
+		remoteFileService.deleteCompleteData(cid);
 	}
 	
 	@GET

@@ -18,6 +18,7 @@ com\lungcare\dicomfile\entity\SendEntity.class
 com\lungcare\dicomfile\service\impl\LocalFileServiceImp.class
 com\lungcare\dicomfile\dao\impl\RemoteFileTransferDAOImp.class
 com\lungcare\dicomfile\dao\ILocalFileTransferDAO.class
+com\lungcare\dicomfile\dao\impl\RemoteFileTransferDAOImp$2.class
 com\lungcare\dicomfile\util\FileWrapper.class
 com\lungcare\dicomfile\service\ILocalFileService.class
 com\lungcare\dicomfile\algorithm\MorphologicalSegment.class

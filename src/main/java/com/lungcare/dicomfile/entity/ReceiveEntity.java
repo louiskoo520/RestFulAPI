@@ -13,6 +13,9 @@ import javax.xml.bind.annotation.XmlRootElement;
 public class ReceiveEntity {
 	@Id
 	private String id;
+	private String accessionNumber;
+	private String patientName;
+	private String studyDate;
 	private String ip;
 	private int port;
 	private String savedFolder;
@@ -23,6 +26,77 @@ public class ReceiveEntity {
 	private int failed;
 	private String message;
 	private boolean complete;
+	private boolean jpgAxial;
+	private boolean bmpAxial;
+	private boolean bmpCoronal;
+	private boolean bmpSagittal;
+	private int completeTime;
+	
+	
+
+	public int getCompleteTime() {
+		return completeTime;
+	}
+
+	public void setCompleteTime(int completeTime) {
+		this.completeTime = completeTime;
+	}
+
+	public boolean isJpgAxial() {
+		return jpgAxial;
+	}
+
+	public void setJpgAxial(boolean jpgAxial) {
+		this.jpgAxial = jpgAxial;
+	}
+
+	public boolean isBmpAxial() {
+		return bmpAxial;
+	}
+
+	public void setBmpAxial(boolean bmpAxial) {
+		this.bmpAxial = bmpAxial;
+	}
+
+	public boolean isBmpCoronal() {
+		return bmpCoronal;
+	}
+
+	public void setBmpCoronal(boolean bmpCoronal) {
+		this.bmpCoronal = bmpCoronal;
+	}
+
+	public boolean isBmpSagittal() {
+		return bmpSagittal;
+	}
+
+	public void setBmpSagittal(boolean bmpSagittal) {
+		this.bmpSagittal = bmpSagittal;
+	}
+
+	public String getAccessionNumber() {
+		return accessionNumber;
+	}
+
+	public void setAccessionNumber(String accessionNumber) {
+		this.accessionNumber = accessionNumber;
+	}
+
+	public String getPatientName() {
+		return patientName;
+	}
+
+	public void setPatientName(String patientName) {
+		this.patientName = patientName;
+	}
+
+	public String getStudyDate() {
+		return studyDate;
+	}
+
+	public void setStudyDate(String studyDate) {
+		this.studyDate = studyDate;
+	}
 
 	public boolean isComplete() {
 		return complete;

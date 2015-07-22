@@ -13,6 +13,9 @@ import javax.xml.bind.annotation.XmlRootElement;
 public class SendEntity {
 	@Id
 	private String id;
+	private String accessionNumber;
+	private String patientName;
+	private String studyDate;
 	private String ip;
 	private int port;
 	private String savedFolder;
@@ -22,6 +25,33 @@ public class SendEntity {
 	private int speed;
 	private int failed;
 	private String message;
+
+	
+	
+	
+	public String getAccessionNumber() {
+		return accessionNumber;
+	}
+
+	public void setAccessionNumber(String accessionNumber) {
+		this.accessionNumber = accessionNumber;
+	}
+
+	public String getPatientName() {
+		return patientName;
+	}
+
+	public void setPatientName(String patientName) {
+		this.patientName = patientName;
+	}
+
+	public String getStudyDate() {
+		return studyDate;
+	}
+
+	public void setStudyDate(String studyDate) {
+		this.studyDate = studyDate;
+	}
 
 	public int getSend() {
 		return send;

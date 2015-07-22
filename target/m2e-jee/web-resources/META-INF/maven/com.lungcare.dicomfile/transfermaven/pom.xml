@@ -34,6 +34,9 @@
 		<artifactId>commons-io</artifactId>
 		<version>1.3.2</version>
 	</dependency>
+	
+	
+	
 	<dependency>
 		<groupId>com.lungcare.matlab</groupId>
 		<artifactId>javabuilder-matlab</artifactId>
@@ -45,6 +48,43 @@
 		<artifactId>morphylogical-segmentation</artifactId>
 		<version>0.0.1.RELEASE</version>
 	</dependency>
+    
+    
+    <dependency>
+		<groupId>com.lungcare.util</groupId>
+  		<artifactId>dcm4che-core-3.3.8-SNAPSHOT</artifactId>
+  		<version>0.0.1.RELEASE</version>
+	</dependency>
+	<dependency>
+		<groupId>com.lungcare.util</groupId>
+  		<artifactId>dcm4che-tool-dcm2jpg-3.3.8-SNAPSHOT</artifactId>
+  		<version>0.0.1.RELEASE</version>
+	</dependency>
+    <dependency>
+		<groupId>com.lungcare.util</groupId>
+  		<artifactId>slf4j-api-1.6.4</artifactId>
+  		<version>0.0.1.RELEASE</version>
+	</dependency>
+    <dependency>
+		<groupId>com.lungcare.util</groupId>
+  		<artifactId>slf4j-log4j12-1.6.4</artifactId>
+  		<version>0.0.1.RELEASE</version>
+	</dependency>
+    <dependency>
+		<groupId>com.lungcare.util</groupId>
+  		<artifactId>dcm4che-image-3.3.8-SNAPSHOT</artifactId>
+  		<version>0.0.1.RELEASE</version>
+	</dependency>
+    <dependency>
+		<groupId>com.lungcare.util</groupId>
+  		<artifactId>dcm4che-imageio-3.3.8-SNAPSHOT</artifactId>
+  		<version>0.0.1.RELEASE</version>
+	</dependency>
+    
+    
+    
+    
+    
     
     <!-- Jersey -->
 		<dependency>
@@ -248,7 +288,7 @@
     
   </dependencies>
   
-    <build>
+<build>
 		<finalName>transfermaven</finalName>
 		<plugins>
 		   

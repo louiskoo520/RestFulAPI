@@ -21,12 +21,12 @@ public interface IRemoteFileTransferDAO {
 	public List<ReceiveEntity> getCompleteReceiveEntity();
 	public boolean updateReceiveEntity(ReceiveEntity receiveEntity,int receivedNum);
 
-
+	public void deleteCompleteData(String id);
+	
 	public List<BmpPathEntity> getAllBmpPath(String path);
 
-	public void test();
 
-	public void addSendEntity(String id);
 	public List<SendEntity> getAllSendEntity();
 	
+	public void test();
 }
