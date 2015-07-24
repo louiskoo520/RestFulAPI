@@ -6,6 +6,6 @@ After installation of Maven 3:
 
 > mvn install
 
-complete downloadZip
+update again
 
 http://localhost:8787/transfer/rest/remotefile/
