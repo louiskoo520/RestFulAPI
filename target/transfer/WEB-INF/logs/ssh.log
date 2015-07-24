@@ -13693,3 +13693,81 @@
 2015-07-24 10:53:38,914 DEBUG [org.hibernate.jdbc.ConnectionManager] - transaction completed on session with on_close connection release mode; be sure to close the session to release JDBC resources!
 2015-07-24 10:53:38,914 DEBUG [org.hibernate.jdbc.ConnectionManager] - releasing JDBC connection [ (open PreparedStatements: 0, globally: 0) (open ResultSets: 0, globally: 0)]
 2015-07-24 10:53:38,915 DEBUG [org.hibernate.jdbc.ConnectionManager] - transaction completed on session with on_close connection release mode; be sure to close the session to release JDBC resources!
+2015-07-24 14:44:37,422 INFO [org.springframework.web.context.ContextLoader] - Root WebApplicationContext: initialization started
+2015-07-24 14:44:37,465 INFO [org.springframework.web.context.support.XmlWebApplicationContext] - Refreshing Root WebApplicationContext: startup date [Fri Jul 24 14:44:37 CST 2015]; root of context hierarchy
+2015-07-24 14:44:37,625 INFO [org.springframework.beans.factory.xml.XmlBeanDefinitionReader] - Loading XML bean definitions from URL [file:/G:/wjlProgramFiles/local-git-repository/LungCareRestFulAPI/src/main/webapp/WEB-INF/classes/applicationContext.xml]
+2015-07-24 14:44:38,070 INFO [org.springframework.context.annotation.ClassPathBeanDefinitionScanner] - JSR-250 'javax.annotation.ManagedBean' found and supported for component scanning
+2015-07-24 14:44:38,072 INFO [org.springframework.context.annotation.ClassPathBeanDefinitionScanner] - JSR-330 'javax.inject.Named' annotation found and supported for component scanning
+2015-07-24 14:44:38,201 INFO [org.springframework.beans.factory.xml.XmlBeanDefinitionReader] - Loading XML bean definitions from URL [file:/G:/wjlProgramFiles/local-git-repository/LungCareRestFulAPI/src/main/webapp/WEB-INF/classes/com/lungcare/dicomfile/config/spring-hibernate.xml]
+2015-07-24 14:44:38,390 INFO [org.springframework.beans.factory.config.PropertyPlaceholderConfigurer] - Loading properties file from URL [file:/G:/wjlProgramFiles/local-git-repository/LungCareRestFulAPI/src/main/webapp/WEB-INF/classes/com/lungcare/dicomfile/config/jdbc.properties]
+2015-07-24 14:44:38,395 INFO [org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor] - JSR-330 'javax.inject.Inject' annotation found and supported for autowiring
+2015-07-24 14:44:38,414 INFO [org.springframework.beans.factory.support.DefaultListableBeanFactory] - Pre-instantiating singletons in org.springframework.beans.factory.support.DefaultListableBeanFactory@7e23c0: defining beans [org.springframework.context.annotation.internalConfigurationAnnotationProcessor,org.springframework.context.annotation.internalAutowiredAnnotationProcessor,org.springframework.context.annotation.internalRequiredAnnotationProcessor,org.springframework.context.annotation.internalCommonAnnotationProcessor,org.springframework.context.annotation.internalPersistenceAnnotationProcessor,customersResource,remoteFileTransferResource,org.springframework.beans.factory.config.PropertyPlaceholderConfigurer#0,dataSource,sessionFactory,transactionManager,transactionBase,localFileService,localFileTransferDAO,remoteFileService,remoteFileTransferDAO,algorithmService,algorithmDAO]; root of factory hierarchy
+2015-07-24 14:44:38,605 INFO [org.springframework.jdbc.datasource.DriverManagerDataSource] - Loaded JDBC driver: com.mysql.jdbc.Driver
+2015-07-24 14:44:38,654 INFO [org.hibernate.cfg.annotations.Version] - Hibernate Annotations 3.4.0.GA
+2015-07-24 14:44:38,663 INFO [org.hibernate.cfg.Environment] - Hibernate 3.3.2.GA
+2015-07-24 14:44:38,671 INFO [org.hibernate.cfg.Environment] - hibernate.properties not found
+2015-07-24 14:44:38,674 INFO [org.hibernate.cfg.Environment] - Bytecode provider name : javassist
+2015-07-24 14:44:38,677 INFO [org.hibernate.cfg.Environment] - using JDK 1.4 java.sql.Timestamp handling
+2015-07-24 14:44:38,837 INFO [org.hibernate.cfg.Configuration] - configuring from url: file:/G:/wjlProgramFiles/local-git-repository/LungCareRestFulAPI/src/main/webapp/WEB-INF/classes/com/lungcare/dicomfile/config/hibernate.cfg.xml
+2015-07-24 14:44:38,935 INFO [org.hibernate.cfg.Configuration] - Configured SessionFactory: null
+2015-07-24 14:44:38,970 INFO [org.hibernate.cfg.AnnotationBinder] - Binding entity from annotated class: com.lungcare.dicomfile.entity.ReceiveEntity
+2015-07-24 14:44:38,998 INFO [org.hibernate.cfg.annotations.EntityBinder] - Bind entity com.lungcare.dicomfile.entity.ReceiveEntity on table ReceiveEntity
+2015-07-24 14:44:39,029 INFO [org.hibernate.cfg.AnnotationBinder] - Binding entity from annotated class: com.lungcare.dicomfile.entity.SendEntity
+2015-07-24 14:44:39,031 INFO [org.hibernate.cfg.annotations.EntityBinder] - Bind entity com.lungcare.dicomfile.entity.SendEntity on table SendEntity
+2015-07-24 14:44:39,033 INFO [org.hibernate.cfg.AnnotationBinder] - Binding entity from annotated class: com.lungcare.dicomfile.entity.Customer
+2015-07-24 14:44:39,033 INFO [org.hibernate.cfg.annotations.EntityBinder] - Bind entity com.lungcare.dicomfile.entity.Customer on table Customer
+2015-07-24 14:44:39,036 INFO [org.hibernate.cfg.AnnotationConfiguration] - Hibernate Validator not found: ignoring
+2015-07-24 14:44:39,037 INFO [org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean] - Building new Hibernate SessionFactory
+2015-07-24 14:44:39,040 INFO [org.hibernate.cfg.search.HibernateSearchEventListenerRegister] - Unable to find org.hibernate.search.event.FullTextIndexEventListener on the classpath. Hibernate Search is not enabled.
+2015-07-24 14:44:39,121 INFO [org.hibernate.connection.ConnectionProviderFactory] - Initializing connection provider: org.springframework.orm.hibernate3.LocalDataSourceConnectionProvider
+2015-07-24 14:44:40,022 INFO [org.hibernate.cfg.SettingsFactory] - RDBMS: MySQL, version: 5.5.19
+2015-07-24 14:44:40,022 INFO [org.hibernate.cfg.SettingsFactory] - JDBC driver: MySQL-AB JDBC Driver, version: mysql-connector-java-5.1.9 ( Revision: ${svn.Revision} )
+2015-07-24 14:44:40,039 INFO [org.hibernate.dialect.Dialect] - Using dialect: org.hibernate.dialect.MySQLDialect
+2015-07-24 14:44:40,042 INFO [org.hibernate.transaction.TransactionFactoryFactory] - Transaction strategy: org.springframework.orm.hibernate3.SpringTransactionFactory
+2015-07-24 14:44:40,042 INFO [org.hibernate.transaction.TransactionManagerLookupFactory] - No TransactionManagerLookup configured (in JTA environment, use of read-write or transactional second-level cache is not recommended)
+2015-07-24 14:44:40,043 INFO [org.hibernate.cfg.SettingsFactory] - Automatic flush during beforeCompletion(): disabled
+2015-07-24 14:44:40,043 INFO [org.hibernate.cfg.SettingsFactory] - Automatic session close at end of transaction: disabled
+2015-07-24 14:44:40,043 INFO [org.hibernate.cfg.SettingsFactory] - JDBC batch size: 50
+2015-07-24 14:44:40,043 INFO [org.hibernate.cfg.SettingsFactory] - JDBC batch updates for versioned data: disabled
+2015-07-24 14:44:40,044 INFO [org.hibernate.cfg.SettingsFactory] - Scrollable result sets: enabled
+2015-07-24 14:44:40,044 INFO [org.hibernate.cfg.SettingsFactory] - JDBC3 getGeneratedKeys(): enabled
+2015-07-24 14:44:40,044 INFO [org.hibernate.cfg.SettingsFactory] - Connection release mode: auto
+2015-07-24 14:44:40,044 INFO [org.hibernate.cfg.SettingsFactory] - Maximum outer join fetch depth: 2
+2015-07-24 14:44:40,045 INFO [org.hibernate.cfg.SettingsFactory] - Default batch fetch size: 1
+2015-07-24 14:44:40,045 INFO [org.hibernate.cfg.SettingsFactory] - Generate SQL with comments: disabled
+2015-07-24 14:44:40,045 INFO [org.hibernate.cfg.SettingsFactory] - Order SQL updates by primary key: disabled
+2015-07-24 14:44:40,045 INFO [org.hibernate.cfg.SettingsFactory] - Order SQL inserts for batching: disabled
+2015-07-24 14:44:40,045 INFO [org.hibernate.cfg.SettingsFactory] - Query translator: org.hibernate.hql.ast.ASTQueryTranslatorFactory
+2015-07-24 14:44:40,046 INFO [org.hibernate.hql.ast.ASTQueryTranslatorFactory] - Using ASTQueryTranslatorFactory
+2015-07-24 14:44:40,046 INFO [org.hibernate.cfg.SettingsFactory] - Query language substitutions: {}
+2015-07-24 14:44:40,047 INFO [org.hibernate.cfg.SettingsFactory] - JPA-QL strict compliance: disabled
+2015-07-24 14:44:40,047 INFO [org.hibernate.cfg.SettingsFactory] - Second-level cache: enabled
+2015-07-24 14:44:40,047 INFO [org.hibernate.cfg.SettingsFactory] - Query cache: disabled
+2015-07-24 14:44:40,047 INFO [org.hibernate.cfg.SettingsFactory] - Cache region factory : org.hibernate.cache.impl.NoCachingRegionFactory
+2015-07-24 14:44:40,047 INFO [org.hibernate.cfg.SettingsFactory] - Optimize cache for minimal puts: disabled
+2015-07-24 14:44:40,047 INFO [org.hibernate.cfg.SettingsFactory] - Structured second-level cache entries: disabled
+2015-07-24 14:44:40,050 INFO [org.hibernate.cfg.SettingsFactory] - Echoing all SQL to stdout
+2015-07-24 14:44:40,050 INFO [org.hibernate.cfg.SettingsFactory] - Statistics: enabled
+2015-07-24 14:44:40,051 INFO [org.hibernate.cfg.SettingsFactory] - Deleted entity synthetic identifier rollback: disabled
+2015-07-24 14:44:40,051 INFO [org.hibernate.cfg.SettingsFactory] - Default entity-mode: pojo
+2015-07-24 14:44:40,051 INFO [org.hibernate.cfg.SettingsFactory] - Named query checking : enabled
+2015-07-24 14:44:40,115 INFO [org.hibernate.impl.SessionFactoryImpl] - building session factory
+2015-07-24 14:44:40,323 INFO [org.hibernate.impl.SessionFactoryObjectFactory] - Not binding factory to JNDI, no JNDI name configured
+2015-07-24 14:44:40,327 INFO [org.hibernate.tool.hbm2ddl.SchemaUpdate] - Running hbm2ddl schema update
+2015-07-24 14:44:40,328 INFO [org.hibernate.tool.hbm2ddl.SchemaUpdate] - fetching database metadata
+2015-07-24 14:44:40,340 INFO [org.hibernate.tool.hbm2ddl.SchemaUpdate] - updating schema
+2015-07-24 14:44:40,498 INFO [org.hibernate.tool.hbm2ddl.TableMetadata] - table found: test.customer
+2015-07-24 14:44:40,498 INFO [org.hibernate.tool.hbm2ddl.TableMetadata] - columns: [id, address, name]
+2015-07-24 14:44:40,498 INFO [org.hibernate.tool.hbm2ddl.TableMetadata] - foreign keys: []
+2015-07-24 14:44:40,498 INFO [org.hibernate.tool.hbm2ddl.TableMetadata] - indexes: [primary]
+2015-07-24 14:44:40,553 INFO [org.hibernate.tool.hbm2ddl.TableMetadata] - table found: test.receiveentity
+2015-07-24 14:44:40,553 INFO [org.hibernate.tool.hbm2ddl.TableMetadata] - columns: [port, bmpcoronal, savedfolder, speed, failed, received, bmpsagittal, date, completetime, totalfiles, ip, id, message, patientname, jpgaxial, complete, bmpaxial, accessionnumber, studydate]
+2015-07-24 14:44:40,553 INFO [org.hibernate.tool.hbm2ddl.TableMetadata] - foreign keys: []
+2015-07-24 14:44:40,553 INFO [org.hibernate.tool.hbm2ddl.TableMetadata] - indexes: [primary]
+2015-07-24 14:44:40,600 INFO [org.hibernate.tool.hbm2ddl.TableMetadata] - table found: test.sendentity
+2015-07-24 14:44:40,600 INFO [org.hibernate.tool.hbm2ddl.TableMetadata] - columns: [port, savedfolder, send, speed, failed, date, totalfiles, ip, id, message, patientname, accessionnumber, studydate]
+2015-07-24 14:44:40,600 INFO [org.hibernate.tool.hbm2ddl.TableMetadata] - foreign keys: []
+2015-07-24 14:44:40,600 INFO [org.hibernate.tool.hbm2ddl.TableMetadata] - indexes: [primary]
+2015-07-24 14:44:40,601 INFO [org.hibernate.tool.hbm2ddl.SchemaUpdate] - schema update complete
+2015-07-24 14:44:40,626 INFO [org.springframework.orm.hibernate3.HibernateTransactionManager] - Using DataSource [org.springframework.jdbc.datasource.DriverManagerDataSource@16afaac] of Hibernate SessionFactory for HibernateTransactionManager
+2015-07-24 14:44:40,649 INFO [org.springframework.web.context.ContextLoader] - Root WebApplicationContext: initialization completed in 3227 ms

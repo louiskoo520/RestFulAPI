@@ -13771,3 +13771,1810 @@
 2015-07-24 14:44:40,601 INFO [org.hibernate.tool.hbm2ddl.SchemaUpdate] - schema update complete
 2015-07-24 14:44:40,626 INFO [org.springframework.orm.hibernate3.HibernateTransactionManager] - Using DataSource [org.springframework.jdbc.datasource.DriverManagerDataSource@16afaac] of Hibernate SessionFactory for HibernateTransactionManager
 2015-07-24 14:44:40,649 INFO [org.springframework.web.context.ContextLoader] - Root WebApplicationContext: initialization completed in 3227 ms
+2015-07-24 15:02:19,231 INFO [org.springframework.web.context.ContextLoader] - Root WebApplicationContext: initialization started
+2015-07-24 15:02:19,254 INFO [org.springframework.web.context.support.XmlWebApplicationContext] - Refreshing Root WebApplicationContext: startup date [Fri Jul 24 15:02:19 CST 2015]; root of context hierarchy
+2015-07-24 15:02:19,367 INFO [org.springframework.beans.factory.xml.XmlBeanDefinitionReader] - Loading XML bean definitions from URL [file:/G:/wjlProgramFiles/local-git-repository/LungCareRestFulAPI/src/main/webapp/WEB-INF/classes/applicationContext.xml]
+2015-07-24 15:02:19,547 INFO [org.springframework.context.annotation.ClassPathBeanDefinitionScanner] - JSR-250 'javax.annotation.ManagedBean' found and supported for component scanning
+2015-07-24 15:02:19,553 INFO [org.springframework.context.annotation.ClassPathBeanDefinitionScanner] - JSR-330 'javax.inject.Named' annotation found and supported for component scanning
+2015-07-24 15:02:19,651 INFO [org.springframework.beans.factory.xml.XmlBeanDefinitionReader] - Loading XML bean definitions from URL [file:/G:/wjlProgramFiles/local-git-repository/LungCareRestFulAPI/src/main/webapp/WEB-INF/classes/com/lungcare/dicomfile/config/spring-hibernate.xml]
+2015-07-24 15:02:19,800 INFO [org.springframework.beans.factory.config.PropertyPlaceholderConfigurer] - Loading properties file from URL [file:/G:/wjlProgramFiles/local-git-repository/LungCareRestFulAPI/src/main/webapp/WEB-INF/classes/com/lungcare/dicomfile/config/jdbc.properties]
+2015-07-24 15:02:19,805 INFO [org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor] - JSR-330 'javax.inject.Inject' annotation found and supported for autowiring
+2015-07-24 15:02:19,820 INFO [org.springframework.beans.factory.support.DefaultListableBeanFactory] - Pre-instantiating singletons in org.springframework.beans.factory.support.DefaultListableBeanFactory@e18764: defining beans [org.springframework.context.annotation.internalConfigurationAnnotationProcessor,org.springframework.context.annotation.internalAutowiredAnnotationProcessor,org.springframework.context.annotation.internalRequiredAnnotationProcessor,org.springframework.context.annotation.internalCommonAnnotationProcessor,org.springframework.context.annotation.internalPersistenceAnnotationProcessor,customersResource,remoteFileTransferResource,org.springframework.beans.factory.config.PropertyPlaceholderConfigurer#0,dataSource,sessionFactory,transactionManager,transactionBase,localFileService,localFileTransferDAO,remoteFileService,remoteFileTransferDAO,algorithmService,algorithmDAO]; root of factory hierarchy
+2015-07-24 15:02:19,942 INFO [org.springframework.jdbc.datasource.DriverManagerDataSource] - Loaded JDBC driver: com.mysql.jdbc.Driver
+2015-07-24 15:02:20,000 INFO [org.hibernate.cfg.annotations.Version] - Hibernate Annotations 3.4.0.GA
+2015-07-24 15:02:20,009 INFO [org.hibernate.cfg.Environment] - Hibernate 3.3.2.GA
+2015-07-24 15:02:20,012 INFO [org.hibernate.cfg.Environment] - hibernate.properties not found
+2015-07-24 15:02:20,016 INFO [org.hibernate.cfg.Environment] - Bytecode provider name : javassist
+2015-07-24 15:02:20,019 INFO [org.hibernate.cfg.Environment] - using JDK 1.4 java.sql.Timestamp handling
+2015-07-24 15:02:20,178 INFO [org.hibernate.cfg.Configuration] - configuring from url: file:/G:/wjlProgramFiles/local-git-repository/LungCareRestFulAPI/src/main/webapp/WEB-INF/classes/com/lungcare/dicomfile/config/hibernate.cfg.xml
+2015-07-24 15:02:20,234 INFO [org.hibernate.cfg.Configuration] - Configured SessionFactory: null
+2015-07-24 15:02:20,269 INFO [org.hibernate.cfg.AnnotationBinder] - Binding entity from annotated class: com.lungcare.dicomfile.entity.ReceiveEntity
+2015-07-24 15:02:20,296 INFO [org.hibernate.cfg.annotations.EntityBinder] - Bind entity com.lungcare.dicomfile.entity.ReceiveEntity on table ReceiveEntity
+2015-07-24 15:02:20,328 INFO [org.hibernate.cfg.AnnotationBinder] - Binding entity from annotated class: com.lungcare.dicomfile.entity.SendEntity
+2015-07-24 15:02:20,329 INFO [org.hibernate.cfg.annotations.EntityBinder] - Bind entity com.lungcare.dicomfile.entity.SendEntity on table SendEntity
+2015-07-24 15:02:20,333 INFO [org.hibernate.cfg.AnnotationBinder] - Binding entity from annotated class: com.lungcare.dicomfile.entity.Customer
+2015-07-24 15:02:20,334 INFO [org.hibernate.cfg.annotations.EntityBinder] - Bind entity com.lungcare.dicomfile.entity.Customer on table Customer
+2015-07-24 15:02:20,337 INFO [org.hibernate.cfg.AnnotationConfiguration] - Hibernate Validator not found: ignoring
+2015-07-24 15:02:20,337 INFO [org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean] - Building new Hibernate SessionFactory
+2015-07-24 15:02:20,341 INFO [org.hibernate.cfg.search.HibernateSearchEventListenerRegister] - Unable to find org.hibernate.search.event.FullTextIndexEventListener on the classpath. Hibernate Search is not enabled.
+2015-07-24 15:02:20,385 INFO [org.hibernate.connection.ConnectionProviderFactory] - Initializing connection provider: org.springframework.orm.hibernate3.LocalDataSourceConnectionProvider
+2015-07-24 15:02:20,631 INFO [org.hibernate.cfg.SettingsFactory] - RDBMS: MySQL, version: 5.5.19
+2015-07-24 15:02:20,631 INFO [org.hibernate.cfg.SettingsFactory] - JDBC driver: MySQL-AB JDBC Driver, version: mysql-connector-java-5.1.9 ( Revision: ${svn.Revision} )
+2015-07-24 15:02:20,651 INFO [org.hibernate.dialect.Dialect] - Using dialect: org.hibernate.dialect.MySQLDialect
+2015-07-24 15:02:20,654 INFO [org.hibernate.transaction.TransactionFactoryFactory] - Transaction strategy: org.springframework.orm.hibernate3.SpringTransactionFactory
+2015-07-24 15:02:20,655 INFO [org.hibernate.transaction.TransactionManagerLookupFactory] - No TransactionManagerLookup configured (in JTA environment, use of read-write or transactional second-level cache is not recommended)
+2015-07-24 15:02:20,655 INFO [org.hibernate.cfg.SettingsFactory] - Automatic flush during beforeCompletion(): disabled
+2015-07-24 15:02:20,656 INFO [org.hibernate.cfg.SettingsFactory] - Automatic session close at end of transaction: disabled
+2015-07-24 15:02:20,656 INFO [org.hibernate.cfg.SettingsFactory] - JDBC batch size: 50
+2015-07-24 15:02:20,656 INFO [org.hibernate.cfg.SettingsFactory] - JDBC batch updates for versioned data: disabled
+2015-07-24 15:02:20,656 INFO [org.hibernate.cfg.SettingsFactory] - Scrollable result sets: enabled
+2015-07-24 15:02:20,657 INFO [org.hibernate.cfg.SettingsFactory] - JDBC3 getGeneratedKeys(): enabled
+2015-07-24 15:02:20,657 INFO [org.hibernate.cfg.SettingsFactory] - Connection release mode: auto
+2015-07-24 15:02:20,657 INFO [org.hibernate.cfg.SettingsFactory] - Maximum outer join fetch depth: 2
+2015-07-24 15:02:20,657 INFO [org.hibernate.cfg.SettingsFactory] - Default batch fetch size: 1
+2015-07-24 15:02:20,657 INFO [org.hibernate.cfg.SettingsFactory] - Generate SQL with comments: disabled
+2015-07-24 15:02:20,658 INFO [org.hibernate.cfg.SettingsFactory] - Order SQL updates by primary key: disabled
+2015-07-24 15:02:20,658 INFO [org.hibernate.cfg.SettingsFactory] - Order SQL inserts for batching: disabled
+2015-07-24 15:02:20,658 INFO [org.hibernate.cfg.SettingsFactory] - Query translator: org.hibernate.hql.ast.ASTQueryTranslatorFactory
+2015-07-24 15:02:20,659 INFO [org.hibernate.hql.ast.ASTQueryTranslatorFactory] - Using ASTQueryTranslatorFactory
+2015-07-24 15:02:20,659 INFO [org.hibernate.cfg.SettingsFactory] - Query language substitutions: {}
+2015-07-24 15:02:20,659 INFO [org.hibernate.cfg.SettingsFactory] - JPA-QL strict compliance: disabled
+2015-07-24 15:02:20,659 INFO [org.hibernate.cfg.SettingsFactory] - Second-level cache: enabled
+2015-07-24 15:02:20,660 INFO [org.hibernate.cfg.SettingsFactory] - Query cache: disabled
+2015-07-24 15:02:20,660 INFO [org.hibernate.cfg.SettingsFactory] - Cache region factory : org.hibernate.cache.impl.NoCachingRegionFactory
+2015-07-24 15:02:20,660 INFO [org.hibernate.cfg.SettingsFactory] - Optimize cache for minimal puts: disabled
+2015-07-24 15:02:20,660 INFO [org.hibernate.cfg.SettingsFactory] - Structured second-level cache entries: disabled
+2015-07-24 15:02:20,662 INFO [org.hibernate.cfg.SettingsFactory] - Echoing all SQL to stdout
+2015-07-24 15:02:20,663 INFO [org.hibernate.cfg.SettingsFactory] - Statistics: enabled
+2015-07-24 15:02:20,664 INFO [org.hibernate.cfg.SettingsFactory] - Deleted entity synthetic identifier rollback: disabled
+2015-07-24 15:02:20,664 INFO [org.hibernate.cfg.SettingsFactory] - Default entity-mode: pojo
+2015-07-24 15:02:20,664 INFO [org.hibernate.cfg.SettingsFactory] - Named query checking : enabled
+2015-07-24 15:02:20,699 INFO [org.hibernate.impl.SessionFactoryImpl] - building session factory
+2015-07-24 15:02:20,888 INFO [org.hibernate.impl.SessionFactoryObjectFactory] - Not binding factory to JNDI, no JNDI name configured
+2015-07-24 15:02:20,895 INFO [org.hibernate.tool.hbm2ddl.SchemaUpdate] - Running hbm2ddl schema update
+2015-07-24 15:02:20,895 INFO [org.hibernate.tool.hbm2ddl.SchemaUpdate] - fetching database metadata
+2015-07-24 15:02:20,909 INFO [org.hibernate.tool.hbm2ddl.SchemaUpdate] - updating schema
+2015-07-24 15:02:20,929 INFO [org.hibernate.tool.hbm2ddl.TableMetadata] - table found: test.customer
+2015-07-24 15:02:20,929 INFO [org.hibernate.tool.hbm2ddl.TableMetadata] - columns: [id, address, name]
+2015-07-24 15:02:20,929 INFO [org.hibernate.tool.hbm2ddl.TableMetadata] - foreign keys: []
+2015-07-24 15:02:20,930 INFO [org.hibernate.tool.hbm2ddl.TableMetadata] - indexes: [primary]
+2015-07-24 15:02:20,941 INFO [org.hibernate.tool.hbm2ddl.TableMetadata] - table found: test.receiveentity
+2015-07-24 15:02:20,941 INFO [org.hibernate.tool.hbm2ddl.TableMetadata] - columns: [port, bmpcoronal, savedfolder, speed, failed, received, bmpsagittal, date, completetime, totalfiles, ip, id, message, patientname, jpgaxial, complete, bmpaxial, accessionnumber, studydate]
+2015-07-24 15:02:20,941 INFO [org.hibernate.tool.hbm2ddl.TableMetadata] - foreign keys: []
+2015-07-24 15:02:20,941 INFO [org.hibernate.tool.hbm2ddl.TableMetadata] - indexes: [primary]
+2015-07-24 15:02:20,952 INFO [org.hibernate.tool.hbm2ddl.TableMetadata] - table found: test.sendentity
+2015-07-24 15:02:20,952 INFO [org.hibernate.tool.hbm2ddl.TableMetadata] - columns: [port, savedfolder, send, speed, failed, date, totalfiles, ip, id, message, patientname, accessionnumber, studydate]
+2015-07-24 15:02:20,952 INFO [org.hibernate.tool.hbm2ddl.TableMetadata] - foreign keys: []
+2015-07-24 15:02:20,952 INFO [org.hibernate.tool.hbm2ddl.TableMetadata] - indexes: [primary]
+2015-07-24 15:02:20,952 INFO [org.hibernate.tool.hbm2ddl.SchemaUpdate] - schema update complete
+2015-07-24 15:02:20,979 INFO [org.springframework.orm.hibernate3.HibernateTransactionManager] - Using DataSource [org.springframework.jdbc.datasource.DriverManagerDataSource@f54537] of Hibernate SessionFactory for HibernateTransactionManager
+2015-07-24 15:02:20,987 INFO [org.springframework.web.context.ContextLoader] - Root WebApplicationContext: initialization completed in 1756 ms
+2015-07-24 15:04:01,058 DEBUG [org.hibernate.transaction.JDBCTransaction] - begin
+2015-07-24 15:04:01,058 DEBUG [org.hibernate.jdbc.ConnectionManager] - opening JDBC connection
+2015-07-24 15:04:01,070 DEBUG [org.hibernate.transaction.JDBCTransaction] - current autocommit status: true
+2015-07-24 15:04:01,070 DEBUG [org.hibernate.transaction.JDBCTransaction] - disabling autocommit
+2015-07-24 15:04:01,170 DEBUG [org.hibernate.hql.ast.QueryTranslatorImpl] - parse() - HQL: from com.lungcare.dicomfile.entity.ReceiveEntity t where t.id=?
+2015-07-24 15:04:01,180 DEBUG [org.hibernate.hql.ast.AST] - --- HQL AST ---
+ \-[QUERY] 'query'
+    +-[SELECT_FROM] 'SELECT_FROM'
+    |  \-[FROM] 'from'
+    |     \-[RANGE] 'RANGE'
+    |        +-[DOT] '.'
+    |        |  +-[DOT] '.'
+    |        |  |  +-[DOT] '.'
+    |        |  |  |  +-[DOT] '.'
+    |        |  |  |  |  +-[IDENT] 'com'
+    |        |  |  |  |  \-[IDENT] 'lungcare'
+    |        |  |  |  \-[IDENT] 'dicomfile'
+    |        |  |  \-[IDENT] 'entity'
+    |        |  \-[IDENT] 'ReceiveEntity'
+    |        \-[ALIAS] 't'
+    \-[WHERE] 'where'
+       \-[EQ] '='
+          +-[DOT] '.'
+          |  +-[IDENT] 't'
+          |  \-[IDENT] 'id'
+          \-[PARAM] '?'
+
+2015-07-24 15:04:01,180 DEBUG [org.hibernate.hql.ast.ErrorCounter] - throwQueryException() : no errors
+2015-07-24 15:04:01,400 DEBUG [org.hibernate.hql.antlr.HqlSqlBaseWalker] - select << begin [level=1, statement=select]
+2015-07-24 15:04:01,415 DEBUG [org.hibernate.hql.ast.tree.FromElement] - FromClause{level=1} :  com.lungcare.dicomfile.entity.ReceiveEntity (t) -> receiveent0_
+2015-07-24 15:04:01,417 DEBUG [org.hibernate.hql.ast.tree.FromReferenceNode] - Resolved :  t -> receiveent0_.id
+2015-07-24 15:04:01,418 DEBUG [org.hibernate.hql.ast.tree.DotNode] - getDataType() : id -> org.hibernate.type.StringType@a49f26
+2015-07-24 15:04:01,419 DEBUG [org.hibernate.hql.ast.tree.FromReferenceNode] - Resolved :  t.id -> receiveent0_.id
+2015-07-24 15:04:01,422 DEBUG [org.hibernate.hql.antlr.HqlSqlBaseWalker] - select : finishing up [level=1, statement=select]
+2015-07-24 15:04:01,422 DEBUG [org.hibernate.hql.ast.HqlSqlWalker] - processQuery() :  ( SELECT ( FromClause{level=1} ReceiveEntity receiveent0_ ) ( where ( = ( receiveent0_.id receiveent0_.id id ) ? ) ) )
+2015-07-24 15:04:01,428 DEBUG [org.hibernate.hql.ast.HqlSqlWalker] - Derived SELECT clause created.
+2015-07-24 15:04:01,432 DEBUG [org.hibernate.hql.ast.util.JoinProcessor] - Using FROM fragment [ReceiveEntity receiveent0_]
+2015-07-24 15:04:01,432 DEBUG [org.hibernate.hql.antlr.HqlSqlBaseWalker] - select >> end [level=1, statement=select]
+2015-07-24 15:04:01,433 DEBUG [org.hibernate.hql.ast.AST] - --- SQL AST ---
+ \-[SELECT] QueryNode: 'SELECT'  querySpaces (ReceiveEntity)
+    +-[SELECT_CLAUSE] SelectClause: '{derived select clause}'
+    |  +-[SELECT_EXPR] SelectExpressionImpl: 'receiveent0_.id as id0_'
+    |  \-[SQL_TOKEN] SqlFragment: 'receiveent0_.accessionNumber as accessio2_0_, receiveent0_.bmpAxial as bmpAxial0_, receiveent0_.bmpCoronal as bmpCoronal0_, receiveent0_.bmpSagittal as bmpSagit5_0_, receiveent0_.complete as complete0_, receiveent0_.completeTime as complete7_0_, receiveent0_.date as date0_, receiveent0_.failed as failed0_, receiveent0_.ip as ip0_, receiveent0_.jpgAxial as jpgAxial0_, receiveent0_.message as message0_, receiveent0_.patientName as patient13_0_, receiveent0_.port as port0_, receiveent0_.received as received0_, receiveent0_.savedFolder as savedFo16_0_, receiveent0_.speed as speed0_, receiveent0_.studyDate as studyDate0_, receiveent0_.totalFiles as totalFiles0_'
+    +-[FROM] FromClause: 'from' FromClause{level=1, fromElementCounter=1, fromElements=1, fromElementByClassAlias=[t], fromElementByTableAlias=[receiveent0_], fromElementsByPath=[], collectionJoinFromElementsByPath=[], impliedElements=[]}
+    |  \-[FROM_FRAGMENT] FromElement: 'ReceiveEntity receiveent0_' FromElement{explicit,not a collection join,not a fetch join,fetch non-lazy properties,classAlias=t,role=null,tableName=ReceiveEntity,tableAlias=receiveent0_,origin=null,colums={,className=com.lungcare.dicomfile.entity.ReceiveEntity}}
+    \-[WHERE] SqlNode: 'where'
+       \-[EQ] BinaryLogicOperatorNode: '='
+          +-[DOT] DotNode: 'receiveent0_.id'
+          |  +-[ALIAS_REF] IdentNode: 'receiveent0_.id'
+          |  \-[IDENT] IdentNode: 'id'
+          \-[PARAM] ParameterNode: '?' {ordinal=0, expectedType=org.hibernate.type.StringType@a49f26}
+
+2015-07-24 15:04:01,442 DEBUG [org.hibernate.hql.ast.ErrorCounter] - throwQueryException() : no errors
+2015-07-24 15:04:01,457 DEBUG [org.hibernate.hql.ast.QueryTranslatorImpl] - HQL: from com.lungcare.dicomfile.entity.ReceiveEntity t where t.id=?
+2015-07-24 15:04:01,457 DEBUG [org.hibernate.hql.ast.QueryTranslatorImpl] - SQL: select receiveent0_.id as id0_, receiveent0_.accessionNumber as accessio2_0_, receiveent0_.bmpAxial as bmpAxial0_, receiveent0_.bmpCoronal as bmpCoronal0_, receiveent0_.bmpSagittal as bmpSagit5_0_, receiveent0_.complete as complete0_, receiveent0_.completeTime as complete7_0_, receiveent0_.date as date0_, receiveent0_.failed as failed0_, receiveent0_.ip as ip0_, receiveent0_.jpgAxial as jpgAxial0_, receiveent0_.message as message0_, receiveent0_.patientName as patient13_0_, receiveent0_.port as port0_, receiveent0_.received as received0_, receiveent0_.savedFolder as savedFo16_0_, receiveent0_.speed as speed0_, receiveent0_.studyDate as studyDate0_, receiveent0_.totalFiles as totalFiles0_ from ReceiveEntity receiveent0_ where receiveent0_.id=?
+2015-07-24 15:04:01,464 DEBUG [org.hibernate.hql.ast.ErrorCounter] - throwQueryException() : no errors
+2015-07-24 15:04:01,474 DEBUG [org.hibernate.jdbc.AbstractBatcher] - about to open PreparedStatement (open PreparedStatements: 0, globally: 0)
+2015-07-24 15:04:01,479 DEBUG [org.hibernate.SQL] - 
+    select
+        receiveent0_.id as id0_,
+        receiveent0_.accessionNumber as accessio2_0_,
+        receiveent0_.bmpAxial as bmpAxial0_,
+        receiveent0_.bmpCoronal as bmpCoronal0_,
+        receiveent0_.bmpSagittal as bmpSagit5_0_,
+        receiveent0_.complete as complete0_,
+        receiveent0_.completeTime as complete7_0_,
+        receiveent0_.date as date0_,
+        receiveent0_.failed as failed0_,
+        receiveent0_.ip as ip0_,
+        receiveent0_.jpgAxial as jpgAxial0_,
+        receiveent0_.message as message0_,
+        receiveent0_.patientName as patient13_0_,
+        receiveent0_.port as port0_,
+        receiveent0_.received as received0_,
+        receiveent0_.savedFolder as savedFo16_0_,
+        receiveent0_.speed as speed0_,
+        receiveent0_.studyDate as studyDate0_,
+        receiveent0_.totalFiles as totalFiles0_ 
+    from
+        ReceiveEntity receiveent0_ 
+    where
+        receiveent0_.id=?
+2015-07-24 15:04:01,561 DEBUG [org.hibernate.jdbc.AbstractBatcher] - about to open ResultSet (open ResultSets: 0, globally: 0)
+2015-07-24 15:04:01,561 DEBUG [org.hibernate.jdbc.AbstractBatcher] - about to close ResultSet (open ResultSets: 1, globally: 1)
+2015-07-24 15:04:01,561 DEBUG [org.hibernate.jdbc.AbstractBatcher] - about to close PreparedStatement (open PreparedStatements: 1, globally: 1)
+2015-07-24 15:04:01,563 DEBUG [org.hibernate.transaction.JDBCTransaction] - commit
+2015-07-24 15:04:01,573 DEBUG [org.hibernate.transaction.JDBCTransaction] - re-enabling autocommit
+2015-07-24 15:04:01,574 DEBUG [org.hibernate.transaction.JDBCTransaction] - committed JDBC Connection
+2015-07-24 15:04:01,574 DEBUG [org.hibernate.jdbc.ConnectionManager] - transaction completed on session with on_close connection release mode; be sure to close the session to release JDBC resources!
+2015-07-24 15:04:01,574 DEBUG [org.hibernate.jdbc.ConnectionManager] - releasing JDBC connection [ (open PreparedStatements: 0, globally: 0) (open ResultSets: 0, globally: 0)]
+2015-07-24 15:04:01,574 DEBUG [org.hibernate.jdbc.ConnectionManager] - transaction completed on session with on_close connection release mode; be sure to close the session to release JDBC resources!
+2015-07-24 15:04:01,659 DEBUG [org.hibernate.transaction.JDBCTransaction] - begin
+2015-07-24 15:04:01,660 DEBUG [org.hibernate.jdbc.ConnectionManager] - opening JDBC connection
+2015-07-24 15:04:01,680 DEBUG [org.hibernate.transaction.JDBCTransaction] - current autocommit status: true
+2015-07-24 15:04:01,681 DEBUG [org.hibernate.transaction.JDBCTransaction] - disabling autocommit
+2015-07-24 15:04:01,682 DEBUG [org.hibernate.jdbc.AbstractBatcher] - about to open PreparedStatement (open PreparedStatements: 0, globally: 0)
+2015-07-24 15:04:01,682 DEBUG [org.hibernate.SQL] - 
+    select
+        receiveent0_.id as id0_,
+        receiveent0_.accessionNumber as accessio2_0_,
+        receiveent0_.bmpAxial as bmpAxial0_,
+        receiveent0_.bmpCoronal as bmpCoronal0_,
+        receiveent0_.bmpSagittal as bmpSagit5_0_,
+        receiveent0_.complete as complete0_,
+        receiveent0_.completeTime as complete7_0_,
+        receiveent0_.date as date0_,
+        receiveent0_.failed as failed0_,
+        receiveent0_.ip as ip0_,
+        receiveent0_.jpgAxial as jpgAxial0_,
+        receiveent0_.message as message0_,
+        receiveent0_.patientName as patient13_0_,
+        receiveent0_.port as port0_,
+        receiveent0_.received as received0_,
+        receiveent0_.savedFolder as savedFo16_0_,
+        receiveent0_.speed as speed0_,
+        receiveent0_.studyDate as studyDate0_,
+        receiveent0_.totalFiles as totalFiles0_ 
+    from
+        ReceiveEntity receiveent0_ 
+    where
+        receiveent0_.id=?
+2015-07-24 15:04:01,699 DEBUG [org.hibernate.jdbc.AbstractBatcher] - about to open ResultSet (open ResultSets: 0, globally: 0)
+2015-07-24 15:04:01,699 DEBUG [org.hibernate.jdbc.AbstractBatcher] - about to close ResultSet (open ResultSets: 1, globally: 1)
+2015-07-24 15:04:01,699 DEBUG [org.hibernate.jdbc.AbstractBatcher] - about to close PreparedStatement (open PreparedStatements: 1, globally: 1)
+2015-07-24 15:04:01,699 DEBUG [org.hibernate.transaction.JDBCTransaction] - commit
+2015-07-24 15:04:01,700 DEBUG [org.hibernate.transaction.JDBCTransaction] - re-enabling autocommit
+2015-07-24 15:04:01,700 DEBUG [org.hibernate.transaction.JDBCTransaction] - committed JDBC Connection
+2015-07-24 15:04:01,700 DEBUG [org.hibernate.jdbc.ConnectionManager] - transaction completed on session with on_close connection release mode; be sure to close the session to release JDBC resources!
+2015-07-24 15:04:01,700 DEBUG [org.hibernate.jdbc.ConnectionManager] - releasing JDBC connection [ (open PreparedStatements: 0, globally: 0) (open ResultSets: 0, globally: 0)]
+2015-07-24 15:04:01,700 DEBUG [org.hibernate.jdbc.ConnectionManager] - transaction completed on session with on_close connection release mode; be sure to close the session to release JDBC resources!
+2015-07-24 15:04:01,940 DEBUG [org.hibernate.transaction.JDBCTransaction] - begin
+2015-07-24 15:04:01,941 DEBUG [org.hibernate.jdbc.ConnectionManager] - opening JDBC connection
+2015-07-24 15:04:01,962 DEBUG [org.hibernate.transaction.JDBCTransaction] - current autocommit status: true
+2015-07-24 15:04:01,962 DEBUG [org.hibernate.transaction.JDBCTransaction] - disabling autocommit
+2015-07-24 15:04:01,963 DEBUG [org.hibernate.jdbc.AbstractBatcher] - about to open PreparedStatement (open PreparedStatements: 0, globally: 0)
+2015-07-24 15:04:01,964 DEBUG [org.hibernate.SQL] - 
+    select
+        receiveent0_.id as id0_,
+        receiveent0_.accessionNumber as accessio2_0_,
+        receiveent0_.bmpAxial as bmpAxial0_,
+        receiveent0_.bmpCoronal as bmpCoronal0_,
+        receiveent0_.bmpSagittal as bmpSagit5_0_,
+        receiveent0_.complete as complete0_,
+        receiveent0_.completeTime as complete7_0_,
+        receiveent0_.date as date0_,
+        receiveent0_.failed as failed0_,
+        receiveent0_.ip as ip0_,
+        receiveent0_.jpgAxial as jpgAxial0_,
+        receiveent0_.message as message0_,
+        receiveent0_.patientName as patient13_0_,
+        receiveent0_.port as port0_,
+        receiveent0_.received as received0_,
+        receiveent0_.savedFolder as savedFo16_0_,
+        receiveent0_.speed as speed0_,
+        receiveent0_.studyDate as studyDate0_,
+        receiveent0_.totalFiles as totalFiles0_ 
+    from
+        ReceiveEntity receiveent0_ 
+    where
+        receiveent0_.id=?
+2015-07-24 15:04:01,974 DEBUG [org.hibernate.jdbc.AbstractBatcher] - about to open ResultSet (open ResultSets: 0, globally: 0)
+2015-07-24 15:04:01,979 DEBUG [org.hibernate.jdbc.AbstractBatcher] - about to close ResultSet (open ResultSets: 1, globally: 1)
+2015-07-24 15:04:01,979 DEBUG [org.hibernate.jdbc.AbstractBatcher] - about to close PreparedStatement (open PreparedStatements: 1, globally: 1)
+2015-07-24 15:04:01,979 DEBUG [org.hibernate.transaction.JDBCTransaction] - commit
+2015-07-24 15:04:01,981 DEBUG [org.hibernate.transaction.JDBCTransaction] - re-enabling autocommit
+2015-07-24 15:04:01,981 DEBUG [org.hibernate.transaction.JDBCTransaction] - committed JDBC Connection
+2015-07-24 15:04:01,981 DEBUG [org.hibernate.jdbc.ConnectionManager] - transaction completed on session with on_close connection release mode; be sure to close the session to release JDBC resources!
+2015-07-24 15:04:01,982 DEBUG [org.hibernate.jdbc.ConnectionManager] - releasing JDBC connection [ (open PreparedStatements: 0, globally: 0) (open ResultSets: 0, globally: 0)]
+2015-07-24 15:04:01,983 DEBUG [org.hibernate.jdbc.ConnectionManager] - transaction completed on session with on_close connection release mode; be sure to close the session to release JDBC resources!
+2015-07-24 15:04:02,238 INFO [com.lungcare.dicomfile.dao.impl.RemoteFileTransferDAOImp] - uploadFile
+2015-07-24 15:04:02,240 DEBUG [org.hibernate.transaction.JDBCTransaction] - begin
+2015-07-24 15:04:02,241 DEBUG [org.hibernate.jdbc.ConnectionManager] - opening JDBC connection
+2015-07-24 15:04:02,252 DEBUG [org.hibernate.transaction.JDBCTransaction] - current autocommit status: true
+2015-07-24 15:04:02,252 DEBUG [org.hibernate.transaction.JDBCTransaction] - disabling autocommit
+2015-07-24 15:04:02,267 DEBUG [org.hibernate.jdbc.AbstractBatcher] - about to open PreparedStatement (open PreparedStatements: 0, globally: 0)
+2015-07-24 15:04:02,268 DEBUG [org.hibernate.SQL] - 
+    insert 
+    into
+        ReceiveEntity
+        (accessionNumber, bmpAxial, bmpCoronal, bmpSagittal, complete, completeTime, date, failed, ip, jpgAxial, message, patientName, port, received, savedFolder, speed, studyDate, totalFiles, id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+2015-07-24 15:04:02,277 DEBUG [org.hibernate.jdbc.AbstractBatcher] - Executing batch size: 1
+2015-07-24 15:04:02,354 DEBUG [org.hibernate.jdbc.AbstractBatcher] - about to close PreparedStatement (open PreparedStatements: 1, globally: 1)
+2015-07-24 15:04:02,355 DEBUG [org.hibernate.transaction.JDBCTransaction] - commit
+2015-07-24 15:04:02,368 DEBUG [org.hibernate.transaction.JDBCTransaction] - re-enabling autocommit
+2015-07-24 15:04:02,368 DEBUG [org.hibernate.transaction.JDBCTransaction] - committed JDBC Connection
+2015-07-24 15:04:02,368 DEBUG [org.hibernate.jdbc.ConnectionManager] - transaction completed on session with on_close connection release mode; be sure to close the session to release JDBC resources!
+2015-07-24 15:04:02,368 DEBUG [org.hibernate.jdbc.ConnectionManager] - releasing JDBC connection [ (open PreparedStatements: 0, globally: 0) (open ResultSets: 0, globally: 0)]
+2015-07-24 15:04:02,369 DEBUG [org.hibernate.jdbc.ConnectionManager] - transaction completed on session with on_close connection release mode; be sure to close the session to release JDBC resources!
+2015-07-24 15:04:02,380 DEBUG [org.hibernate.transaction.JDBCTransaction] - begin
+2015-07-24 15:04:02,380 DEBUG [org.hibernate.jdbc.ConnectionManager] - opening JDBC connection
+2015-07-24 15:04:02,390 DEBUG [org.hibernate.transaction.JDBCTransaction] - current autocommit status: true
+2015-07-24 15:04:02,391 DEBUG [org.hibernate.transaction.JDBCTransaction] - disabling autocommit
+2015-07-24 15:04:02,392 DEBUG [org.hibernate.hql.ast.QueryTranslatorImpl] - parse() - HQL: update com.lungcare.dicomfile.entity.ReceiveEntity t set t.received =? where t.id=?
+2015-07-24 15:04:02,397 DEBUG [org.hibernate.hql.ast.AST] - --- HQL AST ---
+ \-[UPDATE] 'update'
+    +-[FROM] 'FROM'
+    |  \-[RANGE] 'RANGE'
+    |     +-[DOT] '.'
+    |     |  +-[DOT] '.'
+    |     |  |  +-[DOT] '.'
+    |     |  |  |  +-[DOT] '.'
+    |     |  |  |  |  +-[IDENT] 'com'
+    |     |  |  |  |  \-[IDENT] 'lungcare'
+    |     |  |  |  \-[IDENT] 'dicomfile'
+    |     |  |  \-[IDENT] 'entity'
+    |     |  \-[IDENT] 'ReceiveEntity'
+    |     \-[ALIAS] 't'
+    +-[SET] 'set'
+    |  \-[EQ] '='
+    |     +-[DOT] '.'
+    |     |  +-[IDENT] 't'
+    |     |  \-[IDENT] 'received'
+    |     \-[PARAM] '?'
+    \-[WHERE] 'where'
+       \-[EQ] '='
+          +-[DOT] '.'
+          |  +-[IDENT] 't'
+          |  \-[IDENT] 'id'
+          \-[PARAM] '?'
+
+2015-07-24 15:04:02,397 DEBUG [org.hibernate.hql.ast.ErrorCounter] - throwQueryException() : no errors
+2015-07-24 15:04:02,398 DEBUG [org.hibernate.hql.antlr.HqlSqlBaseWalker] - update << begin [level=1, statement=update]
+2015-07-24 15:04:02,398 DEBUG [org.hibernate.hql.ast.tree.FromElement] - FromClause{level=1} :  com.lungcare.dicomfile.entity.ReceiveEntity (t) -> receiveent0_
+2015-07-24 15:04:02,398 DEBUG [org.hibernate.hql.ast.tree.FromReferenceNode] - Resolved :  t -> id
+2015-07-24 15:04:02,399 DEBUG [org.hibernate.hql.ast.tree.DotNode] - getDataType() : received -> org.hibernate.type.IntegerType@489df2
+2015-07-24 15:04:02,399 DEBUG [org.hibernate.hql.ast.tree.FromReferenceNode] - Resolved :  t.received -> received
+2015-07-24 15:04:02,399 DEBUG [org.hibernate.hql.ast.tree.FromReferenceNode] - Resolved :  t -> id
+2015-07-24 15:04:02,400 DEBUG [org.hibernate.hql.ast.tree.DotNode] - getDataType() : id -> org.hibernate.type.StringType@a49f26
+2015-07-24 15:04:02,400 DEBUG [org.hibernate.hql.ast.tree.FromReferenceNode] - Resolved :  t.id -> id
+2015-07-24 15:04:02,400 DEBUG [org.hibernate.hql.antlr.HqlSqlBaseWalker] - update : finishing up [level=1, statement=update]
+2015-07-24 15:04:02,400 DEBUG [org.hibernate.hql.antlr.HqlSqlBaseWalker] - update >> end [level=1, statement=update]
+2015-07-24 15:04:02,400 DEBUG [org.hibernate.hql.ast.AST] - --- SQL AST ---
+ \-[UPDATE] UpdateStatement: 'update'  querySpaces (ReceiveEntity)
+    +-[FROM] FromClause: 'FROM' FromClause{level=1, fromElementCounter=1, fromElements=1, fromElementByClassAlias=[t], fromElementByTableAlias=[receiveent0_], fromElementsByPath=[], collectionJoinFromElementsByPath=[], impliedElements=[]}
+    |  \-[FROM_FRAGMENT] FromElement: 'ReceiveEntity' FromElement{explicit,not a collection join,not a fetch join,fetch non-lazy properties,classAlias=t,role=null,tableName=ReceiveEntity,tableAlias=receiveent0_,origin=null,colums={,className=com.lungcare.dicomfile.entity.ReceiveEntity}}
+    +-[SET] SqlNode: 'set'
+    |  \-[EQ] BinaryLogicOperatorNode: '='
+    |     +-[DOT] DotNode: 'received'
+    |     |  +-[ALIAS_REF] IdentNode: 'id'
+    |     |  \-[IDENT] IdentNode: 'received'
+    |     \-[PARAM] ParameterNode: '?' {ordinal=0, expectedType=org.hibernate.type.IntegerType@489df2}
+    \-[WHERE] SqlNode: 'where'
+       \-[EQ] BinaryLogicOperatorNode: '='
+          +-[DOT] DotNode: 'id'
+          |  +-[ALIAS_REF] IdentNode: 'id'
+          |  \-[IDENT] IdentNode: 'id'
+          \-[PARAM] ParameterNode: '?' {ordinal=1, expectedType=org.hibernate.type.StringType@a49f26}
+
+2015-07-24 15:04:02,401 DEBUG [org.hibernate.hql.ast.ErrorCounter] - throwQueryException() : no errors
+2015-07-24 15:04:02,403 DEBUG [org.hibernate.hql.ast.ErrorCounter] - throwQueryException() : no errors
+2015-07-24 15:04:02,405 DEBUG [org.hibernate.jdbc.AbstractBatcher] - about to open PreparedStatement (open PreparedStatements: 0, globally: 0)
+2015-07-24 15:04:02,405 DEBUG [org.hibernate.SQL] - 
+    update
+        ReceiveEntity 
+    set
+        received=? 
+    where
+        id=?
+2015-07-24 15:04:02,430 DEBUG [org.hibernate.transaction.JDBCTransaction] - begin
+2015-07-24 15:04:02,431 DEBUG [org.hibernate.jdbc.ConnectionManager] - opening JDBC connection
+2015-07-24 15:04:02,445 DEBUG [org.hibernate.jdbc.AbstractBatcher] - about to close PreparedStatement (open PreparedStatements: 1, globally: 1)
+2015-07-24 15:04:02,445 DEBUG [org.hibernate.transaction.JDBCTransaction] - commit
+2015-07-24 15:04:02,446 DEBUG [org.hibernate.transaction.JDBCTransaction] - current autocommit status: true
+2015-07-24 15:04:02,447 DEBUG [org.hibernate.transaction.JDBCTransaction] - disabling autocommit
+2015-07-24 15:04:02,447 DEBUG [org.hibernate.jdbc.AbstractBatcher] - about to open PreparedStatement (open PreparedStatements: 0, globally: 0)
+2015-07-24 15:04:02,447 DEBUG [org.hibernate.SQL] - 
+    select
+        receiveent0_.id as id0_,
+        receiveent0_.accessionNumber as accessio2_0_,
+        receiveent0_.bmpAxial as bmpAxial0_,
+        receiveent0_.bmpCoronal as bmpCoronal0_,
+        receiveent0_.bmpSagittal as bmpSagit5_0_,
+        receiveent0_.complete as complete0_,
+        receiveent0_.completeTime as complete7_0_,
+        receiveent0_.date as date0_,
+        receiveent0_.failed as failed0_,
+        receiveent0_.ip as ip0_,
+        receiveent0_.jpgAxial as jpgAxial0_,
+        receiveent0_.message as message0_,
+        receiveent0_.patientName as patient13_0_,
+        receiveent0_.port as port0_,
+        receiveent0_.received as received0_,
+        receiveent0_.savedFolder as savedFo16_0_,
+        receiveent0_.speed as speed0_,
+        receiveent0_.studyDate as studyDate0_,
+        receiveent0_.totalFiles as totalFiles0_ 
+    from
+        ReceiveEntity receiveent0_ 
+    where
+        receiveent0_.id=?
+2015-07-24 15:04:02,447 DEBUG [org.hibernate.transaction.JDBCTransaction] - re-enabling autocommit
+2015-07-24 15:04:02,450 DEBUG [org.hibernate.transaction.JDBCTransaction] - committed JDBC Connection
+2015-07-24 15:04:02,450 DEBUG [org.hibernate.jdbc.ConnectionManager] - transaction completed on session with on_close connection release mode; be sure to close the session to release JDBC resources!
+2015-07-24 15:04:02,450 DEBUG [org.hibernate.jdbc.ConnectionManager] - releasing JDBC connection [ (open PreparedStatements: 0, globally: 1) (open ResultSets: 0, globally: 0)]
+2015-07-24 15:04:02,451 DEBUG [org.hibernate.jdbc.ConnectionManager] - transaction completed on session with on_close connection release mode; be sure to close the session to release JDBC resources!
+2015-07-24 15:04:02,451 DEBUG [org.hibernate.jdbc.AbstractBatcher] - about to open ResultSet (open ResultSets: 0, globally: 0)
+2015-07-24 15:04:02,455 DEBUG [org.hibernate.jdbc.AbstractBatcher] - about to close ResultSet (open ResultSets: 1, globally: 1)
+2015-07-24 15:04:02,455 DEBUG [org.hibernate.jdbc.AbstractBatcher] - about to close PreparedStatement (open PreparedStatements: 1, globally: 1)
+2015-07-24 15:04:02,455 DEBUG [org.hibernate.transaction.JDBCTransaction] - commit
+2015-07-24 15:04:02,456 DEBUG [org.hibernate.transaction.JDBCTransaction] - re-enabling autocommit
+2015-07-24 15:04:02,456 DEBUG [org.hibernate.transaction.JDBCTransaction] - committed JDBC Connection
+2015-07-24 15:04:02,457 DEBUG [org.hibernate.jdbc.ConnectionManager] - transaction completed on session with on_close connection release mode; be sure to close the session to release JDBC resources!
+2015-07-24 15:04:02,457 DEBUG [org.hibernate.jdbc.ConnectionManager] - releasing JDBC connection [ (open PreparedStatements: 0, globally: 0) (open ResultSets: 0, globally: 0)]
+2015-07-24 15:04:02,457 DEBUG [org.hibernate.jdbc.ConnectionManager] - transaction completed on session with on_close connection release mode; be sure to close the session to release JDBC resources!
+2015-07-24 15:04:02,486 DEBUG [org.hibernate.transaction.JDBCTransaction] - begin
+2015-07-24 15:04:02,486 DEBUG [org.hibernate.jdbc.ConnectionManager] - opening JDBC connection
+2015-07-24 15:04:02,497 DEBUG [org.hibernate.transaction.JDBCTransaction] - current autocommit status: true
+2015-07-24 15:04:02,497 DEBUG [org.hibernate.transaction.JDBCTransaction] - disabling autocommit
+2015-07-24 15:04:02,499 DEBUG [org.hibernate.jdbc.AbstractBatcher] - about to open PreparedStatement (open PreparedStatements: 0, globally: 0)
+2015-07-24 15:04:02,499 DEBUG [org.hibernate.SQL] - 
+    update
+        ReceiveEntity 
+    set
+        received=? 
+    where
+        id=?
+2015-07-24 15:04:02,508 DEBUG [org.hibernate.jdbc.AbstractBatcher] - about to close PreparedStatement (open PreparedStatements: 1, globally: 1)
+2015-07-24 15:04:02,508 DEBUG [org.hibernate.transaction.JDBCTransaction] - commit
+2015-07-24 15:04:02,544 DEBUG [org.hibernate.transaction.JDBCTransaction] - re-enabling autocommit
+2015-07-24 15:04:02,545 DEBUG [org.hibernate.transaction.JDBCTransaction] - committed JDBC Connection
+2015-07-24 15:04:02,545 DEBUG [org.hibernate.jdbc.ConnectionManager] - transaction completed on session with on_close connection release mode; be sure to close the session to release JDBC resources!
+2015-07-24 15:04:02,545 DEBUG [org.hibernate.jdbc.ConnectionManager] - releasing JDBC connection [ (open PreparedStatements: 0, globally: 0) (open ResultSets: 0, globally: 0)]
+2015-07-24 15:04:02,545 DEBUG [org.hibernate.jdbc.ConnectionManager] - transaction completed on session with on_close connection release mode; be sure to close the session to release JDBC resources!
+2015-07-24 15:04:02,561 DEBUG [org.hibernate.transaction.JDBCTransaction] - begin
+2015-07-24 15:04:02,561 DEBUG [org.hibernate.jdbc.ConnectionManager] - opening JDBC connection
+2015-07-24 15:04:02,576 DEBUG [org.hibernate.transaction.JDBCTransaction] - current autocommit status: true
+2015-07-24 15:04:02,576 DEBUG [org.hibernate.transaction.JDBCTransaction] - disabling autocommit
+2015-07-24 15:04:02,576 DEBUG [org.hibernate.jdbc.AbstractBatcher] - about to open PreparedStatement (open PreparedStatements: 0, globally: 0)
+2015-07-24 15:04:02,577 DEBUG [org.hibernate.SQL] - 
+    update
+        ReceiveEntity 
+    set
+        received=? 
+    where
+        id=?
+2015-07-24 15:04:02,577 DEBUG [org.hibernate.jdbc.AbstractBatcher] - about to close PreparedStatement (open PreparedStatements: 1, globally: 1)
+2015-07-24 15:04:02,580 DEBUG [org.hibernate.transaction.JDBCTransaction] - commit
+2015-07-24 15:04:02,603 DEBUG [org.hibernate.transaction.JDBCTransaction] - re-enabling autocommit
+2015-07-24 15:04:02,603 DEBUG [org.hibernate.transaction.JDBCTransaction] - committed JDBC Connection
+2015-07-24 15:04:02,603 DEBUG [org.hibernate.jdbc.ConnectionManager] - transaction completed on session with on_close connection release mode; be sure to close the session to release JDBC resources!
+2015-07-24 15:04:02,603 DEBUG [org.hibernate.jdbc.ConnectionManager] - releasing JDBC connection [ (open PreparedStatements: 0, globally: 0) (open ResultSets: 0, globally: 0)]
+2015-07-24 15:04:02,604 DEBUG [org.hibernate.jdbc.ConnectionManager] - transaction completed on session with on_close connection release mode; be sure to close the session to release JDBC resources!
+2015-07-24 15:04:02,618 DEBUG [org.hibernate.transaction.JDBCTransaction] - begin
+2015-07-24 15:04:02,618 DEBUG [org.hibernate.jdbc.ConnectionManager] - opening JDBC connection
+2015-07-24 15:04:02,626 DEBUG [org.hibernate.transaction.JDBCTransaction] - current autocommit status: true
+2015-07-24 15:04:02,626 DEBUG [org.hibernate.transaction.JDBCTransaction] - disabling autocommit
+2015-07-24 15:04:02,627 DEBUG [org.hibernate.jdbc.AbstractBatcher] - about to open PreparedStatement (open PreparedStatements: 0, globally: 0)
+2015-07-24 15:04:02,627 DEBUG [org.hibernate.SQL] - 
+    update
+        ReceiveEntity 
+    set
+        received=? 
+    where
+        id=?
+2015-07-24 15:04:02,628 DEBUG [org.hibernate.jdbc.AbstractBatcher] - about to close PreparedStatement (open PreparedStatements: 1, globally: 1)
+2015-07-24 15:04:02,628 DEBUG [org.hibernate.transaction.JDBCTransaction] - commit
+2015-07-24 15:04:02,649 DEBUG [org.hibernate.transaction.JDBCTransaction] - re-enabling autocommit
+2015-07-24 15:04:02,649 DEBUG [org.hibernate.transaction.JDBCTransaction] - committed JDBC Connection
+2015-07-24 15:04:02,650 DEBUG [org.hibernate.jdbc.ConnectionManager] - transaction completed on session with on_close connection release mode; be sure to close the session to release JDBC resources!
+2015-07-24 15:04:02,650 DEBUG [org.hibernate.jdbc.ConnectionManager] - releasing JDBC connection [ (open PreparedStatements: 0, globally: 0) (open ResultSets: 0, globally: 0)]
+2015-07-24 15:04:02,650 DEBUG [org.hibernate.jdbc.ConnectionManager] - transaction completed on session with on_close connection release mode; be sure to close the session to release JDBC resources!
+2015-07-24 15:04:02,670 DEBUG [org.hibernate.transaction.JDBCTransaction] - begin
+2015-07-24 15:04:02,670 DEBUG [org.hibernate.jdbc.ConnectionManager] - opening JDBC connection
+2015-07-24 15:04:02,686 DEBUG [org.hibernate.transaction.JDBCTransaction] - current autocommit status: true
+2015-07-24 15:04:02,686 DEBUG [org.hibernate.transaction.JDBCTransaction] - disabling autocommit
+2015-07-24 15:04:02,686 DEBUG [org.hibernate.jdbc.AbstractBatcher] - about to open PreparedStatement (open PreparedStatements: 0, globally: 0)
+2015-07-24 15:04:02,686 DEBUG [org.hibernate.SQL] - 
+    update
+        ReceiveEntity 
+    set
+        received=? 
+    where
+        id=?
+2015-07-24 15:04:02,687 DEBUG [org.hibernate.jdbc.AbstractBatcher] - about to close PreparedStatement (open PreparedStatements: 1, globally: 1)
+2015-07-24 15:04:02,688 DEBUG [org.hibernate.transaction.JDBCTransaction] - commit
+2015-07-24 15:04:02,689 DEBUG [org.hibernate.transaction.JDBCTransaction] - re-enabling autocommit
+2015-07-24 15:04:02,690 DEBUG [org.hibernate.transaction.JDBCTransaction] - committed JDBC Connection
+2015-07-24 15:04:02,690 DEBUG [org.hibernate.jdbc.ConnectionManager] - transaction completed on session with on_close connection release mode; be sure to close the session to release JDBC resources!
+2015-07-24 15:04:02,690 DEBUG [org.hibernate.jdbc.ConnectionManager] - releasing JDBC connection [ (open PreparedStatements: 0, globally: 0) (open ResultSets: 0, globally: 0)]
+2015-07-24 15:04:02,690 DEBUG [org.hibernate.jdbc.ConnectionManager] - transaction completed on session with on_close connection release mode; be sure to close the session to release JDBC resources!
+2015-07-24 15:04:02,700 DEBUG [org.hibernate.transaction.JDBCTransaction] - begin
+2015-07-24 15:04:02,700 DEBUG [org.hibernate.jdbc.ConnectionManager] - opening JDBC connection
+2015-07-24 15:04:02,708 DEBUG [org.hibernate.transaction.JDBCTransaction] - current autocommit status: true
+2015-07-24 15:04:02,708 DEBUG [org.hibernate.transaction.JDBCTransaction] - disabling autocommit
+2015-07-24 15:04:02,709 DEBUG [org.hibernate.jdbc.AbstractBatcher] - about to open PreparedStatement (open PreparedStatements: 0, globally: 0)
+2015-07-24 15:04:02,709 DEBUG [org.hibernate.SQL] - 
+    update
+        ReceiveEntity 
+    set
+        received=? 
+    where
+        id=?
+2015-07-24 15:04:02,716 DEBUG [org.hibernate.jdbc.AbstractBatcher] - about to close PreparedStatement (open PreparedStatements: 1, globally: 1)
+2015-07-24 15:04:02,716 DEBUG [org.hibernate.transaction.JDBCTransaction] - commit
+2015-07-24 15:04:02,720 DEBUG [org.hibernate.transaction.JDBCTransaction] - re-enabling autocommit
+2015-07-24 15:04:02,720 DEBUG [org.hibernate.transaction.JDBCTransaction] - committed JDBC Connection
+2015-07-24 15:04:02,720 DEBUG [org.hibernate.jdbc.ConnectionManager] - transaction completed on session with on_close connection release mode; be sure to close the session to release JDBC resources!
+2015-07-24 15:04:02,720 DEBUG [org.hibernate.jdbc.ConnectionManager] - releasing JDBC connection [ (open PreparedStatements: 0, globally: 0) (open ResultSets: 0, globally: 0)]
+2015-07-24 15:04:02,720 DEBUG [org.hibernate.jdbc.ConnectionManager] - transaction completed on session with on_close connection release mode; be sure to close the session to release JDBC resources!
+2015-07-24 15:04:02,731 DEBUG [org.hibernate.transaction.JDBCTransaction] - begin
+2015-07-24 15:04:02,731 DEBUG [org.hibernate.jdbc.ConnectionManager] - opening JDBC connection
+2015-07-24 15:04:02,741 DEBUG [org.hibernate.transaction.JDBCTransaction] - current autocommit status: true
+2015-07-24 15:04:02,741 DEBUG [org.hibernate.transaction.JDBCTransaction] - disabling autocommit
+2015-07-24 15:04:02,741 DEBUG [org.hibernate.jdbc.AbstractBatcher] - about to open PreparedStatement (open PreparedStatements: 0, globally: 0)
+2015-07-24 15:04:02,742 DEBUG [org.hibernate.SQL] - 
+    update
+        ReceiveEntity 
+    set
+        received=? 
+    where
+        id=?
+2015-07-24 15:04:02,742 DEBUG [org.hibernate.jdbc.AbstractBatcher] - about to close PreparedStatement (open PreparedStatements: 1, globally: 1)
+2015-07-24 15:04:02,742 DEBUG [org.hibernate.transaction.JDBCTransaction] - commit
+2015-07-24 15:04:02,749 DEBUG [org.hibernate.transaction.JDBCTransaction] - re-enabling autocommit
+2015-07-24 15:04:02,749 DEBUG [org.hibernate.transaction.JDBCTransaction] - committed JDBC Connection
+2015-07-24 15:04:02,749 DEBUG [org.hibernate.jdbc.ConnectionManager] - transaction completed on session with on_close connection release mode; be sure to close the session to release JDBC resources!
+2015-07-24 15:04:02,749 DEBUG [org.hibernate.jdbc.ConnectionManager] - releasing JDBC connection [ (open PreparedStatements: 0, globally: 0) (open ResultSets: 0, globally: 0)]
+2015-07-24 15:04:02,749 DEBUG [org.hibernate.jdbc.ConnectionManager] - transaction completed on session with on_close connection release mode; be sure to close the session to release JDBC resources!
+2015-07-24 15:04:02,759 DEBUG [org.hibernate.transaction.JDBCTransaction] - begin
+2015-07-24 15:04:02,760 DEBUG [org.hibernate.jdbc.ConnectionManager] - opening JDBC connection
+2015-07-24 15:04:02,768 DEBUG [org.hibernate.transaction.JDBCTransaction] - current autocommit status: true
+2015-07-24 15:04:02,768 DEBUG [org.hibernate.transaction.JDBCTransaction] - disabling autocommit
+2015-07-24 15:04:02,768 DEBUG [org.hibernate.jdbc.AbstractBatcher] - about to open PreparedStatement (open PreparedStatements: 0, globally: 0)
+2015-07-24 15:04:02,768 DEBUG [org.hibernate.SQL] - 
+    update
+        ReceiveEntity 
+    set
+        received=? 
+    where
+        id=?
+2015-07-24 15:04:02,772 DEBUG [org.hibernate.jdbc.AbstractBatcher] - about to close PreparedStatement (open PreparedStatements: 1, globally: 1)
+2015-07-24 15:04:02,772 DEBUG [org.hibernate.transaction.JDBCTransaction] - commit
+2015-07-24 15:04:02,775 DEBUG [org.hibernate.transaction.JDBCTransaction] - re-enabling autocommit
+2015-07-24 15:04:02,775 DEBUG [org.hibernate.transaction.JDBCTransaction] - committed JDBC Connection
+2015-07-24 15:04:02,775 DEBUG [org.hibernate.jdbc.ConnectionManager] - transaction completed on session with on_close connection release mode; be sure to close the session to release JDBC resources!
+2015-07-24 15:04:02,775 DEBUG [org.hibernate.jdbc.ConnectionManager] - releasing JDBC connection [ (open PreparedStatements: 0, globally: 0) (open ResultSets: 0, globally: 0)]
+2015-07-24 15:04:02,776 DEBUG [org.hibernate.jdbc.ConnectionManager] - transaction completed on session with on_close connection release mode; be sure to close the session to release JDBC resources!
+2015-07-24 15:04:02,785 DEBUG [org.hibernate.transaction.JDBCTransaction] - begin
+2015-07-24 15:04:02,785 DEBUG [org.hibernate.jdbc.ConnectionManager] - opening JDBC connection
+2015-07-24 15:04:02,794 DEBUG [org.hibernate.transaction.JDBCTransaction] - current autocommit status: true
+2015-07-24 15:04:02,794 DEBUG [org.hibernate.transaction.JDBCTransaction] - disabling autocommit
+2015-07-24 15:04:02,794 DEBUG [org.hibernate.jdbc.AbstractBatcher] - about to open PreparedStatement (open PreparedStatements: 0, globally: 0)
+2015-07-24 15:04:02,795 DEBUG [org.hibernate.SQL] - 
+    update
+        ReceiveEntity 
+    set
+        received=? 
+    where
+        id=?
+2015-07-24 15:04:02,795 DEBUG [org.hibernate.jdbc.AbstractBatcher] - about to close PreparedStatement (open PreparedStatements: 1, globally: 1)
+2015-07-24 15:04:02,796 DEBUG [org.hibernate.transaction.JDBCTransaction] - commit
+2015-07-24 15:04:02,807 DEBUG [org.hibernate.transaction.JDBCTransaction] - re-enabling autocommit
+2015-07-24 15:04:02,808 DEBUG [org.hibernate.transaction.JDBCTransaction] - committed JDBC Connection
+2015-07-24 15:04:02,809 DEBUG [org.hibernate.jdbc.ConnectionManager] - transaction completed on session with on_close connection release mode; be sure to close the session to release JDBC resources!
+2015-07-24 15:04:02,809 DEBUG [org.hibernate.jdbc.ConnectionManager] - releasing JDBC connection [ (open PreparedStatements: 0, globally: 0) (open ResultSets: 0, globally: 0)]
+2015-07-24 15:04:02,809 DEBUG [org.hibernate.jdbc.ConnectionManager] - transaction completed on session with on_close connection release mode; be sure to close the session to release JDBC resources!
+2015-07-24 15:04:02,820 DEBUG [org.hibernate.transaction.JDBCTransaction] - begin
+2015-07-24 15:04:02,820 DEBUG [org.hibernate.jdbc.ConnectionManager] - opening JDBC connection
+2015-07-24 15:04:02,836 DEBUG [org.hibernate.transaction.JDBCTransaction] - current autocommit status: true
+2015-07-24 15:04:02,837 DEBUG [org.hibernate.transaction.JDBCTransaction] - disabling autocommit
+2015-07-24 15:04:02,837 DEBUG [org.hibernate.jdbc.AbstractBatcher] - about to open PreparedStatement (open PreparedStatements: 0, globally: 0)
+2015-07-24 15:04:02,838 DEBUG [org.hibernate.SQL] - 
+    update
+        ReceiveEntity 
+    set
+        received=? 
+    where
+        id=?
+2015-07-24 15:04:02,843 DEBUG [org.hibernate.jdbc.AbstractBatcher] - about to close PreparedStatement (open PreparedStatements: 1, globally: 1)
+2015-07-24 15:04:02,843 DEBUG [org.hibernate.transaction.JDBCTransaction] - commit
+2015-07-24 15:04:02,858 DEBUG [org.hibernate.transaction.JDBCTransaction] - re-enabling autocommit
+2015-07-24 15:04:02,859 DEBUG [org.hibernate.transaction.JDBCTransaction] - committed JDBC Connection
+2015-07-24 15:04:02,859 DEBUG [org.hibernate.jdbc.ConnectionManager] - transaction completed on session with on_close connection release mode; be sure to close the session to release JDBC resources!
+2015-07-24 15:04:02,859 DEBUG [org.hibernate.jdbc.ConnectionManager] - releasing JDBC connection [ (open PreparedStatements: 0, globally: 0) (open ResultSets: 0, globally: 0)]
+2015-07-24 15:04:02,859 DEBUG [org.hibernate.jdbc.ConnectionManager] - transaction completed on session with on_close connection release mode; be sure to close the session to release JDBC resources!
+2015-07-24 15:04:02,869 DEBUG [org.hibernate.transaction.JDBCTransaction] - begin
+2015-07-24 15:04:02,869 DEBUG [org.hibernate.jdbc.ConnectionManager] - opening JDBC connection
+2015-07-24 15:04:02,877 DEBUG [org.hibernate.transaction.JDBCTransaction] - current autocommit status: true
+2015-07-24 15:04:02,878 DEBUG [org.hibernate.transaction.JDBCTransaction] - disabling autocommit
+2015-07-24 15:04:02,878 DEBUG [org.hibernate.jdbc.AbstractBatcher] - about to open PreparedStatement (open PreparedStatements: 0, globally: 0)
+2015-07-24 15:04:02,878 DEBUG [org.hibernate.SQL] - 
+    update
+        ReceiveEntity 
+    set
+        received=? 
+    where
+        id=?
+2015-07-24 15:04:02,879 DEBUG [org.hibernate.jdbc.AbstractBatcher] - about to close PreparedStatement (open PreparedStatements: 1, globally: 1)
+2015-07-24 15:04:02,879 DEBUG [org.hibernate.transaction.JDBCTransaction] - commit
+2015-07-24 15:04:02,883 DEBUG [org.hibernate.transaction.JDBCTransaction] - re-enabling autocommit
+2015-07-24 15:04:02,883 DEBUG [org.hibernate.transaction.JDBCTransaction] - committed JDBC Connection
+2015-07-24 15:04:02,884 DEBUG [org.hibernate.jdbc.ConnectionManager] - transaction completed on session with on_close connection release mode; be sure to close the session to release JDBC resources!
+2015-07-24 15:04:02,884 DEBUG [org.hibernate.jdbc.ConnectionManager] - releasing JDBC connection [ (open PreparedStatements: 0, globally: 0) (open ResultSets: 0, globally: 0)]
+2015-07-24 15:04:02,884 DEBUG [org.hibernate.jdbc.ConnectionManager] - transaction completed on session with on_close connection release mode; be sure to close the session to release JDBC resources!
+2015-07-24 15:04:02,896 DEBUG [org.hibernate.transaction.JDBCTransaction] - begin
+2015-07-24 15:04:02,896 DEBUG [org.hibernate.jdbc.ConnectionManager] - opening JDBC connection
+2015-07-24 15:04:02,904 DEBUG [org.hibernate.transaction.JDBCTransaction] - current autocommit status: true
+2015-07-24 15:04:02,905 DEBUG [org.hibernate.transaction.JDBCTransaction] - disabling autocommit
+2015-07-24 15:04:02,906 DEBUG [org.hibernate.jdbc.AbstractBatcher] - about to open PreparedStatement (open PreparedStatements: 0, globally: 0)
+2015-07-24 15:04:02,906 DEBUG [org.hibernate.SQL] - 
+    update
+        ReceiveEntity 
+    set
+        received=? 
+    where
+        id=?
+2015-07-24 15:04:02,909 DEBUG [org.hibernate.jdbc.AbstractBatcher] - about to close PreparedStatement (open PreparedStatements: 1, globally: 1)
+2015-07-24 15:04:02,909 DEBUG [org.hibernate.transaction.JDBCTransaction] - commit
+2015-07-24 15:04:02,912 DEBUG [org.hibernate.transaction.JDBCTransaction] - re-enabling autocommit
+2015-07-24 15:04:02,913 DEBUG [org.hibernate.transaction.JDBCTransaction] - committed JDBC Connection
+2015-07-24 15:04:02,913 DEBUG [org.hibernate.jdbc.ConnectionManager] - transaction completed on session with on_close connection release mode; be sure to close the session to release JDBC resources!
+2015-07-24 15:04:02,913 DEBUG [org.hibernate.jdbc.ConnectionManager] - releasing JDBC connection [ (open PreparedStatements: 0, globally: 0) (open ResultSets: 0, globally: 0)]
+2015-07-24 15:04:02,913 DEBUG [org.hibernate.jdbc.ConnectionManager] - transaction completed on session with on_close connection release mode; be sure to close the session to release JDBC resources!
+2015-07-24 15:04:02,922 DEBUG [org.hibernate.transaction.JDBCTransaction] - begin
+2015-07-24 15:04:02,922 DEBUG [org.hibernate.jdbc.ConnectionManager] - opening JDBC connection
+2015-07-24 15:04:02,945 DEBUG [org.hibernate.transaction.JDBCTransaction] - current autocommit status: true
+2015-07-24 15:04:02,946 DEBUG [org.hibernate.transaction.JDBCTransaction] - disabling autocommit
+2015-07-24 15:04:02,946 DEBUG [org.hibernate.transaction.JDBCTransaction] - begin
+2015-07-24 15:04:02,946 DEBUG [org.hibernate.jdbc.ConnectionManager] - opening JDBC connection
+2015-07-24 15:04:02,946 DEBUG [org.hibernate.jdbc.AbstractBatcher] - about to open PreparedStatement (open PreparedStatements: 0, globally: 0)
+2015-07-24 15:04:02,966 DEBUG [org.hibernate.SQL] - 
+    update
+        ReceiveEntity 
+    set
+        received=? 
+    where
+        id=?
+2015-07-24 15:04:02,967 DEBUG [org.hibernate.jdbc.AbstractBatcher] - about to close PreparedStatement (open PreparedStatements: 1, globally: 1)
+2015-07-24 15:04:02,967 DEBUG [org.hibernate.transaction.JDBCTransaction] - commit
+2015-07-24 15:04:02,968 DEBUG [org.hibernate.transaction.JDBCTransaction] - re-enabling autocommit
+2015-07-24 15:04:02,968 DEBUG [org.hibernate.transaction.JDBCTransaction] - committed JDBC Connection
+2015-07-24 15:04:02,968 DEBUG [org.hibernate.jdbc.ConnectionManager] - transaction completed on session with on_close connection release mode; be sure to close the session to release JDBC resources!
+2015-07-24 15:04:02,968 DEBUG [org.hibernate.jdbc.ConnectionManager] - releasing JDBC connection [ (open PreparedStatements: 0, globally: 0) (open ResultSets: 0, globally: 0)]
+2015-07-24 15:04:02,972 DEBUG [org.hibernate.jdbc.ConnectionManager] - transaction completed on session with on_close connection release mode; be sure to close the session to release JDBC resources!
+2015-07-24 15:04:02,977 DEBUG [org.hibernate.transaction.JDBCTransaction] - current autocommit status: true
+2015-07-24 15:04:02,977 DEBUG [org.hibernate.transaction.JDBCTransaction] - disabling autocommit
+2015-07-24 15:04:02,977 DEBUG [org.hibernate.jdbc.AbstractBatcher] - about to open PreparedStatement (open PreparedStatements: 0, globally: 0)
+2015-07-24 15:04:02,979 DEBUG [org.hibernate.SQL] - 
+    select
+        receiveent0_.id as id0_,
+        receiveent0_.accessionNumber as accessio2_0_,
+        receiveent0_.bmpAxial as bmpAxial0_,
+        receiveent0_.bmpCoronal as bmpCoronal0_,
+        receiveent0_.bmpSagittal as bmpSagit5_0_,
+        receiveent0_.complete as complete0_,
+        receiveent0_.completeTime as complete7_0_,
+        receiveent0_.date as date0_,
+        receiveent0_.failed as failed0_,
+        receiveent0_.ip as ip0_,
+        receiveent0_.jpgAxial as jpgAxial0_,
+        receiveent0_.message as message0_,
+        receiveent0_.patientName as patient13_0_,
+        receiveent0_.port as port0_,
+        receiveent0_.received as received0_,
+        receiveent0_.savedFolder as savedFo16_0_,
+        receiveent0_.speed as speed0_,
+        receiveent0_.studyDate as studyDate0_,
+        receiveent0_.totalFiles as totalFiles0_ 
+    from
+        ReceiveEntity receiveent0_ 
+    where
+        receiveent0_.id=?
+2015-07-24 15:04:02,984 DEBUG [org.hibernate.transaction.JDBCTransaction] - begin
+2015-07-24 15:04:02,987 DEBUG [org.hibernate.jdbc.AbstractBatcher] - about to open ResultSet (open ResultSets: 0, globally: 0)
+2015-07-24 15:04:02,989 DEBUG [org.hibernate.jdbc.ConnectionManager] - opening JDBC connection
+2015-07-24 15:04:02,990 DEBUG [org.hibernate.jdbc.AbstractBatcher] - about to close ResultSet (open ResultSets: 1, globally: 1)
+2015-07-24 15:04:02,990 DEBUG [org.hibernate.jdbc.AbstractBatcher] - about to close PreparedStatement (open PreparedStatements: 1, globally: 1)
+2015-07-24 15:04:02,990 DEBUG [org.hibernate.transaction.JDBCTransaction] - commit
+2015-07-24 15:04:02,990 DEBUG [org.hibernate.transaction.JDBCTransaction] - re-enabling autocommit
+2015-07-24 15:04:02,993 DEBUG [org.hibernate.transaction.JDBCTransaction] - committed JDBC Connection
+2015-07-24 15:04:02,993 DEBUG [org.hibernate.jdbc.ConnectionManager] - transaction completed on session with on_close connection release mode; be sure to close the session to release JDBC resources!
+2015-07-24 15:04:02,993 DEBUG [org.hibernate.jdbc.ConnectionManager] - releasing JDBC connection [ (open PreparedStatements: 0, globally: 0) (open ResultSets: 0, globally: 0)]
+2015-07-24 15:04:02,993 DEBUG [org.hibernate.jdbc.ConnectionManager] - transaction completed on session with on_close connection release mode; be sure to close the session to release JDBC resources!
+2015-07-24 15:04:02,997 DEBUG [org.hibernate.transaction.JDBCTransaction] - current autocommit status: true
+2015-07-24 15:04:02,998 DEBUG [org.hibernate.transaction.JDBCTransaction] - disabling autocommit
+2015-07-24 15:04:03,001 DEBUG [org.hibernate.jdbc.AbstractBatcher] - about to open PreparedStatement (open PreparedStatements: 0, globally: 0)
+2015-07-24 15:04:03,001 DEBUG [org.hibernate.SQL] - 
+    update
+        ReceiveEntity 
+    set
+        received=? 
+    where
+        id=?
+2015-07-24 15:04:03,007 DEBUG [org.hibernate.jdbc.AbstractBatcher] - about to close PreparedStatement (open PreparedStatements: 1, globally: 1)
+2015-07-24 15:04:03,007 DEBUG [org.hibernate.transaction.JDBCTransaction] - commit
+2015-07-24 15:04:03,009 DEBUG [org.hibernate.transaction.JDBCTransaction] - re-enabling autocommit
+2015-07-24 15:04:03,009 DEBUG [org.hibernate.transaction.JDBCTransaction] - committed JDBC Connection
+2015-07-24 15:04:03,009 DEBUG [org.hibernate.jdbc.ConnectionManager] - transaction completed on session with on_close connection release mode; be sure to close the session to release JDBC resources!
+2015-07-24 15:04:03,009 DEBUG [org.hibernate.jdbc.ConnectionManager] - releasing JDBC connection [ (open PreparedStatements: 0, globally: 0) (open ResultSets: 0, globally: 0)]
+2015-07-24 15:04:03,010 DEBUG [org.hibernate.jdbc.ConnectionManager] - transaction completed on session with on_close connection release mode; be sure to close the session to release JDBC resources!
+2015-07-24 15:04:03,025 DEBUG [org.hibernate.transaction.JDBCTransaction] - begin
+2015-07-24 15:04:03,025 DEBUG [org.hibernate.jdbc.ConnectionManager] - opening JDBC connection
+2015-07-24 15:04:03,037 DEBUG [org.hibernate.transaction.JDBCTransaction] - current autocommit status: true
+2015-07-24 15:04:03,037 DEBUG [org.hibernate.transaction.JDBCTransaction] - disabling autocommit
+2015-07-24 15:04:03,038 DEBUG [org.hibernate.jdbc.AbstractBatcher] - about to open PreparedStatement (open PreparedStatements: 0, globally: 0)
+2015-07-24 15:04:03,038 DEBUG [org.hibernate.SQL] - 
+    update
+        ReceiveEntity 
+    set
+        received=? 
+    where
+        id=?
+2015-07-24 15:04:03,040 DEBUG [org.hibernate.jdbc.AbstractBatcher] - about to close PreparedStatement (open PreparedStatements: 1, globally: 1)
+2015-07-24 15:04:03,043 DEBUG [org.hibernate.transaction.JDBCTransaction] - commit
+2015-07-24 15:04:03,044 DEBUG [org.hibernate.transaction.JDBCTransaction] - re-enabling autocommit
+2015-07-24 15:04:03,045 DEBUG [org.hibernate.transaction.JDBCTransaction] - committed JDBC Connection
+2015-07-24 15:04:03,045 DEBUG [org.hibernate.jdbc.ConnectionManager] - transaction completed on session with on_close connection release mode; be sure to close the session to release JDBC resources!
+2015-07-24 15:04:03,045 DEBUG [org.hibernate.jdbc.ConnectionManager] - releasing JDBC connection [ (open PreparedStatements: 0, globally: 0) (open ResultSets: 0, globally: 0)]
+2015-07-24 15:04:03,046 DEBUG [org.hibernate.jdbc.ConnectionManager] - transaction completed on session with on_close connection release mode; be sure to close the session to release JDBC resources!
+2015-07-24 15:04:03,058 DEBUG [org.hibernate.transaction.JDBCTransaction] - begin
+2015-07-24 15:04:03,058 DEBUG [org.hibernate.jdbc.ConnectionManager] - opening JDBC connection
+2015-07-24 15:04:03,065 DEBUG [org.hibernate.transaction.JDBCTransaction] - current autocommit status: true
+2015-07-24 15:04:03,065 DEBUG [org.hibernate.transaction.JDBCTransaction] - disabling autocommit
+2015-07-24 15:04:03,065 DEBUG [org.hibernate.jdbc.AbstractBatcher] - about to open PreparedStatement (open PreparedStatements: 0, globally: 0)
+2015-07-24 15:04:03,066 DEBUG [org.hibernate.SQL] - 
+    update
+        ReceiveEntity 
+    set
+        received=? 
+    where
+        id=?
+2015-07-24 15:04:03,078 DEBUG [org.hibernate.jdbc.AbstractBatcher] - about to close PreparedStatement (open PreparedStatements: 1, globally: 1)
+2015-07-24 15:04:03,078 DEBUG [org.hibernate.transaction.JDBCTransaction] - commit
+2015-07-24 15:04:03,081 DEBUG [org.hibernate.transaction.JDBCTransaction] - re-enabling autocommit
+2015-07-24 15:04:03,081 DEBUG [org.hibernate.transaction.JDBCTransaction] - committed JDBC Connection
+2015-07-24 15:04:03,081 DEBUG [org.hibernate.jdbc.ConnectionManager] - transaction completed on session with on_close connection release mode; be sure to close the session to release JDBC resources!
+2015-07-24 15:04:03,081 DEBUG [org.hibernate.jdbc.ConnectionManager] - releasing JDBC connection [ (open PreparedStatements: 0, globally: 0) (open ResultSets: 0, globally: 0)]
+2015-07-24 15:04:03,081 DEBUG [org.hibernate.jdbc.ConnectionManager] - transaction completed on session with on_close connection release mode; be sure to close the session to release JDBC resources!
+2015-07-24 15:04:03,094 DEBUG [org.hibernate.transaction.JDBCTransaction] - begin
+2015-07-24 15:04:03,094 DEBUG [org.hibernate.jdbc.ConnectionManager] - opening JDBC connection
+2015-07-24 15:04:03,101 DEBUG [org.hibernate.transaction.JDBCTransaction] - current autocommit status: true
+2015-07-24 15:04:03,101 DEBUG [org.hibernate.transaction.JDBCTransaction] - disabling autocommit
+2015-07-24 15:04:03,103 DEBUG [org.hibernate.jdbc.AbstractBatcher] - about to open PreparedStatement (open PreparedStatements: 0, globally: 0)
+2015-07-24 15:04:03,103 DEBUG [org.hibernate.SQL] - 
+    update
+        ReceiveEntity 
+    set
+        received=? 
+    where
+        id=?
+2015-07-24 15:04:03,106 DEBUG [org.hibernate.jdbc.AbstractBatcher] - about to close PreparedStatement (open PreparedStatements: 1, globally: 1)
+2015-07-24 15:04:03,106 DEBUG [org.hibernate.transaction.JDBCTransaction] - commit
+2015-07-24 15:04:03,107 DEBUG [org.hibernate.transaction.JDBCTransaction] - re-enabling autocommit
+2015-07-24 15:04:03,109 DEBUG [org.hibernate.transaction.JDBCTransaction] - committed JDBC Connection
+2015-07-24 15:04:03,109 DEBUG [org.hibernate.jdbc.ConnectionManager] - transaction completed on session with on_close connection release mode; be sure to close the session to release JDBC resources!
+2015-07-24 15:04:03,110 DEBUG [org.hibernate.jdbc.ConnectionManager] - releasing JDBC connection [ (open PreparedStatements: 0, globally: 0) (open ResultSets: 0, globally: 0)]
+2015-07-24 15:04:03,111 DEBUG [org.hibernate.jdbc.ConnectionManager] - transaction completed on session with on_close connection release mode; be sure to close the session to release JDBC resources!
+2015-07-24 15:04:03,121 DEBUG [org.hibernate.transaction.JDBCTransaction] - begin
+2015-07-24 15:04:03,121 DEBUG [org.hibernate.jdbc.ConnectionManager] - opening JDBC connection
+2015-07-24 15:04:03,130 DEBUG [org.hibernate.transaction.JDBCTransaction] - current autocommit status: true
+2015-07-24 15:04:03,130 DEBUG [org.hibernate.transaction.JDBCTransaction] - disabling autocommit
+2015-07-24 15:04:03,132 DEBUG [org.hibernate.jdbc.AbstractBatcher] - about to open PreparedStatement (open PreparedStatements: 0, globally: 0)
+2015-07-24 15:04:03,132 DEBUG [org.hibernate.SQL] - 
+    update
+        ReceiveEntity 
+    set
+        received=? 
+    where
+        id=?
+2015-07-24 15:04:03,141 DEBUG [org.hibernate.jdbc.AbstractBatcher] - about to close PreparedStatement (open PreparedStatements: 1, globally: 1)
+2015-07-24 15:04:03,141 DEBUG [org.hibernate.transaction.JDBCTransaction] - commit
+2015-07-24 15:04:03,145 DEBUG [org.hibernate.transaction.JDBCTransaction] - re-enabling autocommit
+2015-07-24 15:04:03,145 DEBUG [org.hibernate.transaction.JDBCTransaction] - committed JDBC Connection
+2015-07-24 15:04:03,145 DEBUG [org.hibernate.jdbc.ConnectionManager] - transaction completed on session with on_close connection release mode; be sure to close the session to release JDBC resources!
+2015-07-24 15:04:03,145 DEBUG [org.hibernate.jdbc.ConnectionManager] - releasing JDBC connection [ (open PreparedStatements: 0, globally: 0) (open ResultSets: 0, globally: 0)]
+2015-07-24 15:04:03,145 DEBUG [org.hibernate.jdbc.ConnectionManager] - transaction completed on session with on_close connection release mode; be sure to close the session to release JDBC resources!
+2015-07-24 15:04:03,154 DEBUG [org.hibernate.transaction.JDBCTransaction] - begin
+2015-07-24 15:04:03,154 DEBUG [org.hibernate.jdbc.ConnectionManager] - opening JDBC connection
+2015-07-24 15:04:03,164 DEBUG [org.hibernate.transaction.JDBCTransaction] - current autocommit status: true
+2015-07-24 15:04:03,164 DEBUG [org.hibernate.transaction.JDBCTransaction] - disabling autocommit
+2015-07-24 15:04:03,164 DEBUG [org.hibernate.jdbc.AbstractBatcher] - about to open PreparedStatement (open PreparedStatements: 0, globally: 0)
+2015-07-24 15:04:03,164 DEBUG [org.hibernate.SQL] - 
+    update
+        ReceiveEntity 
+    set
+        received=? 
+    where
+        id=?
+2015-07-24 15:04:03,165 DEBUG [org.hibernate.jdbc.AbstractBatcher] - about to close PreparedStatement (open PreparedStatements: 1, globally: 1)
+2015-07-24 15:04:03,166 DEBUG [org.hibernate.transaction.JDBCTransaction] - commit
+2015-07-24 15:04:03,167 DEBUG [org.hibernate.transaction.JDBCTransaction] - re-enabling autocommit
+2015-07-24 15:04:03,168 DEBUG [org.hibernate.transaction.JDBCTransaction] - committed JDBC Connection
+2015-07-24 15:04:03,168 DEBUG [org.hibernate.jdbc.ConnectionManager] - transaction completed on session with on_close connection release mode; be sure to close the session to release JDBC resources!
+2015-07-24 15:04:03,168 DEBUG [org.hibernate.jdbc.ConnectionManager] - releasing JDBC connection [ (open PreparedStatements: 0, globally: 0) (open ResultSets: 0, globally: 0)]
+2015-07-24 15:04:03,168 DEBUG [org.hibernate.jdbc.ConnectionManager] - transaction completed on session with on_close connection release mode; be sure to close the session to release JDBC resources!
+2015-07-24 15:04:03,181 DEBUG [org.hibernate.transaction.JDBCTransaction] - begin
+2015-07-24 15:04:03,181 DEBUG [org.hibernate.jdbc.ConnectionManager] - opening JDBC connection
+2015-07-24 15:04:03,226 DEBUG [org.hibernate.transaction.JDBCTransaction] - current autocommit status: true
+2015-07-24 15:04:03,226 DEBUG [org.hibernate.transaction.JDBCTransaction] - disabling autocommit
+2015-07-24 15:04:03,226 DEBUG [org.hibernate.jdbc.AbstractBatcher] - about to open PreparedStatement (open PreparedStatements: 0, globally: 0)
+2015-07-24 15:04:03,226 DEBUG [org.hibernate.SQL] - 
+    update
+        ReceiveEntity 
+    set
+        received=? 
+    where
+        id=?
+2015-07-24 15:04:03,228 DEBUG [org.hibernate.jdbc.AbstractBatcher] - about to close PreparedStatement (open PreparedStatements: 1, globally: 1)
+2015-07-24 15:04:03,228 DEBUG [org.hibernate.transaction.JDBCTransaction] - commit
+2015-07-24 15:04:03,229 DEBUG [org.hibernate.transaction.JDBCTransaction] - re-enabling autocommit
+2015-07-24 15:04:03,229 DEBUG [org.hibernate.transaction.JDBCTransaction] - committed JDBC Connection
+2015-07-24 15:04:03,230 DEBUG [org.hibernate.jdbc.ConnectionManager] - transaction completed on session with on_close connection release mode; be sure to close the session to release JDBC resources!
+2015-07-24 15:04:03,230 DEBUG [org.hibernate.jdbc.ConnectionManager] - releasing JDBC connection [ (open PreparedStatements: 0, globally: 0) (open ResultSets: 0, globally: 0)]
+2015-07-24 15:04:03,230 DEBUG [org.hibernate.jdbc.ConnectionManager] - transaction completed on session with on_close connection release mode; be sure to close the session to release JDBC resources!
+2015-07-24 15:04:03,243 DEBUG [org.hibernate.transaction.JDBCTransaction] - begin
+2015-07-24 15:04:03,243 DEBUG [org.hibernate.jdbc.ConnectionManager] - opening JDBC connection
+2015-07-24 15:04:03,252 DEBUG [org.hibernate.transaction.JDBCTransaction] - current autocommit status: true
+2015-07-24 15:04:03,252 DEBUG [org.hibernate.transaction.JDBCTransaction] - disabling autocommit
+2015-07-24 15:04:03,252 DEBUG [org.hibernate.jdbc.AbstractBatcher] - about to open PreparedStatement (open PreparedStatements: 0, globally: 0)
+2015-07-24 15:04:03,253 DEBUG [org.hibernate.SQL] - 
+    update
+        ReceiveEntity 
+    set
+        received=? 
+    where
+        id=?
+2015-07-24 15:04:03,254 DEBUG [org.hibernate.jdbc.AbstractBatcher] - about to close PreparedStatement (open PreparedStatements: 1, globally: 1)
+2015-07-24 15:04:03,254 DEBUG [org.hibernate.transaction.JDBCTransaction] - commit
+2015-07-24 15:04:03,255 DEBUG [org.hibernate.transaction.JDBCTransaction] - re-enabling autocommit
+2015-07-24 15:04:03,255 DEBUG [org.hibernate.transaction.JDBCTransaction] - committed JDBC Connection
+2015-07-24 15:04:03,255 DEBUG [org.hibernate.jdbc.ConnectionManager] - transaction completed on session with on_close connection release mode; be sure to close the session to release JDBC resources!
+2015-07-24 15:04:03,255 DEBUG [org.hibernate.jdbc.ConnectionManager] - releasing JDBC connection [ (open PreparedStatements: 0, globally: 0) (open ResultSets: 0, globally: 0)]
+2015-07-24 15:04:03,258 DEBUG [org.hibernate.jdbc.ConnectionManager] - transaction completed on session with on_close connection release mode; be sure to close the session to release JDBC resources!
+2015-07-24 15:04:03,295 DEBUG [org.hibernate.transaction.JDBCTransaction] - begin
+2015-07-24 15:04:03,295 DEBUG [org.hibernate.jdbc.ConnectionManager] - opening JDBC connection
+2015-07-24 15:04:03,305 DEBUG [org.hibernate.transaction.JDBCTransaction] - current autocommit status: true
+2015-07-24 15:04:03,305 DEBUG [org.hibernate.transaction.JDBCTransaction] - disabling autocommit
+2015-07-24 15:04:03,306 DEBUG [org.hibernate.jdbc.AbstractBatcher] - about to open PreparedStatement (open PreparedStatements: 0, globally: 0)
+2015-07-24 15:04:03,307 DEBUG [org.hibernate.SQL] - 
+    update
+        ReceiveEntity 
+    set
+        received=? 
+    where
+        id=?
+2015-07-24 15:04:03,308 DEBUG [org.hibernate.jdbc.AbstractBatcher] - about to close PreparedStatement (open PreparedStatements: 1, globally: 1)
+2015-07-24 15:04:03,311 DEBUG [org.hibernate.transaction.JDBCTransaction] - commit
+2015-07-24 15:04:03,312 DEBUG [org.hibernate.transaction.JDBCTransaction] - re-enabling autocommit
+2015-07-24 15:04:03,312 DEBUG [org.hibernate.transaction.JDBCTransaction] - committed JDBC Connection
+2015-07-24 15:04:03,312 DEBUG [org.hibernate.jdbc.ConnectionManager] - transaction completed on session with on_close connection release mode; be sure to close the session to release JDBC resources!
+2015-07-24 15:04:03,313 DEBUG [org.hibernate.jdbc.ConnectionManager] - releasing JDBC connection [ (open PreparedStatements: 0, globally: 0) (open ResultSets: 0, globally: 0)]
+2015-07-24 15:04:03,313 DEBUG [org.hibernate.jdbc.ConnectionManager] - transaction completed on session with on_close connection release mode; be sure to close the session to release JDBC resources!
+2015-07-24 15:04:03,334 DEBUG [org.hibernate.transaction.JDBCTransaction] - begin
+2015-07-24 15:04:03,334 DEBUG [org.hibernate.jdbc.ConnectionManager] - opening JDBC connection
+2015-07-24 15:04:03,345 DEBUG [org.hibernate.transaction.JDBCTransaction] - current autocommit status: true
+2015-07-24 15:04:03,345 DEBUG [org.hibernate.transaction.JDBCTransaction] - disabling autocommit
+2015-07-24 15:04:03,345 DEBUG [org.hibernate.jdbc.AbstractBatcher] - about to open PreparedStatement (open PreparedStatements: 0, globally: 0)
+2015-07-24 15:04:03,345 DEBUG [org.hibernate.SQL] - 
+    update
+        ReceiveEntity 
+    set
+        received=? 
+    where
+        id=?
+2015-07-24 15:04:03,347 DEBUG [org.hibernate.jdbc.AbstractBatcher] - about to close PreparedStatement (open PreparedStatements: 1, globally: 1)
+2015-07-24 15:04:03,348 DEBUG [org.hibernate.transaction.JDBCTransaction] - commit
+2015-07-24 15:04:03,350 DEBUG [org.hibernate.transaction.JDBCTransaction] - re-enabling autocommit
+2015-07-24 15:04:03,350 DEBUG [org.hibernate.transaction.JDBCTransaction] - committed JDBC Connection
+2015-07-24 15:04:03,350 DEBUG [org.hibernate.jdbc.ConnectionManager] - transaction completed on session with on_close connection release mode; be sure to close the session to release JDBC resources!
+2015-07-24 15:04:03,350 DEBUG [org.hibernate.jdbc.ConnectionManager] - releasing JDBC connection [ (open PreparedStatements: 0, globally: 0) (open ResultSets: 0, globally: 0)]
+2015-07-24 15:04:03,351 DEBUG [org.hibernate.jdbc.ConnectionManager] - transaction completed on session with on_close connection release mode; be sure to close the session to release JDBC resources!
+2015-07-24 15:04:03,362 DEBUG [org.hibernate.transaction.JDBCTransaction] - begin
+2015-07-24 15:04:03,362 DEBUG [org.hibernate.jdbc.ConnectionManager] - opening JDBC connection
+2015-07-24 15:04:03,386 DEBUG [org.hibernate.transaction.JDBCTransaction] - current autocommit status: true
+2015-07-24 15:04:03,386 DEBUG [org.hibernate.transaction.JDBCTransaction] - disabling autocommit
+2015-07-24 15:04:03,387 DEBUG [org.hibernate.jdbc.AbstractBatcher] - about to open PreparedStatement (open PreparedStatements: 0, globally: 0)
+2015-07-24 15:04:03,387 DEBUG [org.hibernate.SQL] - 
+    update
+        ReceiveEntity 
+    set
+        received=? 
+    where
+        id=?
+2015-07-24 15:04:03,388 DEBUG [org.hibernate.jdbc.AbstractBatcher] - about to close PreparedStatement (open PreparedStatements: 1, globally: 1)
+2015-07-24 15:04:03,388 DEBUG [org.hibernate.transaction.JDBCTransaction] - commit
+2015-07-24 15:04:03,400 DEBUG [org.hibernate.transaction.JDBCTransaction] - re-enabling autocommit
+2015-07-24 15:04:03,401 DEBUG [org.hibernate.transaction.JDBCTransaction] - committed JDBC Connection
+2015-07-24 15:04:03,401 DEBUG [org.hibernate.jdbc.ConnectionManager] - transaction completed on session with on_close connection release mode; be sure to close the session to release JDBC resources!
+2015-07-24 15:04:03,401 DEBUG [org.hibernate.jdbc.ConnectionManager] - releasing JDBC connection [ (open PreparedStatements: 0, globally: 0) (open ResultSets: 0, globally: 0)]
+2015-07-24 15:04:03,401 DEBUG [org.hibernate.jdbc.ConnectionManager] - transaction completed on session with on_close connection release mode; be sure to close the session to release JDBC resources!
+2015-07-24 15:04:03,413 DEBUG [org.hibernate.transaction.JDBCTransaction] - begin
+2015-07-24 15:04:03,413 DEBUG [org.hibernate.jdbc.ConnectionManager] - opening JDBC connection
+2015-07-24 15:04:03,418 DEBUG [org.hibernate.transaction.JDBCTransaction] - current autocommit status: true
+2015-07-24 15:04:03,418 DEBUG [org.hibernate.transaction.JDBCTransaction] - disabling autocommit
+2015-07-24 15:04:03,418 DEBUG [org.hibernate.jdbc.AbstractBatcher] - about to open PreparedStatement (open PreparedStatements: 0, globally: 0)
+2015-07-24 15:04:03,419 DEBUG [org.hibernate.SQL] - 
+    update
+        ReceiveEntity 
+    set
+        received=? 
+    where
+        id=?
+2015-07-24 15:04:03,431 DEBUG [org.hibernate.jdbc.AbstractBatcher] - about to close PreparedStatement (open PreparedStatements: 1, globally: 1)
+2015-07-24 15:04:03,432 DEBUG [org.hibernate.transaction.JDBCTransaction] - commit
+2015-07-24 15:04:03,439 DEBUG [org.hibernate.transaction.JDBCTransaction] - re-enabling autocommit
+2015-07-24 15:04:03,440 DEBUG [org.hibernate.transaction.JDBCTransaction] - committed JDBC Connection
+2015-07-24 15:04:03,440 DEBUG [org.hibernate.jdbc.ConnectionManager] - transaction completed on session with on_close connection release mode; be sure to close the session to release JDBC resources!
+2015-07-24 15:04:03,440 DEBUG [org.hibernate.jdbc.ConnectionManager] - releasing JDBC connection [ (open PreparedStatements: 0, globally: 0) (open ResultSets: 0, globally: 0)]
+2015-07-24 15:04:03,440 DEBUG [org.hibernate.jdbc.ConnectionManager] - transaction completed on session with on_close connection release mode; be sure to close the session to release JDBC resources!
+2015-07-24 15:04:03,448 DEBUG [org.hibernate.transaction.JDBCTransaction] - begin
+2015-07-24 15:04:03,448 DEBUG [org.hibernate.jdbc.ConnectionManager] - opening JDBC connection
+2015-07-24 15:04:03,453 DEBUG [org.hibernate.transaction.JDBCTransaction] - current autocommit status: true
+2015-07-24 15:04:03,453 DEBUG [org.hibernate.transaction.JDBCTransaction] - disabling autocommit
+2015-07-24 15:04:03,454 DEBUG [org.hibernate.jdbc.AbstractBatcher] - about to open PreparedStatement (open PreparedStatements: 0, globally: 0)
+2015-07-24 15:04:03,454 DEBUG [org.hibernate.SQL] - 
+    update
+        ReceiveEntity 
+    set
+        received=? 
+    where
+        id=?
+2015-07-24 15:04:03,454 DEBUG [org.hibernate.jdbc.AbstractBatcher] - about to close PreparedStatement (open PreparedStatements: 1, globally: 1)
+2015-07-24 15:04:03,454 DEBUG [org.hibernate.transaction.JDBCTransaction] - commit
+2015-07-24 15:04:03,455 DEBUG [org.hibernate.transaction.JDBCTransaction] - re-enabling autocommit
+2015-07-24 15:04:03,455 DEBUG [org.hibernate.transaction.JDBCTransaction] - committed JDBC Connection
+2015-07-24 15:04:03,455 DEBUG [org.hibernate.jdbc.ConnectionManager] - transaction completed on session with on_close connection release mode; be sure to close the session to release JDBC resources!
+2015-07-24 15:04:03,455 DEBUG [org.hibernate.jdbc.ConnectionManager] - releasing JDBC connection [ (open PreparedStatements: 0, globally: 0) (open ResultSets: 0, globally: 0)]
+2015-07-24 15:04:03,456 DEBUG [org.hibernate.jdbc.ConnectionManager] - transaction completed on session with on_close connection release mode; be sure to close the session to release JDBC resources!
+2015-07-24 15:04:03,465 DEBUG [org.hibernate.transaction.JDBCTransaction] - begin
+2015-07-24 15:04:03,465 DEBUG [org.hibernate.jdbc.ConnectionManager] - opening JDBC connection
+2015-07-24 15:04:03,469 DEBUG [org.hibernate.transaction.JDBCTransaction] - begin
+2015-07-24 15:04:03,469 DEBUG [org.hibernate.jdbc.ConnectionManager] - opening JDBC connection
+2015-07-24 15:04:03,480 DEBUG [org.hibernate.transaction.JDBCTransaction] - current autocommit status: true
+2015-07-24 15:04:03,480 DEBUG [org.hibernate.transaction.JDBCTransaction] - disabling autocommit
+2015-07-24 15:04:03,480 DEBUG [org.hibernate.jdbc.AbstractBatcher] - about to open PreparedStatement (open PreparedStatements: 0, globally: 0)
+2015-07-24 15:04:03,480 DEBUG [org.hibernate.SQL] - 
+    select
+        receiveent0_.id as id0_,
+        receiveent0_.accessionNumber as accessio2_0_,
+        receiveent0_.bmpAxial as bmpAxial0_,
+        receiveent0_.bmpCoronal as bmpCoronal0_,
+        receiveent0_.bmpSagittal as bmpSagit5_0_,
+        receiveent0_.complete as complete0_,
+        receiveent0_.completeTime as complete7_0_,
+        receiveent0_.date as date0_,
+        receiveent0_.failed as failed0_,
+        receiveent0_.ip as ip0_,
+        receiveent0_.jpgAxial as jpgAxial0_,
+        receiveent0_.message as message0_,
+        receiveent0_.patientName as patient13_0_,
+        receiveent0_.port as port0_,
+        receiveent0_.received as received0_,
+        receiveent0_.savedFolder as savedFo16_0_,
+        receiveent0_.speed as speed0_,
+        receiveent0_.studyDate as studyDate0_,
+        receiveent0_.totalFiles as totalFiles0_ 
+    from
+        ReceiveEntity receiveent0_ 
+    where
+        receiveent0_.id=?
+2015-07-24 15:04:03,482 DEBUG [org.hibernate.jdbc.AbstractBatcher] - about to open ResultSet (open ResultSets: 0, globally: 0)
+2015-07-24 15:04:03,482 DEBUG [org.hibernate.jdbc.AbstractBatcher] - about to close ResultSet (open ResultSets: 1, globally: 1)
+2015-07-24 15:04:03,482 DEBUG [org.hibernate.jdbc.AbstractBatcher] - about to close PreparedStatement (open PreparedStatements: 1, globally: 1)
+2015-07-24 15:04:03,482 DEBUG [org.hibernate.transaction.JDBCTransaction] - commit
+2015-07-24 15:04:03,482 DEBUG [org.hibernate.transaction.JDBCTransaction] - re-enabling autocommit
+2015-07-24 15:04:03,483 DEBUG [org.hibernate.transaction.JDBCTransaction] - committed JDBC Connection
+2015-07-24 15:04:03,483 DEBUG [org.hibernate.jdbc.ConnectionManager] - transaction completed on session with on_close connection release mode; be sure to close the session to release JDBC resources!
+2015-07-24 15:04:03,483 DEBUG [org.hibernate.jdbc.ConnectionManager] - releasing JDBC connection [ (open PreparedStatements: 0, globally: 0) (open ResultSets: 0, globally: 0)]
+2015-07-24 15:04:03,483 DEBUG [org.hibernate.jdbc.ConnectionManager] - transaction completed on session with on_close connection release mode; be sure to close the session to release JDBC resources!
+2015-07-24 15:04:03,491 DEBUG [org.hibernate.transaction.JDBCTransaction] - current autocommit status: true
+2015-07-24 15:04:03,494 DEBUG [org.hibernate.transaction.JDBCTransaction] - disabling autocommit
+2015-07-24 15:04:03,495 DEBUG [org.hibernate.jdbc.AbstractBatcher] - about to open PreparedStatement (open PreparedStatements: 0, globally: 0)
+2015-07-24 15:04:03,495 DEBUG [org.hibernate.SQL] - 
+    update
+        ReceiveEntity 
+    set
+        received=? 
+    where
+        id=?
+2015-07-24 15:04:03,503 DEBUG [org.hibernate.jdbc.AbstractBatcher] - about to close PreparedStatement (open PreparedStatements: 1, globally: 1)
+2015-07-24 15:04:03,503 DEBUG [org.hibernate.transaction.JDBCTransaction] - commit
+2015-07-24 15:04:03,504 DEBUG [org.hibernate.transaction.JDBCTransaction] - re-enabling autocommit
+2015-07-24 15:04:03,505 DEBUG [org.hibernate.transaction.JDBCTransaction] - committed JDBC Connection
+2015-07-24 15:04:03,505 DEBUG [org.hibernate.jdbc.ConnectionManager] - transaction completed on session with on_close connection release mode; be sure to close the session to release JDBC resources!
+2015-07-24 15:04:03,505 DEBUG [org.hibernate.jdbc.ConnectionManager] - releasing JDBC connection [ (open PreparedStatements: 0, globally: 0) (open ResultSets: 0, globally: 0)]
+2015-07-24 15:04:03,505 DEBUG [org.hibernate.jdbc.ConnectionManager] - transaction completed on session with on_close connection release mode; be sure to close the session to release JDBC resources!
+2015-07-24 15:04:03,516 DEBUG [org.hibernate.transaction.JDBCTransaction] - begin
+2015-07-24 15:04:03,516 DEBUG [org.hibernate.jdbc.ConnectionManager] - opening JDBC connection
+2015-07-24 15:04:03,522 DEBUG [org.hibernate.transaction.JDBCTransaction] - current autocommit status: true
+2015-07-24 15:04:03,522 DEBUG [org.hibernate.transaction.JDBCTransaction] - disabling autocommit
+2015-07-24 15:04:03,523 DEBUG [org.hibernate.jdbc.AbstractBatcher] - about to open PreparedStatement (open PreparedStatements: 0, globally: 0)
+2015-07-24 15:04:03,523 DEBUG [org.hibernate.SQL] - 
+    update
+        ReceiveEntity 
+    set
+        received=? 
+    where
+        id=?
+2015-07-24 15:04:03,524 DEBUG [org.hibernate.jdbc.AbstractBatcher] - about to close PreparedStatement (open PreparedStatements: 1, globally: 1)
+2015-07-24 15:04:03,524 DEBUG [org.hibernate.transaction.JDBCTransaction] - commit
+2015-07-24 15:04:03,525 DEBUG [org.hibernate.transaction.JDBCTransaction] - re-enabling autocommit
+2015-07-24 15:04:03,526 DEBUG [org.hibernate.transaction.JDBCTransaction] - committed JDBC Connection
+2015-07-24 15:04:03,526 DEBUG [org.hibernate.jdbc.ConnectionManager] - transaction completed on session with on_close connection release mode; be sure to close the session to release JDBC resources!
+2015-07-24 15:04:03,526 DEBUG [org.hibernate.jdbc.ConnectionManager] - releasing JDBC connection [ (open PreparedStatements: 0, globally: 0) (open ResultSets: 0, globally: 0)]
+2015-07-24 15:04:03,527 DEBUG [org.hibernate.jdbc.ConnectionManager] - transaction completed on session with on_close connection release mode; be sure to close the session to release JDBC resources!
+2015-07-24 15:04:03,536 DEBUG [org.hibernate.transaction.JDBCTransaction] - begin
+2015-07-24 15:04:03,536 DEBUG [org.hibernate.jdbc.ConnectionManager] - opening JDBC connection
+2015-07-24 15:04:03,545 DEBUG [org.hibernate.transaction.JDBCTransaction] - current autocommit status: true
+2015-07-24 15:04:03,545 DEBUG [org.hibernate.transaction.JDBCTransaction] - disabling autocommit
+2015-07-24 15:04:03,545 DEBUG [org.hibernate.jdbc.AbstractBatcher] - about to open PreparedStatement (open PreparedStatements: 0, globally: 0)
+2015-07-24 15:04:03,545 DEBUG [org.hibernate.SQL] - 
+    update
+        ReceiveEntity 
+    set
+        received=? 
+    where
+        id=?
+2015-07-24 15:04:03,548 DEBUG [org.hibernate.jdbc.AbstractBatcher] - about to close PreparedStatement (open PreparedStatements: 1, globally: 1)
+2015-07-24 15:04:03,548 DEBUG [org.hibernate.transaction.JDBCTransaction] - commit
+2015-07-24 15:04:03,548 DEBUG [org.hibernate.transaction.JDBCTransaction] - re-enabling autocommit
+2015-07-24 15:04:03,549 DEBUG [org.hibernate.transaction.JDBCTransaction] - committed JDBC Connection
+2015-07-24 15:04:03,549 DEBUG [org.hibernate.jdbc.ConnectionManager] - transaction completed on session with on_close connection release mode; be sure to close the session to release JDBC resources!
+2015-07-24 15:04:03,549 DEBUG [org.hibernate.jdbc.ConnectionManager] - releasing JDBC connection [ (open PreparedStatements: 0, globally: 0) (open ResultSets: 0, globally: 0)]
+2015-07-24 15:04:03,549 DEBUG [org.hibernate.jdbc.ConnectionManager] - transaction completed on session with on_close connection release mode; be sure to close the session to release JDBC resources!
+2015-07-24 15:04:03,559 DEBUG [org.hibernate.transaction.JDBCTransaction] - begin
+2015-07-24 15:04:03,559 DEBUG [org.hibernate.jdbc.ConnectionManager] - opening JDBC connection
+2015-07-24 15:04:03,565 DEBUG [org.hibernate.transaction.JDBCTransaction] - current autocommit status: true
+2015-07-24 15:04:03,565 DEBUG [org.hibernate.transaction.JDBCTransaction] - disabling autocommit
+2015-07-24 15:04:03,565 DEBUG [org.hibernate.jdbc.AbstractBatcher] - about to open PreparedStatement (open PreparedStatements: 0, globally: 0)
+2015-07-24 15:04:03,565 DEBUG [org.hibernate.SQL] - 
+    update
+        ReceiveEntity 
+    set
+        received=? 
+    where
+        id=?
+2015-07-24 15:04:03,573 DEBUG [org.hibernate.jdbc.AbstractBatcher] - about to close PreparedStatement (open PreparedStatements: 1, globally: 1)
+2015-07-24 15:04:03,573 DEBUG [org.hibernate.transaction.JDBCTransaction] - commit
+2015-07-24 15:04:03,575 DEBUG [org.hibernate.transaction.JDBCTransaction] - re-enabling autocommit
+2015-07-24 15:04:03,575 DEBUG [org.hibernate.transaction.JDBCTransaction] - committed JDBC Connection
+2015-07-24 15:04:03,575 DEBUG [org.hibernate.jdbc.ConnectionManager] - transaction completed on session with on_close connection release mode; be sure to close the session to release JDBC resources!
+2015-07-24 15:04:03,575 DEBUG [org.hibernate.jdbc.ConnectionManager] - releasing JDBC connection [ (open PreparedStatements: 0, globally: 0) (open ResultSets: 0, globally: 0)]
+2015-07-24 15:04:03,576 DEBUG [org.hibernate.jdbc.ConnectionManager] - transaction completed on session with on_close connection release mode; be sure to close the session to release JDBC resources!
+2015-07-24 15:04:03,583 DEBUG [org.hibernate.transaction.JDBCTransaction] - begin
+2015-07-24 15:04:03,583 DEBUG [org.hibernate.jdbc.ConnectionManager] - opening JDBC connection
+2015-07-24 15:04:03,588 DEBUG [org.hibernate.transaction.JDBCTransaction] - current autocommit status: true
+2015-07-24 15:04:03,589 DEBUG [org.hibernate.transaction.JDBCTransaction] - disabling autocommit
+2015-07-24 15:04:03,589 DEBUG [org.hibernate.jdbc.AbstractBatcher] - about to open PreparedStatement (open PreparedStatements: 0, globally: 0)
+2015-07-24 15:04:03,589 DEBUG [org.hibernate.SQL] - 
+    update
+        ReceiveEntity 
+    set
+        received=? 
+    where
+        id=?
+2015-07-24 15:04:03,590 DEBUG [org.hibernate.jdbc.AbstractBatcher] - about to close PreparedStatement (open PreparedStatements: 1, globally: 1)
+2015-07-24 15:04:03,590 DEBUG [org.hibernate.transaction.JDBCTransaction] - commit
+2015-07-24 15:04:03,590 DEBUG [org.hibernate.transaction.JDBCTransaction] - re-enabling autocommit
+2015-07-24 15:04:03,591 DEBUG [org.hibernate.transaction.JDBCTransaction] - committed JDBC Connection
+2015-07-24 15:04:03,591 DEBUG [org.hibernate.jdbc.ConnectionManager] - transaction completed on session with on_close connection release mode; be sure to close the session to release JDBC resources!
+2015-07-24 15:04:03,591 DEBUG [org.hibernate.jdbc.ConnectionManager] - releasing JDBC connection [ (open PreparedStatements: 0, globally: 0) (open ResultSets: 0, globally: 0)]
+2015-07-24 15:04:03,592 DEBUG [org.hibernate.jdbc.ConnectionManager] - transaction completed on session with on_close connection release mode; be sure to close the session to release JDBC resources!
+2015-07-24 15:04:03,600 DEBUG [org.hibernate.transaction.JDBCTransaction] - begin
+2015-07-24 15:04:03,600 DEBUG [org.hibernate.jdbc.ConnectionManager] - opening JDBC connection
+2015-07-24 15:04:03,605 DEBUG [org.hibernate.transaction.JDBCTransaction] - current autocommit status: true
+2015-07-24 15:04:03,605 DEBUG [org.hibernate.transaction.JDBCTransaction] - disabling autocommit
+2015-07-24 15:04:03,606 DEBUG [org.hibernate.jdbc.AbstractBatcher] - about to open PreparedStatement (open PreparedStatements: 0, globally: 0)
+2015-07-24 15:04:03,607 DEBUG [org.hibernate.SQL] - 
+    update
+        ReceiveEntity 
+    set
+        received=? 
+    where
+        id=?
+2015-07-24 15:04:03,608 DEBUG [org.hibernate.jdbc.AbstractBatcher] - about to close PreparedStatement (open PreparedStatements: 1, globally: 1)
+2015-07-24 15:04:03,608 DEBUG [org.hibernate.transaction.JDBCTransaction] - commit
+2015-07-24 15:04:03,609 DEBUG [org.hibernate.transaction.JDBCTransaction] - re-enabling autocommit
+2015-07-24 15:04:03,609 DEBUG [org.hibernate.transaction.JDBCTransaction] - committed JDBC Connection
+2015-07-24 15:04:03,609 DEBUG [org.hibernate.jdbc.ConnectionManager] - transaction completed on session with on_close connection release mode; be sure to close the session to release JDBC resources!
+2015-07-24 15:04:03,609 DEBUG [org.hibernate.jdbc.ConnectionManager] - releasing JDBC connection [ (open PreparedStatements: 0, globally: 0) (open ResultSets: 0, globally: 0)]
+2015-07-24 15:04:03,609 DEBUG [org.hibernate.jdbc.ConnectionManager] - transaction completed on session with on_close connection release mode; be sure to close the session to release JDBC resources!
+2015-07-24 15:04:03,621 DEBUG [org.hibernate.transaction.JDBCTransaction] - begin
+2015-07-24 15:04:03,621 DEBUG [org.hibernate.jdbc.ConnectionManager] - opening JDBC connection
+2015-07-24 15:04:03,627 DEBUG [org.hibernate.transaction.JDBCTransaction] - current autocommit status: true
+2015-07-24 15:04:03,627 DEBUG [org.hibernate.transaction.JDBCTransaction] - disabling autocommit
+2015-07-24 15:04:03,627 DEBUG [org.hibernate.jdbc.AbstractBatcher] - about to open PreparedStatement (open PreparedStatements: 0, globally: 0)
+2015-07-24 15:04:03,630 DEBUG [org.hibernate.SQL] - 
+    update
+        ReceiveEntity 
+    set
+        received=? 
+    where
+        id=?
+2015-07-24 15:04:03,631 DEBUG [org.hibernate.jdbc.AbstractBatcher] - about to close PreparedStatement (open PreparedStatements: 1, globally: 1)
+2015-07-24 15:04:03,631 DEBUG [org.hibernate.transaction.JDBCTransaction] - commit
+2015-07-24 15:04:03,654 DEBUG [org.hibernate.transaction.JDBCTransaction] - re-enabling autocommit
+2015-07-24 15:04:03,655 DEBUG [org.hibernate.transaction.JDBCTransaction] - committed JDBC Connection
+2015-07-24 15:04:03,655 DEBUG [org.hibernate.jdbc.ConnectionManager] - transaction completed on session with on_close connection release mode; be sure to close the session to release JDBC resources!
+2015-07-24 15:04:03,655 DEBUG [org.hibernate.jdbc.ConnectionManager] - releasing JDBC connection [ (open PreparedStatements: 0, globally: 0) (open ResultSets: 0, globally: 0)]
+2015-07-24 15:04:03,655 DEBUG [org.hibernate.jdbc.ConnectionManager] - transaction completed on session with on_close connection release mode; be sure to close the session to release JDBC resources!
+2015-07-24 15:04:03,667 DEBUG [org.hibernate.transaction.JDBCTransaction] - begin
+2015-07-24 15:04:03,667 DEBUG [org.hibernate.jdbc.ConnectionManager] - opening JDBC connection
+2015-07-24 15:04:03,676 DEBUG [org.hibernate.transaction.JDBCTransaction] - current autocommit status: true
+2015-07-24 15:04:03,676 DEBUG [org.hibernate.transaction.JDBCTransaction] - disabling autocommit
+2015-07-24 15:04:03,677 DEBUG [org.hibernate.jdbc.AbstractBatcher] - about to open PreparedStatement (open PreparedStatements: 0, globally: 0)
+2015-07-24 15:04:03,677 DEBUG [org.hibernate.SQL] - 
+    update
+        ReceiveEntity 
+    set
+        received=? 
+    where
+        id=?
+2015-07-24 15:04:03,680 DEBUG [org.hibernate.jdbc.AbstractBatcher] - about to close PreparedStatement (open PreparedStatements: 1, globally: 1)
+2015-07-24 15:04:03,680 DEBUG [org.hibernate.transaction.JDBCTransaction] - commit
+2015-07-24 15:04:03,681 DEBUG [org.hibernate.transaction.JDBCTransaction] - re-enabling autocommit
+2015-07-24 15:04:03,682 DEBUG [org.hibernate.transaction.JDBCTransaction] - committed JDBC Connection
+2015-07-24 15:04:03,682 DEBUG [org.hibernate.jdbc.ConnectionManager] - transaction completed on session with on_close connection release mode; be sure to close the session to release JDBC resources!
+2015-07-24 15:04:03,682 DEBUG [org.hibernate.jdbc.ConnectionManager] - releasing JDBC connection [ (open PreparedStatements: 0, globally: 0) (open ResultSets: 0, globally: 0)]
+2015-07-24 15:04:03,682 DEBUG [org.hibernate.jdbc.ConnectionManager] - transaction completed on session with on_close connection release mode; be sure to close the session to release JDBC resources!
+2015-07-24 15:04:03,691 DEBUG [org.hibernate.transaction.JDBCTransaction] - begin
+2015-07-24 15:04:03,691 DEBUG [org.hibernate.jdbc.ConnectionManager] - opening JDBC connection
+2015-07-24 15:04:03,697 DEBUG [org.hibernate.transaction.JDBCTransaction] - current autocommit status: true
+2015-07-24 15:04:03,697 DEBUG [org.hibernate.transaction.JDBCTransaction] - disabling autocommit
+2015-07-24 15:04:03,698 DEBUG [org.hibernate.jdbc.AbstractBatcher] - about to open PreparedStatement (open PreparedStatements: 0, globally: 0)
+2015-07-24 15:04:03,698 DEBUG [org.hibernate.SQL] - 
+    update
+        ReceiveEntity 
+    set
+        received=? 
+    where
+        id=?
+2015-07-24 15:04:03,698 DEBUG [org.hibernate.jdbc.AbstractBatcher] - about to close PreparedStatement (open PreparedStatements: 1, globally: 1)
+2015-07-24 15:04:03,698 DEBUG [org.hibernate.transaction.JDBCTransaction] - commit
+2015-07-24 15:04:03,701 DEBUG [org.hibernate.transaction.JDBCTransaction] - re-enabling autocommit
+2015-07-24 15:04:03,701 DEBUG [org.hibernate.transaction.JDBCTransaction] - committed JDBC Connection
+2015-07-24 15:04:03,701 DEBUG [org.hibernate.jdbc.ConnectionManager] - transaction completed on session with on_close connection release mode; be sure to close the session to release JDBC resources!
+2015-07-24 15:04:03,701 DEBUG [org.hibernate.jdbc.ConnectionManager] - releasing JDBC connection [ (open PreparedStatements: 0, globally: 0) (open ResultSets: 0, globally: 0)]
+2015-07-24 15:04:03,701 DEBUG [org.hibernate.jdbc.ConnectionManager] - transaction completed on session with on_close connection release mode; be sure to close the session to release JDBC resources!
+2015-07-24 15:04:03,710 DEBUG [org.hibernate.transaction.JDBCTransaction] - begin
+2015-07-24 15:04:03,710 DEBUG [org.hibernate.jdbc.ConnectionManager] - opening JDBC connection
+2015-07-24 15:04:03,720 DEBUG [org.hibernate.transaction.JDBCTransaction] - current autocommit status: true
+2015-07-24 15:04:03,720 DEBUG [org.hibernate.transaction.JDBCTransaction] - disabling autocommit
+2015-07-24 15:04:03,721 DEBUG [org.hibernate.jdbc.AbstractBatcher] - about to open PreparedStatement (open PreparedStatements: 0, globally: 0)
+2015-07-24 15:04:03,721 DEBUG [org.hibernate.SQL] - 
+    update
+        ReceiveEntity 
+    set
+        received=? 
+    where
+        id=?
+2015-07-24 15:04:03,722 DEBUG [org.hibernate.jdbc.AbstractBatcher] - about to close PreparedStatement (open PreparedStatements: 1, globally: 1)
+2015-07-24 15:04:03,722 DEBUG [org.hibernate.transaction.JDBCTransaction] - commit
+2015-07-24 15:04:03,731 DEBUG [org.hibernate.transaction.JDBCTransaction] - re-enabling autocommit
+2015-07-24 15:04:03,731 DEBUG [org.hibernate.transaction.JDBCTransaction] - committed JDBC Connection
+2015-07-24 15:04:03,731 DEBUG [org.hibernate.jdbc.ConnectionManager] - transaction completed on session with on_close connection release mode; be sure to close the session to release JDBC resources!
+2015-07-24 15:04:03,731 DEBUG [org.hibernate.jdbc.ConnectionManager] - releasing JDBC connection [ (open PreparedStatements: 0, globally: 0) (open ResultSets: 0, globally: 0)]
+2015-07-24 15:04:03,731 DEBUG [org.hibernate.jdbc.ConnectionManager] - transaction completed on session with on_close connection release mode; be sure to close the session to release JDBC resources!
+2015-07-24 15:04:03,750 DEBUG [org.hibernate.transaction.JDBCTransaction] - begin
+2015-07-24 15:04:03,750 DEBUG [org.hibernate.jdbc.ConnectionManager] - opening JDBC connection
+2015-07-24 15:04:03,755 DEBUG [org.hibernate.transaction.JDBCTransaction] - current autocommit status: true
+2015-07-24 15:04:03,755 DEBUG [org.hibernate.transaction.JDBCTransaction] - disabling autocommit
+2015-07-24 15:04:03,757 DEBUG [org.hibernate.jdbc.AbstractBatcher] - about to open PreparedStatement (open PreparedStatements: 0, globally: 0)
+2015-07-24 15:04:03,757 DEBUG [org.hibernate.SQL] - 
+    update
+        ReceiveEntity 
+    set
+        received=? 
+    where
+        id=?
+2015-07-24 15:04:03,759 DEBUG [org.hibernate.jdbc.AbstractBatcher] - about to close PreparedStatement (open PreparedStatements: 1, globally: 1)
+2015-07-24 15:04:03,759 DEBUG [org.hibernate.transaction.JDBCTransaction] - commit
+2015-07-24 15:04:03,763 DEBUG [org.hibernate.transaction.JDBCTransaction] - re-enabling autocommit
+2015-07-24 15:04:03,764 DEBUG [org.hibernate.transaction.JDBCTransaction] - committed JDBC Connection
+2015-07-24 15:04:03,764 DEBUG [org.hibernate.jdbc.ConnectionManager] - transaction completed on session with on_close connection release mode; be sure to close the session to release JDBC resources!
+2015-07-24 15:04:03,764 DEBUG [org.hibernate.jdbc.ConnectionManager] - releasing JDBC connection [ (open PreparedStatements: 0, globally: 0) (open ResultSets: 0, globally: 0)]
+2015-07-24 15:04:03,764 DEBUG [org.hibernate.jdbc.ConnectionManager] - transaction completed on session with on_close connection release mode; be sure to close the session to release JDBC resources!
+2015-07-24 15:04:03,778 DEBUG [org.hibernate.transaction.JDBCTransaction] - begin
+2015-07-24 15:04:03,778 DEBUG [org.hibernate.jdbc.ConnectionManager] - opening JDBC connection
+2015-07-24 15:04:03,786 DEBUG [org.hibernate.transaction.JDBCTransaction] - current autocommit status: true
+2015-07-24 15:04:03,786 DEBUG [org.hibernate.transaction.JDBCTransaction] - disabling autocommit
+2015-07-24 15:04:03,786 DEBUG [org.hibernate.jdbc.AbstractBatcher] - about to open PreparedStatement (open PreparedStatements: 0, globally: 0)
+2015-07-24 15:04:03,786 DEBUG [org.hibernate.SQL] - 
+    update
+        ReceiveEntity 
+    set
+        received=? 
+    where
+        id=?
+2015-07-24 15:04:03,796 DEBUG [org.hibernate.jdbc.AbstractBatcher] - about to close PreparedStatement (open PreparedStatements: 1, globally: 1)
+2015-07-24 15:04:03,796 DEBUG [org.hibernate.transaction.JDBCTransaction] - commit
+2015-07-24 15:04:03,797 DEBUG [org.hibernate.transaction.JDBCTransaction] - re-enabling autocommit
+2015-07-24 15:04:03,797 DEBUG [org.hibernate.transaction.JDBCTransaction] - committed JDBC Connection
+2015-07-24 15:04:03,797 DEBUG [org.hibernate.jdbc.ConnectionManager] - transaction completed on session with on_close connection release mode; be sure to close the session to release JDBC resources!
+2015-07-24 15:04:03,798 DEBUG [org.hibernate.jdbc.ConnectionManager] - releasing JDBC connection [ (open PreparedStatements: 0, globally: 0) (open ResultSets: 0, globally: 0)]
+2015-07-24 15:04:03,798 DEBUG [org.hibernate.jdbc.ConnectionManager] - transaction completed on session with on_close connection release mode; be sure to close the session to release JDBC resources!
+2015-07-24 15:04:03,806 DEBUG [org.hibernate.transaction.JDBCTransaction] - begin
+2015-07-24 15:04:03,806 DEBUG [org.hibernate.jdbc.ConnectionManager] - opening JDBC connection
+2015-07-24 15:04:03,819 DEBUG [org.hibernate.transaction.JDBCTransaction] - current autocommit status: true
+2015-07-24 15:04:03,819 DEBUG [org.hibernate.transaction.JDBCTransaction] - disabling autocommit
+2015-07-24 15:04:03,819 DEBUG [org.hibernate.jdbc.AbstractBatcher] - about to open PreparedStatement (open PreparedStatements: 0, globally: 0)
+2015-07-24 15:04:03,819 DEBUG [org.hibernate.SQL] - 
+    update
+        ReceiveEntity 
+    set
+        received=? 
+    where
+        id=?
+2015-07-24 15:04:03,820 DEBUG [org.hibernate.jdbc.AbstractBatcher] - about to close PreparedStatement (open PreparedStatements: 1, globally: 1)
+2015-07-24 15:04:03,822 DEBUG [org.hibernate.transaction.JDBCTransaction] - commit
+2015-07-24 15:04:03,822 DEBUG [org.hibernate.transaction.JDBCTransaction] - re-enabling autocommit
+2015-07-24 15:04:03,823 DEBUG [org.hibernate.transaction.JDBCTransaction] - committed JDBC Connection
+2015-07-24 15:04:03,823 DEBUG [org.hibernate.jdbc.ConnectionManager] - transaction completed on session with on_close connection release mode; be sure to close the session to release JDBC resources!
+2015-07-24 15:04:03,823 DEBUG [org.hibernate.jdbc.ConnectionManager] - releasing JDBC connection [ (open PreparedStatements: 0, globally: 0) (open ResultSets: 0, globally: 0)]
+2015-07-24 15:04:03,823 DEBUG [org.hibernate.jdbc.ConnectionManager] - transaction completed on session with on_close connection release mode; be sure to close the session to release JDBC resources!
+2015-07-24 15:04:03,835 DEBUG [org.hibernate.transaction.JDBCTransaction] - begin
+2015-07-24 15:04:03,835 DEBUG [org.hibernate.jdbc.ConnectionManager] - opening JDBC connection
+2015-07-24 15:04:03,848 DEBUG [org.hibernate.transaction.JDBCTransaction] - current autocommit status: true
+2015-07-24 15:04:03,848 DEBUG [org.hibernate.transaction.JDBCTransaction] - disabling autocommit
+2015-07-24 15:04:03,848 DEBUG [org.hibernate.jdbc.AbstractBatcher] - about to open PreparedStatement (open PreparedStatements: 0, globally: 0)
+2015-07-24 15:04:03,848 DEBUG [org.hibernate.SQL] - 
+    update
+        ReceiveEntity 
+    set
+        received=? 
+    where
+        id=?
+2015-07-24 15:04:03,849 DEBUG [org.hibernate.jdbc.AbstractBatcher] - about to close PreparedStatement (open PreparedStatements: 1, globally: 1)
+2015-07-24 15:04:03,850 DEBUG [org.hibernate.transaction.JDBCTransaction] - commit
+2015-07-24 15:04:03,851 DEBUG [org.hibernate.transaction.JDBCTransaction] - re-enabling autocommit
+2015-07-24 15:04:03,852 DEBUG [org.hibernate.transaction.JDBCTransaction] - committed JDBC Connection
+2015-07-24 15:04:03,852 DEBUG [org.hibernate.jdbc.ConnectionManager] - transaction completed on session with on_close connection release mode; be sure to close the session to release JDBC resources!
+2015-07-24 15:04:03,852 DEBUG [org.hibernate.jdbc.ConnectionManager] - releasing JDBC connection [ (open PreparedStatements: 0, globally: 0) (open ResultSets: 0, globally: 0)]
+2015-07-24 15:04:03,852 DEBUG [org.hibernate.jdbc.ConnectionManager] - transaction completed on session with on_close connection release mode; be sure to close the session to release JDBC resources!
+2015-07-24 15:04:03,863 DEBUG [org.hibernate.transaction.JDBCTransaction] - begin
+2015-07-24 15:04:03,863 DEBUG [org.hibernate.jdbc.ConnectionManager] - opening JDBC connection
+2015-07-24 15:04:03,880 DEBUG [org.hibernate.transaction.JDBCTransaction] - current autocommit status: true
+2015-07-24 15:04:03,880 DEBUG [org.hibernate.transaction.JDBCTransaction] - disabling autocommit
+2015-07-24 15:04:03,881 DEBUG [org.hibernate.jdbc.AbstractBatcher] - about to open PreparedStatement (open PreparedStatements: 0, globally: 0)
+2015-07-24 15:04:03,881 DEBUG [org.hibernate.SQL] - 
+    update
+        ReceiveEntity 
+    set
+        received=? 
+    where
+        id=?
+2015-07-24 15:04:03,882 DEBUG [org.hibernate.jdbc.AbstractBatcher] - about to close PreparedStatement (open PreparedStatements: 1, globally: 1)
+2015-07-24 15:04:03,882 DEBUG [org.hibernate.transaction.JDBCTransaction] - commit
+2015-07-24 15:04:03,883 DEBUG [org.hibernate.transaction.JDBCTransaction] - re-enabling autocommit
+2015-07-24 15:04:03,883 DEBUG [org.hibernate.transaction.JDBCTransaction] - committed JDBC Connection
+2015-07-24 15:04:03,883 DEBUG [org.hibernate.jdbc.ConnectionManager] - transaction completed on session with on_close connection release mode; be sure to close the session to release JDBC resources!
+2015-07-24 15:04:03,883 DEBUG [org.hibernate.jdbc.ConnectionManager] - releasing JDBC connection [ (open PreparedStatements: 0, globally: 0) (open ResultSets: 0, globally: 0)]
+2015-07-24 15:04:03,883 DEBUG [org.hibernate.jdbc.ConnectionManager] - transaction completed on session with on_close connection release mode; be sure to close the session to release JDBC resources!
+2015-07-24 15:04:03,923 DEBUG [org.hibernate.transaction.JDBCTransaction] - begin
+2015-07-24 15:04:03,926 DEBUG [org.hibernate.jdbc.ConnectionManager] - opening JDBC connection
+2015-07-24 15:04:03,935 DEBUG [org.hibernate.transaction.JDBCTransaction] - current autocommit status: true
+2015-07-24 15:04:03,935 DEBUG [org.hibernate.transaction.JDBCTransaction] - disabling autocommit
+2015-07-24 15:04:03,936 DEBUG [org.hibernate.jdbc.AbstractBatcher] - about to open PreparedStatement (open PreparedStatements: 0, globally: 0)
+2015-07-24 15:04:03,945 DEBUG [org.hibernate.SQL] - 
+    update
+        ReceiveEntity 
+    set
+        received=? 
+    where
+        id=?
+2015-07-24 15:04:03,948 DEBUG [org.hibernate.transaction.JDBCTransaction] - begin
+2015-07-24 15:04:03,948 DEBUG [org.hibernate.jdbc.ConnectionManager] - opening JDBC connection
+2015-07-24 15:04:03,954 DEBUG [org.hibernate.jdbc.AbstractBatcher] - about to close PreparedStatement (open PreparedStatements: 1, globally: 1)
+2015-07-24 15:04:03,954 DEBUG [org.hibernate.transaction.JDBCTransaction] - commit
+2015-07-24 15:04:03,955 DEBUG [org.hibernate.transaction.JDBCTransaction] - re-enabling autocommit
+2015-07-24 15:04:03,955 DEBUG [org.hibernate.transaction.JDBCTransaction] - committed JDBC Connection
+2015-07-24 15:04:03,955 DEBUG [org.hibernate.jdbc.ConnectionManager] - transaction completed on session with on_close connection release mode; be sure to close the session to release JDBC resources!
+2015-07-24 15:04:03,956 DEBUG [org.hibernate.jdbc.ConnectionManager] - releasing JDBC connection [ (open PreparedStatements: 0, globally: 0) (open ResultSets: 0, globally: 0)]
+2015-07-24 15:04:03,959 DEBUG [org.hibernate.jdbc.ConnectionManager] - transaction completed on session with on_close connection release mode; be sure to close the session to release JDBC resources!
+2015-07-24 15:04:03,958 DEBUG [org.hibernate.transaction.JDBCTransaction] - current autocommit status: true
+2015-07-24 15:04:03,959 DEBUG [org.hibernate.transaction.JDBCTransaction] - disabling autocommit
+2015-07-24 15:04:03,960 DEBUG [org.hibernate.jdbc.AbstractBatcher] - about to open PreparedStatement (open PreparedStatements: 0, globally: 0)
+2015-07-24 15:04:03,960 DEBUG [org.hibernate.SQL] - 
+    select
+        receiveent0_.id as id0_,
+        receiveent0_.accessionNumber as accessio2_0_,
+        receiveent0_.bmpAxial as bmpAxial0_,
+        receiveent0_.bmpCoronal as bmpCoronal0_,
+        receiveent0_.bmpSagittal as bmpSagit5_0_,
+        receiveent0_.complete as complete0_,
+        receiveent0_.completeTime as complete7_0_,
+        receiveent0_.date as date0_,
+        receiveent0_.failed as failed0_,
+        receiveent0_.ip as ip0_,
+        receiveent0_.jpgAxial as jpgAxial0_,
+        receiveent0_.message as message0_,
+        receiveent0_.patientName as patient13_0_,
+        receiveent0_.port as port0_,
+        receiveent0_.received as received0_,
+        receiveent0_.savedFolder as savedFo16_0_,
+        receiveent0_.speed as speed0_,
+        receiveent0_.studyDate as studyDate0_,
+        receiveent0_.totalFiles as totalFiles0_ 
+    from
+        ReceiveEntity receiveent0_ 
+    where
+        receiveent0_.id=?
+2015-07-24 15:04:03,962 DEBUG [org.hibernate.jdbc.AbstractBatcher] - about to open ResultSet (open ResultSets: 0, globally: 0)
+2015-07-24 15:04:03,962 DEBUG [org.hibernate.jdbc.AbstractBatcher] - about to close ResultSet (open ResultSets: 1, globally: 1)
+2015-07-24 15:04:03,962 DEBUG [org.hibernate.jdbc.AbstractBatcher] - about to close PreparedStatement (open PreparedStatements: 1, globally: 1)
+2015-07-24 15:04:03,962 DEBUG [org.hibernate.transaction.JDBCTransaction] - commit
+2015-07-24 15:04:03,963 DEBUG [org.hibernate.transaction.JDBCTransaction] - re-enabling autocommit
+2015-07-24 15:04:03,964 DEBUG [org.hibernate.transaction.JDBCTransaction] - committed JDBC Connection
+2015-07-24 15:04:03,964 DEBUG [org.hibernate.jdbc.ConnectionManager] - transaction completed on session with on_close connection release mode; be sure to close the session to release JDBC resources!
+2015-07-24 15:04:03,964 DEBUG [org.hibernate.jdbc.ConnectionManager] - releasing JDBC connection [ (open PreparedStatements: 0, globally: 0) (open ResultSets: 0, globally: 0)]
+2015-07-24 15:04:03,964 DEBUG [org.hibernate.jdbc.ConnectionManager] - transaction completed on session with on_close connection release mode; be sure to close the session to release JDBC resources!
+2015-07-24 15:04:03,982 DEBUG [org.hibernate.transaction.JDBCTransaction] - begin
+2015-07-24 15:04:03,982 DEBUG [org.hibernate.jdbc.ConnectionManager] - opening JDBC connection
+2015-07-24 15:04:03,989 DEBUG [org.hibernate.transaction.JDBCTransaction] - current autocommit status: true
+2015-07-24 15:04:03,989 DEBUG [org.hibernate.transaction.JDBCTransaction] - disabling autocommit
+2015-07-24 15:04:03,989 DEBUG [org.hibernate.jdbc.AbstractBatcher] - about to open PreparedStatement (open PreparedStatements: 0, globally: 0)
+2015-07-24 15:04:03,990 DEBUG [org.hibernate.SQL] - 
+    update
+        ReceiveEntity 
+    set
+        received=? 
+    where
+        id=?
+2015-07-24 15:04:03,991 DEBUG [org.hibernate.jdbc.AbstractBatcher] - about to close PreparedStatement (open PreparedStatements: 1, globally: 1)
+2015-07-24 15:04:03,991 DEBUG [org.hibernate.transaction.JDBCTransaction] - commit
+2015-07-24 15:04:03,992 DEBUG [org.hibernate.transaction.JDBCTransaction] - re-enabling autocommit
+2015-07-24 15:04:03,993 DEBUG [org.hibernate.transaction.JDBCTransaction] - committed JDBC Connection
+2015-07-24 15:04:03,993 DEBUG [org.hibernate.jdbc.ConnectionManager] - transaction completed on session with on_close connection release mode; be sure to close the session to release JDBC resources!
+2015-07-24 15:04:03,993 DEBUG [org.hibernate.jdbc.ConnectionManager] - releasing JDBC connection [ (open PreparedStatements: 0, globally: 0) (open ResultSets: 0, globally: 0)]
+2015-07-24 15:04:03,993 DEBUG [org.hibernate.jdbc.ConnectionManager] - transaction completed on session with on_close connection release mode; be sure to close the session to release JDBC resources!
+2015-07-24 15:04:04,004 DEBUG [org.hibernate.transaction.JDBCTransaction] - begin
+2015-07-24 15:04:04,004 DEBUG [org.hibernate.jdbc.ConnectionManager] - opening JDBC connection
+2015-07-24 15:04:04,017 DEBUG [org.hibernate.transaction.JDBCTransaction] - current autocommit status: true
+2015-07-24 15:04:04,017 DEBUG [org.hibernate.transaction.JDBCTransaction] - disabling autocommit
+2015-07-24 15:04:04,017 DEBUG [org.hibernate.jdbc.AbstractBatcher] - about to open PreparedStatement (open PreparedStatements: 0, globally: 0)
+2015-07-24 15:04:04,017 DEBUG [org.hibernate.SQL] - 
+    update
+        ReceiveEntity 
+    set
+        received=? 
+    where
+        id=?
+2015-07-24 15:04:04,018 DEBUG [org.hibernate.jdbc.AbstractBatcher] - about to close PreparedStatement (open PreparedStatements: 1, globally: 1)
+2015-07-24 15:04:04,019 DEBUG [org.hibernate.transaction.JDBCTransaction] - commit
+2015-07-24 15:04:04,020 DEBUG [org.hibernate.transaction.JDBCTransaction] - re-enabling autocommit
+2015-07-24 15:04:04,020 DEBUG [org.hibernate.transaction.JDBCTransaction] - committed JDBC Connection
+2015-07-24 15:04:04,021 DEBUG [org.hibernate.jdbc.ConnectionManager] - transaction completed on session with on_close connection release mode; be sure to close the session to release JDBC resources!
+2015-07-24 15:04:04,021 DEBUG [org.hibernate.jdbc.ConnectionManager] - releasing JDBC connection [ (open PreparedStatements: 0, globally: 0) (open ResultSets: 0, globally: 0)]
+2015-07-24 15:04:04,021 DEBUG [org.hibernate.jdbc.ConnectionManager] - transaction completed on session with on_close connection release mode; be sure to close the session to release JDBC resources!
+2015-07-24 15:04:04,038 DEBUG [org.hibernate.transaction.JDBCTransaction] - begin
+2015-07-24 15:04:04,038 DEBUG [org.hibernate.jdbc.ConnectionManager] - opening JDBC connection
+2015-07-24 15:04:04,043 DEBUG [org.hibernate.transaction.JDBCTransaction] - current autocommit status: true
+2015-07-24 15:04:04,044 DEBUG [org.hibernate.transaction.JDBCTransaction] - disabling autocommit
+2015-07-24 15:04:04,044 DEBUG [org.hibernate.jdbc.AbstractBatcher] - about to open PreparedStatement (open PreparedStatements: 0, globally: 0)
+2015-07-24 15:04:04,044 DEBUG [org.hibernate.SQL] - 
+    update
+        ReceiveEntity 
+    set
+        received=? 
+    where
+        id=?
+2015-07-24 15:04:04,045 DEBUG [org.hibernate.jdbc.AbstractBatcher] - about to close PreparedStatement (open PreparedStatements: 1, globally: 1)
+2015-07-24 15:04:04,045 DEBUG [org.hibernate.transaction.JDBCTransaction] - commit
+2015-07-24 15:04:04,047 DEBUG [org.hibernate.transaction.JDBCTransaction] - re-enabling autocommit
+2015-07-24 15:04:04,047 DEBUG [org.hibernate.transaction.JDBCTransaction] - committed JDBC Connection
+2015-07-24 15:04:04,047 DEBUG [org.hibernate.jdbc.ConnectionManager] - transaction completed on session with on_close connection release mode; be sure to close the session to release JDBC resources!
+2015-07-24 15:04:04,047 DEBUG [org.hibernate.jdbc.ConnectionManager] - releasing JDBC connection [ (open PreparedStatements: 0, globally: 0) (open ResultSets: 0, globally: 0)]
+2015-07-24 15:04:04,048 DEBUG [org.hibernate.jdbc.ConnectionManager] - transaction completed on session with on_close connection release mode; be sure to close the session to release JDBC resources!
+2015-07-24 15:04:04,061 DEBUG [org.hibernate.transaction.JDBCTransaction] - begin
+2015-07-24 15:04:04,061 DEBUG [org.hibernate.jdbc.ConnectionManager] - opening JDBC connection
+2015-07-24 15:04:04,072 DEBUG [org.hibernate.transaction.JDBCTransaction] - current autocommit status: true
+2015-07-24 15:04:04,072 DEBUG [org.hibernate.transaction.JDBCTransaction] - disabling autocommit
+2015-07-24 15:04:04,073 DEBUG [org.hibernate.jdbc.AbstractBatcher] - about to open PreparedStatement (open PreparedStatements: 0, globally: 0)
+2015-07-24 15:04:04,073 DEBUG [org.hibernate.SQL] - 
+    update
+        ReceiveEntity 
+    set
+        received=? 
+    where
+        id=?
+2015-07-24 15:04:04,074 DEBUG [org.hibernate.jdbc.AbstractBatcher] - about to close PreparedStatement (open PreparedStatements: 1, globally: 1)
+2015-07-24 15:04:04,074 DEBUG [org.hibernate.transaction.JDBCTransaction] - commit
+2015-07-24 15:04:04,076 DEBUG [org.hibernate.transaction.JDBCTransaction] - re-enabling autocommit
+2015-07-24 15:04:04,076 DEBUG [org.hibernate.transaction.JDBCTransaction] - committed JDBC Connection
+2015-07-24 15:04:04,076 DEBUG [org.hibernate.jdbc.ConnectionManager] - transaction completed on session with on_close connection release mode; be sure to close the session to release JDBC resources!
+2015-07-24 15:04:04,076 DEBUG [org.hibernate.jdbc.ConnectionManager] - releasing JDBC connection [ (open PreparedStatements: 0, globally: 0) (open ResultSets: 0, globally: 0)]
+2015-07-24 15:04:04,076 DEBUG [org.hibernate.jdbc.ConnectionManager] - transaction completed on session with on_close connection release mode; be sure to close the session to release JDBC resources!
+2015-07-24 15:04:04,088 DEBUG [org.hibernate.transaction.JDBCTransaction] - begin
+2015-07-24 15:04:04,088 DEBUG [org.hibernate.jdbc.ConnectionManager] - opening JDBC connection
+2015-07-24 15:04:04,096 DEBUG [org.hibernate.transaction.JDBCTransaction] - current autocommit status: true
+2015-07-24 15:04:04,096 DEBUG [org.hibernate.transaction.JDBCTransaction] - disabling autocommit
+2015-07-24 15:04:04,096 DEBUG [org.hibernate.jdbc.AbstractBatcher] - about to open PreparedStatement (open PreparedStatements: 0, globally: 0)
+2015-07-24 15:04:04,096 DEBUG [org.hibernate.SQL] - 
+    update
+        ReceiveEntity 
+    set
+        received=? 
+    where
+        id=?
+2015-07-24 15:04:04,097 DEBUG [org.hibernate.jdbc.AbstractBatcher] - about to close PreparedStatement (open PreparedStatements: 1, globally: 1)
+2015-07-24 15:04:04,097 DEBUG [org.hibernate.transaction.JDBCTransaction] - commit
+2015-07-24 15:04:04,105 DEBUG [org.hibernate.transaction.JDBCTransaction] - re-enabling autocommit
+2015-07-24 15:04:04,105 DEBUG [org.hibernate.transaction.JDBCTransaction] - committed JDBC Connection
+2015-07-24 15:04:04,105 DEBUG [org.hibernate.jdbc.ConnectionManager] - transaction completed on session with on_close connection release mode; be sure to close the session to release JDBC resources!
+2015-07-24 15:04:04,105 DEBUG [org.hibernate.jdbc.ConnectionManager] - releasing JDBC connection [ (open PreparedStatements: 0, globally: 0) (open ResultSets: 0, globally: 0)]
+2015-07-24 15:04:04,106 DEBUG [org.hibernate.jdbc.ConnectionManager] - transaction completed on session with on_close connection release mode; be sure to close the session to release JDBC resources!
+2015-07-24 15:04:04,119 DEBUG [org.hibernate.transaction.JDBCTransaction] - begin
+2015-07-24 15:04:04,119 DEBUG [org.hibernate.jdbc.ConnectionManager] - opening JDBC connection
+2015-07-24 15:04:04,126 DEBUG [org.hibernate.transaction.JDBCTransaction] - current autocommit status: true
+2015-07-24 15:04:04,127 DEBUG [org.hibernate.transaction.JDBCTransaction] - disabling autocommit
+2015-07-24 15:04:04,128 DEBUG [org.hibernate.jdbc.AbstractBatcher] - about to open PreparedStatement (open PreparedStatements: 0, globally: 0)
+2015-07-24 15:04:04,129 DEBUG [org.hibernate.SQL] - 
+    update
+        ReceiveEntity 
+    set
+        received=? 
+    where
+        id=?
+2015-07-24 15:04:04,129 DEBUG [org.hibernate.jdbc.AbstractBatcher] - about to close PreparedStatement (open PreparedStatements: 1, globally: 1)
+2015-07-24 15:04:04,131 DEBUG [org.hibernate.transaction.JDBCTransaction] - commit
+2015-07-24 15:04:04,132 DEBUG [org.hibernate.transaction.JDBCTransaction] - re-enabling autocommit
+2015-07-24 15:04:04,154 DEBUG [org.hibernate.transaction.JDBCTransaction] - committed JDBC Connection
+2015-07-24 15:04:04,154 DEBUG [org.hibernate.jdbc.ConnectionManager] - transaction completed on session with on_close connection release mode; be sure to close the session to release JDBC resources!
+2015-07-24 15:04:04,154 DEBUG [org.hibernate.jdbc.ConnectionManager] - releasing JDBC connection [ (open PreparedStatements: 0, globally: 0) (open ResultSets: 0, globally: 0)]
+2015-07-24 15:04:04,154 DEBUG [org.hibernate.jdbc.ConnectionManager] - transaction completed on session with on_close connection release mode; be sure to close the session to release JDBC resources!
+2015-07-24 15:04:04,169 DEBUG [org.hibernate.transaction.JDBCTransaction] - begin
+2015-07-24 15:04:04,169 DEBUG [org.hibernate.jdbc.ConnectionManager] - opening JDBC connection
+2015-07-24 15:04:04,179 DEBUG [org.hibernate.transaction.JDBCTransaction] - current autocommit status: true
+2015-07-24 15:04:04,179 DEBUG [org.hibernate.transaction.JDBCTransaction] - disabling autocommit
+2015-07-24 15:04:04,180 DEBUG [org.hibernate.jdbc.AbstractBatcher] - about to open PreparedStatement (open PreparedStatements: 0, globally: 0)
+2015-07-24 15:04:04,180 DEBUG [org.hibernate.SQL] - 
+    update
+        ReceiveEntity 
+    set
+        received=? 
+    where
+        id=?
+2015-07-24 15:04:04,181 DEBUG [org.hibernate.jdbc.AbstractBatcher] - about to close PreparedStatement (open PreparedStatements: 1, globally: 1)
+2015-07-24 15:04:04,181 DEBUG [org.hibernate.transaction.JDBCTransaction] - commit
+2015-07-24 15:04:04,181 DEBUG [org.hibernate.transaction.JDBCTransaction] - re-enabling autocommit
+2015-07-24 15:04:04,182 DEBUG [org.hibernate.transaction.JDBCTransaction] - committed JDBC Connection
+2015-07-24 15:04:04,182 DEBUG [org.hibernate.jdbc.ConnectionManager] - transaction completed on session with on_close connection release mode; be sure to close the session to release JDBC resources!
+2015-07-24 15:04:04,182 DEBUG [org.hibernate.jdbc.ConnectionManager] - releasing JDBC connection [ (open PreparedStatements: 0, globally: 0) (open ResultSets: 0, globally: 0)]
+2015-07-24 15:04:04,182 DEBUG [org.hibernate.jdbc.ConnectionManager] - transaction completed on session with on_close connection release mode; be sure to close the session to release JDBC resources!
+2015-07-24 15:04:04,199 DEBUG [org.hibernate.transaction.JDBCTransaction] - begin
+2015-07-24 15:04:04,200 DEBUG [org.hibernate.jdbc.ConnectionManager] - opening JDBC connection
+2015-07-24 15:04:04,207 DEBUG [org.hibernate.transaction.JDBCTransaction] - current autocommit status: true
+2015-07-24 15:04:04,208 DEBUG [org.hibernate.transaction.JDBCTransaction] - disabling autocommit
+2015-07-24 15:04:04,209 DEBUG [org.hibernate.jdbc.AbstractBatcher] - about to open PreparedStatement (open PreparedStatements: 0, globally: 0)
+2015-07-24 15:04:04,209 DEBUG [org.hibernate.SQL] - 
+    update
+        ReceiveEntity 
+    set
+        received=? 
+    where
+        id=?
+2015-07-24 15:04:04,209 DEBUG [org.hibernate.jdbc.AbstractBatcher] - about to close PreparedStatement (open PreparedStatements: 1, globally: 1)
+2015-07-24 15:04:04,214 DEBUG [org.hibernate.transaction.JDBCTransaction] - commit
+2015-07-24 15:04:04,217 DEBUG [org.hibernate.transaction.JDBCTransaction] - re-enabling autocommit
+2015-07-24 15:04:04,218 DEBUG [org.hibernate.transaction.JDBCTransaction] - committed JDBC Connection
+2015-07-24 15:04:04,219 DEBUG [org.hibernate.jdbc.ConnectionManager] - transaction completed on session with on_close connection release mode; be sure to close the session to release JDBC resources!
+2015-07-24 15:04:04,219 DEBUG [org.hibernate.jdbc.ConnectionManager] - releasing JDBC connection [ (open PreparedStatements: 0, globally: 0) (open ResultSets: 0, globally: 0)]
+2015-07-24 15:04:04,220 DEBUG [org.hibernate.jdbc.ConnectionManager] - transaction completed on session with on_close connection release mode; be sure to close the session to release JDBC resources!
+2015-07-24 15:04:04,292 DEBUG [org.hibernate.transaction.JDBCTransaction] - begin
+2015-07-24 15:04:04,292 DEBUG [org.hibernate.jdbc.ConnectionManager] - opening JDBC connection
+2015-07-24 15:04:04,297 DEBUG [org.hibernate.transaction.JDBCTransaction] - current autocommit status: true
+2015-07-24 15:04:04,298 DEBUG [org.hibernate.transaction.JDBCTransaction] - disabling autocommit
+2015-07-24 15:04:04,300 DEBUG [org.hibernate.hql.ast.QueryTranslatorImpl] - parse() - HQL: update com.lungcare.dicomfile.entity.ReceiveEntity t set t.accessionNumber =?, t.patientName=?, t.studyDate=? where t.id=?
+2015-07-24 15:04:04,306 DEBUG [org.hibernate.hql.ast.AST] - --- HQL AST ---
+ \-[UPDATE] 'update'
+    +-[FROM] 'FROM'
+    |  \-[RANGE] 'RANGE'
+    |     +-[DOT] '.'
+    |     |  +-[DOT] '.'
+    |     |  |  +-[DOT] '.'
+    |     |  |  |  +-[DOT] '.'
+    |     |  |  |  |  +-[IDENT] 'com'
+    |     |  |  |  |  \-[IDENT] 'lungcare'
+    |     |  |  |  \-[IDENT] 'dicomfile'
+    |     |  |  \-[IDENT] 'entity'
+    |     |  \-[IDENT] 'ReceiveEntity'
+    |     \-[ALIAS] 't'
+    +-[SET] 'set'
+    |  +-[EQ] '='
+    |  |  +-[DOT] '.'
+    |  |  |  +-[IDENT] 't'
+    |  |  |  \-[IDENT] 'accessionNumber'
+    |  |  \-[PARAM] '?'
+    |  +-[EQ] '='
+    |  |  +-[DOT] '.'
+    |  |  |  +-[IDENT] 't'
+    |  |  |  \-[IDENT] 'patientName'
+    |  |  \-[PARAM] '?'
+    |  \-[EQ] '='
+    |     +-[DOT] '.'
+    |     |  +-[IDENT] 't'
+    |     |  \-[IDENT] 'studyDate'
+    |     \-[PARAM] '?'
+    \-[WHERE] 'where'
+       \-[EQ] '='
+          +-[DOT] '.'
+          |  +-[IDENT] 't'
+          |  \-[IDENT] 'id'
+          \-[PARAM] '?'
+
+2015-07-24 15:04:04,306 DEBUG [org.hibernate.hql.ast.ErrorCounter] - throwQueryException() : no errors
+2015-07-24 15:04:04,307 DEBUG [org.hibernate.hql.antlr.HqlSqlBaseWalker] - update << begin [level=1, statement=update]
+2015-07-24 15:04:04,307 DEBUG [org.hibernate.hql.ast.tree.FromElement] - FromClause{level=1} :  com.lungcare.dicomfile.entity.ReceiveEntity (t) -> receiveent0_
+2015-07-24 15:04:04,307 DEBUG [org.hibernate.hql.ast.tree.FromReferenceNode] - Resolved :  t -> id
+2015-07-24 15:04:04,308 DEBUG [org.hibernate.hql.ast.tree.DotNode] - getDataType() : accessionNumber -> org.hibernate.type.StringType@a49f26
+2015-07-24 15:04:04,308 DEBUG [org.hibernate.hql.ast.tree.FromReferenceNode] - Resolved :  t.accessionNumber -> accessionNumber
+2015-07-24 15:04:04,308 DEBUG [org.hibernate.hql.ast.tree.FromReferenceNode] - Resolved :  t -> id
+2015-07-24 15:04:04,308 DEBUG [org.hibernate.hql.ast.tree.DotNode] - getDataType() : patientName -> org.hibernate.type.StringType@a49f26
+2015-07-24 15:04:04,308 DEBUG [org.hibernate.hql.ast.tree.FromReferenceNode] - Resolved :  t.patientName -> patientName
+2015-07-24 15:04:04,308 DEBUG [org.hibernate.hql.ast.tree.FromReferenceNode] - Resolved :  t -> id
+2015-07-24 15:04:04,308 DEBUG [org.hibernate.hql.ast.tree.DotNode] - getDataType() : studyDate -> org.hibernate.type.StringType@a49f26
+2015-07-24 15:04:04,308 DEBUG [org.hibernate.hql.ast.tree.FromReferenceNode] - Resolved :  t.studyDate -> studyDate
+2015-07-24 15:04:04,309 DEBUG [org.hibernate.hql.ast.tree.FromReferenceNode] - Resolved :  t -> id
+2015-07-24 15:04:04,309 DEBUG [org.hibernate.hql.ast.tree.DotNode] - getDataType() : id -> org.hibernate.type.StringType@a49f26
+2015-07-24 15:04:04,309 DEBUG [org.hibernate.hql.ast.tree.FromReferenceNode] - Resolved :  t.id -> id
+2015-07-24 15:04:04,309 DEBUG [org.hibernate.hql.antlr.HqlSqlBaseWalker] - update : finishing up [level=1, statement=update]
+2015-07-24 15:04:04,309 DEBUG [org.hibernate.hql.antlr.HqlSqlBaseWalker] - update >> end [level=1, statement=update]
+2015-07-24 15:04:04,310 DEBUG [org.hibernate.hql.ast.AST] - --- SQL AST ---
+ \-[UPDATE] UpdateStatement: 'update'  querySpaces (ReceiveEntity)
+    +-[FROM] FromClause: 'FROM' FromClause{level=1, fromElementCounter=1, fromElements=1, fromElementByClassAlias=[t], fromElementByTableAlias=[receiveent0_], fromElementsByPath=[], collectionJoinFromElementsByPath=[], impliedElements=[]}
+    |  \-[FROM_FRAGMENT] FromElement: 'ReceiveEntity' FromElement{explicit,not a collection join,not a fetch join,fetch non-lazy properties,classAlias=t,role=null,tableName=ReceiveEntity,tableAlias=receiveent0_,origin=null,colums={,className=com.lungcare.dicomfile.entity.ReceiveEntity}}
+    +-[SET] SqlNode: 'set'
+    |  +-[EQ] BinaryLogicOperatorNode: '='
+    |  |  +-[DOT] DotNode: 'accessionNumber'
+    |  |  |  +-[ALIAS_REF] IdentNode: 'id'
+    |  |  |  \-[IDENT] IdentNode: 'accessionNumber'
+    |  |  \-[PARAM] ParameterNode: '?' {ordinal=0, expectedType=org.hibernate.type.StringType@a49f26}
+    |  +-[EQ] BinaryLogicOperatorNode: '='
+    |  |  +-[DOT] DotNode: 'patientName'
+    |  |  |  +-[ALIAS_REF] IdentNode: 'id'
+    |  |  |  \-[IDENT] IdentNode: 'patientName'
+    |  |  \-[PARAM] ParameterNode: '?' {ordinal=1, expectedType=org.hibernate.type.StringType@a49f26}
+    |  \-[EQ] BinaryLogicOperatorNode: '='
+    |     +-[DOT] DotNode: 'studyDate'
+    |     |  +-[ALIAS_REF] IdentNode: 'id'
+    |     |  \-[IDENT] IdentNode: 'studyDate'
+    |     \-[PARAM] ParameterNode: '?' {ordinal=2, expectedType=org.hibernate.type.StringType@a49f26}
+    \-[WHERE] SqlNode: 'where'
+       \-[EQ] BinaryLogicOperatorNode: '='
+          +-[DOT] DotNode: 'id'
+          |  +-[ALIAS_REF] IdentNode: 'id'
+          |  \-[IDENT] IdentNode: 'id'
+          \-[PARAM] ParameterNode: '?' {ordinal=3, expectedType=org.hibernate.type.StringType@a49f26}
+
+2015-07-24 15:04:04,310 DEBUG [org.hibernate.hql.ast.ErrorCounter] - throwQueryException() : no errors
+2015-07-24 15:04:04,310 DEBUG [org.hibernate.hql.ast.ErrorCounter] - throwQueryException() : no errors
+2015-07-24 15:04:04,311 DEBUG [org.hibernate.jdbc.AbstractBatcher] - about to open PreparedStatement (open PreparedStatements: 0, globally: 0)
+2015-07-24 15:04:04,311 DEBUG [org.hibernate.SQL] - 
+    update
+        ReceiveEntity 
+    set
+        accessionNumber=?,
+        patientName=?,
+        studyDate=? 
+    where
+        id=?
+2015-07-24 15:04:04,330 DEBUG [org.hibernate.jdbc.AbstractBatcher] - about to close PreparedStatement (open PreparedStatements: 1, globally: 1)
+2015-07-24 15:04:04,330 DEBUG [org.hibernate.transaction.JDBCTransaction] - commit
+2015-07-24 15:04:04,331 DEBUG [org.hibernate.transaction.JDBCTransaction] - re-enabling autocommit
+2015-07-24 15:04:04,331 DEBUG [org.hibernate.transaction.JDBCTransaction] - committed JDBC Connection
+2015-07-24 15:04:04,331 DEBUG [org.hibernate.jdbc.ConnectionManager] - transaction completed on session with on_close connection release mode; be sure to close the session to release JDBC resources!
+2015-07-24 15:04:04,331 DEBUG [org.hibernate.jdbc.ConnectionManager] - releasing JDBC connection [ (open PreparedStatements: 0, globally: 0) (open ResultSets: 0, globally: 0)]
+2015-07-24 15:04:04,331 DEBUG [org.hibernate.jdbc.ConnectionManager] - transaction completed on session with on_close connection release mode; be sure to close the session to release JDBC resources!
+2015-07-24 15:04:04,444 DEBUG [org.hibernate.transaction.JDBCTransaction] - begin
+2015-07-24 15:04:04,445 DEBUG [org.hibernate.jdbc.ConnectionManager] - opening JDBC connection
+2015-07-24 15:04:04,464 DEBUG [org.hibernate.transaction.JDBCTransaction] - current autocommit status: true
+2015-07-24 15:04:04,464 DEBUG [org.hibernate.transaction.JDBCTransaction] - disabling autocommit
+2015-07-24 15:04:04,464 DEBUG [org.hibernate.jdbc.AbstractBatcher] - about to open PreparedStatement (open PreparedStatements: 0, globally: 0)
+2015-07-24 15:04:04,464 DEBUG [org.hibernate.SQL] - 
+    select
+        receiveent0_.id as id0_,
+        receiveent0_.accessionNumber as accessio2_0_,
+        receiveent0_.bmpAxial as bmpAxial0_,
+        receiveent0_.bmpCoronal as bmpCoronal0_,
+        receiveent0_.bmpSagittal as bmpSagit5_0_,
+        receiveent0_.complete as complete0_,
+        receiveent0_.completeTime as complete7_0_,
+        receiveent0_.date as date0_,
+        receiveent0_.failed as failed0_,
+        receiveent0_.ip as ip0_,
+        receiveent0_.jpgAxial as jpgAxial0_,
+        receiveent0_.message as message0_,
+        receiveent0_.patientName as patient13_0_,
+        receiveent0_.port as port0_,
+        receiveent0_.received as received0_,
+        receiveent0_.savedFolder as savedFo16_0_,
+        receiveent0_.speed as speed0_,
+        receiveent0_.studyDate as studyDate0_,
+        receiveent0_.totalFiles as totalFiles0_ 
+    from
+        ReceiveEntity receiveent0_ 
+    where
+        receiveent0_.id=?
+2015-07-24 15:04:04,470 DEBUG [org.hibernate.jdbc.AbstractBatcher] - about to open ResultSet (open ResultSets: 0, globally: 0)
+2015-07-24 15:04:04,470 DEBUG [org.hibernate.jdbc.AbstractBatcher] - about to close ResultSet (open ResultSets: 1, globally: 1)
+2015-07-24 15:04:04,470 DEBUG [org.hibernate.jdbc.AbstractBatcher] - about to close PreparedStatement (open PreparedStatements: 1, globally: 1)
+2015-07-24 15:04:04,470 DEBUG [org.hibernate.transaction.JDBCTransaction] - commit
+2015-07-24 15:04:04,471 DEBUG [org.hibernate.transaction.JDBCTransaction] - re-enabling autocommit
+2015-07-24 15:04:04,471 DEBUG [org.hibernate.transaction.JDBCTransaction] - committed JDBC Connection
+2015-07-24 15:04:04,472 DEBUG [org.hibernate.jdbc.ConnectionManager] - transaction completed on session with on_close connection release mode; be sure to close the session to release JDBC resources!
+2015-07-24 15:04:04,473 DEBUG [org.hibernate.jdbc.ConnectionManager] - releasing JDBC connection [ (open PreparedStatements: 0, globally: 0) (open ResultSets: 0, globally: 0)]
+2015-07-24 15:04:04,473 DEBUG [org.hibernate.jdbc.ConnectionManager] - transaction completed on session with on_close connection release mode; be sure to close the session to release JDBC resources!
+2015-07-24 15:04:16,223 DEBUG [org.hibernate.transaction.JDBCTransaction] - begin
+2015-07-24 15:04:16,224 DEBUG [org.hibernate.jdbc.ConnectionManager] - opening JDBC connection
+2015-07-24 15:04:16,229 DEBUG [org.hibernate.transaction.JDBCTransaction] - current autocommit status: true
+2015-07-24 15:04:16,229 DEBUG [org.hibernate.transaction.JDBCTransaction] - disabling autocommit
+2015-07-24 15:04:16,230 DEBUG [org.hibernate.hql.ast.QueryTranslatorImpl] - parse() - HQL: update com.lungcare.dicomfile.entity.ReceiveEntity t set t.jpgAxial =? where t.id=?
+2015-07-24 15:04:16,233 DEBUG [org.hibernate.hql.ast.AST] - --- HQL AST ---
+ \-[UPDATE] 'update'
+    +-[FROM] 'FROM'
+    |  \-[RANGE] 'RANGE'
+    |     +-[DOT] '.'
+    |     |  +-[DOT] '.'
+    |     |  |  +-[DOT] '.'
+    |     |  |  |  +-[DOT] '.'
+    |     |  |  |  |  +-[IDENT] 'com'
+    |     |  |  |  |  \-[IDENT] 'lungcare'
+    |     |  |  |  \-[IDENT] 'dicomfile'
+    |     |  |  \-[IDENT] 'entity'
+    |     |  \-[IDENT] 'ReceiveEntity'
+    |     \-[ALIAS] 't'
+    +-[SET] 'set'
+    |  \-[EQ] '='
+    |     +-[DOT] '.'
+    |     |  +-[IDENT] 't'
+    |     |  \-[IDENT] 'jpgAxial'
+    |     \-[PARAM] '?'
+    \-[WHERE] 'where'
+       \-[EQ] '='
+          +-[DOT] '.'
+          |  +-[IDENT] 't'
+          |  \-[IDENT] 'id'
+          \-[PARAM] '?'
+
+2015-07-24 15:04:16,233 DEBUG [org.hibernate.hql.ast.ErrorCounter] - throwQueryException() : no errors
+2015-07-24 15:04:16,233 DEBUG [org.hibernate.hql.antlr.HqlSqlBaseWalker] - update << begin [level=1, statement=update]
+2015-07-24 15:04:16,233 DEBUG [org.hibernate.hql.ast.tree.FromElement] - FromClause{level=1} :  com.lungcare.dicomfile.entity.ReceiveEntity (t) -> receiveent0_
+2015-07-24 15:04:16,233 DEBUG [org.hibernate.hql.ast.tree.FromReferenceNode] - Resolved :  t -> id
+2015-07-24 15:04:16,233 DEBUG [org.hibernate.hql.ast.tree.DotNode] - getDataType() : jpgAxial -> org.hibernate.type.BooleanType@1d0722c
+2015-07-24 15:04:16,233 DEBUG [org.hibernate.hql.ast.tree.FromReferenceNode] - Resolved :  t.jpgAxial -> jpgAxial
+2015-07-24 15:04:16,234 DEBUG [org.hibernate.hql.ast.tree.FromReferenceNode] - Resolved :  t -> id
+2015-07-24 15:04:16,234 DEBUG [org.hibernate.hql.ast.tree.DotNode] - getDataType() : id -> org.hibernate.type.StringType@a49f26
+2015-07-24 15:04:16,234 DEBUG [org.hibernate.hql.ast.tree.FromReferenceNode] - Resolved :  t.id -> id
+2015-07-24 15:04:16,234 DEBUG [org.hibernate.hql.antlr.HqlSqlBaseWalker] - update : finishing up [level=1, statement=update]
+2015-07-24 15:04:16,234 DEBUG [org.hibernate.hql.antlr.HqlSqlBaseWalker] - update >> end [level=1, statement=update]
+2015-07-24 15:04:16,235 DEBUG [org.hibernate.hql.ast.AST] - --- SQL AST ---
+ \-[UPDATE] UpdateStatement: 'update'  querySpaces (ReceiveEntity)
+    +-[FROM] FromClause: 'FROM' FromClause{level=1, fromElementCounter=1, fromElements=1, fromElementByClassAlias=[t], fromElementByTableAlias=[receiveent0_], fromElementsByPath=[], collectionJoinFromElementsByPath=[], impliedElements=[]}
+    |  \-[FROM_FRAGMENT] FromElement: 'ReceiveEntity' FromElement{explicit,not a collection join,not a fetch join,fetch non-lazy properties,classAlias=t,role=null,tableName=ReceiveEntity,tableAlias=receiveent0_,origin=null,colums={,className=com.lungcare.dicomfile.entity.ReceiveEntity}}
+    +-[SET] SqlNode: 'set'
+    |  \-[EQ] BinaryLogicOperatorNode: '='
+    |     +-[DOT] DotNode: 'jpgAxial'
+    |     |  +-[ALIAS_REF] IdentNode: 'id'
+    |     |  \-[IDENT] IdentNode: 'jpgAxial'
+    |     \-[PARAM] ParameterNode: '?' {ordinal=0, expectedType=org.hibernate.type.BooleanType@1d0722c}
+    \-[WHERE] SqlNode: 'where'
+       \-[EQ] BinaryLogicOperatorNode: '='
+          +-[DOT] DotNode: 'id'
+          |  +-[ALIAS_REF] IdentNode: 'id'
+          |  \-[IDENT] IdentNode: 'id'
+          \-[PARAM] ParameterNode: '?' {ordinal=1, expectedType=org.hibernate.type.StringType@a49f26}
+
+2015-07-24 15:04:16,235 DEBUG [org.hibernate.hql.ast.ErrorCounter] - throwQueryException() : no errors
+2015-07-24 15:04:16,235 DEBUG [org.hibernate.hql.ast.ErrorCounter] - throwQueryException() : no errors
+2015-07-24 15:04:16,235 DEBUG [org.hibernate.jdbc.AbstractBatcher] - about to open PreparedStatement (open PreparedStatements: 0, globally: 0)
+2015-07-24 15:04:16,235 DEBUG [org.hibernate.SQL] - 
+    update
+        ReceiveEntity 
+    set
+        jpgAxial=? 
+    where
+        id=?
+2015-07-24 15:04:16,251 DEBUG [org.hibernate.jdbc.AbstractBatcher] - about to close PreparedStatement (open PreparedStatements: 1, globally: 1)
+2015-07-24 15:04:16,251 DEBUG [org.hibernate.transaction.JDBCTransaction] - commit
+2015-07-24 15:04:16,259 DEBUG [org.hibernate.transaction.JDBCTransaction] - re-enabling autocommit
+2015-07-24 15:04:16,259 DEBUG [org.hibernate.transaction.JDBCTransaction] - committed JDBC Connection
+2015-07-24 15:04:16,259 DEBUG [org.hibernate.jdbc.ConnectionManager] - transaction completed on session with on_close connection release mode; be sure to close the session to release JDBC resources!
+2015-07-24 15:04:16,259 DEBUG [org.hibernate.jdbc.ConnectionManager] - releasing JDBC connection [ (open PreparedStatements: 0, globally: 0) (open ResultSets: 0, globally: 0)]
+2015-07-24 15:04:16,260 DEBUG [org.hibernate.jdbc.ConnectionManager] - transaction completed on session with on_close connection release mode; be sure to close the session to release JDBC resources!
+2015-07-24 15:05:00,109 DEBUG [org.hibernate.transaction.JDBCTransaction] - begin
+2015-07-24 15:05:00,109 DEBUG [org.hibernate.jdbc.ConnectionManager] - opening JDBC connection
+2015-07-24 15:05:00,116 DEBUG [org.hibernate.transaction.JDBCTransaction] - current autocommit status: true
+2015-07-24 15:05:00,116 DEBUG [org.hibernate.transaction.JDBCTransaction] - disabling autocommit
+2015-07-24 15:05:00,116 DEBUG [org.hibernate.hql.ast.QueryTranslatorImpl] - parse() - HQL: update com.lungcare.dicomfile.entity.ReceiveEntity t set t.complete =? where t.id=?
+2015-07-24 15:05:00,119 DEBUG [org.hibernate.hql.ast.AST] - --- HQL AST ---
+ \-[UPDATE] 'update'
+    +-[FROM] 'FROM'
+    |  \-[RANGE] 'RANGE'
+    |     +-[DOT] '.'
+    |     |  +-[DOT] '.'
+    |     |  |  +-[DOT] '.'
+    |     |  |  |  +-[DOT] '.'
+    |     |  |  |  |  +-[IDENT] 'com'
+    |     |  |  |  |  \-[IDENT] 'lungcare'
+    |     |  |  |  \-[IDENT] 'dicomfile'
+    |     |  |  \-[IDENT] 'entity'
+    |     |  \-[IDENT] 'ReceiveEntity'
+    |     \-[ALIAS] 't'
+    +-[SET] 'set'
+    |  \-[EQ] '='
+    |     +-[DOT] '.'
+    |     |  +-[IDENT] 't'
+    |     |  \-[IDENT] 'complete'
+    |     \-[PARAM] '?'
+    \-[WHERE] 'where'
+       \-[EQ] '='
+          +-[DOT] '.'
+          |  +-[IDENT] 't'
+          |  \-[IDENT] 'id'
+          \-[PARAM] '?'
+
+2015-07-24 15:05:00,119 DEBUG [org.hibernate.hql.ast.ErrorCounter] - throwQueryException() : no errors
+2015-07-24 15:05:00,119 DEBUG [org.hibernate.hql.antlr.HqlSqlBaseWalker] - update << begin [level=1, statement=update]
+2015-07-24 15:05:00,120 DEBUG [org.hibernate.hql.ast.tree.FromElement] - FromClause{level=1} :  com.lungcare.dicomfile.entity.ReceiveEntity (t) -> receiveent0_
+2015-07-24 15:05:00,120 DEBUG [org.hibernate.hql.ast.tree.FromReferenceNode] - Resolved :  t -> id
+2015-07-24 15:05:00,120 DEBUG [org.hibernate.hql.ast.tree.DotNode] - getDataType() : complete -> org.hibernate.type.BooleanType@1d0722c
+2015-07-24 15:05:00,121 DEBUG [org.hibernate.hql.ast.tree.FromReferenceNode] - Resolved :  t.complete -> complete
+2015-07-24 15:05:00,121 DEBUG [org.hibernate.hql.ast.tree.FromReferenceNode] - Resolved :  t -> id
+2015-07-24 15:05:00,121 DEBUG [org.hibernate.hql.ast.tree.DotNode] - getDataType() : id -> org.hibernate.type.StringType@a49f26
+2015-07-24 15:05:00,121 DEBUG [org.hibernate.hql.ast.tree.FromReferenceNode] - Resolved :  t.id -> id
+2015-07-24 15:05:00,121 DEBUG [org.hibernate.hql.antlr.HqlSqlBaseWalker] - update : finishing up [level=1, statement=update]
+2015-07-24 15:05:00,121 DEBUG [org.hibernate.hql.antlr.HqlSqlBaseWalker] - update >> end [level=1, statement=update]
+2015-07-24 15:05:00,122 DEBUG [org.hibernate.hql.ast.AST] - --- SQL AST ---
+ \-[UPDATE] UpdateStatement: 'update'  querySpaces (ReceiveEntity)
+    +-[FROM] FromClause: 'FROM' FromClause{level=1, fromElementCounter=1, fromElements=1, fromElementByClassAlias=[t], fromElementByTableAlias=[receiveent0_], fromElementsByPath=[], collectionJoinFromElementsByPath=[], impliedElements=[]}
+    |  \-[FROM_FRAGMENT] FromElement: 'ReceiveEntity' FromElement{explicit,not a collection join,not a fetch join,fetch non-lazy properties,classAlias=t,role=null,tableName=ReceiveEntity,tableAlias=receiveent0_,origin=null,colums={,className=com.lungcare.dicomfile.entity.ReceiveEntity}}
+    +-[SET] SqlNode: 'set'
+    |  \-[EQ] BinaryLogicOperatorNode: '='
+    |     +-[DOT] DotNode: 'complete'
+    |     |  +-[ALIAS_REF] IdentNode: 'id'
+    |     |  \-[IDENT] IdentNode: 'complete'
+    |     \-[PARAM] ParameterNode: '?' {ordinal=0, expectedType=org.hibernate.type.BooleanType@1d0722c}
+    \-[WHERE] SqlNode: 'where'
+       \-[EQ] BinaryLogicOperatorNode: '='
+          +-[DOT] DotNode: 'id'
+          |  +-[ALIAS_REF] IdentNode: 'id'
+          |  \-[IDENT] IdentNode: 'id'
+          \-[PARAM] ParameterNode: '?' {ordinal=1, expectedType=org.hibernate.type.StringType@a49f26}
+
+2015-07-24 15:05:00,122 DEBUG [org.hibernate.hql.ast.ErrorCounter] - throwQueryException() : no errors
+2015-07-24 15:05:00,122 DEBUG [org.hibernate.hql.ast.ErrorCounter] - throwQueryException() : no errors
+2015-07-24 15:05:00,122 DEBUG [org.hibernate.jdbc.AbstractBatcher] - about to open PreparedStatement (open PreparedStatements: 0, globally: 0)
+2015-07-24 15:05:00,122 DEBUG [org.hibernate.SQL] - 
+    update
+        ReceiveEntity 
+    set
+        complete=? 
+    where
+        id=?
+2015-07-24 15:05:00,125 DEBUG [org.hibernate.jdbc.AbstractBatcher] - about to close PreparedStatement (open PreparedStatements: 1, globally: 1)
+2015-07-24 15:05:00,125 DEBUG [org.hibernate.transaction.JDBCTransaction] - commit
+2015-07-24 15:05:00,126 DEBUG [org.hibernate.transaction.JDBCTransaction] - re-enabling autocommit
+2015-07-24 15:05:00,127 DEBUG [org.hibernate.transaction.JDBCTransaction] - committed JDBC Connection
+2015-07-24 15:05:00,127 DEBUG [org.hibernate.jdbc.ConnectionManager] - transaction completed on session with on_close connection release mode; be sure to close the session to release JDBC resources!
+2015-07-24 15:05:00,127 DEBUG [org.hibernate.jdbc.ConnectionManager] - releasing JDBC connection [ (open PreparedStatements: 0, globally: 0) (open ResultSets: 0, globally: 0)]
+2015-07-24 15:05:00,127 DEBUG [org.hibernate.jdbc.ConnectionManager] - transaction completed on session with on_close connection release mode; be sure to close the session to release JDBC resources!
+2015-07-24 15:05:00,127 DEBUG [org.hibernate.transaction.JDBCTransaction] - begin
+2015-07-24 15:05:00,127 DEBUG [org.hibernate.jdbc.ConnectionManager] - opening JDBC connection
+2015-07-24 15:05:00,133 DEBUG [org.hibernate.transaction.JDBCTransaction] - current autocommit status: true
+2015-07-24 15:05:00,133 DEBUG [org.hibernate.transaction.JDBCTransaction] - disabling autocommit
+2015-07-24 15:05:00,133 DEBUG [org.hibernate.hql.ast.QueryTranslatorImpl] - parse() - HQL: update com.lungcare.dicomfile.entity.ReceiveEntity t set t.completeTime=? where t.id=?
+2015-07-24 15:05:00,138 DEBUG [org.hibernate.hql.ast.AST] - --- HQL AST ---
+ \-[UPDATE] 'update'
+    +-[FROM] 'FROM'
+    |  \-[RANGE] 'RANGE'
+    |     +-[DOT] '.'
+    |     |  +-[DOT] '.'
+    |     |  |  +-[DOT] '.'
+    |     |  |  |  +-[DOT] '.'
+    |     |  |  |  |  +-[IDENT] 'com'
+    |     |  |  |  |  \-[IDENT] 'lungcare'
+    |     |  |  |  \-[IDENT] 'dicomfile'
+    |     |  |  \-[IDENT] 'entity'
+    |     |  \-[IDENT] 'ReceiveEntity'
+    |     \-[ALIAS] 't'
+    +-[SET] 'set'
+    |  \-[EQ] '='
+    |     +-[DOT] '.'
+    |     |  +-[IDENT] 't'
+    |     |  \-[IDENT] 'completeTime'
+    |     \-[PARAM] '?'
+    \-[WHERE] 'where'
+       \-[EQ] '='
+          +-[DOT] '.'
+          |  +-[IDENT] 't'
+          |  \-[IDENT] 'id'
+          \-[PARAM] '?'
+
+2015-07-24 15:05:00,138 DEBUG [org.hibernate.hql.ast.ErrorCounter] - throwQueryException() : no errors
+2015-07-24 15:05:00,138 DEBUG [org.hibernate.hql.antlr.HqlSqlBaseWalker] - update << begin [level=1, statement=update]
+2015-07-24 15:05:00,138 DEBUG [org.hibernate.hql.ast.tree.FromElement] - FromClause{level=1} :  com.lungcare.dicomfile.entity.ReceiveEntity (t) -> receiveent0_
+2015-07-24 15:05:00,138 DEBUG [org.hibernate.hql.ast.tree.FromReferenceNode] - Resolved :  t -> id
+2015-07-24 15:05:00,138 DEBUG [org.hibernate.hql.ast.tree.DotNode] - getDataType() : completeTime -> org.hibernate.type.IntegerType@489df2
+2015-07-24 15:05:00,139 DEBUG [org.hibernate.hql.ast.tree.FromReferenceNode] - Resolved :  t.completeTime -> completeTime
+2015-07-24 15:05:00,139 DEBUG [org.hibernate.hql.ast.tree.FromReferenceNode] - Resolved :  t -> id
+2015-07-24 15:05:00,139 DEBUG [org.hibernate.hql.ast.tree.DotNode] - getDataType() : id -> org.hibernate.type.StringType@a49f26
+2015-07-24 15:05:00,139 DEBUG [org.hibernate.hql.ast.tree.FromReferenceNode] - Resolved :  t.id -> id
+2015-07-24 15:05:00,139 DEBUG [org.hibernate.hql.antlr.HqlSqlBaseWalker] - update : finishing up [level=1, statement=update]
+2015-07-24 15:05:00,139 DEBUG [org.hibernate.hql.antlr.HqlSqlBaseWalker] - update >> end [level=1, statement=update]
+2015-07-24 15:05:00,140 DEBUG [org.hibernate.hql.ast.AST] - --- SQL AST ---
+ \-[UPDATE] UpdateStatement: 'update'  querySpaces (ReceiveEntity)
+    +-[FROM] FromClause: 'FROM' FromClause{level=1, fromElementCounter=1, fromElements=1, fromElementByClassAlias=[t], fromElementByTableAlias=[receiveent0_], fromElementsByPath=[], collectionJoinFromElementsByPath=[], impliedElements=[]}
+    |  \-[FROM_FRAGMENT] FromElement: 'ReceiveEntity' FromElement{explicit,not a collection join,not a fetch join,fetch non-lazy properties,classAlias=t,role=null,tableName=ReceiveEntity,tableAlias=receiveent0_,origin=null,colums={,className=com.lungcare.dicomfile.entity.ReceiveEntity}}
+    +-[SET] SqlNode: 'set'
+    |  \-[EQ] BinaryLogicOperatorNode: '='
+    |     +-[DOT] DotNode: 'completeTime'
+    |     |  +-[ALIAS_REF] IdentNode: 'id'
+    |     |  \-[IDENT] IdentNode: 'completeTime'
+    |     \-[PARAM] ParameterNode: '?' {ordinal=0, expectedType=org.hibernate.type.IntegerType@489df2}
+    \-[WHERE] SqlNode: 'where'
+       \-[EQ] BinaryLogicOperatorNode: '='
+          +-[DOT] DotNode: 'id'
+          |  +-[ALIAS_REF] IdentNode: 'id'
+          |  \-[IDENT] IdentNode: 'id'
+          \-[PARAM] ParameterNode: '?' {ordinal=1, expectedType=org.hibernate.type.StringType@a49f26}
+
+2015-07-24 15:05:00,143 DEBUG [org.hibernate.hql.ast.ErrorCounter] - throwQueryException() : no errors
+2015-07-24 15:05:00,144 DEBUG [org.hibernate.hql.ast.ErrorCounter] - throwQueryException() : no errors
+2015-07-24 15:05:00,144 DEBUG [org.hibernate.jdbc.AbstractBatcher] - about to open PreparedStatement (open PreparedStatements: 0, globally: 0)
+2015-07-24 15:05:00,144 DEBUG [org.hibernate.SQL] - 
+    update
+        ReceiveEntity 
+    set
+        completeTime=? 
+    where
+        id=?
+2015-07-24 15:05:00,160 DEBUG [org.hibernate.jdbc.AbstractBatcher] - about to close PreparedStatement (open PreparedStatements: 1, globally: 1)
+2015-07-24 15:05:00,160 DEBUG [org.hibernate.transaction.JDBCTransaction] - commit
+2015-07-24 15:05:00,175 DEBUG [org.hibernate.transaction.JDBCTransaction] - re-enabling autocommit
+2015-07-24 15:05:00,175 DEBUG [org.hibernate.transaction.JDBCTransaction] - committed JDBC Connection
+2015-07-24 15:05:00,175 DEBUG [org.hibernate.jdbc.ConnectionManager] - transaction completed on session with on_close connection release mode; be sure to close the session to release JDBC resources!
+2015-07-24 15:05:00,175 DEBUG [org.hibernate.jdbc.ConnectionManager] - releasing JDBC connection [ (open PreparedStatements: 0, globally: 0) (open ResultSets: 0, globally: 0)]
+2015-07-24 15:05:00,175 DEBUG [org.hibernate.jdbc.ConnectionManager] - transaction completed on session with on_close connection release mode; be sure to close the session to release JDBC resources!

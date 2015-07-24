@@ -49,13 +49,12 @@ public class RemoteFileTransferDAOImp implements IRemoteFileTransferDAO {
 
 	private static Logger logger = Logger.getLogger(RemoteFileTransferDAOImp.class);
 	private static  String SAVEFOLDER_PATH = new File("").getAbsolutePath() +"/src/main/webapp/testFile/";
-	//private static final String SAVEFOLDER_PATH = "G:\\wjlProgramFiles\\local-test-data\\testFile\\";
 	private static  String BMPFOLDER_PATH = new File("").getAbsolutePath() +"/src/main/webapp/allBmps/";
-	//private static final String BMPFOLDER_PATH = "G:\\wjlProgramFiles\\local-test-data\\allBmps\\";
 	//private static final String SEND_IP = "192.168.1.13";
 	//private static final int SEND_PORT = 8787;
 	//private static final int PAGESIZE = 4;
 	private SessionFactory sessionFactory;
+	
 	@Autowired
 	private IAlgorithmDAO algorithmDAOImp;
 	public void setSessionFactory(SessionFactory sessionFactory) {
@@ -77,8 +76,8 @@ public class RemoteFileTransferDAOImp implements IRemoteFileTransferDAO {
 		System.out.println("ip : " + remoteHostString);
 		receiveEntity.setIp(remoteHostString);//设置ip
 		
-		SAVEFOLDER_PATH = new File(request.getServletContext().getRealPath("/WEB-INF")).getParent()+"//testFile/";
-		BMPFOLDER_PATH = new File(request.getServletContext().getRealPath("/WEB-INF")).getParent()+"//allBmps/";
+		SAVEFOLDER_PATH = new File(request.getServletContext().getRealPath("/WEB-INF")).getParent()+"/testFile/";
+		BMPFOLDER_PATH = new File(request.getServletContext().getRealPath("/WEB-INF")).getParent()+"/allBmps/";
 		
 		int port = request.getRemotePort();
 		receiveEntity.setPort(port);//设置port
