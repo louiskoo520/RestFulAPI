@@ -48,9 +48,9 @@ import com.sun.jersey.multipart.file.FileDataBodyPart;
 public class RemoteFileTransferDAOImp implements IRemoteFileTransferDAO {
 
 	private static Logger logger = Logger.getLogger(RemoteFileTransferDAOImp.class);
-	private static final String SAVEFOLDER_PATH = new File("").getAbsolutePath() +"/src/main/webapp/testFile/";
+	private static  String SAVEFOLDER_PATH = new File("").getAbsolutePath() +"/src/main/webapp/testFile/";
 	//private static final String SAVEFOLDER_PATH = "G:\\wjlProgramFiles\\local-test-data\\testFile\\";
-	private static final String BMPFOLDER_PATH = new File("").getAbsolutePath() +"/src/main/webapp/allBmps/";
+	private static  String BMPFOLDER_PATH = new File("").getAbsolutePath() +"/src/main/webapp/allBmps/";
 	//private static final String BMPFOLDER_PATH = "G:\\wjlProgramFiles\\local-test-data\\allBmps\\";
 	//private static final String SEND_IP = "192.168.1.13";
 	//private static final int SEND_PORT = 8787;
@@ -76,7 +76,10 @@ public class RemoteFileTransferDAOImp implements IRemoteFileTransferDAO {
 		}
 		System.out.println("ip : " + remoteHostString);
 		receiveEntity.setIp(remoteHostString);//设置ip
-
+		
+		SAVEFOLDER_PATH = new File(request.getServletContext().getRealPath("/WEB-INF")).getParent()+"//testFile/";
+		BMPFOLDER_PATH = new File(request.getServletContext().getRealPath("/WEB-INF")).getParent()+"//allBmps/";
+		
 		int port = request.getRemotePort();
 		receiveEntity.setPort(port);//设置port
 		
@@ -175,6 +178,7 @@ public class RemoteFileTransferDAOImp implements IRemoteFileTransferDAO {
 						int completeTime = (int) (overDate.getTime()-startDate.getTime());
 						updateReceiveEntityCompleteTime(receiveEntity, completeTime);
 						System.out.println("segOver..........................................................................");
+						System.out.println(SAVEFOLDER_PATH);
 					}
 				}
 		).start();
@@ -194,29 +198,23 @@ public class RemoteFileTransferDAOImp implements IRemoteFileTransferDAO {
 	public ReceiveEntity getReceiveEntity(String id) {
 		Session session = this.sessionFactory.getCurrentSession();
 		if (session != null) {
-			System.out
-					.println("this.sessionFactory.getCurrentSession().isOpen()");
 			Transaction transaction = session.beginTransaction();
-			Query query = session
-					.createQuery("from ReceiveEntity t where t.id=?");
+			Query query = session.createQuery("from ReceiveEntity t where t.id=?");
 			query.setString(0, id);
 			@SuppressWarnings("unchecked")
 			List<ReceiveEntity> list = query.list();
 			transaction.commit();
 			for (Iterator<ReceiveEntity> iterator = list.iterator(); iterator.hasNext();) {
 				ReceiveEntity receiveEntity = (ReceiveEntity) iterator.next();
-				System.out.println(receiveEntity.getIp() + "  "
-						+ receiveEntity.getTotalFiles());
+				System.out.println(receiveEntity.getIp() + "  " + receiveEntity.getTotalFiles());
 			}
 			if (list != null && list.size() > 0) {
 				return list.get(0);
 			}
 		} else {
-			System.out
-					.println("this.sessionFactory.getCurrentSession().is null");
+			System.out.println("this.sessionFactory.getCurrentSession().is null");
 			return null;
 		}
-
 		return null;
 	}
 
@@ -241,7 +239,6 @@ public class RemoteFileTransferDAOImp implements IRemoteFileTransferDAO {
 		fileName = String.valueOf(index);
 		System.out.println("changeover:"+fileName);
 		String filePath = SAVEFOLDER_PATH + folder + "\\" + fileName;
-
 		try {
 			int read = 0;
 			byte[] bytes = new byte[1024];
@@ -647,15 +644,19 @@ public class RemoteFileTransferDAOImp implements IRemoteFileTransferDAO {
 		} else {
 			System.out.println("this.sessionFactory.getCurrentSession().is null");
 		}
+		
+		ReceiveEntity receiveEntity = getReceiveEntity(id);
+		String patientName = receiveEntity.getPatientName();
+		
 		File file1 = new File(BMPFOLDER_PATH+id);
 		if(file1.exists()){
 			deleteFile(file1);
 		}
-		File file2 = new File(BMPFOLDER_PATH+id+".zip");
+		File file2 = new File(patientName+"_"+BMPFOLDER_PATH+id+".zip");
 		if(file2.exists()){
 			deleteFile(file2);
 		}
-		File file3 = new File(SAVEFOLDER_PATH+id+".zip");
+		File file3 = new File(patientName+"_"+SAVEFOLDER_PATH+id+".zip");
 		if(file3.exists()){
 			deleteFile(file3);
 		}

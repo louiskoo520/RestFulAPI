@@ -3,11 +3,11 @@
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>com.lungcare.dicomfile</groupId>
-  <artifactId>transfermaven</artifactId>
+  <artifactId>transfer</artifactId>
   <version>0.0.1-SNAPSHOT</version>
   <packaging>war</packaging>
 
-  <name>transfermaven</name>
+  <name>transfer</name>
   <url>http://maven.apache.org</url>
 
   <properties>
@@ -204,8 +204,13 @@
           <dependency>
  <groupId>org.slf4j</groupId>
  <artifactId>slf4j-nop</artifactId>
- <version>1.5.2</version>
+ <version>1.6.4</version>
    </dependency>
+   <dependency>
+	<groupId>org.slf4j</groupId>
+	<artifactId>slf4j-api</artifactId>
+	<version>1.6.4</version>
+</dependency>
      <dependency>
        <groupId>org.hibernate</groupId>
        <artifactId>hibernate-core</artifactId>
@@ -289,7 +294,7 @@
   </dependencies>
   
 <build>
-		<finalName>transfermaven</finalName>
+		<finalName>transfer</finalName>
 		<plugins>
 		   
 				<plugin>
@@ -336,7 +341,7 @@
           <phase>package</phase>
           <configuration>
             <tasks>
-              <copy tofile="${catalina.home}/webapps/transfermaven.war" file="${project.build.directory}/transfermaven.war"/>
+              <copy tofile="${catalina.home}/webapps/transfer.war" file="${project.build.directory}/transfer.war"/>
             </tasks>
           </configuration>
           <goals>

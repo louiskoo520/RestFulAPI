@@ -3,7 +3,7 @@
   type="WEB"
   name="WebRestService"
   id="myeclipse.1435385958919"
-  context-root="/transfer"
+  context-root="/transfermaven"
   j2ee-spec="6.0"
   archive="WebRestService.war">
   <attributes>
