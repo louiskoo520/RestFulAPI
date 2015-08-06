@@ -6,7 +6,7 @@
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/java"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/test/java"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/test/resources"/>
-        <property name="context-root" value="/transfermaven"/>
         <property name="java-output-path" value="/WebRestService/src/main/webapp/WEB-INF/classes"/>
+        <property name="context-root" value="/transfer"/>
     </wb-module>
 </project-modules>
