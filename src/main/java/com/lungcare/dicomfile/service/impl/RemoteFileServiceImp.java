@@ -21,9 +21,10 @@ public class RemoteFileServiceImp implements IRemoteFileService {
 	public void uploadFile(FormDataMultiPart formParams,HttpServletRequest request, String cid) {
 		remoteFileTransferDAO.uploadFile(formParams, request, cid);
 	}
-
-	public byte[] downloadFile(HttpServletRequest req) {
-		return remoteFileTransferDAO.downloadFile(req);
+	
+	@Override
+	public void uploadSingleFile(FormDataMultiPart formParams,HttpServletRequest request, String cid) {
+		remoteFileTransferDAO.uploadSingleFile(formParams, request, cid);
 	}
 
 	public ReceiveEntity getReceiveEntity(String id) {
@@ -46,11 +47,22 @@ public class RemoteFileServiceImp implements IRemoteFileService {
 		return remoteFileTransferDAO.getAllSendEntity();
 	}
 
-	@Override
 	public List<BmpPathEntity> getAllBmpPath(String path) {
-		// TODO Auto-generated method stub
 		return remoteFileTransferDAO.getAllBmpPath(path);
 	}
+
+	public void deleteCompleteData(String id) {
+		remoteFileTransferDAO.deleteCompleteData(id);
+	}
 	
+	public void reHandlerSeg(String id) {
+		remoteFileTransferDAO.reHandlerSeg(id);
+	}
 	
+	public String downloadDCM(String id) {
+		return remoteFileTransferDAO.downloadDCM(id);
+	}
+	public String downloadSeg(String id) {
+		return remoteFileTransferDAO.downloadSeg(id);
+	}
 }

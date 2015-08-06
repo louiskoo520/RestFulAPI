@@ -44,9 +44,9 @@ public class MorphologicalSegment {
 			folder1.mkdir();
 			File folder2 = new File(bmpSaveSagittalString);
 			folder2.mkdir();
-			moSegment.demo(dicomPathString,bmpSavrAxialString,0,1);
-			moSegment.demo(dicomPathString,bmpSaveCoronalString,1,1);
-			moSegment.demo(dicomPathString,bmpSaveSagittalString,1,0);
+			moSegment.demo_zlf_boundingbox(dicomPathString,bmpSavrAxialString, 100 ,2 ,0,1);
+			//moSegment.demo_zlf(dicomPathString,bmpSaveCoronalString,1,1);
+			//moSegment.demo_zlf(dicomPathString,bmpSaveSagittalString,1,0);
             //moSegment.demo(dicomPath, bmpSavePath);
         } catch (MWException e) {
             e.printStackTrace();

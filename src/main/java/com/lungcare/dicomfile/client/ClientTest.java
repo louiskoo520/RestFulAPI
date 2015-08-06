@@ -9,5 +9,7 @@ public class ClientTest {
 		WebResource resource = client
 				.resource("http://localhost:8787/transfer/rest/remotefile/addSend");
 		System.out.println(resource.get(String.class));
+		
+		
 	}
 }

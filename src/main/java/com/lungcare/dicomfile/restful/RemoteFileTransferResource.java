@@ -2,6 +2,7 @@ package com.lungcare.dicomfile.restful;
 
 
 
+import java.io.File;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -13,6 +14,8 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
+import javax.ws.rs.core.Response.ResponseBuilder;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -30,7 +33,7 @@ public class RemoteFileTransferResource {
 
 	}
 
-	private static final String SUCCESS_RESPONSE = "Successful";
+	//private static final String SUCCESS_RESPONSE = "Successful";
 
 	@Autowired
 	private IRemoteFileService remoteFileService;
@@ -43,48 +46,54 @@ public class RemoteFileTransferResource {
 	@Consumes(MediaType.MULTIPART_FORM_DATA)
 	@Produces("text/plain")
 	@Path("/multipleFiles/{id}")
-	public String uploadMultiFiles(FormDataMultiPart formParams,
+	public void uploadMultiFiles(FormDataMultiPart formParams,
 			@Context HttpServletRequest request, @PathParam("id") String cid) {
-		//receivedMap.put(receiveEntity.getId(), receiveEntity);
 		remoteFileService.uploadFile(formParams, request , cid);	
-		return SUCCESS_RESPONSE;
 	}
 	
-//	@GET
-//	@Path("/downloadZip")
-//	@Produces(MediaType.APPLICATION_JSON)
-//	@Consumes(MediaType.APPLICATION_JSON)
-//	public List<String> downloadZip() throws JSONException{
-//		//String pathString = RemoteFileTransferResource.class.getClass().getResource("/").getPath().replace("target/classes/", "src/main/webapp/testFile/");
-//		String pathString=new File("").getAbsolutePath();
-//		//String pathString ="G:/wjlProgramFiles/local-git-repository/src/main/webapp/testFile/";
-//		pathString += "/src/main/webapp/testFile/";
-//		//ZipUtils.createZip(pathString+cid, pathString+cid+".zip");
-//		List<String> zipList = getAllZip(pathString);
-//		return zipList;
-//	}
-//	
-//	public List<String> getAllZip(String path) {
-//		File file = new File(path);
-//		String test[];
-//		List<String> zipList = new ArrayList<String>(); 
-//		test = file.list();
-//		for (int i = 0; i < test.length; i++) {
-//			File testFile = new File(path+test[i]);
-//			if(!testFile.isDirectory()){
-//				zipList.add(test[i]);
-//			}
-//		}
-//		return zipList;
-//	}
-	
-//	@GET
-//	@Path("/download")
-//	@Produces(MediaType.APPLICATION_OCTET_STREAM)
-//	public byte[] download(@Context HttpServletRequest req)throws Exception {
-//		return remoteFileService.downloadFile(req);
-//	}
+	@POST
+	@Consumes(MediaType.MULTIPART_FORM_DATA)
+	@Produces("text/plain")
+	@Path("/singleFile/{id}")
+	public void uploadSingleFiles(FormDataMultiPart formParams,@Context HttpServletRequest request, @PathParam("id") String cid) {
+		remoteFileService.uploadSingleFile(formParams, request , cid);	
+	}
 
+    @GET
+    @Path("/downloadDCM/{id}")
+    @Produces(MediaType.MULTIPART_FORM_DATA)
+	public Response downloadDCM(@PathParam("id") String id){
+        String pathString = remoteFileService.downloadDCM(id);
+    	File download = new File(pathString);
+    	if(download.exists()){
+    		String fileName = pathString.substring(pathString.lastIndexOf("//")+1);
+    		fileName = fileName.substring(fileName.lastIndexOf("/")+1);
+    		System.out.println(download.length());
+    		ResponseBuilder response = Response.ok((Object)download);
+    		response.header("Content-Disposition", "attachment; filename="+fileName);
+    		return response.build();
+    	}
+    	return null;
+	}
+    
+    @GET
+    @Path("/downloadSeg/{id}")
+    @Produces(MediaType.MULTIPART_FORM_DATA)
+    public Response downloadSeg(@PathParam("id") String id){
+    	String pathString = remoteFileService.downloadSeg(id);
+    	File download = new File(pathString);
+    	if(download.exists()){
+    		String fileName = pathString.substring(pathString.lastIndexOf("//")+1);
+    		fileName = fileName.substring(fileName.lastIndexOf("/")+1);
+    		System.out.println(download.length());
+    		ResponseBuilder response = Response.ok((Object)download);
+    		response.header("Content-Disposition", "attachment; filename="+fileName);
+    		return response.build();
+    	}
+    	return null;
+    }
+	
+	
 	@GET
 	@Path("add")
 	@Produces("text/html")
@@ -116,6 +125,22 @@ public class RemoteFileTransferResource {
 	@Consumes(MediaType.APPLICATION_JSON)
 	public List<ReceiveEntity> GetCompleteReceiveEntity(){
 		return  remoteFileService.getCompleteReceiveEntity();
+	}
+	
+	@POST
+	@Path("deleteCompleteData/{id}")
+	@Consumes(MediaType.MULTIPART_FORM_DATA)
+	@Produces("text/plain")
+	public void deleteCompleteData(@PathParam("id") String cid) {
+		remoteFileService.deleteCompleteData(cid);
+	}
+	
+	@POST
+	@Path("reHandlerSeg/{id}")
+	@Consumes(MediaType.MULTIPART_FORM_DATA)
+	@Produces("text/plain")
+	public void reHandleSeg(@PathParam("id") String id){
+		remoteFileService.reHandlerSeg(id);
 	}
 	
 	@GET

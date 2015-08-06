@@ -1,15 +1,13 @@
 package com.lungcare.dicomfile.util;
 
-import java.io.File;
 
-import matlabmorphy.Morphy;
 
 public class SegUtil {
 	
 	
 	public void segmantion(String dicomPathString,String bmpSavrAxialString,String bmpSaveCoronalString,String bmpSaveSagittalString){	
 		try {
-			Morphy morphy = new Morphy();
+/*			Morphy morphy = new Morphy();
 			dicomPathString = "D:\\1049664802\\FileRecv\\CT\\";
 			bmpSavrAxialString = "D:\\1049664802\\FileRecv\\seg\\1\\";
 			bmpSaveCoronalString = "D:\\1049664802\\FileRecv\\seg\\2\\";
@@ -23,7 +21,7 @@ public class SegUtil {
 			morphy.demo(dicomPathString,bmpSavrAxialString,0,1);
 			morphy.demo(dicomPathString,bmpSaveCoronalString,1,1);
 			morphy.demo(dicomPathString,bmpSaveSagittalString,1,0);
-			System.out.println("over");
+			System.out.println("over");*/
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

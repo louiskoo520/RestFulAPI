@@ -1,11 +1,6 @@
 # LungCareRestFulAPI
 
-Build
 
-After installation of Maven 3:
+commit again 8.06
 
-> mvn install
-
-complete downloadZip
-
-http://localhost:8787/transfer/rest/remotefile/
+http://localhost:8787/transfer/htmls/...

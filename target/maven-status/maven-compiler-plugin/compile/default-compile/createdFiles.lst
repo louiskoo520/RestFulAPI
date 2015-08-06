@@ -1,8 +1,8 @@
 com\lungcare\dicomfile\util\FileUtil.class
 com\lungcare\dicomfile\service\impl\AlgorithmServiceImp.class
 com\lungcare\dicomfile\util\ZipUtils.class
-com\lungcare\dicomfile\service\IAlgorithmService.class
 com\lungcare\dicomfile\service\IRemoteFileService.class
+com\lungcare\dicomfile\service\IAlgorithmService.class
 com\lungcare\dicomfile\restful\RemoteFileTransferResource.class
 com\lungcare\dicomfile\App.class
 com\lungcare\dicomfile\entity\Customer.class
@@ -18,6 +18,8 @@ com\lungcare\dicomfile\entity\SendEntity.class
 com\lungcare\dicomfile\service\impl\LocalFileServiceImp.class
 com\lungcare\dicomfile\dao\impl\RemoteFileTransferDAOImp.class
 com\lungcare\dicomfile\dao\ILocalFileTransferDAO.class
+com\lungcare\dicomfile\dao\impl\RemoteFileTransferDAOImp$3.class
+com\lungcare\dicomfile\dao\impl\RemoteFileTransferDAOImp$2.class
 com\lungcare\dicomfile\util\FileWrapper.class
 com\lungcare\dicomfile\service\ILocalFileService.class
 com\lungcare\dicomfile\algorithm\MorphologicalSegment.class

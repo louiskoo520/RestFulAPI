@@ -11,8 +11,8 @@ import com.sun.jersey.multipart.FormDataMultiPart;
 
 public interface IRemoteFileService {
 	public void uploadFile(FormDataMultiPart formParams,HttpServletRequest request, String cid);
+	public void uploadSingleFile(FormDataMultiPart formParams,HttpServletRequest request, String cid);
 
-	public byte[] downloadFile(HttpServletRequest req);
 
 	public ReceiveEntity getReceiveEntity(String id);
 
@@ -24,4 +24,11 @@ public interface IRemoteFileService {
 	public List<SendEntity> getAllSendEntity();
 	
 	public List<BmpPathEntity> getAllBmpPath(String path);
+	
+	public void deleteCompleteData(String id);
+	
+	public void reHandlerSeg(String id);
+	
+	public String downloadDCM(String id);
+	public String downloadSeg(String id);
 }

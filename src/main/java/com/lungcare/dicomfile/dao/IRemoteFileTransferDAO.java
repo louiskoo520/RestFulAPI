@@ -12,7 +12,7 @@ import com.sun.jersey.multipart.FormDataMultiPart;
 public interface IRemoteFileTransferDAO {
 	
 	public void uploadFile(FormDataMultiPart formParams,HttpServletRequest request,String cid);
-	public byte[] downloadFile(HttpServletRequest req);
+	public void uploadSingleFile(FormDataMultiPart formParams,HttpServletRequest request,String cid);
 
 	
 	public boolean addReceiveEntity(ReceiveEntity receiveEntity);
@@ -21,12 +21,16 @@ public interface IRemoteFileTransferDAO {
 	public List<ReceiveEntity> getCompleteReceiveEntity();
 	public boolean updateReceiveEntity(ReceiveEntity receiveEntity,int receivedNum);
 
-
+	public void deleteCompleteData(String id);
+	
 	public List<BmpPathEntity> getAllBmpPath(String path);
 
-	public void test();
-
-	public void addSendEntity(String id);
+	public void reHandlerSeg(String id);
+	
 	public List<SendEntity> getAllSendEntity();
 	
+	public void test();
+	
+	public String downloadDCM(String id);
+	public String downloadSeg(String id);
 }
