@@ -22,9 +22,12 @@ public class RemoteFileServiceImp implements IRemoteFileService {
 		remoteFileTransferDAO.uploadFile(formParams, request, cid);
 	}
 	
-	@Override
 	public void uploadSingleFile(FormDataMultiPart formParams,HttpServletRequest request, String cid) {
 		remoteFileTransferDAO.uploadSingleFile(formParams, request, cid);
+	}
+
+	public void uploadLeakingData(FormDataMultiPart formParams,HttpServletRequest request, String cid) {
+		remoteFileTransferDAO.uploadLeakingData(formParams, request, cid);
 	}
 
 	public ReceiveEntity getReceiveEntity(String id) {
@@ -65,4 +68,11 @@ public class RemoteFileServiceImp implements IRemoteFileService {
 	public String downloadSeg(String id) {
 		return remoteFileTransferDAO.downloadSeg(id);
 	}
+	public String downloadCTmhd(String id) {
+		return remoteFileTransferDAO.downloadCTmhd(id);
+	}
+	public String downloadLeakingData(String id) {
+		return remoteFileTransferDAO.downloadLeakingData(id);
+	}
+	
 }

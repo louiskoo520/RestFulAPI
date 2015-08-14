@@ -1,18 +1,22 @@
 package com.lungcare.dicomfile.dao.impl;
 
 import java.awt.image.BufferedImage;
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
 
@@ -79,8 +83,8 @@ public class RemoteFileTransferDAOImp implements IRemoteFileTransferDAO {
 		System.out.println("ip : " + remoteHostString);
 		receiveEntity.setIp(remoteHostString);//设置ip
 		
-		SAVEFOLDER_PATH = new File(request.getServletContext().getRealPath("/WEB-INF")).getParent()+"/testFile/";
-		BMPFOLDER_PATH = new File(request.getServletContext().getRealPath("/WEB-INF")).getParent()+"/allBmps/";
+		SAVEFOLDER_PATH = new File(request.getServletContext().getRealPath("/WEB-INF")).getParent()+"\\testFile\\";
+		BMPFOLDER_PATH = new File(request.getServletContext().getRealPath("/WEB-INF")).getParent()+"\\allBmps\\";
 		
 		int port = request.getRemotePort();
 		receiveEntity.setPort(port);//设置port
@@ -92,6 +96,7 @@ public class RemoteFileTransferDAOImp implements IRemoteFileTransferDAO {
 		receiveEntity.setBmpAxial(false);//设置bmpAxial
 		receiveEntity.setBmpCoronal(false);//设置bmpCoronal
 		receiveEntity.setBmpSagittal(false);//设置bmpSagittal
+		receiveEntity.setLeakingFileName(null);//设置leakingFileName
 		
 //		receiveEntity.setTotalFiles(formParams.getFields().values().size());//设置totalfiles
 		
@@ -174,7 +179,7 @@ public class RemoteFileTransferDAOImp implements IRemoteFileTransferDAO {
 	}
 		
 	@Override
-	public void uploadSingleFile(FormDataMultiPart formParams,HttpServletRequest request, String cid) {
+	public void uploadSingleFile(FormDataMultiPart formParams,HttpServletRequest request, final String cid) {
 		logger.info("uploadFile");
 
 		final ReceiveEntity receiveEntity = new ReceiveEntity();
@@ -189,8 +194,8 @@ public class RemoteFileTransferDAOImp implements IRemoteFileTransferDAO {
 		System.out.println("ip : " + remoteHostString);
 		receiveEntity.setIp(remoteHostString);//设置ip
 		
-		SAVEFOLDER_PATH = new File(request.getServletContext().getRealPath("/WEB-INF")).getParent()+"/testFile/";
-		BMPFOLDER_PATH = new File(request.getServletContext().getRealPath("/WEB-INF")).getParent()+"/allBmps/";
+		SAVEFOLDER_PATH = new File(request.getServletContext().getRealPath("/WEB-INF")).getParent()+"\\testFile\\";
+		BMPFOLDER_PATH = new File(request.getServletContext().getRealPath("/WEB-INF")).getParent()+"\\allBmps\\";
 		
 		int port = request.getRemotePort();
 		receiveEntity.setPort(port);//设置port
@@ -203,16 +208,16 @@ public class RemoteFileTransferDAOImp implements IRemoteFileTransferDAO {
 		receiveEntity.setFailed(0);//设置failed
 		receiveEntity.setReceived(0);//设置received
 		receiveEntity.setSpeed(0);//设置speed
+		receiveEntity.setLeakingFileName(null);//设置leakingFileName
 		
 		receiveEntity.setDate(new Date());//设置时间
 		receiveEntity.setSavedFolder(SAVEFOLDER_PATH + cid + "\\");//设置接受路径
-		int totalNum = 1;
+		int totalNum = 0;
 		
 		Map<String, List<FormDataBodyPart>> fieldsByName = formParams.getFields();
 		for (List<FormDataBodyPart> fields : fieldsByName.values()) {
-			
 			String zipName = fields.get(0).getContentDisposition().getFileName();
-			
+			zipName = "download.zip";
 			for (FormDataBodyPart field : fields) {
 				InputStream is = field.getEntityAs(InputStream.class);
 				OutputStream outpuStream = null;
@@ -222,7 +227,7 @@ public class RemoteFileTransferDAOImp implements IRemoteFileTransferDAO {
 					file.mkdirs();
 				}
 				//保存文件路径
-				String filePath = SAVEFOLDER_PATH + cid + "\\" + zipName;
+				String filePath = SAVEFOLDER_PATH + zipName;
 				try {
 					int read = 0;
 					byte[] bytes = new byte[1024];
@@ -242,27 +247,56 @@ public class RemoteFileTransferDAOImp implements IRemoteFileTransferDAO {
 				}}}
 			}
 			
-			String zipFolderName = zipName.substring(0, zipName.lastIndexOf("."));
-			Extract(SAVEFOLDER_PATH+cid+"\\"+zipName, SAVEFOLDER_PATH+cid+"\\");//解压缩文件
+//			String zipFolderName = zipName.substring(0, zipName.lastIndexOf("."));
+			String zipFolderName = "zip_"+cid;
+//			Extract(SAVEFOLDER_PATH+zipName, SAVEFOLDER_PATH+zipFolderName);
 			
-			if(new File(SAVEFOLDER_PATH+cid+"\\"+zipName).exists()){
-				new File(SAVEFOLDER_PATH+cid+"\\"+zipName).delete();
-			}
-			
-			String zipFolderPath = getDCMFolder(SAVEFOLDER_PATH+cid+"\\"+zipFolderName);
-			System.out.println("zipFolderPath:"+zipFolderPath);
-			File oldFolder = new File(zipFolderPath);
-			if(oldFolder.isDirectory()){
-				String[] fileStrings = oldFolder.list();
-				totalNum = fileStrings.length;
-				for(int i = 0;i<fileStrings.length;i++){
-					copyFile(oldFolder+File.separator+fileStrings[i], SAVEFOLDER_PATH+cid+File.separator+fileStrings[i]);
+			try {
+				String filenameString = "C:\\Program Files\\2345Soft\\HaoZip";
+				String commandString = "cmd /c HaoZipC x " + SAVEFOLDER_PATH+zipName + " -o" + SAVEFOLDER_PATH+zipFolderName;
+				System.out.println(commandString);
+				Process process = Runtime.getRuntime().exec(commandString, null, new File(filenameString));
+				InputStream inputStream = process.getInputStream();
+				BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
+
+				// 取得输出流
+				//String line = "";
+				while (reader.readLine() != null) {
+					//System.out.println(line);
 				}
+
+				reader.close();
+				process.destroy();
+
+			} catch (IOException e) {
+				e.printStackTrace();
 			}
 			
-			deleteDir(new File(SAVEFOLDER_PATH+cid+"\\"+zipFolderName));
+			if(new File(SAVEFOLDER_PATH+zipName).exists()){
+				new File(SAVEFOLDER_PATH+zipName).delete();
+			}
 			
+			String dcmFolderPath = getDCMFolder(SAVEFOLDER_PATH+zipFolderName);
+//			ArrayList<String> dcmPaths = getDCMFolder(SAVEFOLDER_PATH+zipFolderName);
+//			for(int i=0;i<dcmPaths.size();i++){
+//				String dcmFolderPath = dcmPaths.get(i);
+				System.out.println("dcmFolderPath:"+dcmFolderPath);
+				File oldFolder = new File(dcmFolderPath);
+				if(oldFolder.isDirectory()){
+					String[] fileStrings = oldFolder.list();
+					for(int j = 0;j<fileStrings.length;j++){
+						if(checkModility(oldFolder+File.separator+fileStrings[j])){
+							totalNum++;
+							copyFile(oldFolder+File.separator+fileStrings[j], SAVEFOLDER_PATH+cid+File.separator+totalNum);
+						}
+					}
+				}
+//			}
 		}
+		
+		deleteDir(new File(SAVEFOLDER_PATH+"zip_"+cid));
+		
+		
 		receiveEntity.setTotalFiles(totalNum);//设置totalfiles
 		addReceiveEntity(receiveEntity);
 		
@@ -300,7 +334,7 @@ public class RemoteFileTransferDAOImp implements IRemoteFileTransferDAO {
 		handlerSegAndZip(receiveEntity, cid);
 	}
 	
-    private  boolean deleteDir(File dir) {
+    public boolean deleteDir(File dir) {
         if (dir.isDirectory()) {
             String[] children = dir.list();
             for (int i=0; i<children.length; i++) {
@@ -313,19 +347,95 @@ public class RemoteFileTransferDAOImp implements IRemoteFileTransferDAO {
         // 目录此时为空，可以删除
         return dir.delete();
     }
-	
+
     
 	public String getDCMFolder(String path){
-		File file = new File(path);
-		if(file.isDirectory()){
-			String[] files = file.list();
-			String tempPath = path+File.separator+files[0];
-			return getDCMFolder(tempPath);
-		}else {
-			return path.substring(0,path.lastIndexOf(File.separator));
+		Map<String, ArrayList<String>> allFileList = new HashMap<String, ArrayList<String>>();
+		addFileListToMap(path, allFileList);
+		Set<String> keysSet = allFileList.keySet();
+		Object[] arrayList = keysSet.toArray();
+		
+		//获取所有可用的CT文件夹路径
+//		ArrayList<String> dcmPaths = new ArrayList<String>();
+//		for (int i = 0; i < keysSet.size(); i++) {
+//			ArrayList<String> valuesArrayList =  allFileList.get(arrayList[i]);
+//			if(valuesArrayList.size()>0){
+//				String tempDCMPath = valuesArrayList.get(0);//获取文件夹下第一个文件进行验证是否是可用CT文件
+//				if(checkModility(tempDCMPath)){
+//					dcmPaths.add(tempDCMPath.substring(0,tempDCMPath.lastIndexOf(File.separator)));
+//				}
+//			}
+//
+//		}
+//		return dcmPaths;
+		
+		int maxSize = 0;
+		String ctpathString="";
+		for (int i = 0; i < keysSet.size(); i++) {
+			ArrayList<String> valuesArrayList =  allFileList.get(arrayList[i]);
+			if(valuesArrayList.size()>0){
+				String tempDCMPath = valuesArrayList.get(0);
+				if(checkModility(tempDCMPath)&&valuesArrayList.size()>maxSize){
+					ctpathString = (String)arrayList[i];
+					maxSize = valuesArrayList.size();
+				}
+			}
 		}
+		return ctpathString;
+
+	}
+
+	
+	
+	public void addFileListToMap(String path,Map<String, ArrayList<String>> allFileList){
+		File file = new File(path);
+		System.out.println("addFileListToMap : "+ path);
+		if(!file.exists()){
+			return;
+		}
+		String[] files = file.list();
+		ArrayList<String> tempFilesList = new ArrayList<String>();
+		
+		for(int i=0;i<files.length;i++){
+			if(new File(path+File.separator+files[i]).isDirectory()){
+				addFileListToMap(path+File.separator+files[i],allFileList);
+			}
+		    else {
+		    	if(isDCM(new File(path+File.separator+files[i]))){
+		    		tempFilesList.add(path+File.separator+files[i]);
+		    	}
+			}	
+		}
+		allFileList.put(file.getPath(), tempFilesList);
 	}
 	
+	
+	//判断是否是dcm文件
+	public boolean isDCM(File file){
+		if(!file.isDirectory()){
+			try {
+				FileInputStream fis = new FileInputStream(file);
+				byte[] data = new byte[132];
+				fis.read(data, 0, data.length);
+				int b0 = data[0] & 255;
+				int b1 = data[1] & 255;
+				//int b2 = data[2] & 255;
+				int b3 = data[3] & 255;
+				
+				if (data[128] == 68 && data[129] == 73 && data[130] == 67 && data[131] == 77)
+				{
+					return true;
+				}
+				else if ((b0 == 8 || b0 == 2) && b1 == 0 && b3 == 0)
+				{
+					return true;
+				}
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+        return false;
+	}
 	
 	/** 
 	* 复制单个文件 
@@ -334,24 +444,24 @@ public class RemoteFileTransferDAOImp implements IRemoteFileTransferDAO {
 	* @return boolean 
 	*/ 
 	public void copyFile(String oldPath, String newPath) { 
-	try { 
-	int byteread = 0; 
-	File oldfile = new File(oldPath); 
-	if (oldfile.exists()) { //文件存在时 
-	InputStream inStream = new FileInputStream(oldPath); //读入原文件 
-	FileOutputStream fs = new FileOutputStream(newPath); 
-	byte[] buffer = new byte[1444]; 
-	while ( (byteread = inStream.read(buffer)) != -1) { 
-	fs.write(buffer, 0, byteread); 
+		try {
+			int byteread = 0;
+			File oldfile = new File(oldPath);
+			if (oldfile.exists()) { // 文件存在时
+				InputStream inStream = new FileInputStream(oldPath); // 读入原文件
+				FileOutputStream fs = new FileOutputStream(newPath);
+				byte[] buffer = new byte[1444];
+				while ((byteread = inStream.read(buffer)) != -1) {
+					fs.write(buffer, 0, byteread);
+				}
+				inStream.close();
+			}
+		} catch (Exception e) {
+			System.out.println("复制单个文件操作出错");
+			e.printStackTrace();
+		} 
 	} 
-	inStream.close(); 
-	} 
-	} 
-	catch (Exception e) { 
-	System.out.println("复制单个文件操作出错"); 
-	e.printStackTrace(); 
-	} 
-	}
+	
 	
     /** 
      * 解压缩 
@@ -390,8 +500,26 @@ public class RemoteFileTransferDAOImp implements IRemoteFileTransferDAO {
         } catch (Exception e) {  
             System.err.println("Extract error:" + e.getMessage());  
         }  
-    }  
+    }
+    
+    
 
+    public boolean checkModility(String firstFilePath){
+    	File file = new File(firstFilePath);
+    	if(isDCM(file)){
+    		try {
+    			DicomInputStream dis = new DicomInputStream(file);
+    			Attributes meta = dis.readDataset(-1, -1);
+    			String modality = meta.getString(Tag.Modality);
+    			if(modality.toUpperCase().equals("CT")){
+    				return true;
+    			}
+    		} catch (IOException e) {
+    			e.printStackTrace();
+    		}
+    	}
+    	return false;
+    }
 	
 	public ReceiveEntity getReceiveEntity(String id) {
 		Session session = this.sessionFactory.getCurrentSession();
@@ -413,13 +541,6 @@ public class RemoteFileTransferDAOImp implements IRemoteFileTransferDAO {
 			int index, String folder) {
 		Date date1 = new Date();
 		OutputStream outpuStream = null;
-//		String fileName = fdcd.getFileName();
-//		int index = fileName.indexOf("/");
-//		if (index != -1) {
-//			fileName = fileName.substring(index + 1, fileName.length());
-//		}
-//		System.out.println("File Name: " + fileName);
-//		System.out.println(folder);
 		File file = new File(SAVEFOLDER_PATH + folder + "\\");
 		if (!file.exists() && !file.isDirectory()) {
 			file.mkdir();
@@ -456,8 +577,6 @@ public class RemoteFileTransferDAOImp implements IRemoteFileTransferDAO {
 		return true;
 	}
 
-	
-	
 	public boolean addReceiveEntity(ReceiveEntity receiveEntity) {
 		Session session = this.sessionFactory.getCurrentSession();
 		if (session != null) {
@@ -781,6 +900,7 @@ public class RemoteFileTransferDAOImp implements IRemoteFileTransferDAO {
 		if(!dcmFolder.exists()){
 			dcmFolder.mkdirs();
 		}
+		int index = 1;
 		for(int i=0;i<filesName.length;i++){
 			File tempFile = new File(getPath+"\\"+filesName[i]);
 			try {
@@ -802,9 +922,9 @@ public class RemoteFileTransferDAOImp implements IRemoteFileTransferDAO {
 					return;
 				}
 				
-				int tempInt = Integer.parseInt(filesName[i]);
+//				int tempInt = Integer.parseInt(filesName[i]);
 				DecimalFormat df = new DecimalFormat("000");
-				String dstName = savePath+"\\"+df.format(tempInt)+".jpg";//例如把名字0改为001		
+				String dstName = savePath+"\\"+df.format(index)+".jpg";//例如把名字0改为001		
 				String formatName = dstName.substring(dstName.lastIndexOf(".") + 1);  
 				
 				ImageIO.write(myJpegImage, formatName , new File(dstName)); 
@@ -813,7 +933,7 @@ public class RemoteFileTransferDAOImp implements IRemoteFileTransferDAO {
 						+ e.getMessage());
 				return;
 			}
-			
+			index++ ;
 		}
 		
 	}
@@ -882,7 +1002,7 @@ public class RemoteFileTransferDAOImp implements IRemoteFileTransferDAO {
 		final String ctPathString = SAVEFOLDER_PATH + id + "\\";
 		final String bmpSavePath = BMPFOLDER_PATH +id + "\\";
 		
-		String patientName = receiveEntity.getPatientName();
+		final String patientName = receiveEntity.getPatientName();
 		System.out.println(patientName);
 		
 
@@ -891,11 +1011,23 @@ public class RemoteFileTransferDAOImp implements IRemoteFileTransferDAO {
 		
 		final String morphyBmpResultPathString = bmpSavePath + "axial";
 		final String morphyMhdResultFileName = bmpSavePath + "axial.mhd";
-//		final String morphyMhdResultFileName2 = bmpSavePath + "axial.zraw";
+		//final String morphyMhdResultFileName2 = bmpSavePath + "axial.zraw";
+		final String morphyWholeBmpPath = bmpSavePath + "morphy.bmp";
+		
+		final String Seg_CTFolderPath = bmpSavePath + "mhdANDzraw";
+		
+		File mhdANDzrawFolder = new File(Seg_CTFolderPath+File.separator);
+		if(!mhdANDzrawFolder.exists()){
+			mhdANDzrawFolder.mkdirs();
+		}
+		
+		final String CTmhdPath = Seg_CTFolderPath + File.separator + "ct.mhd";
+		final String CTmhdPath2 = Seg_CTFolderPath + File.separator + "ct.zraw";
 		final String vtkExePath = "D:\\1049664802\\FileRecv\\Debug";
 		new Thread(
 				new Runnable() {
 					public void run() {
+						
 						Date startDate = new Date();
 						System.out.println("segStart........................................................................");
 						algorithmDAOImp.dicomSegmentation(ctPathString, bmpSavePath);
@@ -904,30 +1036,35 @@ public class RemoteFileTransferDAOImp implements IRemoteFileTransferDAO {
 						int completeTime = (int) (overDate.getTime()-startDate.getTime());
 						updateReceiveEntityCompleteTime(receiveEntity, completeTime);
 						System.out.println("segOver..........................................................................");
+						ZipUtils.createZip(bmpResourcePath,bmpZipPath);
+						
 						Runtime rn = Runtime.getRuntime();
-						String commandString = "cmd /c LungCare.Airway.WinformUIControls.exe "
+						String commandString = "cmd /c VTKTest.exe "
 								+ morphyBmpResultPathString + " "
 								+ morphyMhdResultFileName + " "
 								+ receiveEntity.getPixelSpacing() + " "
-								+ receiveEntity.getSliceThickness();
+								+ receiveEntity.getSliceThickness() + " "
+								+ morphyWholeBmpPath + " "
+								+ ctPathString + " "
+								+ CTmhdPath;
 						System.out.println("-------------" + commandString);
-
 						try {
 							Process p = rn.exec(commandString, null, new File(vtkExePath));
-//							System.out.println(p);
-//							while(new File(morphyMhdResultFileName2).exists()== false){
-//								//System.out.println("waiting for generate mhd file.........");
-//							}
-							ZipUtils.createZip(bmpResourcePath,bmpZipPath);
+							System.out.println(p);
+							while(new File(CTmhdPath2).exists() == false){
+								//System.out.println("waiting for generate mhd file.........");
+							}
+							
+							ZipUtils.createZip(Seg_CTFolderPath, bmpSavePath+File.separator+patientName+"_CT_mhdANDzraw.zip");
 						} catch (IOException e) {
 							e.printStackTrace();
 						}
 					}
 
 					}
-
 				
 		).start();
+		
 	}
 	
 	public String downloadDCM(String id) {
@@ -944,6 +1081,89 @@ public class RemoteFileTransferDAOImp implements IRemoteFileTransferDAO {
 		//String pathString = SAVEFOLDER_PATH+patientname+"_"+id+".zip";
 		String pathString = BMPFOLDER_PATH+patientname+"_"+id+".zip";
 		return pathString;
+	}
+	
+	public String downloadCTmhd(String id) {
+		ReceiveEntity receiveEntity = getReceiveEntity(id);
+		String patientname = receiveEntity.getPatientName();
+		//String pathString = SAVEFOLDER_PATH+patientname+"_"+id+".zip";
+		String pathString = BMPFOLDER_PATH+id+File.separator+patientname+"_CT_mhdANDzraw.zip";
+		return pathString;
+	}
+	
+	public String downloadLeakingData(String id) {
+		ReceiveEntity receiveEntity = getReceiveEntity(id);
+		String leakingFileName = receiveEntity.getLeakingFileName();
+		//String pathString = SAVEFOLDER_PATH+patientname+"_"+id+".zip";
+		String pathString = BMPFOLDER_PATH+id+File.separator+leakingFileName;
+		return pathString;
+	}
+	
+	public void uploadLeakingData(FormDataMultiPart formParams,HttpServletRequest request, String cid) {
+		logger.info("uploadLeakingData");
+
+		
+		String remoteHostString = "";
+		if (request.getHeader("x-forwarded-for") == null) {
+			remoteHostString = request.getRemoteAddr();//获取上传者的IP地址
+		} else {
+			remoteHostString = request.getHeader("x-forwarded-for");
+		}
+		System.out.println("ip : " + remoteHostString);
+		
+		SAVEFOLDER_PATH = new File(request.getServletContext().getRealPath("/WEB-INF")).getParent()+"\\testFile\\";
+		BMPFOLDER_PATH = new File(request.getServletContext().getRealPath("/WEB-INF")).getParent()+"\\allBmps\\";
+		
+		Map<String, List<FormDataBodyPart>> fieldsByName = formParams.getFields();
+		for (List<FormDataBodyPart> fields : fieldsByName.values()) {
+			String leakingDataName = fields.get(0).getContentDisposition().getFileName();
+			updateReceiveEntityLeakingFileName(leakingDataName, cid);
+			for (FormDataBodyPart field : fields) {
+				InputStream is = field.getEntityAs(InputStream.class);
+				OutputStream outpuStream = null;
+				//创建保存路径
+				File file = new File(BMPFOLDER_PATH + cid + "\\");
+				if (!file.exists() && !file.isDirectory()) {
+					file.mkdirs();
+				}
+				//保存文件路径
+				String filePath = BMPFOLDER_PATH + cid + File.separator +leakingDataName;
+				try {
+					int read = 0;
+					byte[] bytes = new byte[1024];
+					outpuStream = new FileOutputStream(new File(filePath));
+					while ((read = is.read(bytes)) != -1) {
+						outpuStream.write(bytes, 0, read);
+					}
+					outpuStream.flush();
+					outpuStream.close();
+				} catch (IOException iox) {
+					iox.printStackTrace();
+				} finally {
+					if (outpuStream != null) {
+						try {
+							outpuStream.close();
+						} catch (Exception ex) {
+				}}}
+			}
+			
+		}
+	}
+
+	public boolean updateReceiveEntityLeakingFileName(String name,String id){
+		Session session = this.sessionFactory.getCurrentSession();
+		if (session != null) {
+			Transaction transaction = session.beginTransaction();
+			Query query = session.createQuery("update ReceiveEntity t set t.leakingFileName = ? where t.id=?");
+			query.setParameter(0, name);
+			query.setParameter(1, id);
+			query.executeUpdate();
+			transaction.commit();
+			return true;
+		} else {
+			System.out.println("this.sessionFactory.getCurrentSession().is null");
+		}
+		return false;
 	}
 	
 	public void test() {	

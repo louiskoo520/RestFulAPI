@@ -36,8 +36,7 @@
 			<!-- Brand and toggle get grouped for better mobile display -->
 			<div class="navbar-header">
 				<button type="button" class="navbar-toggle collapsed"
-					data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"
-					aria-expanded="false">
+					data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
 					<span class="sr-only">Toggle navigation</span> 
 					<span class="icon-bar"></span> 
 					<span class="icon-bar"></span> 
@@ -120,13 +119,15 @@
 			</li>
 			<li><a href="#CT" data-toggle="tab">CT</a>
 			</li>
+			<li><a href="#MorphyBmp" data-toggle="tab">MorphyBmp</a>
+			</li>
 		</ul>
 
 		<div id="myTabContent" class="tab-content">
 			<div class="tab-pane fade in active" id="UploadFiles" style="text-align:center;">
 				<form class="form-inline" role="form" method="post" enctype="multipart/form-data" onsubmit="get_action2(this)" >
 					<div class="form-group">
-						<input type="file" id="inputfile" class="btn btn-primary" name="Singlefile"/> 
+						<input type="file"  class="btn btn-primary" name="Singlefile"/> 
 					</div>
 						<input type="submit" value="压缩包上传" class="btn btn-default"/>
 				</form>
@@ -134,7 +135,7 @@
 				<form class="form-inline" role="form" method="post" enctype="multipart/form-data" onsubmit="get_action(this)" >
 					<div class="form-group">
 						<!-- <label  for="inputfile">多文件上传</label> -->
-						<input type="file" id="inputfile" class="btn btn-primary" name="Multifile" multiple="multiple" /> 
+						<input type="file"  class="btn btn-primary" name="Multifile" multiple="multiple" /> 
 					</div>
 						<input type="submit" value="多文件上传" class="btn btn-default"/>
 				</form>
@@ -142,7 +143,7 @@
 				<form class="form-inline" role="form" method="post" enctype="multipart/form-data" onsubmit="get_action(this)">
 					<div class="form-group">
 						<!-- <label  for="inputfile">文件夹上传</label> -->
-						<input type="file" id="inputfile" class="btn btn-primary" name="Folderfile" webkitdirectory directory multiple /> 
+						<input type="file"  class="btn btn-primary" name="Folderfile" webkitdirectory directory multiple /> 
 					</div>
 						<input type="submit" value="文件夹上传" class="btn btn-default" />
 				</form>
@@ -211,33 +212,37 @@
 			</div>
 			
 			<div class="tab-pane fade" id="Complete" style="text-align: center;">
-				<button class="btn btn-primary " id="refreshComplete" type="submit">Refresh</button>		
- 				<form  id="downloadForm"></form>
- 				
-				<table class="table table-bordered table-hover">
-					<tr style="background-color:#3399CC">
-						<td colspan="15" style="color: white;">complete</td>
-					</tr>
-					<tr>
-						<td>ID</td>
-						<td>InstitutionName</td>
-						<td>PatientName</td>
-						<td>StudyDate</td>
-						<td>Date</td>
-						<td>CompleteTime</td>
-						<td>TotalFiles</td>
-						<td>Complete</td>
-						<td>ReHandler</td>
-						<td>Morphy</td>
-						<td>JPGAxial</td>
-						<td>CT</td>
-						<td>DownSEG</td>
-						<td>DownDCM</td>
-						<td>Delete</td>
-					</tr>
-					<tbody id="tb3">
-					</tbody>
-				</table>
+				<button class="btn btn-primary " id="refreshComplete" type="submit">Refresh</button>
+				<form id="downloadForm"></form>	
+					<table class="table table-bordered table-hover">
+						<tr style="background-color:#3399CC">
+							<td colspan="20" style="color: white;">complete</td>
+						</tr>
+						<tr>
+							<td>ID</td>
+							<td>InstitutionName</td>
+							<td>PatientName</td>
+							<td>StudyDate</td>
+							<td>Date</td>
+							<td>CompleteTime</td>
+							<td>TotalFiles</td>
+							<td>Complete</td>
+							<td>ReHandler</td>
+							<td>Morphy</td>
+							<td>JPGAxial</td>
+							<td>CT</td>
+							<td>MorphyBmp</td>
+							<td>DownSEG</td>
+							<td>DownDCM</td>
+							<td>DownCTmhd</td>
+							<td>LeakingDataSelect</td>
+							<td>LeakingUp</td>
+							<td>LeakingDown</td>
+							<td>Delete</td>
+						</tr>
+						<tbody id="tb3">
+						</tbody>
+					</table>
 				<ul class="pagination">
 					<li><a href="#" id="lastPage3">&laquo;</a></li>
 					<li><a href="#" id="currentPage3">1</a></li>
@@ -257,16 +262,19 @@
 			</div>
 			
 			<div class="tab-pane fade" id="CT">
-					<ul class="nav nav-tabs">
-						<li class="active"><a href="#axial" data-toggle="tab">axial</a></li>
-						<li><a href="#coronal" data-toggle="tab">coronal</a></li>
-						<li><a href="#sagittal" data-toggle="tab">sagittal</a></li>
-					</ul>
-					<div class="tab-pane fade in active" id="axial1" style="text-align: center;"></div>
-					<div class="tab-pane fade" id="coronal1" style="text-align: center;"></div>
-					<div class="tab-pane fade" id="sagittal1" style="text-align: center;"></div>
+				<ul class="nav nav-tabs">
+					<li class="active"><a href="#axial" data-toggle="tab">axial</a></li>
+					<li><a href="#coronal" data-toggle="tab">coronal</a></li>
+					<li><a href="#sagittal" data-toggle="tab">sagittal</a></li>
+				</ul>
+				<div class="tab-pane fade in active" id="axial1" style="text-align: center;"></div>
+				<div class="tab-pane fade" id="coronal1" style="text-align: center;"></div>
+				<div class="tab-pane fade" id="sagittal1" style="text-align: center;"></div>
 			</div>
 			
+			<div class="tab-pane fade" id="MorphyBmp" style="text-align: center;">
+				<div id="morphyBMP"></div>
+			</div>
 		</div>
 	</div>
 	
@@ -309,6 +317,15 @@
 					showAllBmp(id,"dcm,axial");
 				}
 			}
+			
+			if(activeTab=="MorphyBmp"){
+				$('#morphyBMP').empty();
+				$('#morphyBMP').append('<img id="wholemorphy" src="../allBmps/'+id+'/morphy.bmp" style="width:512px;height:512px;">');
+			}
+			
+			$('#wholemorphy').on("click",function(){
+				$('wholemorphy').fadeIn(600);
+			});
 		});
 	});
 	
@@ -454,10 +471,22 @@
 						+ '</td><td><button class="btn btn-default" type="submit">check</button>'
 						+ '</td><td>' + item.jpgAxial
 						+ '</td><td><button class="btn btn-default" type="submit">check</button>'
+						+ '</td><td><button class="btn btn-default" type="submit">check</button>'
 						+ '</td><td><button class="btn btn-default" type="submit"><img src="../img/myicons/download16.png"></button>'
 						+ '</td><td><button class="btn btn-default" type="submit"><img src="../img/myicons/download16.png"></button>'
-						+ '</td><td><button class="btn btn-default btn-bmp" type="submit"><img alt="demo" src="../img/myicons/del.png"></button></td></tr>');
+						+ '</td><td><button class="btn btn-default" type="submit"><img src="../img/myicons/download16.png"></button>'
+						+ '</td><td><form class="form-inline" role="form" method="post" enctype="multipart/form-data" id='+item.id+'><input type="file" class="btn btn-sm" name="singlefile"><form>'
+						+ '</td><td><button class="btn btn-default" type="submit"><img src="../img/myicons/upload16.png"></button>'
+						+ '</td><td><button class="btn btn-default" type="submit"><img src="../img/myicons/download16.png"></button>'
+						+ '</td><td><button class="btn btn-default btn-bmp" type="submit"><img alt="demo" src="../img/myicons/del.png"></button></td></tr></form>');
 					}
+					
+					$('#tb3 tr').find('td:eq(8)').on("click",function(){
+						id = $(this).parents('tr').find('td:first').text();
+						if(id != null){
+							reHandlerSeg(id);
+						}
+					});
 					
 					$('#tb3 tr').find('td:eq(9)').on("click", function() {
 						id = $(this).parents('tr').find('td:first').text();
@@ -472,23 +501,54 @@
 							$(".nav-tabs li:eq(5) a").tab('show');
 						}
 					});
+					$('#tb3 tr').find('td:eq(12)').on("click", function() {
+						id = $(this).parents('tr').find('td:first').text();
+						if (id != null) {
+							$(".nav-tabs li:eq(6) a").tab('show');
+							$('#morphyBMP').empty();
+							$('#morphyBMP').append('<img src="../allBmps/'+id+'/morphy.bmp" style="width:512px;height:512px;">');
+						}
+					});
 					
- 					$('#tb3 tr').find('td:eq(12)').on("click",function(){
+ 					$('#tb3 tr').find('td:eq(13)').on("click",function(){
 						id = $(this).parents('tr').find('td:eq(0)').text();
 						if(id!=null){
 							$('#downloadForm').attr("action","../rest/remotefile/downloadSeg/"+id);
 							$('#downloadForm').submit();
 						}
 					});
- 					$('#tb3 tr').find('td:eq(13)').on("click",function(){
+					
+ 					$('#tb3 tr').find('td:eq(14)').on("click",function(){
 						id = $(this).parents('tr').find('td:eq(0)').text();
 						if(id!=null){
 							$('#downloadForm').attr("action","../rest/remotefile/downloadDCM/"+id);
 							$('#downloadForm').submit();
 						}
 					});
+ 					$('#tb3 tr').find('td:eq(15)').on("click",function(){
+						id = $(this).parents('tr').find('td:eq(0)').text();
+						if(id!=null){
+							$('#downloadForm').attr("action","../rest/remotefile/downloadCTmhd/"+id);
+							$('#downloadForm').submit();
+						}
+					});
+ 					$('#tb3 tr').find('td:eq(17)').on("click",function(){
+						id = $(this).parents('tr').find('td:eq(0)').text();
+						if(id!=null){
+							$('#'+id).attr("action","../rest/remotefile/uploadLeakingData/"+id);
+							$('#'+id).submit();
+						}
+					});
 					
-					$('#tb3 tr').find('td:eq(14)').on("click", function() {
+ 					$('#tb3 tr').find('td:eq(18)').on("click",function(){
+						id = $(this).parents('tr').find('td:eq(0)').text();
+						if(id!=null){
+							$('#downloadForm').attr("action","../rest/remotefile/downloadLeakingData/"+id);
+							$('#downloadForm').submit();
+						}
+					});
+					
+					$('#tb3 tr').find('td:last').on("click", function() {
 						id = $(this).parents('tr').find('td:first').text();
 						if (id != null) {
 							deleteCompleteData(id);
@@ -496,12 +556,6 @@
 						}
 					});
 					
-					$('#tb3 tr').find('td:eq(8)').on("click",function(){
-						id = $(this).parents('tr').find('td:first').text();
-						if(id != null){
-							reHandlerSeg(id);
-						}
-					});
 				}
 			}
 		});

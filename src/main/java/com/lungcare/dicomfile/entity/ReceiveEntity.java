@@ -34,8 +34,17 @@ public class ReceiveEntity {
 	private double pixelSpacing;
 	private double sliceThickness;
 	private String institutionName;
+	private String leakingFileName;
 	
 	
+
+	public String getLeakingFileName() {
+		return leakingFileName;
+	}
+
+	public void setLeakingFileName(String leakingFileName) {
+		this.leakingFileName = leakingFileName;
+	}
 
 	public String getInstitutionName() {
 		return institutionName;
