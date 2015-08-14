@@ -59,6 +59,16 @@ public class RemoteFileTransferResource {
 		remoteFileService.uploadSingleFile(formParams, request , cid);	
 	}
 
+	@POST
+	@Consumes(MediaType.MULTIPART_FORM_DATA)
+	@Produces("text/plain")
+	@Path("/uploadLeakingData/{id}")
+	public void uploadLeakingData(FormDataMultiPart formParams,@Context HttpServletRequest request, @PathParam("id") String cid) {
+		remoteFileService.uploadLeakingData(formParams, request, cid);
+	}
+	
+	
+	
     @GET
     @Path("/downloadDCM/{id}")
     @Produces(MediaType.MULTIPART_FORM_DATA)
@@ -66,8 +76,7 @@ public class RemoteFileTransferResource {
         String pathString = remoteFileService.downloadDCM(id);
     	File download = new File(pathString);
     	if(download.exists()){
-    		String fileName = pathString.substring(pathString.lastIndexOf("//")+1);
-    		fileName = fileName.substring(fileName.lastIndexOf("/")+1);
+    		String fileName = pathString.substring(pathString.lastIndexOf(File.separator)+1);
     		System.out.println(download.length());
     		ResponseBuilder response = Response.ok((Object)download);
     		response.header("Content-Disposition", "attachment; filename="+fileName);
@@ -92,6 +101,41 @@ public class RemoteFileTransferResource {
     	}
     	return null;
     }
+    
+    @GET
+    @Path("/downloadCTmhd/{id}")
+    @Produces(MediaType.MULTIPART_FORM_DATA)
+    public Response downloadCTmhd(@PathParam("id") String id,@Context HttpServletRequest request){
+    	String pathString = remoteFileService.downloadCTmhd(id);
+    	File downloadFile = new File(pathString);
+    	if(downloadFile.exists()){
+    		String fileName = pathString.substring(pathString.lastIndexOf(File.separator)+1);
+    		System.out.println(downloadFile.length());
+    		ResponseBuilder response = Response.ok((Object)downloadFile);
+    		response.header("Content-Disposition", "attachment; filename="+fileName);
+    		return response.build();
+    	}
+    	return null;
+    }
+    
+    @GET
+    @Path("/downloadLeakingData/{id}")
+    @Produces(MediaType.MULTIPART_FORM_DATA)
+    public Response downloadLeakingData(@PathParam("id") String id,@Context HttpServletRequest request){
+    	String pathString = remoteFileService.downloadLeakingData(id);
+    	File downloadFile = new File(pathString);
+    	if(downloadFile.exists()){
+    		String fileName = pathString.substring(pathString.lastIndexOf(File.separator)+1);
+    		System.out.println(downloadFile.length());
+    		ResponseBuilder response = Response.ok((Object)downloadFile);
+    		response.header("Content-Disposition", "attachment; filename="+fileName);
+    		return response.build();
+    	}
+    	return null;
+    }
+    
+    
+    
 	
 	
 	@GET
