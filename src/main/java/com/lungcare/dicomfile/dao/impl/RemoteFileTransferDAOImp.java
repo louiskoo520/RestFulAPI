@@ -420,9 +420,10 @@ public class RemoteFileTransferDAOImp implements IRemoteFileTransferDAO {
 	
 	//判断是否是dcm文件
 	public boolean isDCM(File file){
-		FileInputStream fis = new FileInputStream(file);
+		FileInputStream fis = null;
 		if(!file.isDirectory()){
 			try {
+				fis = new FileInputStream(file);
 				byte[] data = new byte[132];
 				fis.read(data, 0, data.length);
 				int b0 = data[0] & 255;
