@@ -501,6 +501,7 @@
 							$(".nav-tabs li:eq(5) a").tab('show');
 						}
 					});
+					
 					$('#tb3 tr').find('td:eq(12)').on("click", function() {
 						id = $(this).parents('tr').find('td:first').text();
 						if (id != null) {
@@ -525,6 +526,7 @@
 							$('#downloadForm').submit();
 						}
 					});
+					
  					$('#tb3 tr').find('td:eq(15)').on("click",function(){
 						id = $(this).parents('tr').find('td:eq(0)').text();
 						if(id!=null){
@@ -532,6 +534,7 @@
 							$('#downloadForm').submit();
 						}
 					});
+					
  					$('#tb3 tr').find('td:eq(17)').on("click",function(){
 						id = $(this).parents('tr').find('td:eq(0)').text();
 						if(id!=null){
@@ -550,9 +553,13 @@
 					
 					$('#tb3 tr').find('td:last').on("click", function() {
 						id = $(this).parents('tr').find('td:first').text();
-						if (id != null) {
-							deleteCompleteData(id);
-							findCompleteByCurrentPage();
+						if(confirm("Are you sure to delete this data?")){
+							if (id != null) {
+								deleteCompleteData(id);
+								findCompleteByCurrentPage();
+							}
+						}else{
+							alert("cancel delete operation!");
 						}
 					});
 					
@@ -581,7 +588,7 @@
 			dataType:'JSON',
 			async:false,
 			success:function(result){
-				alert("delete success!");
+				//alert("delete success!");
 			}
 		});
 	}
