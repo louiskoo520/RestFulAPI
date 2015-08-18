@@ -134,8 +134,15 @@ public class RemoteFileTransferDAOImp implements IRemoteFileTransferDAO {
 					failedNum+=1;
 					updateFailedReceiveEntity(receiveEntity, failedNum);//更新failed
 				}
-				
 				updateReceiveEntity(receiveEntity, index);//更新received
+				
+					try {
+						if(is!=null){
+							is.close();
+						}
+					} catch (IOException e) {
+						e.printStackTrace();
+					}
 				
 				++index;
 			}
@@ -237,6 +244,7 @@ public class RemoteFileTransferDAOImp implements IRemoteFileTransferDAO {
 					}
 					outpuStream.flush();
 					outpuStream.close();
+					is.close();
 				} catch (IOException iox) {
 					iox.printStackTrace();
 				} finally {
@@ -412,9 +420,9 @@ public class RemoteFileTransferDAOImp implements IRemoteFileTransferDAO {
 	
 	//判断是否是dcm文件
 	public boolean isDCM(File file){
+		FileInputStream fis = new FileInputStream(file);
 		if(!file.isDirectory()){
 			try {
-				FileInputStream fis = new FileInputStream(file);
 				byte[] data = new byte[132];
 				fis.read(data, 0, data.length);
 				int b0 = data[0] & 255;
@@ -432,6 +440,13 @@ public class RemoteFileTransferDAOImp implements IRemoteFileTransferDAO {
 				}
 			} catch (IOException e) {
 				e.printStackTrace();
+			} finally {
+				if(fis!=null){
+					try {
+						fis.close();
+					} catch (IOException e) {
+					}
+				}
 			}
 		}
         return false;
@@ -455,6 +470,8 @@ public class RemoteFileTransferDAOImp implements IRemoteFileTransferDAO {
 					fs.write(buffer, 0, byteread);
 				}
 				inStream.close();
+				fs.flush();
+				fs.close();
 			}
 		} catch (Exception e) {
 			System.out.println("复制单个文件操作出错");
@@ -514,6 +531,7 @@ public class RemoteFileTransferDAOImp implements IRemoteFileTransferDAO {
     			if(modality.toUpperCase().equals("CT")){
     				return true;
     			}
+    			dis.close();
     		} catch (IOException e) {
     			e.printStackTrace();
     		}
@@ -559,6 +577,7 @@ public class RemoteFileTransferDAOImp implements IRemoteFileTransferDAO {
 			}
 			outpuStream.flush();
 			outpuStream.close();
+			fis.close();
 		} catch (IOException iox) {
 			iox.printStackTrace();
 			return false;
@@ -647,6 +666,7 @@ public class RemoteFileTransferDAOImp implements IRemoteFileTransferDAO {
 			query.setParameter(6, id);
 			query.executeUpdate();
 			transaction.commit();
+			dis.close();
 			return true;
 		} else {
 		}
@@ -656,11 +676,9 @@ public class RemoteFileTransferDAOImp implements IRemoteFileTransferDAO {
 	public boolean updateCompleteReceiveEntity(ReceiveEntity receiveEntity) {
 		Session session = this.sessionFactory.getCurrentSession();
 		if (session != null) {
-			System.out
-					.println("this.sessionFactory.getCurrentSession().isOpen()");
+			System.out.println("this.sessionFactory.getCurrentSession().isOpen()");
 			Transaction transaction = session.beginTransaction();
-			Query query = session
-					.createQuery("update ReceiveEntity t set t.complete =? where t.id=?");
+			Query query = session.createQuery("update ReceiveEntity t set t.complete =? where t.id=?");
 			query.setParameter(0, true);
 			String id = receiveEntity.getId();
 			query.setParameter(1, id);
@@ -806,6 +824,7 @@ public class RemoteFileTransferDAOImp implements IRemoteFileTransferDAO {
 			sendEntity.setAccessionNumber(accessionNumber);//
 			sendEntity.setPatientName(patientName);//
 			sendEntity.setStudyDate(studyDate);//
+			dis.close();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -1137,6 +1156,7 @@ public class RemoteFileTransferDAOImp implements IRemoteFileTransferDAO {
 					}
 					outpuStream.flush();
 					outpuStream.close();
+					is.close();
 				} catch (IOException iox) {
 					iox.printStackTrace();
 				} finally {
