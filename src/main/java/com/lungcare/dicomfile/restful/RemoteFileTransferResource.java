@@ -25,7 +25,7 @@ import com.lungcare.dicomfile.entity.ReceiveEntity;
 import com.lungcare.dicomfile.entity.SendEntity;
 import com.lungcare.dicomfile.service.IReceiveEntityService;
 import com.lungcare.dicomfile.service.IRemoteFileService;
-import com.lungcare.dicomfile.service.ISendService;
+import com.lungcare.dicomfile.service.ISendEntityService;
 import com.sun.jersey.multipart.FormDataMultiPart;
 
 @Path("remotefile")
@@ -35,9 +35,9 @@ public class RemoteFileTransferResource {
 	@Autowired
 	private IRemoteFileService remoteFileService;
 	@Autowired
-	private IReceiveEntityService receiveService;
+	private IReceiveEntityService receiveEntityService;
 	@Autowired
-	private ISendService sendService;
+	private ISendEntityService sendEntityService;
 	
 	
 //	@Resource
@@ -141,7 +141,7 @@ public class RemoteFileTransferResource {
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
 	public ReceiveEntity GetRecieiveEntity(@PathParam("id") String id) {
-		return receiveService.getReceiveEntity(id);
+		return receiveEntityService.getReceiveEntity(id);
 	}
 	
 	
@@ -150,7 +150,7 @@ public class RemoteFileTransferResource {
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
 	public List<ReceiveEntity> GetAllReceiveEntity(){
-		return  receiveService.getAllReceiveEntity();
+		return  receiveEntityService.getAllReceiveEntity();
 	}
 	
 	
@@ -159,7 +159,7 @@ public class RemoteFileTransferResource {
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
 	public List<ReceiveEntity> GetCompleteReceiveEntity(){
-		return  receiveService.getCompleteReceiveEntity();
+		return  receiveEntityService.getCompleteReceiveEntity();
 	}
 	
 	@POST
@@ -183,7 +183,7 @@ public class RemoteFileTransferResource {
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
 	public List<SendEntity> getAllSendEntity(){
-		return  sendService.getAllSendEntity();
+		return  sendEntityService.getAllSendEntity();
 	}
 	
 	@GET

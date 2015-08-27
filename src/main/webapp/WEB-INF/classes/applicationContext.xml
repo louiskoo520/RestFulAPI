@@ -49,8 +49,8 @@
   </bean>
   
   <!-- sendDAO -->
-  <bean id="sendService" class="com.lungcare.dicomfile.service.impl.SendServiceImp"></bean>
-  <bean id="sendDAO" class="com.lungcare.dicomfile.dao.impl.SendDAOImp">
+  <bean id="sendEntityService" class="com.lungcare.dicomfile.service.impl.SendEntityServiceImp"></bean>
+  <bean id="sendEntityDAO" class="com.lungcare.dicomfile.dao.impl.SendEntityDAOImp">
      <property name="sessionFactory" ref="sessionFactory"></property>
   </bean>
   

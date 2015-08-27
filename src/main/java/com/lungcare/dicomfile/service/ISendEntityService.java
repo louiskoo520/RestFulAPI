@@ -4,6 +4,6 @@ import java.util.List;
 
 import com.lungcare.dicomfile.entity.SendEntity;
 
-public interface ISendService {
+public interface ISendEntityService {
 	public List<SendEntity> getAllSendEntity();
 }

@@ -16,16 +16,16 @@ import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.lungcare.dicomfile.dao.ISendDAO;
+import com.lungcare.dicomfile.dao.ISendEntityDAO;
 import com.lungcare.dicomfile.entity.SendEntity;
 
 @Transactional
-public class SendDAOImp implements ISendDAO {
+public class SendEntityDAOImp implements ISendEntityDAO {
 	
 	private static String SAVEFOLDER_PATH = new File("").getAbsolutePath() +"/src/main/webapp/testFile/";
 //	private static String BMPFOLDER_PATH = new File("").getAbsolutePath() +"/src/main/webapp/allBmps/";
 	
-	private Logger logger = Logger.getLogger(SendDAOImp.class);
+	private Logger logger = Logger.getLogger(SendEntityDAOImp.class);
 	private SessionFactory sessionFactory;
 	
 	public void setSessionFactory(SessionFactory sessionFactory) {

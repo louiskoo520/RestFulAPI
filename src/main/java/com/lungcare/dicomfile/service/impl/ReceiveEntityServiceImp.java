@@ -11,16 +11,16 @@ import com.lungcare.dicomfile.service.IReceiveEntityService;
 public class ReceiveEntityServiceImp implements IReceiveEntityService {
 	
 	@Autowired
-	private IReceiveEntityDAO receiveDAO;
+	private IReceiveEntityDAO receiveEntityDAO;
 	public ReceiveEntity getReceiveEntity(String id){
-		return receiveDAO.getReceiveEntity(id);
+		return receiveEntityDAO.getReceiveEntity(id);
 	}
 	
 	public List<ReceiveEntity> getAllReceiveEntity(){
-		return receiveDAO.getAllReceiveEntity();
+		return receiveEntityDAO.getAllReceiveEntity();
 	}
 	
 	public List<ReceiveEntity> getCompleteReceiveEntity(){
-		return receiveDAO.getCompleteReceiveEntity();
+		return receiveEntityDAO.getCompleteReceiveEntity();
 	}
 }

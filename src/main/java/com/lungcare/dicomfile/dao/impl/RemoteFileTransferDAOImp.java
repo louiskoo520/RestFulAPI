@@ -13,6 +13,9 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.log4j.Logger;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -23,6 +26,7 @@ import com.lungcare.dicomfile.dao.IReceiveEntityDAO;
 import com.lungcare.dicomfile.dao.IRemoteFileTransferDAO;
 import com.lungcare.dicomfile.entity.BmpPathEntity;
 import com.lungcare.dicomfile.entity.ReceiveEntity;
+import com.lungcare.dicomfile.entity.SendEntity;
 import com.lungcare.dicomfile.util.ZipUtils;
 import com.sun.jersey.core.header.FormDataContentDisposition;
 import com.sun.jersey.multipart.FormDataBodyPart;
@@ -34,7 +38,7 @@ public class RemoteFileTransferDAOImp implements IRemoteFileTransferDAO {
 	private static Logger logger = Logger.getLogger(RemoteFileTransferDAOImp.class);
 	private static  String SAVEFOLDER_PATH = new File("").getAbsolutePath() +"/src/main/webapp/testFile/";
 	private static  String BMPFOLDER_PATH = new File("").getAbsolutePath() +"/src/main/webapp/allBmps/";
-//	private SessionFactory sessionFactory;
+	private SessionFactory sessionFactory;
 	
 	@Autowired
 	private IAlgorithmDAO algorithmDAOImp;
@@ -45,12 +49,16 @@ public class RemoteFileTransferDAOImp implements IRemoteFileTransferDAO {
 	@Autowired
 	private IDicomFileDAO dicomFileDAOImp;
 	
-//	public void setSessionFactory(SessionFactory sessionFactory) {
-//		this.sessionFactory = sessionFactory;
-//	}
+	public void setSessionFactory(SessionFactory sessionFactory) {
+		this.sessionFactory = sessionFactory;
+	}
 
 	public void uploadFile(FormDataMultiPart formParams,HttpServletRequest request,String cid) {
 		logger.info("uploadFile");
+		
+		SAVEFOLDER_PATH = new File(request.getServletContext().getRealPath("/WEB-INF")).getParent()+"\\testFile\\";
+		BMPFOLDER_PATH = new File(request.getServletContext().getRealPath("/WEB-INF")).getParent()+"\\allBmps\\";
+		
 
 		final ReceiveEntity receiveEntity = new ReceiveEntity();
 		receiveEntity.setId(cid);//设置id
@@ -63,10 +71,6 @@ public class RemoteFileTransferDAOImp implements IRemoteFileTransferDAO {
 		}
 		System.out.println("ip : " + remoteHostString);
 		receiveEntity.setIp(remoteHostString);//设置ip
-		
-		SAVEFOLDER_PATH = new File(request.getServletContext().getRealPath("/WEB-INF")).getParent()+"\\testFile\\";
-		BMPFOLDER_PATH = new File(request.getServletContext().getRealPath("/WEB-INF")).getParent()+"\\allBmps\\";
-		
 		int port = request.getRemotePort();
 		receiveEntity.setPort(port);//设置port
 		
@@ -125,6 +129,7 @@ public class RemoteFileTransferDAOImp implements IRemoteFileTransferDAO {
 						}
 					} catch (IOException e) {
 						logger.error("Could not close stream", e);
+						e.printStackTrace();
 					}
 				
 				++index;
@@ -221,12 +226,14 @@ public class RemoteFileTransferDAOImp implements IRemoteFileTransferDAO {
 					is.close();
 				} catch (IOException iox) {
 					logger.error("Could not save zip file", iox);
+					iox.printStackTrace();
 				} finally {
 					if (outpuStream != null) {
 						try {
 							outpuStream.close();
 						} catch (Exception ex) {
 							logger.error("Could not close outputStream", ex);
+							ex.printStackTrace();
 				}}}
 			}
 			
@@ -391,6 +398,7 @@ public class RemoteFileTransferDAOImp implements IRemoteFileTransferDAO {
 							ZipUtils.createZip(Seg_CTFolderPath, bmpSavePath+File.separator+patientName+"_CT_mhdANDzraw.zip");
 						} catch (IOException e) {
 							logger.error("some wrong happend to vtkTest.exe", e);
+							e.printStackTrace();
 						}
 					}
 
@@ -469,12 +477,14 @@ public class RemoteFileTransferDAOImp implements IRemoteFileTransferDAO {
 					is.close();
 				} catch (IOException iox) {
 					logger.error("Could not save leakingData", iox);
+					iox.printStackTrace();
 				} finally {
 					if (outpuStream != null) {
 						try {
 							outpuStream.close();
 						} catch (Exception ex) {
 							logger.error("Could not close stream", ex);
+							ex.printStackTrace();
 				}}}
 			}
 			
@@ -483,27 +493,27 @@ public class RemoteFileTransferDAOImp implements IRemoteFileTransferDAO {
 
 	
 	public void test() {	
-//		SendEntity sendEntity = new SendEntity();
-//		Date date = new Date();
-//		sendEntity.setId("123457");
-//		sendEntity.setDate(date);
-//		sendEntity.setFailed(5);
-//		sendEntity.setIp("127.0.0.1");
-//		sendEntity.setMessage("Hello test!");
-//		sendEntity.setPort(5463);
-//		sendEntity.setSavedFolder("D:\\");
-//		sendEntity.setSend(500);
-//		sendEntity.setSpeed(100);
-//		sendEntity.setTotalFiles(505);
-//		Session session = this.sessionFactory.getCurrentSession();
-//		if (session != null) {
-//			Transaction transaction = session.beginTransaction();
-//			session.save(sendEntity);
-//			//session.flush();
-//			transaction.commit();
-//		} else {
-//			System.out.println("this.sessionFactory.getCurrentSession().is null");
-//		}
+		SendEntity sendEntity = new SendEntity();
+		Date date = new Date();
+		sendEntity.setId("123457");
+		sendEntity.setDate(date);
+		sendEntity.setFailed(5);
+		sendEntity.setIp("127.0.0.1");
+		sendEntity.setMessage("Hello test!");
+		sendEntity.setPort(5463);
+		sendEntity.setSavedFolder("D:\\");
+		sendEntity.setSend(500);
+		sendEntity.setSpeed(100);
+		sendEntity.setTotalFiles(505);
+		Session session = this.sessionFactory.getCurrentSession();
+		if (session != null) {
+			Transaction transaction = session.beginTransaction();
+			session.save(sendEntity);
+			//session.flush();
+			transaction.commit();
+		} else {
+			System.out.println("this.sessionFactory.getCurrentSession().is null");
+		}
 
 	}
 
