@@ -28,16 +28,38 @@
     <property name="localFileService" ref="localFileServiceImp"></property>
   </bean> -->
   
+  <!-- localFileDAO -->
   <bean id="localFileService" class="com.lungcare.dicomfile.service.impl.LocalFileServiceImp"></bean>
   <bean id="localFileTransferDAO" class="com.lungcare.dicomfile.dao.impl.LocalFileTransferDAOImp"></bean>
   
+  <!-- remoteFileDAO -->
   <bean id="remoteFileService" class="com.lungcare.dicomfile.service.impl.RemoteFileServiceImp"></bean>
   <bean id="remoteFileTransferDAO" class="com.lungcare.dicomfile.dao.impl.RemoteFileTransferDAOImp">
      <property name="sessionFactory" ref="sessionFactory"></property>
   </bean>
   
+  <!-- algorithmDAO -->
   <bean id="algorithmService" class="com.lungcare.dicomfile.service.impl.AlgorithmServiceImp"></bean>
-  <bean id="algorithmDAO" class="com.lungcare.dicomfile.dao.impl.AlgorithmDAOImp">
+  <bean id="algorithmDAO" class="com.lungcare.dicomfile.dao.impl.AlgorithmDAOImp"></bean>
+  
+  <!-- receiveDAO -->
+  <bean id="receiveEntityService" class="com.lungcare.dicomfile.service.impl.ReceiveEntityServiceImp"></bean>
+  <bean id="receiveEntityDAO" class="com.lungcare.dicomfile.dao.impl.ReceiveEntityDAOImp">
+     <property name="sessionFactory" ref="sessionFactory"></property>
   </bean>
+  
+  <!-- sendDAO -->
+  <bean id="sendService" class="com.lungcare.dicomfile.service.impl.SendServiceImp"></bean>
+  <bean id="sendDAO" class="com.lungcare.dicomfile.dao.impl.SendDAOImp">
+     <property name="sessionFactory" ref="sessionFactory"></property>
+  </bean>
+  
+  <!-- dicomFileDAO -->
+  <bean id="dicomFileDAO" class="com.lungcare.dicomfile.dao.impl.DicomFileDAOImp"></bean>
+  
+  <!-- fileDAO -->
+  <bean id="fileDAO" class="com.lungcare.dicomfile.dao.impl.FileDAOImp"></bean>
+  
+  
   
 </beans>
