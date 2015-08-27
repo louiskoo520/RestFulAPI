@@ -9,4 +9,6 @@ public class AlgorithmDAOImp implements IAlgorithmDAO {
 		MorphologicalSegment.getMorphologicalSegment().MorphyDicom(dicomPathString, bmpSavePath);
 	}
 	
+	
+	
 }

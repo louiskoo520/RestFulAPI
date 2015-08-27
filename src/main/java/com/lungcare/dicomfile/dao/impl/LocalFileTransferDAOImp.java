@@ -13,10 +13,13 @@ public class LocalFileTransferDAOImp implements ILocalFileTransferDAO {
 		logger.info("uploadFile");
 		System.out.println("LocalFileTransferDAOImp uploadFile.........");
 	}
+	
 
 	public void downloadFile() {
 		// TODO Auto-generated method stub
 		logger.info("downloadFile");
 		System.out.println("LocalFileTransferDAOImp downloadFile.........");
 	}
+	
+	
 }

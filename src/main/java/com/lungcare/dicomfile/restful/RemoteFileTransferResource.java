@@ -23,21 +23,22 @@ import org.springframework.stereotype.Component;
 import com.lungcare.dicomfile.entity.BmpPathEntity;
 import com.lungcare.dicomfile.entity.ReceiveEntity;
 import com.lungcare.dicomfile.entity.SendEntity;
+import com.lungcare.dicomfile.service.IReceiveEntityService;
 import com.lungcare.dicomfile.service.IRemoteFileService;
+import com.lungcare.dicomfile.service.ISendEntityService;
 import com.sun.jersey.multipart.FormDataMultiPart;
 
 @Path("remotefile")
 @Component
 public class RemoteFileTransferResource {
-	public RemoteFileTransferResource() {
-
-	}
-
-	//private static final String SUCCESS_RESPONSE = "Successful";
 
 	@Autowired
 	private IRemoteFileService remoteFileService;
-	//private Map<String, ReceiveEntity> receivedMap = new HashMap<String, ReceiveEntity>();
+	@Autowired
+	private IReceiveEntityService receiveEntityService;
+	@Autowired
+	private ISendEntityService sendEntityService;
+	
 	
 //	@Resource
 //	private WebServiceContext wsCtxt;
@@ -134,24 +135,13 @@ public class RemoteFileTransferResource {
     	return null;
     }
     
-    
-    
-	
-	
-	@GET
-	@Path("add")
-	@Produces("text/html")
-	@Consumes("application/xml")
-	public String AddCustomers() {
-		return "Customer added with Id ";
-	}
-
+  
 	@GET
 	@Path("getReceiveEntity/{id}")
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
-	public ReceiveEntity GetRecieiveEntity(@PathParam("id") String cid) {
-		return remoteFileService.getReceiveEntity(cid);
+	public ReceiveEntity GetRecieiveEntity(@PathParam("id") String id) {
+		return receiveEntityService.getReceiveEntity(id);
 	}
 	
 	
@@ -160,15 +150,16 @@ public class RemoteFileTransferResource {
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
 	public List<ReceiveEntity> GetAllReceiveEntity(){
-		return  remoteFileService.getAllReceiveEntity();
+		return  receiveEntityService.getAllReceiveEntity();
 	}
+	
 	
 	@GET
 	@Path("/getCompleteReceiveEntity")
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
 	public List<ReceiveEntity> GetCompleteReceiveEntity(){
-		return  remoteFileService.getCompleteReceiveEntity();
+		return  receiveEntityService.getCompleteReceiveEntity();
 	}
 	
 	@POST
@@ -192,7 +183,7 @@ public class RemoteFileTransferResource {
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
 	public List<SendEntity> getAllSendEntity(){
-		return  remoteFileService.getAllSendEntity();
+		return  sendEntityService.getAllSendEntity();
 	}
 	
 	@GET
