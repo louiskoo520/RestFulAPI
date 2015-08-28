@@ -29,6 +29,8 @@
 	-->
 	<mapping class="com.lungcare.dicomfile.entity.SendEntity" />
 	<mapping class="com.lungcare.dicomfile.entity.Customer" />
+	<mapping class="com.lungcare.dicomfile.entity.User" />
+	<mapping class="com.lungcare.dicomfile.entity.Role" />
 </session-factory>
 
 </hibernate-configuration>

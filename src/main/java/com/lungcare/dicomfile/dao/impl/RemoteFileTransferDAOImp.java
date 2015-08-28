@@ -38,7 +38,6 @@ public class RemoteFileTransferDAOImp implements IRemoteFileTransferDAO {
 	private static Logger logger = Logger.getLogger(RemoteFileTransferDAOImp.class);
 	private static  String SAVEFOLDER_PATH = new File("").getAbsolutePath() +"/src/main/webapp/testFile/";
 	private static  String BMPFOLDER_PATH = new File("").getAbsolutePath() +"/src/main/webapp/allBmps/";
-	private SessionFactory sessionFactory;
 	
 	@Autowired
 	private IAlgorithmDAO algorithmDAOImp;
@@ -49,6 +48,7 @@ public class RemoteFileTransferDAOImp implements IRemoteFileTransferDAO {
 	@Autowired
 	private IDicomFileDAO dicomFileDAOImp;
 	
+	private SessionFactory sessionFactory;
 	public void setSessionFactory(SessionFactory sessionFactory) {
 		this.sessionFactory = sessionFactory;
 	}
