@@ -8,8 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import com.lungcare.dicomfile.dao.IRemoteFileTransferDAO;
 import com.lungcare.dicomfile.entity.BmpPathEntity;
-import com.lungcare.dicomfile.entity.ReceiveEntity;
-import com.lungcare.dicomfile.entity.SendEntity;
 import com.lungcare.dicomfile.service.IRemoteFileService;
 import com.sun.jersey.multipart.FormDataMultiPart;
 
@@ -23,31 +21,16 @@ public class RemoteFileServiceImp implements IRemoteFileService {
 	}
 	
 	public void uploadSingleFile(FormDataMultiPart formParams,HttpServletRequest request, String cid) {
-		remoteFileTransferDAO.uploadSingleFile(formParams, request, cid);
+		remoteFileTransferDAO.uploadZipFile(formParams, request, cid);
 	}
 
 	public void uploadLeakingData(FormDataMultiPart formParams,HttpServletRequest request, String cid) {
 		remoteFileTransferDAO.uploadLeakingData(formParams, request, cid);
 	}
 
-	public ReceiveEntity getReceiveEntity(String id) {
-		return remoteFileTransferDAO.getReceiveEntity(id);
-	}
 
 	public void test() {
 		remoteFileTransferDAO.test();
-	}
-
-	public List<ReceiveEntity> getAllReceiveEntity() {
-		return remoteFileTransferDAO.getAllReceiveEntity();
-	}
-	
-	public List<ReceiveEntity> getCompleteReceiveEntity(){
-		return remoteFileTransferDAO.getCompleteReceiveEntity();
-	}
-
-	public List<SendEntity> getAllSendEntity(){
-		return remoteFileTransferDAO.getAllSendEntity();
 	}
 
 	public List<BmpPathEntity> getAllBmpPath(String path) {
