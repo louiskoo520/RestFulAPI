@@ -31,6 +31,8 @@
 	<mapping class="com.lungcare.dicomfile.entity.Customer" />
 	<mapping class="com.lungcare.dicomfile.entity.User" />
 	<mapping class="com.lungcare.dicomfile.entity.Role" />
+	<mapping class="com.lungcare.dicomfile.entity.Article" />
+	<mapping class="com.lungcare.dicomfile.entity.Type" />
 </session-factory>
 
 </hibernate-configuration>

@@ -47,10 +47,10 @@
 			
 			<prop key="hibernate.hbm2ddl.auto">update</prop>
 			
-			 <prop key="hibernate.current_session_context_class">thread</prop>
+			<prop key="hibernate.current_session_context_class">thread</prop>
 			 
-			  <!-- Disable the second-level cache -->
-             <prop key="cache.provider_class">org.hibernate.cache.internal.NoCacheProvider</prop>
+			<!-- Disable the second-level cache -->
+            <prop key="cache.provider_class">org.hibernate.cache.internal.NoCacheProvider</prop>
 			<!-- <prop key="hibernate.cache.use_query_cache">true</prop> -->
 			
 			<!-- <prop key="hibernate.cache.use_second_level_cache">

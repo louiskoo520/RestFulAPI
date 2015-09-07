@@ -12,14 +12,15 @@ import javax.ws.rs.core.MediaType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.lungcare.dicomfile.service.IUserEntityService;
+import com.lungcare.dicomfile.entity.User;
+import com.lungcare.dicomfile.service.IUserService;
 
 @Path("user")
 @Component
 public class UsersResource {
 	
 	@Autowired
-	private IUserEntityService userEntityService;
+	private IUserService userEntityService;
 	
 	
 	@POST
@@ -35,8 +36,16 @@ public class UsersResource {
 	@Path("/getAllUsers")
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
-	public List<?> getAllUsers(){
+	public List<User> getAllUsers(){
 		return userEntityService.getAllUsers();
+	}
+	
+	@GET
+	@Path("/test")
+	@Produces(MediaType.APPLICATION_JSON)
+	@Consumes(MediaType.APPLICATION_JSON)
+	public void test(){
+		userEntityService.test();
 	}
 	
 }

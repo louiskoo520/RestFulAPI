@@ -55,8 +55,8 @@
   </bean>
   
   <!-- userDAO -->
-  <bean id="userEntityService" class="com.lungcare.dicomfile.service.impl.UserEntityServiceImp"></bean>
-  <bean id="userEntityDAO" class="com.lungcare.dicomfile.dao.impl.UserEntityDAOImp">
+  <bean id="userEntityService" class="com.lungcare.dicomfile.service.impl.UserServiceImp"></bean>
+  <bean id="userEntityDAO" class="com.lungcare.dicomfile.dao.impl.UserDAOImp">
      <property name="sessionFactory" ref="sessionFactory"></property>
   </bean>
   
