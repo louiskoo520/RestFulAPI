@@ -54,12 +54,18 @@
      <property name="sessionFactory" ref="sessionFactory"></property>
   </bean>
   
+  <!-- userDAO -->
+  <bean id="userEntityService" class="com.lungcare.dicomfile.service.impl.UserServiceImp"></bean>
+  <bean id="userEntityDAO" class="com.lungcare.dicomfile.dao.impl.UserDAOImp">
+     <property name="sessionFactory" ref="sessionFactory"></property>
+  </bean>
+  
+  
+  
   <!-- dicomFileDAO -->
   <bean id="dicomFileDAO" class="com.lungcare.dicomfile.dao.impl.DicomFileDAOImp"></bean>
   
   <!-- fileDAO -->
   <bean id="fileDAO" class="com.lungcare.dicomfile.dao.impl.FileDAOImp"></bean>
-  
-  
   
 </beans>

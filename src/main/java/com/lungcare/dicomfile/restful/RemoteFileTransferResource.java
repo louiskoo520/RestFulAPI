@@ -40,6 +40,9 @@ public class RemoteFileTransferResource {
 	private ISendEntityService sendEntityService;
 	
 	
+	
+	
+	
 //	@Resource
 //	private WebServiceContext wsCtxt;
 
