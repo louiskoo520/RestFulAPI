@@ -56,7 +56,7 @@
 		</dependency>
 		<dependency>
 			<groupId>com.lungcare.algorithm</groupId>
-			<artifactId>morphylogical-segmentation</artifactId>
+			<artifactId>morphological-segmentation</artifactId>
 			<version>0.0.1.RELEASE</version>
 		</dependency>
 		<dependency>

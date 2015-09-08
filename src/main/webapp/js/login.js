@@ -3,11 +3,11 @@ $(document).ready(function(){
 		var userName = $("input[name='userName']").val();
 		var passwd = $("input[name='passwd']").val();
 		if(userName==""||userName==null){
-			alert("用户名不能为空");
+			alert("鐢ㄦ埛鍚嶄笉鑳戒负绌�");
 			return;
 		}
 		if(passwd==""||passwd==null){
-			alert("密码不能为空");
+			alert("瀵嗙爜涓嶈兘涓虹┖");
 			return;
 		}
 		$.ajax({
@@ -17,9 +17,9 @@ $(document).ready(function(){
 			dataType:"html",
 			success:function(data){
 				if(data==1){
-					alert("用户名不存在");
+					alert("鐢ㄦ埛鍚嶄笉瀛樺湪");
 				}else if(data==2){
-					alert("密码不正确");
+					alert("瀵嗙爜涓嶆纭�");
 				}else{
 					data = eval("("+data+")");
 					window.location.href = "index.html";
@@ -30,7 +30,7 @@ $(document).ready(function(){
 	});
 	
 	/*
-	 * 点击事件,显示二维码
+	 * 鐐瑰嚮浜嬩欢,鏄剧ず浜岀淮鐮�
 	 */
 	 $(".erweima-a").click(function(){
 		 $(".saomiao").show();
