@@ -5,6 +5,8 @@ import java.util.Date;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
@@ -15,7 +17,9 @@ import javax.xml.bind.annotation.XmlRootElement;
 @Table
 public class User {
 	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
+	
 	private String account;//账户
 	private String password;//密码
 	private int role;//权限 用数字表示

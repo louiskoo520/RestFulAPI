@@ -96,43 +96,34 @@
 	</nav>
 
 	<div style="width: 90%; margin:0 auto">
-
+		<a href="addUser.html">addNewUser</a>
 		<ul class="nav nav-tabs">
 			<li class="active"><a href="#User" data-toggle="tab">User</a>
 			</li>
 			<li><a href="#" data-toggle="tab">2</a>
 
 		</ul>
-
-
-			
-			<div class="tab-pane fade" id="User" style="text-align: center;">
-				
-				<form id="downloadForm"></form>	
-					<table class="table table-bordered table-hover">
-						<tr style="background-color:#3399CC">
-							<td colspan="20" style="color: white;">User</td>
-						</tr>
-						<tr>
-							<td>ID</td>
-							<td>Account</td>
-							<td>Name</td>
-							<td>Age</td>
-							<td>Role_Name</td>
-	
-						</tr>
-						<tbody id="tbUser">
-						</tbody>
-					</table>
-				<ul class="pagination">
-					<li><a href="#" id="lastPage">&laquo;</a></li>
-					<li><a href="#" id="currentPage">1</a></li>
-					<li><a href="#" id="nextPage">&raquo;</a></li>
-				</ul>
-			</div>
-			
-			
-
+		
+		<div class="tab-pane fade" id="User" style="text-align: center;">
+				<table class="table table-bordered table-hover">
+					<tr style="background-color:#3399CC">
+						<td colspan="20" style="color: white;">User</td>
+					</tr>
+					<tr>
+						<td>ID</td>
+						<td>Account</td>
+						<td>Name</td>
+						<td>Age</td>
+						<td>Role_Name</td>
+					</tr>
+					<tbody id="tbUser">
+					</tbody>
+				</table>
+			<ul class="pagination">
+				<li><a href="#" id="lastPage">&laquo;</a></li>
+				<li><a href="#" id="currentPage">1</a></li>
+				<li><a href="#" id="nextPage">&raquo;</a></li>
+			</ul>
 		</div>
 	</div>
 	
@@ -144,6 +135,8 @@
 	var pageSize = 50;
 	
 	$(function() {
+
+		
 		$('a[data-toggle="tab"]').on('shown.bs.tab', function(e) {
 			// 获取已激活的标签页的名称
 			var activeTab = $(e.target).text();

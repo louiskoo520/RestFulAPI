@@ -18,8 +18,8 @@ public class UserServiceImp implements IUserService {
 	}
 	
 	
-	public void addUser(){
-		userEntityDAO.addUser();
+	public void addUser(String user_account,String user_name,String user_password,int user_age,int user_gender,int user_role,String user_tel,String user_address){
+		userEntityDAO.addUser(user_account,user_name,user_password,user_age,user_gender,user_role,user_tel,user_address);
 	}
 	
 	public void test(){
