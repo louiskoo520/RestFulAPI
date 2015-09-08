@@ -45,7 +45,7 @@ public class UserDAOImp implements IUserDAO {
 	/**
 	 * jdbc鏂规硶鏌ヨuser琛ㄥ拰role琛ㄥ叧鑱旂殑淇℃伅
 	 */
-<<<<<<< HEAD
+
 	// public List<?> getAllUsers(){
 	// Connection conn = null;
 	// Statement st = null;
@@ -68,56 +68,53 @@ public class UserDAOImp implements IUserDAO {
 
 	public void addUser() {
 
-=======
-//	public List<?> getAllUsers(){
-//		Connection conn = null;
-//		Statement st = null;
-//		ResultSet resultSet = null;
-//		try {
-//			conn = JdbcUtils.getConnection();
-//			st = conn.createStatement();
-//			resultSet = st.executeQuery("select u.name,r.name from user as u,role as r where u.role = r.role");
-//			while(resultSet.next()){
-//				System.out.println(resultSet.getObject("u.name"));
-//				System.out.println(resultSet.getObject("r.name"));
-//			}
-//		} catch (Exception e) {
-//			e.printStackTrace();
-//		}finally{
-//			JdbcUtils.free(resultSet, st, conn);
-//		}
-//	}
-	
-	
-	
-	public void addUser(String user_account,String user_name,String user_password,int user_age,int user_gender,int user_role,String user_tel,String user_address){
-		
+	}
 
-		
->>>>>>> 06a82328de12b26efd56f15754a0835c65412e1a
+	// public List<?> getAllUsers(){
+	// Connection conn = null;
+	// Statement st = null;
+	// ResultSet resultSet = null;
+	// try {
+	// conn = JdbcUtils.getConnection();
+	// st = conn.createStatement();
+	// resultSet =
+	// st.executeQuery("select u.name,r.name from user as u,role as r where u.role = r.role");
+	// while(resultSet.next()){
+	// System.out.println(resultSet.getObject("u.name"));
+	// System.out.println(resultSet.getObject("r.name"));
+	// }
+	// } catch (Exception e) {
+	// e.printStackTrace();
+	// }finally{
+	// JdbcUtils.free(resultSet, st, conn);
+	// }
+	// }
+
+	public void addUser(String user_account, String user_name,
+			String user_password, int user_age, int user_gender, int user_role,
+			String user_tel, String user_address) {
+
 		User user = new User();
 		user.setAccount(user_account);
 		user.setPassword(user_password);
 		user.setRole(user_role);
 		user.setCreateDate(new Date());
-<<<<<<< HEAD
+
 		user.setName("zhangsan");
 		user.setGender(0);
 		user.setAge(22);
 		user.setTel("13151719131");
 		user.setLastLoginTime(new Date());
 		user.setAddress("universe");
-		user.setRo(getRoleByID(1));
+		user.setRo(getRoleByRoleNum(1));
 
-=======
 		user.setName(user_name);
 		user.setGender(user_gender);
 		user.setAge(user_age);
 		user.setTel(user_tel);
 		user.setAddress(user_address);
 		user.setRo(getRoleByRoleNum(user_role));
-		
->>>>>>> 06a82328de12b26efd56f15754a0835c65412e1a
+
 		Session session = this.sessionFactory.getCurrentSession();
 		if (session != null) {
 			System.out
@@ -168,18 +165,16 @@ public class UserDAOImp implements IUserDAO {
 				: content.substring(0, i);
 	}
 
-<<<<<<< HEAD
-	public Role getRoleByID(int id) {
+	public Role getRoleByRoleNum(int roleNum) {
 
-=======
-	public Role getRoleByRoleNum(int roleNum){
-		
->>>>>>> 06a82328de12b26efd56f15754a0835c65412e1a
 		Session session = this.sessionFactory.getCurrentSession();
 		Transaction transaction = session.beginTransaction();
 		Query query = session.createQuery("from Role r where r.roleNum=?");
 		query.setParameter(0, roleNum);
 		Role role = (Role) query.uniqueResult();
+		if (role == null) {
+			return null;
+		}
 		System.out.println(role.getName());
 		System.out.println(role.getRoleNum());
 		transaction.commit();
