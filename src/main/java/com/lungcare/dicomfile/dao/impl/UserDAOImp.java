@@ -68,22 +68,21 @@ public class UserDAOImp implements IUserDAO {
 	
 	
 	
-	public void addUser(){
+	public void addUser(String user_account,String user_name,String user_password,int user_age,int user_gender,int user_role,String user_tel,String user_address){
 		
+
 		
 		User user = new User();
-		user.setId(0002);
-		user.setAccount("zhangsan");
-		user.setPassword("111111");
-		user.setRole(1);
+		user.setAccount(user_account);
+		user.setPassword(user_password);
+		user.setRole(user_role);
 		user.setCreateDate(new Date());
-		user.setName("zhangsan");
-		user.setGender(0);
-		user.setAge(22);
-		user.setTel("13151719131");
-		user.setLastLoginTime(new Date());
-		user.setAddress("universe");
-		user.setRo(getRoleByID(1));
+		user.setName(user_name);
+		user.setGender(user_gender);
+		user.setAge(user_age);
+		user.setTel(user_tel);
+		user.setAddress(user_address);
+		user.setRo(getRoleByRoleNum(user_role));
 		
 		Session session = this.sessionFactory.getCurrentSession();
 		if (session != null) {
@@ -92,6 +91,7 @@ public class UserDAOImp implements IUserDAO {
 			session.save(user);
 			session.flush();
 			transaction.commit();
+			System.out.println("add user success!!!");
 		} else {
 			System.out.println("this.sessionFactory.getCurrentSession().is null");
 		}
@@ -133,15 +133,15 @@ public class UserDAOImp implements IUserDAO {
 				: content.substring(0, i);
 	}
 
-	public Role getRoleByID(int id){
+	public Role getRoleByRoleNum(int roleNum){
 		
 		Session session = this.sessionFactory.getCurrentSession();
 		Transaction transaction = session.beginTransaction();
-		Query query = session.createQuery("from Role r where r.id=?");
-		query.setParameter(0, id);
+		Query query = session.createQuery("from Role r where r.roleNum=?");
+		query.setParameter(0, roleNum);
 		Role role = (Role) query.uniqueResult();
 		System.out.println(role.getName());
-		System.out.println(role.getRole());
+		System.out.println(role.getRoleNum());
 		transaction.commit();
 		return role;
 	}
