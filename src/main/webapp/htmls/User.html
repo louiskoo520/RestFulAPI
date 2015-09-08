@@ -136,7 +136,9 @@
 	
 	$(function() {
 
-		
+		alert("111");
+		findUsersByCurrentPage();
+		alert("222");
 		$('a[data-toggle="tab"]').on('shown.bs.tab', function(e) {
 			// 获取已激活的标签页的名称
 			var activeTab = $(e.target).text();
@@ -167,7 +169,6 @@
 			url : '/transfer/rest/user/getAllUsers',
 			data : {},
 			dataType : 'JSON',
-			async:false,
 			success : function(result) {
 				if (result == "" || result == null) {
 					alert("there is no data in the table receiveEntity!");

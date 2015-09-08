@@ -31,6 +31,8 @@ public class User {
 	private Date lastLoginTime;//最后一次登陆时间
 	private int gender;//性别 0表示男 1表示女
 	
+	private String email;//用户邮箱
+	
 	@ManyToOne(cascade = { CascadeType.PERSIST }, fetch = FetchType.EAGER)
 	private Role ro;
 	
@@ -40,6 +42,12 @@ public class User {
 	
 	
 	
+	public String getEmail() {
+		return email;
+	}
+	public void setEmail(String email) {
+		this.email = email;
+	}
 	public int getId() {
 		return id;
 	}
