@@ -12,23 +12,31 @@ import javax.xml.bind.annotation.XmlRootElement;
 public class Role {
 	@Id
 	private int id;//权限id
-	private int role;//权限对应的数字0表示超级管理员 1表示普通管理员 2表示普通用户
+	private int roleNum;//权限对应的数字0表示超级管理员 1表示普通管理员 2表示普通用户
 	private String name;//权限的名字
+	
 	public int getId() {
 		return id;
 	}
+	
 	public void setId(int id) {
 		this.id = id;
 	}
-	public int getRole() {
-		return role;
+	
+	
+	
+	public int getRoleNum() {
+		return roleNum;
 	}
-	public void setRole(int role) {
-		this.role = role;
+
+	public void setRoleNum(int roleNum) {
+		this.roleNum = roleNum;
 	}
+
 	public String getName() {
 		return name;
 	}
+	
 	public void setName(String name) {
 		this.name = name;
 	}
