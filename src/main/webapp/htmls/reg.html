@@ -4,9 +4,9 @@
 	<head>
 		<meta charset="utf-8">
 		<title>注册</title>
-		<script type="text/javascript" src="js/jquery-1.9.1.js" ></script>
-		<link rel="stylesheet" href="validform/css/style.css" />
-		<script type="text/javascript" src="validform/js/Validform_v5.3.2_min.js" ></script>
+		<script type="text/javascript" src="../js/jquery-1.9.1.js" ></script>
+		<link rel="stylesheet" href="../validform/css/style.css" />
+		<script type="text/javascript" src="../validform/js/Validform_v5.3.2_min.js" ></script>
 		<link rel="stylesheet" href="../css/reg.css" />
 	</head>
 <style type="text/css">
@@ -56,7 +56,7 @@ $(function(){
 					var ddd;
 					$.ajax({
 						async: false,
-						url: "useropera/checkusername",
+						url: "../rest/user/checkusername",
 						dataType: "json",
 						type: "post",
 						data: {username: $("#username").val()},
@@ -85,12 +85,11 @@ $(function(){
 		},
 		beforeSubmit: function(curform){			
 			$.ajax({
-				url: "useropera/register",
+				url: "../rest/user/register",
 				dataType: "json",
 				type: "post",
 				data: {	username: $("#username").val(),
-						password: $("#psd").val(),
-						department: $("#department").val()	},
+						password: $("#psd").val()},
 				success: function(data){
 					if (data == "1") {
 						alert("注册成功,请前往登陆.");
@@ -104,6 +103,7 @@ $(function(){
 		}
 	});
 });
+
 </script>	
 	<body class="login" onLoad="createCode();">
 		<div class="logo"><img src="../img/myicons/logo.png"></div>
@@ -126,19 +126,7 @@ $(function(){
 					<span class="Validform_checktip fL" style="line-height: 28px"></span>
 					<input type="password" class="tx" id="confirmpsd" placeholder="确认密码" autocomplete="off" recheck='password' datatype='*' errormsg='您两次输入的密码不一致！'>
 				</div>
-				<div class="control_group">
-					<label class="control-label fL">部门</label>
-					<span class="Validform_checktip fL" style="line-height: 28px"></span>
-					<select name="department" id="department" class="tx">
-						<option value="技术部">技术部</option>
-						<option value="市场部">市场部</option>
-						<option value="开发部">开发部</option>
-						<option value="项目部">项目部</option>
-						<option value="人事部">人事部</option>
-						<option value="财务部">财务部</option>
-						<option value="行政部">行政部</option>
-					</select>
-				</div>
+
 				<div class="control_group">
 					<label class="control-label fL" for="identifyingcode">验证码</label>
 					<span class="Validform_checktip fL" style="line-height: 28px"></span><br/><br/>

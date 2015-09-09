@@ -442,12 +442,12 @@ color: #999;}
 	width:65px;
 	height:65px;
 	float:right;
-	background:url(../image/yixin_ico.png) -2px -76px no-repeat;
+	background:url(../jpmp/image/yixin_ico.png) -2px -76px no-repeat;
 	cursor:pointer;
 }
 
 .erweima .erweima-a:hover{
-	background:url(../image/yixin_ico.png) -65px -76px no-repeat;
+	background:url(../jpmp/image/yixin_ico.png) -65px -76px no-repeat;
 }
 
 .saomiao{
