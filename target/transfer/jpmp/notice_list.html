@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>公告列表</title>
+		<script type="text/javascript" src="js/jpmpconfig.js" ></script>
+	</head>
+<style>
+</style>
+<script>
+$(function(){
+	$.ajax({
+		url: "sys/getnotices",
+		dataType: "json",
+		type:"post",
+		success: function(data){
+			$.each(data, function(index, info){
+				var srcs = info['pic_src'];
+				if (srcs) {
+					srcs = srcs.split(",")[0];
+				}
+				$("div.con").append("<ul class='head clearfix' style='height: 60px;background: none repeat scroll 0% 0% #fff;'>"
+										+ "<li style='width: 120px; line-height:60px' class='kind'>"+info['title']+"</li>"
+										+ "<li style='width: 720px; line-height:60px' class='cont'>"+info['content']+"</li>"
+										+ "<li style='width: 120px; line-height:60px' class='opt'><a href='notice_view.html?id="
+										+info['id']+"' class='gray'>查看</a><a href='#' id='"
+										+info['id']+"' class='gray del' style='margin-left: 20px'>删除</a></li>"
+									+ "</ul>"
+				);
+			});
+		}
+	});
+	$("body").on("click", ".del", function(){
+		var del = confirm("确认删除该公告？");
+		if (del) {
+			window.location.href = "sys/delnotice?id="+$(this).attr("id");
+		}
+	});
+});
+</script>	
+	<body>
+		<div class="wrap">
+			<div class="top"></div>
+			<div class="container">
+				<div class="pageinner mc pagew">
+					<div class="nav"></div>
+					<div class="page">
+						<div class="content">
+							<div class="title">公告管理<em>公告列表</em></div>
+							<div class="road">
+								<a href="index.html">首页</a>><a href="#">公告管理</a>><a href="#">公告列表</a>
+							</div>
+							<div class="main conbox">
+								<div class="tit fs16"><span class="goback"><a href="notice_add.html">新建公告</a></span>公告列表</div>
+								<div class="main-body">
+									<ul class="head clearfix">
+										<li style="width: 120px" class="time bodrb">标题</li>
+										<li style="width: 700px" class="cont bodrb">内容</li>
+										<li style="width: 120px" class="opt">操作</li>
+									</ul>
+									<div class="con"></div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>

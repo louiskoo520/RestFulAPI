@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <title>Segment PlatForm</title>
+	
+    <meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
+    <meta http-equiv="description" content="this is my page">
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">  
+    <link rel="shortcut icon" href="../img/myicons/welcome.ico">
+    	    <!-- 新 Bootstrap 核心 CSS 文件 -->
+	<link rel="stylesheet" href="../css/bootstrap.min.css">
+	<!-- 可选的Bootstrap主题文件（一般不用引入） -->
+	<link rel="stylesheet" href="../css/bootstrap-theme.min.css">
+	
+	<!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
+	<script type="text/javascript" src="../js/jquery-1.9.1.js"></script>
+	
+	<!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+	<script  src="../js/bootstrap.min.js"></script>
+	
+  </head>
+  
+  <body>
+    <!-- navigate each page should have -->
+	<nav class="navbar navbar-default navbar-static-top navbar-inverse">
+		<div class="container-fluid">
+			<!-- Brand and toggle get grouped for better mobile display -->
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle collapsed"
+					data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+					<span class="sr-only">Toggle navigation</span> 
+					<span class="icon-bar"></span> 
+					<span class="icon-bar"></span> 
+					<span class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" href="#">Lungcare</a>
+			</div>
+
+			<!-- Collect the nav links, forms, and other content for toggling -->
+			<div class="collapse navbar-collapse"
+				id="bs-example-navbar-collapse-1">
+				<ul class="nav navbar-nav">
+					<li class="active"><a href="#">File <span class="sr-only">(current)</span>
+					</a>
+					</li>
+					<li><a href="#">Link</a>
+					</li>
+					<li class="dropdown"><a href="#" class="dropdown-toggle"
+						data-toggle="dropdown" role="button" aria-haspopup="true"
+						aria-expanded="false">Dropdown <span class="caret"></span>
+					</a>
+						<ul class="dropdown-menu">
+							<li><a href="#">Action</a>
+							</li>
+							<li><a href="#">Another action</a>
+							</li>
+							<li><a href="#">Something else here</a>
+							</li>
+							<li role="separator" class="divider"></li>
+							<li><a href="#">Separated link</a>
+							</li>
+							<li role="separator" class="divider"></li>
+							<li><a href="#">One more separated link</a>
+							</li>
+						</ul></li>
+				</ul>
+				<form class="navbar-form navbar-left" role="search">
+					<div class="form-group">
+						<input type="text" class="form-control" placeholder="Search">
+					</div>
+					<button type="submit" class="btn btn-default">Submit</button>
+				</form>
+				<ul class="nav navbar-nav navbar-right">
+					<li><a href="#">Link</a>
+					</li>
+					<li class="dropdown"><a href="#" class="dropdown-toggle"
+						data-toggle="dropdown" role="button" aria-haspopup="true"
+						aria-expanded="false">Dropdown <span class="caret"></span>
+					</a>
+						<ul class="dropdown-menu">
+							<li><a href="#">Action</a>
+							</li>
+							<li><a href="#">Another action</a>
+							</li>
+							<li><a href="#">Something else here</a>
+							</li>
+							<li role="separator" class="divider"></li>
+							<li><a href="#">Separated link</a>
+							</li>
+						</ul></li>
+				</ul>
+			</div>
+			<!-- /.navbar-collapse -->
+		</div>
+		<!-- /.container-fluid -->	
+	</nav>
+
+	<div style="width: 90%; margin:0 auto">
+		<a href="addUser.html">addNewUser</a>
+		<ul class="nav nav-tabs">
+			<li class="active"><a href="#User" data-toggle="tab">User</a>
+			</li>
+			<li><a href="#" data-toggle="tab">2</a>
+
+		</ul>
+		
+		<div class="tab-pane fade" id="User" style="text-align: center;">
+				<table class="table table-bordered table-hover">
+					<tr style="background-color:#3399CC">
+						<td colspan="20" style="color: white;">User</td>
+					</tr>
+					<tr>
+						<td>ID</td>
+						<td>Account</td>
+						<td>Name</td>
+						<td>Age</td>
+						<td>Role_Name</td>
+					</tr>
+					<tbody id="tbUser">
+					</tbody>
+				</table>
+			<ul class="pagination">
+				<li><a href="#" id="lastPage">&laquo;</a></li>
+				<li><a href="#" id="currentPage">1</a></li>
+				<li><a href="#" id="nextPage">&raquo;</a></li>
+			</ul>
+		</div>
+	</div>
+	
+</body>
+<script type="text/javascript" language="javascript">
+
+	//以下内容为显示Received和Send表格
+	var currentPage = parseInt($('#currentPage').html());
+	var pageSize = 50;
+	
+	$(function() {
+
+		
+		$('a[data-toggle="tab"]').on('shown.bs.tab', function(e) {
+			// 获取已激活的标签页的名称
+			var activeTab = $(e.target).text();
+			if (activeTab == "User") {
+				findUsersByCurrentPage();
+			}
+		});
+
+		$('#lastPage').click(function() {
+			currentPage -= 1;
+			findUsersByCurrentPage();
+			$('#currentPage').html(currentPage + '');
+		});
+
+		$('#nextPage').click(function() {
+			currentPage += 1;
+			findUsersByCurrentPage();
+			$('#currentPage').html(currentPage + '');
+		});
+
+		
+	});
+
+
+	function findUsersByCurrentPage() {
+		$.ajax({
+			type : 'get',
+			url : '/transfer/rest/user/getAllUsers',
+			data : {},
+			dataType : 'JSON',
+			async:false,
+			success : function(result) {
+				if (result == "" || result == null) {
+					alert("there is no data in the table receiveEntity!");
+				} else {
+					dataObj = result['user'];
+					$('#tbUser').empty();
+					var maxPage = Math.ceil(dataObj.length / pageSize);
+					if (currentPage < 1) {
+						currentPage = 1;
+
+					}
+					if (currentPage > maxPage) {
+						currentPage = maxPage;
+
+					}
+					var firstIndex = (currentPage - 1) * pageSize;
+					var lastIndex = currentPage * pageSize;
+
+					if (currentPage == maxPage) {
+						lastIndex = dataObj.length;
+					}
+					for ( var i = firstIndex; i < lastIndex; i++) {
+						var item = dataObj[i];
+						$('#tbUser').append(
+								'<tr><td>' + item.id + '</td><td>' 
+										+ item.account + '</td><td>' 
+										+ item.name + '</td><td>' 
+										+ item.age + '</td><td>' 
+										+ item.ro.name + '</td></tr>');
+					}
+				}
+			}
+		});
+	}
+
+</script>
+<!-- <script type="text/javascript" src="../js/zoom.min.js"></script> -->
+</html>

@@ -1,0 +1,227 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>系统设置</title>
+	<script type="text/javascript" src="js/jpmpconfig.js" ></script>
+		<script type="text/javascript" src="layer/layer.min.js" ></script>
+	<script type="text/javascript" src="js/sysproblem.js" ></script>
+	<link href="css/syspro.css" type="text/css" rel="stylesheet"/>
+	<link rel="stylesheet" href="css/sysproblem.css" />
+		<link rel="stylesheet" href="css/linkage.css" />
+</head>
+<script>
+var frompage = 1;
+$(function(){
+	gettypes();
+	getpros();
+	$("body").on("click", ".deltp", function(){
+		var del = confirm("确认删除这条类别及其相关的所有记录信息吗？");
+		if (del) {
+			window.location.href = "useropera/deltype?id="+$(this).attr("id");
+		}
+	});
+	$(".first").click(function(){
+		frompage = frompage - 1;
+		getpros();
+	});
+	$(".last").click(function(){
+		frompage = frompage + 1;
+		getpros();
+	});
+	$("body").on("click", ".nor", function(){
+		frompage = parseInt($(this).attr("id"));
+		getpros();
+	});
+});
+function gettypes() {
+	$.ajax({
+		url: "useropera/gettypes",
+		dataType: "json",
+		success: function(data){											
+			$.each(data, function(index, info){
+				var juese = info.name;
+				if (!juese) {
+					juese = "<span style='color: red'>无</span>";
+				}
+				if ($("div.abcd#"+info.id).html()) {
+					$("div.abcd#"+info.id).find(".juese").append(","+juese);
+				} else {				
+					var dealer;
+					if (info['selectColumns']) {
+						dealer = info['selectColumns'].split(',')[1];
+					} else {
+						dealer = "无";
+					}
+					$(".level1").append("<div class='abcd' id='"+info['id']+"' style='height: 30px;width: 900px;float: left; margin-right: 60px;'><div style='width: 150px; float: left'>"+info['taskMetaName']
+									+"</div><div style='width: 200px; float: left'>默认处理人："+dealer+"</div>"
+									+"<div class='juese' style='float: left'>所属角色："+juese+"</div>"
+									+"<div style='float: right; line-height: 30px'><a href='addkind.html?id="+info['id']+"&name="+escape(info['taskMetaName'])
+									+"' class='t-addbtn'>修改</a><a href='#' class='t-addbtn deltp' id='"+info['id']+"' style='margin-left:10px'>删除</a>"+"</div></div>");
+				}
+			});
+			$(".deltp[id='121']").prev().css("margin-right", "58px");
+			$(".deltp[id='121']").remove();
+		}
+	});
+}
+function getpros() {
+	$.ajax({
+		url: "useropera/getpros",
+		dataType: "json",
+		data: {frompage: frompage},
+		success: function(data){
+			$("#questionback").empty();
+			$(".nor").each(function(){
+				$(this).remove();
+			});
+			$.each(data.list, function(index, info){
+				$("#questionback").append("<div class='info-list'>"
+										+ "<ul><li class='li-top'>"
+										+ "<span>类型：<i class='app-type'>"+info['type']+"</i></span>"
+										+ "<span style='margin-left: 100px'>反馈人：<i class='app-type'>"+info['name']+"</i></span>"
+										+ "<span style='margin-left: 100px'>反馈时间：<i class='latest'>"+info['time']+"</i></span></li>"
+										+ "<li class='li-btm'>"
+										+ "<P>"+info['content']+"</P></li>"
+										+ "<li class='li-btm'>"
+										+ "<span>联系方式："+info['contact']+"</span></li>"
+										+ "</ul></div>");
+			});
+			var count = data.count;
+			var pagenum = parseInt(data.pagenum);
+			if (frompage == 1) {
+				$(".first").hide();
+			} else {
+				$(".first").show();
+			}
+			if (frompage > 5) {
+				var f = frompage-5;
+				var t;
+				if (pagenum > (frompage+4)) {
+					t = frompage+4;
+				} else {
+					t = pagenum;
+				}
+				var t_html = "";
+				for (var i=f;i<=t;i++) {
+					t_html += "<div class='record' id='"+i+"'>"+i+"</div>";
+				}
+				$(".first").after(t_html);
+			} else {
+				var t;
+				if (pagenum > 10) {
+					t = 10;
+				} else {
+					t = pagenum;
+				}
+				var t_html = "";
+				for (var i=1;i<=t;i++) {
+					t_html += "<div class='record nor' id='"+i+"'>"+i+"</div>";
+				}
+				$(".first").after(t_html);
+			}
+			$("div#"+frompage).addClass("on");
+			if (frompage == pagenum) {
+				$(".last").hide();
+			} else {
+				$(".last").show();
+			}
+		}
+	});
+}
+</script>
+<body>
+<div class="wrap">
+  <div class="top"></div>
+  <div class="container">
+    <div class="pageinner mc pagew">
+      <div class="nav"></div>
+      <script>
+      $(function(){
+      	$(".header a").click(function(){
+      		$(".title em").html($(this).html());
+      		$(".road a").eq(2).html($(this).html());
+      		$(this).siblings().removeClass("current");
+      		$(this).addClass("current");
+      		for(var i=0;i<=$(".header a").length;i++){
+      			if(i!=$(this).index()){
+      				$(".main-body .question").eq(i).hide();
+      			}
+      		}    		
+      		$(".main-body .question").eq($(this).index()).show();
+      	});
+      	$(".t-icon").click(function(){
+      		if ($(this).attr("src") == "img/plus.png") {
+      			$(this).attr("src", "img/minus.png");
+      			$(this).parent().next().show();
+      		} else {   		
+      			$(this).attr("src", "img/plus.png");
+      			$(this).parent().next().hide();
+      		}
+      	});
+      });
+      </script>
+      <div class="page">
+        <div class="content">
+          <div class="title">系统设置<em>类别管理</em></div>
+          <div class="road"> <a href="index.html">首页</a>><a href="#">系统设置</a>><a href="#">类别管理</a></div>
+          <div class="main datehead">
+            <div class="header"> <a href="#" class="current">类别管理</a><a href="#">配置管理</a><a href="#">问题反馈</a></div>
+            <div class="date-main main-body">
+              <div class="datemainlist">
+                <div class="datelist question" style="display: block;">
+			 		<div class="type">
+			 			<div class="t-head" style="height: 30px">
+			 				<a href='addkind.html' class='t-addbtn' style='margin-left: 945px; padding: 5px 10px'>新增类别</a>
+			 			</div>
+			 			<div class="t-content level1" style="float: left;"></div>
+			 		</div>
+			 	</div>
+              </div>
+              <div class="datemainlist">
+              	<div id="" class="pagesetting question" style="display: none;">
+              		<ul class="head clearfix">
+						<li style="width: 500px" class="time bodrb">资源描述</li>
+						<li style="width: 320px" class="cont bodrb">值</li>
+						<li style="width: 50px" class="opt">操作</li>
+					</ul>
+					<div class="con">
+						<ul class='head clearfix' style='height: 60px;background: none repeat scroll 0% 0% #fff;'>
+							<li style='width: 500px; line-height:60px' class='kind' title="你好">titletitletitletitletitletitletitletitletitletitletitle</li>
+							<li style='width: 320px; line-height:60px' class='cont' title="haha">haha</li>
+							<li style='width: 50px; line-height:60px' class='opt'><a href='notice_view.html?id=' class='gray'>修改</a></li>
+						</ul>
+						<ul class='head clearfix' style='height: 60px;background: none repeat scroll 0% 0% #fff;'>
+							<li style='width: 500px; line-height:60px' class='kind' title="你好">titletitletitletitletitletitletitletitletitletitletitle</li>
+							<li style='width: 320px; line-height:60px' class='cont' title="haha">haha</li>
+							<li style='width: 50px; line-height:60px' class='opt'><a href='notice_view.html?id=' class='gray'>修改</a></li>
+						</ul>
+						<ul class='head clearfix' style='height: 60px;background: none repeat scroll 0% 0% #fff;'>
+							<li style='width: 500px; line-height:60px' class='kind' title="你好">titletitletitletitletitletitletitletitletitletitletitle</li>
+							<li style='width: 320px; line-height:60px' class='cont' title="haha">haha</li>
+							<li style='width: 50px; line-height:60px' class='opt'><a href='notice_view.html?id=' class='gray'>修改</a></li>
+						</ul>
+					</div>
+              	</div>
+              </div>
+              <div class="datemainlist">
+                <div id="question" class="datelist question" style="display: none;">
+                	<div id="questionback"></div>
+                	<div style="float: right">
+	                	<div class="page-1">
+	                		<div class="record first"><<</div>
+	                		<div class="record last">>></div>
+                		</div>
+	                </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+</body>
+</html>

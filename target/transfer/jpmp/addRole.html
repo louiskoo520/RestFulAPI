@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html>
+	<head>
+	<meta charset="utf-8" />
+	<title>新增角色</title>
+	<script type="text/javascript" src="js/jpmpconfig.js" ></script>
+	<link href="media/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+	<link href="media/css/style.css" rel="stylesheet" type="text/css"/>
+	<script type="text/javascript">
+	var roleId = getQueryString("id");
+	var authorityId = 0;
+	var taskCategorys = "";
+	var itemnum = 0;
+	$(function(){
+		//发送ajax请求，得到任务类别
+		$.ajax({
+			async: false,
+			url:"task/listCategory",
+			dataType: "json",
+			success:function(data){
+				if (data) {				
+					itemnum = data.length;
+					for(var i=0;i<data.length;++i){
+						taskCategorys += '<option value="'+data[i].id+'">'+data[i].taskMetaName+'</option>';
+					}
+				}
+			},
+			error:function(data){
+				alert("获取目录失败！");
+			}
+		});
+		if (roleId) {
+			$.ajax({
+				async: false,
+				url: "role/getRole",
+				type: "post",
+				dataType: "json",
+				data: {id: roleId},
+				success: function(data){
+					$.each(data, function(index, info){
+						++authorityId;
+						$("#roleName").val(info.name);
+						if (info.id) {						
+							$("#tableBody").append(getHTML());
+							$("tr#"+authorityId).attr("roleMapId", info.id);
+							$("#taskCategory"+authorityId).val(info.taskMetaId);
+							if (info.C != "1") {						
+								$("#roleC"+authorityId).removeAttr("checked");
+							}
+							if (info.R != "1") {						
+								$("#roleR"+authorityId).removeAttr("checked");
+							}
+							if (info.U != "1") {						
+								$("#roleU"+authorityId).removeAttr("checked");
+							}
+							if (info.D != "1") {						
+								$("#roleD"+authorityId).removeAttr("checked");
+							}
+							$("#id"+authorityId).val(info.id);
+						}
+					});
+				}
+			});
+		} else {
+			++authorityId;
+			$("#tableBody").append(getHTML());
+		}
+		$("body").on("click", ".deltype", function(){
+			var del = confirm("确认删除该类别的操作权限？");
+			var aut = $(this).attr("id");
+			if (del) {	
+				if ($("tr#"+aut).attr("roleMapId")) {				
+					$.ajax({
+						url: "useropera/deltype2",
+						dataType: "json",
+						data: {	id: $("tr#"+aut).attr("roleMapId")	}
+					});
+				}
+				$("tr#"+aut).remove();
+			}
+		});
+	});
+	function getHTML() {
+		var tmp = '<tr id="'+authorityId+'"><td><select id="taskCategory'+authorityId
+				  +'" style="width:200px;" class="span6 m-wrap" data-placeholder="Choose a Category" tabindex="1">'
+				  +taskCategorys+'</select></td>'
+			  +'<td><input id="roleC'+authorityId+'" type="checkbox" class="toggle" checked="checked" /></td>'
+			  +'<td><input id="roleR'+authorityId+'" type="checkbox" class="toggle" checked="checked" /></td>'
+			  //+'<td><input id="roleU'+authorityId+'" type="checkbox" class="toggle" checked="checked" /></td>'
+			  +'<td><input id="roleD'+authorityId+'" type="checkbox" class="toggle" checked="checked" /></td>'
+			  +'<td><a id="'+authorityId+'" class="deltype" href="#">×</a><input id="id'+authorityId+'" type="hidden" value="0"></td></tr>';
+		return tmp;
+	}
+	</script>
+	<script type="text/javascript">
+	jQuery(document).ready(function(){
+		$("#addRoleAttrButton").click(function(){
+			if ($("#tableBody tr").length == itemnum) {
+				alert("类别已超出添加上限！");
+			} else {			
+				++authorityId;
+				$("#tableBody").append(getHTML());
+			}
+		});
+		
+		$("#addRoleButton").click(function(){
+			var roleName = $("#roleName").val();
+			if(roleName == ""){
+				alert("请填写角色名！");
+				return;
+			}
+			var array = new Array();
+			$("select.m-wrap").each(function(){
+				array.push($(this).val());
+			});
+			var nary=array.sort();
+			for(var i=0;i<array.length;i++){
+				if (nary[i]==nary[i+1]){
+					alert("存在重复类别！请重新添加。");
+					return;
+				}
+			}
+			var reqStr ="roleName:"+roleName+";";
+			for(var i=1;i<=authorityId;++i){
+				reqStr += "taskCategoryId:"+$("#taskCategory"+i).val()+",";
+				reqStr += "roleC:"+$("#roleC"+i).attr("checked")+",";
+				reqStr += "roleR:"+$("#roleR"+i).attr("checked")+",";
+				reqStr += "roleU:undefind"+",";
+				reqStr += "roleD:"+$("#roleD"+i).attr("checked")+",";
+				reqStr += "id:"+$("#id"+i).val()+";";
+			}
+			if (!roleId) {
+				addRole(reqStr);
+			} else {
+				addRole2(reqStr, roleId);
+			}
+		});
+	});
+	function addRole(reqStr) {
+		$.ajax({
+			type:"post",
+			url:"role/addRole",
+			dataType: "json",
+			data:{
+				reqStr:reqStr
+			},
+			success:function(data){
+				if( "success" == data.status) {
+					alert("添加成功！");
+					window.location.href = "role_list.html";
+				} else if (data == "1") {
+					alert("角色名重复!请重新输入.");
+				} else {
+					alert("添加失败！");
+				}
+			},
+			error:function(data){
+				alert("添加失败！");
+			}
+		});
+	}
+	function addRole2(reqStr, roleId) {
+		$.ajax({
+			type:"post",
+			url:"role/addRole",
+			dataType: "json",
+			data:{
+				reqStr:reqStr,
+				id: roleId
+			},
+			success:function(data){
+				if( "success" == data.status) {
+					alert("修改成功！");
+					window.location.href = "role_list.html";
+				} else if (data == "1") {
+					alert("角色名重复!请重新输入.");
+				} else {
+					alert("修改失败！");
+				}
+			},
+			error:function(data){
+				alert("修改失败！");
+			}
+		});
+	}
+	</script>
+	</head>
+	<body>
+		<div class="wrap">
+			<div class="top"></div>
+			<div class="container">
+				<div class="pageinner mc pagew">
+					<div class="nav"></div>
+					<div class="page">
+						<div class="content">
+							<div class="title">角色添加<em>角色添加</em></div>
+							<div class="road">
+								<a href="index.html">首页</a>><a href="userlist.html">用户管理</a>><a>角色添加</a>
+							</div>
+							<div class="conbox">
+								<div class="tit fs16"><span class="goback"><a href="role_list.html">返回</a></span>角色添加</div>
+								<div class="portlet-body">
+								<div class="control-group">
+									 <div class="controls" style="position:relative;margin-top: 30px;height: 40px;">
+										<label class="control-label" style="float:left;margin-left:10px;line-height: 25px;">角色名:</label>
+
+										<input id="roleName" style="width:200px;height: 30px;" type="text" class="span6 m-wrap popovers" data-trigger="hover" data-content="所属的类别名." data-original-title="Popover header" />
+										<div style="float:right;  margin-right:503px;">
+											<button type="button" id="addRoleAttrButton" class="btn blue" >类别添加</button>                    
+											<button type="button" id="addRoleButton" class="btn blue" >提交</button>      
+										</div>
+									 </div>
+								 </div>
+
+								<table class="table table-striped table-bordered table-hover table-full-width" id="sample_1">
+
+									<thead>
+										<tr>
+											<th width="16%">类别</th>
+											<th width="26%">上传数据权限</th>
+											<th width="26%" class="hidden-480">处理任务权限</th>
+											
+											
+											<th width="26%" class="hidden-480">用户管理权限</th>
+											<th width="2%" class="hidden-480"></th>
+										</tr>
+
+									</thead>
+									<tbody id="tableBody"></tbody>
+
+								</table>
+                            </div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>

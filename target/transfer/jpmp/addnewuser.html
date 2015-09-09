@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>新增用户</title>
+		<script type="text/javascript" src="js/jpmpconfig.js" ></script>
+		<link rel="stylesheet" href="validform/css/style.css" />
+		<script type="text/javascript" src="validform/js/Validform_v5.3.2_min.js" ></script>
+	</head>
+<script type="text/javascript">
+$(function(){
+	/*
+	if (sessionUserInfo['type'] != "4") {
+		alert("对不起，非超级管理员无新增用户权限！");
+		window.location.href = "userlist.html";
+	}*/
+	$.ajax({
+		async: false,
+		url: "role/listRole",
+		dataType: "json",
+		success: function(data){
+			$.each(data, function(index, info){
+				$("#auth").append("<option value='"+info['id']+"'>"+info['name']+"</option>");
+			});
+		}
+	});
+	var departmentArr = [];
+	departmentArr = getDeptList();
+	departmentArr = new Array("超级管理员","管理员","用户");
+	var html3;
+	for(var i in departmentArr){
+		html3 += "<option value="+departmentArr[i]+">"+departmentArr[i]+"</option>";
+	}
+	$("#department").empty();
+	$("#department").append(html3);
+	$("#userType").change(function(){
+		var type = $(this).val();
+		if(type==3 || type==4){
+			$("#auth").parent().parent().hide();
+		}else{
+			$("#auth").parent().parent().show();
+		}
+	});
+	$("form").Validform({
+		btnSubmit: ".btna",
+		tiptype: 3,
+		datatype: {
+			"checkusername": function(gets, obj, curform, regxp){	
+				if (gets.length > 0) {
+					if(!/^[a-zA-Z0-9]*$/g.test(gets)){
+						return "用户名只能是英文和数字的组合！";
+					}
+					var ddd;
+					$.ajax({
+						async: false,
+						url: "useropera/checknewusername",
+						dataType: "json",
+						data: {
+							username: $("input[name='name']").val(),
+							type: $("#userType").val()
+						},
+						success: function(data){
+							ddd = data;
+						}
+					});
+					if (ddd == "1") {//已有该用户
+						return '该用户已存在！';
+					} else {//无该用户
+						return true;
+					}
+				} else {
+					return false;
+				}
+			}
+		}
+	});
+});
+</script>
+	<body>
+		<div class="wrap">
+			<div class="top"></div>
+			<div class="container">
+				<div class="pageinner mc pagew">
+					<div class="nav"></div>
+					<div class="page">
+						<div class="content">
+							<div class="title">用户管理<em>新增用户 </em></div>
+							<div class="road">
+								<a href="index.html">首页</a>><a href="userlist.html">用户管理</a>><a href="#">新增用户</a>
+							</div>
+							<div class="conbox">
+								<div class="tit fs16"><span class="goback"><a href="userlist.html">返回</a></span>新增用户</div>
+								<form class="condetail fs14" action="../rest/user/addUser" method="post">
+									<ul>
+										<li class="detaillist">
+											<div class="hd lh28">用户名</div>
+											<div class="bd">
+												<input type="text" name="user_account" class="txt tw160" datatype="*1-8 & checkusername" nullmsg="请输入用户名！" errormsg="用户名长度不能超过8个字符！">
+											</div>
+										</li>
+										<li class="detaillist">
+											<div class="hd lh28">密码</div>
+											<div class="bd">
+												<input type="password" name="user_password" class="txt tw160" datatype="*6-18" nullmsg="请输入密码！" errormsg="密码为6-18位字符！">
+											</div>
+										</li>
+										<li class="detaillist">
+											<div class="hd lh28">真实姓名</div>
+											<div class="bd">
+												<input type="text" name="user_name" class="txt tw160" nullmsg="请输入真实姓名！" errormsg="用户名长度不能超过8个字符！">
+											</div>
+										</li>
+										<li class="detaillist">
+											<div class="hd lh28">年龄</div>
+											<div class="bd">
+												<input type="text" name="user_age" class="txt tw160" ignore="ignore" datatype="n1-2" errormsg="年龄在1-99岁之间！">
+											</div>
+										</li>
+										<li class="detaillist">
+											<div class="hd lh30">性别</div>
+											<div class="bd">
+												<select name="gender" class="selt tw160" id="gender">
+													<option value="1">男</option>
+													<option value="2">女</option>
+												</select>
+											</div>
+										</li>
+										<li class="detaillist">
+											<div class="hd lh30">级别</div>
+											<div class="bd">
+												<select name="type" class="selt tw160" id="userType">
+													<option value="2">手机端用户</option>
+													<option value="4">服务端管理员</option>
+												</select>
+											</div>
+										</li>
+										<li class="detaillist">
+											<div class="hd lh30">权限</div>
+											<div class="bd">
+												<select name="roleId" id="auth" class="selt tw160">
+												  <option value="1">超级管理员</option>
+													<option value="2">管理员</option>
+													<option value="3">用户</option>
+												</select>
+											</div>
+										</li>
+										<li class="detaillist">
+											<div class="hd">手机</div>
+											<div class="bd">
+												<p class="contact"><input type="text" name="user_tel" class="txt tw160" ignore="ignore" datatype="m" errormsg="请输入合法的手机号！"></p>
+											</div>
+										</li>
+										<li class="detaillist">
+											<div class="hd">QQ</div>
+											<div class="bd">
+												<p class="contact"><input type="text" name="qq" class="txt tw160" ignore="ignore" datatype="n5-11" errormsg="请输入正确的数字qq！"></p>
+											</div>
+										</li>
+										
+										<li class="detaillist">
+											<div class="hd">地址</div>
+											<div class="bd">
+												<p class="contact"><input type="text" name="user_address" class="txt tw160" style="width: 500px"></p>
+											</div>
+										</li>
+										<li class="detaillist">
+											<div class="bd detailbtn"><a href="#" class="btna">确定</a><a href="userlist.html" class="btnc">取消</a></div>
+										</li>
+									</ul>
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>

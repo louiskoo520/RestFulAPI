@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>新增APP</title>
+		<script type="text/javascript" src="js/jpmpconfig.js" ></script>
+		<link href="css/addapp.css" type="text/css" rel="stylesheet"/>
+		<script type="text/javascript" src="js/addapp.js"></script>
+		<script>
+		//获取图片URL
+			function setImagePreview(obj,show) {
+				var imgObjPreview = document.getElementById(show);
+				var URL;
+			 	if (obj) {
+			 //ie
+			 if (window.navigator.userAgent.indexOf("MSIE") >= 1) {
+			 obj.select();
+			 //alert(document.selection.createRange().text);
+			 imgObjPreview.style.filter = "progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod=scale);";
+			 imgObjPreview.filters.item("DXImageTransform.Microsoft.AlphaImageLoader").src = document.selection.createRange().text;
+			 //imgObjPreview.src = document.selection.createRange().text;
+			 	//URL = document.selection.createRange().text;
+			}
+			//firefox
+			else {
+				URL = window.URL.createObjectURL(obj.files[0]);
+				//alert(URL);
+			 	imgObjPreview.src =  URL;
+			}
+			 }
+			 return true;
+			 }
+		</script>
+	</head>
+	<body>
+		<div class="wrap">
+			<div class="topbar">
+			<div class="top"></div>
+			</div>
+			</div>
+			<div class="container">
+				<div class="pageinner mc pagew">
+					<div class="nav"></div>
+					<div class="page">
+						<div class="content">
+							<div class="title">APP管理<em>新建APP</em></div>
+							<div class="road">
+								<a href="index.html">首页</a>><a href="applist.html">APP管理</a>><a href="#">新建APP</a>
+							</div>
+							<form action="app/addApp" method="post" enctype="multipart/form-data" id="form1">
+							<div class="conbox">
+								<div class="tit fs16"><span class="goback"><a href="applist.html">返回</a></span>新建APP</div>
+								<div class="body-cont">
+            	<p><label>APP名称</label><input type="text" id="app-name" name="appName"/>
+            	<i class="notice"></i></p>
+            	<p><label>APP版本</label><input type="text" id="app-version" name="appVersion"/>
+            	<i class="notice">与此APP版本一致</i></p>
+                <p><label>类别</label>
+	                <select id="app-type" name="appType">
+	                	<option value="1">软件</option>
+	                	<option value="2">游戏</option>
+	                	<option value="3">娱乐</option>
+	                	<option value="4">其他</option>
+	                </select>
+                <i class="notice"></i></p>
+                <p class="introduce"><label>介绍</label><textarea id="app-intro" name="appIntro"></textarea>
+                	<i class="notice"></i>
+                </p>
+                <p>
+                	<label>上传文件</label>
+                    <input class="file" type="file" id="app-apk" name="appApk"/>
+                    <input class="wp-btn" type="button" value="选择文件"/>
+                    <i class="notice">请上传apk类型文件</i>
+                </p>
+                <p>
+                	<label>上传图标</label>
+                    <input class="file" type="file" id="app-logo" name="appLogo"/>
+                    <input class="wp-btn" type="button" value="选择文件"/>
+                    <i class="notice">请上传100px*100px的图片</i></p>
+                <p>
+                	<label>详情图片</label>
+                    <!-- <input class="file" type="file"/> -->
+                    <!-- <input class="wp-btn" type="button" value="选择文件"/> -->
+                    <input type="file" class="file file1" id="file1" name="file1" onchange="setImagePreview(this, 'img1');" accept="image/*"/>
+				  	<input type="file" class="file file2" id="file2" name="file2" onchange="setImagePreview(this, 'img2');" accept="image/*"/>
+				  	<input type="file" class="file file3" id="file3" name="file3" onchange="setImagePreview(this, 'img3');" accept="image/*"/>
+				  	<input type="file" class="file file4" id="file4" name="file4" onchange="setImagePreview(this, 'img4');" accept="image/*"/>
+				  	<!-- <input type="button" value="upload" id="file5" style="position:absolute;z-index: 60;width: 100px;height: 20px;"/><br/> -->
+				  	<input class="wp-btn" id="file5" type="button" value="选择文件" style="position:absolute;z-index: 60;"/>
+                    <i class="notice notice-detail">请上传500K以内的图片，最多可上传4张</i></p>
+               <div class="imgbox">
+               		<div class="box">
+               			<div class="image-cancel-update">
+               				<div class="image-update">修改</div>
+               				<div class="image-cancel">删除</div>
+               			</div>
+                    	<img id="img1" class="img"/>
+                    </div>
+                    <div class="box">
+                    	<div class="image-cancel-update">
+               				<div class="image-update">修改</div>
+               				<div class="image-cancel">删除</div>
+               			</div>
+                    	<img id="img2" class="img"/>
+                    </div>
+                    <div class="box">
+                    	<div class="image-cancel-update">
+               				<div class="image-update">修改</div>
+               				<div class="image-cancel">删除</div>
+               			</div>
+                    	<img id="img3" class="img"/>
+                    </div>
+                    <div class="box">
+                    	<div class="image-cancel-update">
+               				<div class="image-update">修改</div>
+               				<div class="image-cancel">删除</div>
+               			</div>
+                    	<img id="img4" class="img"/>
+                    </div>
+                    <p class="img-notice">
+                    	详情图片已上传<i id="selected">3</i>张，还可上传<i id="may-select">7</i>张
+                    </p>
+               </div>
+               <div class="btnbox">
+               		<a class="upload_">上传APP</a>
+               		<input type="submit" class="upload-btn"/>
+                    <a class="reset" style="cursor: pointer;">重置</a>
+               </div>
+            </div>
+							</div>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>

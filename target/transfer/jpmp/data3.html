@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>数据统计</title>
+		<script type="text/javascript" src="js/jpmpconfig.js" ></script>
+		<link href="media/css/style.css" rel="stylesheet" type="text/css"/>
+		<link rel="stylesheet" href="css/all_conn_info.css" />
+		<script language="JavaScript" type="text/javascript" src="js/My97DatePicker/WdatePicker.js"></script>
+		<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=SIzGf2rSjEYAizntRiA2kTRr"></script>
+		<script src="js/history-trace.js"></script>
+	</head>
+	<body>
+		<div class="wrap">
+			<div class="top"></div>
+			<div class="container">
+				<div class="pageinner mc pagew">
+					<div class="nav"></div>
+					<div class="page">
+						<div class="content">
+							<div class="title">GPS轨迹<em class="qs2"></em></em></div>
+							<div class="road">
+								<a href="#">首页</a>><a href="#">GPS轨迹</a>
+							</div>
+							<div class="main datehead">
+								<div class="header"><a href="conn_monitor.html" >在线用户</a><a href="all_conn_info_map.html">地图分布</a><a href="data3.html" class="current">GPS轨迹</a></div>
+								<div class="date-main main-body">
+																		
+									<div class="datemainlist">
+										<div class="datelist question" style="display: block;">
+											<div class="conbox">
+												<div class="tit fs16">GPS轨迹
+													<label>用户名：</label>
+													<select style="margin-left: 0px;width: 100px;font-size: 14px;" class="user-select"></select>
+													<label>日期：</label>
+													<input type="text" class="timestart" onclick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss'})"style="font-size: 14px;width: 150px;"/>
+													<span style="color:rgba(150,150,150,1);">--</span>
+													<input type="text" class="timeend" onclick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss'})"style="font-size: 14px;width: 150px;"/>
+													<input class="user-btn" type="button" style="font-size: 14px;width: 80px;/* background-color:#4b8df8; */border:none;cursor: pointer;" value="查询"/>
+												</div>
+												<div class="portlet-body portlet-body2" style="height: 500px" id="allMap">
+													
+												</div>
+											</div>
+										</div>
+									</div>	
+									
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>

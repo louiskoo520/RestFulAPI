@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>角色分配</title>
+		<script type="text/javascript" src="js/jpmpconfig.js" ></script>
+		<link href="media/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+		<link href="media/css/style.css" rel="stylesheet" type="text/css"/>
+		<script src="media/js/app.js"></script>
+		<script src="media/js/table-editable.js"></script>
+	<script>		
+		
+	</script>
+
+	<script>
+		var users ;
+		var roles ;
+
+		var rolesOption = "";
+
+		function test(data){
+		}
+		jQuery(document).ready(function(){
+			var userId = getQueryString("userId");
+			$("#goback").click(function(){
+				if (userId) {
+					window.location.href = "userlist.html";
+				} else {
+					window.location.href = "role_list.html";			
+				}
+			});
+			//发送请求得到所有用户信息
+			$.ajax({
+				url:"user/listUserForRole",
+				dataType: "json",
+				data:{userId:userId},
+				async:false,
+				success:function(data){
+					users = data;
+				},
+				error:function(data){
+					alert("获取用户信息失败！");
+				}
+			});
+			//获取所有角色
+			$.ajax({
+				url:"role/listRole",
+				dataType: "json",
+				async:false,
+				success:function(data){
+					roles = data;
+				},
+				error:function(data){
+					alert("获取角色信息失败！");
+				}
+			});
+			for(var i in roles){
+ 				rolesOption += '<option value="'+roles[i].id+'">'+roles[i].name+'</option>';
+			}
+			//key:用户ID，value：roleId，用于初次更新界面
+			var jsonStr = "[]";
+			var userIdRoleId = eval('('+jsonStr+')');
+			var tmp = "";
+			for(var i in users){
+				if(i == "remove")
+					continue;
+				tmp +=   '<tr>'+
+							'<td>'+users[i].name+'</td>'+
+							'<td>'+users[i].department+'</td>'+
+							'<td>'+users[i].addr+'</td>'+
+							'<td class="center">'+users[i].tel+'</td>'+
+							'<td>'+
+							'<select name="'+users[i].id+'" onchange="roleChange(this)" class="large m-wrap" tabindex="1">'+ rolesOption +
+							'</select>'+
+							'</td>'+
+							'</tr>';
+				var arr = "{\"userId\":"+ users[i].id+",\"roleId\":"+users[i].roleId+"\}"
+				userIdRoleId.push(arr);
+			}
+			$("#tableContent").append(tmp);
+			
+			for(var i=0;i<userIdRoleId.length;++i){
+				var tmp = eval("(" + userIdRoleId[i] + ")");
+				if(tmp.roleId == null)
+					$("select[name='"+tmp.userId+"']").val("");
+				else
+					$("select[name='"+tmp.userId+"']").val(tmp.roleId);
+			}
+			//for(var i=0; i<userIdRoleId.size()
+			$("select[name='5']").val("6");
+			//更新表格
+			TableEditable.init();
+		});
+
+		function roleChange(data){
+			var userId = data.name;
+			var roleId = data.value;
+			if(userId == "" || roleId == ""){
+				alert("出现错误,无法修改权限！");
+				return;
+			}
+			$.ajax({
+				url:"user/alterUserRole",
+				data:{
+					userId:userId,
+					roleId:roleId
+				},
+				success:function(data){
+					users = data;
+				},
+				error:function(data){
+					alert("获取用户信息失败！");
+				}
+			});
+		}
+	</script>
+	</head>
+	<body>
+		<div class="wrap">
+			<div class="top"></div>
+			<div class="container">
+				<div class="pageinner mc pagew">
+					<div class="nav"></div>
+					<div class="page">
+						<div class="content">
+							<div class="title">用户管理<em>角色分配</em></div>
+							<div class="road">
+								<a href="index.html">首页</a>><a href="userlist.html">用户管理</a>><a>角色分配</a>
+							</div>
+							<div class="conbox">
+								<div class="tit fs16"><span class="goback"><a id="goback" href="#">返回</a></span>角色分配</div>
+								<div class="portlet-body">
+								<table class="table table-striped table-hover table-bordered" id="sample_editable_1">
+									<thead>
+										<tr>
+											<th style="width:20%">用户名</th>
+											<th style="width:20%">部门</th>
+											<th style="width:20%">住址</th>
+											<th style="width:20%">联系电话</th>
+											<th style="width:20%">角色名</th>
+										</tr>
+									</thead>
+									<tbody id="tableContent">
+										
+									</tbody>
+								</table>
+							</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>

@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>数据统计</title>
+		<script type="text/javascript" src="js/jpmpconfig.js" ></script>
+		<link href="media/css/style.css" rel="stylesheet" type="text/css"/>
+		<link rel="stylesheet" href="css/all_conn_info.css" />		
+    	<script src="js/esl.js"></script>
+    	<script type="text/javascript" src="js/date.js" ></script>
+    	<script type="text/javascript" src="js/area-user-statis.js" ></script>
+		<script language="JavaScript" type="text/javascript" src="js/My97DatePicker/WdatePicker.js"></script>
+		<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=SIzGf2rSjEYAizntRiA2kTRr"></script>
+		<style>
+			.loading{
+				height:400px;
+				display:none;
+				position:absolute;
+				top:0px;
+				left:0px;
+				background:url(images/loading.gif) center center no-repeat;
+				background-color:#fff;
+			}
+		
+		</style>
+	</head>
+	<body>
+		<div class="wrap">
+			<div class="top"></div>
+			<div class="container">
+				<div class="pageinner mc pagew">
+					<div class="nav"></div>
+					<div class="page">
+						<div class="content">
+							<div class="title">用户统计<em class="qs2"></em></em></div>
+							<div class="road">
+								<a href="#">首页</a>><a href="#">用户统计</a>
+							</div>
+							<div class="main datehead">
+								<div class="header">
+									<a href="data1.html">问题统计</a>
+									<a href="data5.html">任务统计</a>
+									<a class="current" href="data2.html">用户统计</a>
+									<a href="data4.html">用户在线统计</a>
+									<a href="data6.html">系统日志</a>
+								</div>
+								<div class="date-main main-body">
+									<div class="datemainlist">
+										<div class="datelist question" style="display: block;">
+											<div class="datemodel">
+												<div class="model infoExchange">
+													<div class="tt fs14"><span>用户信息交互表</span></div>
+													<div class="modelmain clearfix">
+														<div class="chart fL" style="height:400px;" id="infoExchange"></div>
+														<div class="screen fR">
+															<p class="hd">选择时间段：</p>
+															<div class="bd">
+																<ul class="clearfix">
+																	<li><label class="margin"><input type="radio" value="当天" name="time-interval"  checked="checked" class="range"/><label>当天</label></label></li>
+																	<li><label class="margin"><input type="radio" value="本周" name="time-interval" class="range"/><label>本周</label></label></li>
+																	<li><label class="margin"><input type="radio" value="本月" name="time-interval"  class="range"/><label>本月</label></label></li>
+																	<li><label class="margin"><input type="text" value="" class="start" onclick="WdatePicker()"><span class="marspan">到</span><input type="text" value="" class="end" onclick="WdatePicker()"></li>
+																	<li><label class="margin">
+																		<select style="border:1px solid black;width:120px;padding:2px 5px;" class="userid">
+																			<option value="2">杨晨</option>
+																		</select>
+																		</label>
+																	</li>
+																</ul>	
+															</div>
+															<p class="hd">选择操作类型：</p>
+															<div class="bd">
+																<ul class="clearfix selques">
+																	
+																	<li><label><input type="checkbox" checked="checked" class="q-type" value="1"><label code="1">未分配</label></label></li>
+																	<li><label><input type="checkbox" checked="checked" class="q-type" value="2"><label code="2">通知中</label></label></li>
+																	<li><label><input type="checkbox" checked="checked" class="q-type" value="4"><label code="4">已通知</label></label></li>
+																	<li><label><input type="checkbox" checked="checked" class="q-type" value="5"><label code="5">已接收</label></label></li>
+																	<li><label><input type="checkbox" checked="checked" class="q-type" value="11"><label code="11">已完成</label></label></li>
+																	<li><label><input type="checkbox" checked="checked" class="q-type" value="14"><label code="14">已关闭</label></label></li>
+																	
+																</ul>
+																<p class="subbtn q"><button type="submit">确定</button></p>
+																<ul class="totalques">
+																<li>
+																		<span class="fs14 t">未分配:</span>
+																		<span class="red fs14">6200</span>
+																	</li>
+																	<li>
+																		<span class="fs14 t">通知中:</span>
+																		<span class="blue fs14">6200</span>
+																	</li>
+																	<li>
+																		<span class="fs14 t">已通知:</span>
+																		<span class="green fs14">6200</span>
+																	</li>
+																	<li>
+																		<span class="fs14 t">已接收:</span>
+																		<span class="green fs14">6200</span>
+																	</li>
+																	<li>
+																		<span class="fs14 t">已完成:</span>
+																		<span class="green fs14">6200</span>
+																	</li>
+																	<li>
+																		<span class="fs14 t">已关闭:</span>
+																		<span class="green fs14">6200</span>
+																	</li>
+																</ul>
+															</div>
+														</div>
+													</div>
+												</div>
+												
+												<div class="model areaUser">
+													<div class="tt fs14"><span>区域用户在线统计</span></div>
+													<div class="modelmain clearfix" style="position:relative;">
+														<div class="chart fL" style="height:400px;" id="areaUser"></div>
+														<div class="chart fL loading" id="loading"></div>
+														<div class="screen fR" style="height:400px">
+															<p class="hd">选择日期：</p>
+															<div class="bd">
+																<ul class="clearfix">
+																	<li><label class="margin"><input type="text" class="start" onclick="WdatePicker()" style="width:150px;text-indent:5px;"></label></li>
+																</ul>	
+															</div>
+															<p class="hd">选择时间区间：</p>
+															<div class="bd">
+																<ul class="clearfix selques">
+																	<li><label><input type="radio" checked="checked" name="time" class="q-type" value="00:00:00-04:00:00"><label>&nbsp;&nbsp;00:00-04:00</label></label></li>
+																	<li><label><input type="radio" name="time" class="q-type" value="04:00:00-08:00:00"><label>&nbsp;&nbsp;04:00-08:00</label></label></li>
+																	<li><label><input type="radio" name="time" class="q-type" value="08:00:00-12:00:00"><label>&nbsp;&nbsp;08:00-12:00</label></label></li>
+																	<li><label><input type="radio" name="time" class="q-type" value="12:00:00-16:00:00"><label>&nbsp;&nbsp;12:00-16:00</label></label></li>
+																	<li><label><input type="radio" name="time" class="q-type" value="16:00:00-20:00:00"><label>&nbsp;&nbsp;16:00-20:00</label></label></li>
+																	<li><label><input type="radio" name="time" class="q-type" value="20:00:00-23:59:59"><label>&nbsp;&nbsp;20:00-00:00</label></label></li>
+																</ul>
+															</div>
+															
+															<p class="subbtn g"><button type="submit">确定</button></p>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>							
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>

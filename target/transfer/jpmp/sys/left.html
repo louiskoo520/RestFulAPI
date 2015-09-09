@@ -1,0 +1,38 @@
+<script>
+$(function(){
+	var filename = location.pathname.replace(/(.+)[\\/]/, "");
+	if (filename == "questionstep.html") {
+		filename = "questionlist.html";
+	}else if (filename == "taskstep.html") {
+		filename = "tasklist.html";
+	}else if (filename == "user_role.html" || filename == "usermag.html" || filename == "addnewuser.html" || filename == "addRole.html" || filename == "role_list.html") {
+		filename = "userlist.html";
+	}else if (filename == "all_conn_info_map.html" || filename == "all_conn_info.html" || filename == "user_trace.html"||filename=="history_trace.html"||filename=="data3.html") {
+		filename = "conn_monitor.html";
+	}else if (filename == "notice_add.html" || filename == "notice_view.html") {
+		filename = "notice_list.html";
+	}else if (filename == "addapp.html" || filename == "updateapp.html" || filename.indexOf("appdetail.html")>=0) {
+		filename = "applist.html";
+	}else if (filename == "addkind.html") {
+		filename = "sysproblem.html";
+	}else if (filename == "data2.html" || filename == "data4.html") {
+		filename = "data1.html";
+	}
+	$(".navlist a").each(function(){
+		if ($(this).attr("href") == filename) {
+			$(this).addClass("active");
+		}
+	});
+});
+</script>
+<ul class="navlist">
+	<li><a href="index.html">首页<i></i></a></li>
+	<li><a href="questionlist.html">上传管理<i></i></a></li>
+	<li><a href="tasklist.html">手术规划管理<i></i></a></li>
+	<li><a href="userlist.html">用户管理<i></i></a></li>
+	<li><a href="conn_monitor.html">实时监控<i></i></a></li>
+	<li><a href="notice_list.html">公告管理<i></i></a></li>
+	<li><a href="applist.html">APP管理<i></i></a></li>
+	<li><a href="data1.html">数据统计<i></i></a></li>
+	<li><a href="sysproblem.html">系统设置<i></i></a></li>
+</ul>

@@ -1,0 +1,32 @@
+@charset "utf-8";
+.type {
+	border-bottom: 1px solid #8A8A8A;
+}
+.t-icon {
+	vertical-align: middle;
+	margin-left: 20px;
+	width: 20px;
+	height: 20px;
+}
+.t-title {
+	margin-left: 10px;
+	line-height: 30px;
+	font-size: 16px;
+	font-weight: bold;
+}
+.t-addbtn {
+	color: #FFFFFF;
+	margin-left: 60px;
+	width: 30px;
+	padding: 3px 10px;
+	background: none repeat scroll 0% 0% #4B8DF8;
+}
+.t-content {
+	font-size: 14px;
+	margin-top: 10px;
+	padding: 0 50px;
+	background-color: #F5F5F5;
+}
+.del {
+	float: right;
+}

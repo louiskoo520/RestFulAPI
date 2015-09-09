@@ -1,0 +1,27 @@
+body{text-align:center;}
+
+div{margin:0px auto;}
+
+#dataList {
+	width:90%;
+	background-color:white;
+	color:black;
+	border-collapse:collapse;
+	text-align:center;margin:0 auto:
+}
+#dataList td { 
+	height:30px;
+	width:10%;
+	border:1px solid #ccc;
+	text-align:center;
+}
+#dataList tr.header {
+	height:40px;
+	font-weight:bold;
+	background-color:#fbedce;
+}
+#dataList tr.header2{
+	height:35px;
+	font-weight:bold;
+}
+#dataList tr:hover { background-color:#f7f9fd;}

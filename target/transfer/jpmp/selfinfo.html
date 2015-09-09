@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>账户信息</title>
+		<script type="text/javascript" src="js/jpmpconfig.js" ></script>
+		<link rel="stylesheet" href="validform/css/style.css" />
+		<script type="text/javascript" src="validform/js/Validform_v5.3.2_min.js" ></script>
+	</head>
+<script type="text/javascript">
+var types = ['','系统默认用户 ','手机端注册用户','服务端注册用户','超级管理员'];
+function reset() {
+	$("input#id").val(sessionUserInfo['id']);
+	$("input[name='id']").val(sessionUserInfo['id']);
+	$("input[name='name']").val(sessionUserInfo['name']);
+	$("input[name='age']").val(sessionUserInfo['age']);
+	$("input#type").val(types[sessionUserInfo['type']]);
+	$("input[name='tel']").val(sessionUserInfo['tel']);
+	$("input[name='qq']").val(sessionUserInfo['qq']);
+	$("input#department").val(sessionUserInfo['department']);
+	$("input[name='addr']").val(sessionUserInfo['addr']);
+}
+$(function(){
+	reset();
+});
+</script>
+	<body>
+		<div class="wrap">
+			<div class="top"></div>
+			<div class="container">
+				<div class="pageinner mc pagew">
+					<div class="nav"></div>
+					<div class="page">
+						<div class="content">
+							<div class="title">账户信息<em>账户信息 </em></div>
+							<div class="road">
+								<a href="index.html">首页</a>><a href="#">账户信息</a>
+							</div>
+							<div class="conbox">
+								<div class="tit fs16">账户信息</div>
+								<form class="condetail fs14" action="useropera/upuser" method="post">
+									<ul>
+										<!--<li class="detaillist">
+											<div class="hd lh28">id</div>
+											<div class="bd">
+												<input type="text" id="id" class="txt tw160" disabled="disabled">
+												<input type="hidden" name="id" class="txt tw160">
+											</div>
+										</li>
+										--><li class="detaillist">
+											<div class="hd lh28">用户名</div>
+											<div class="bd">
+												<input type="text" name="name" class="txt tw160" disabled="disabled">
+											</div>
+										</li>
+										<li class="detaillist">
+											<div class="hd lh28">年龄</div>
+											<div class="bd">
+												<input type="text" name="age" class="txt tw160" disabled="disabled">
+											</div>
+										</li>
+										<li class="detaillist">
+											<div class="hd lh30">级别</div>
+											<div class="bd">
+												<input type="text" id="type" class="txt tw160" disabled="disabled">
+											</div>
+										</li>
+										<li class="detaillist">
+											<div class="hd">手机</div>
+											<div class="bd">
+												<p class="contact"><input type="text" name="tel" class="txt tw160" disabled="disabled"></p>
+											</div>
+										</li>
+										<li class="detaillist">
+											<div class="hd">QQ</div>
+											<div class="bd">
+												<p class="contact"><input type="text" name="qq" class="txt tw160" disabled="disabled"></p>
+											</div>
+										</li>
+										<li class="detaillist">
+											<div class="hd lh30">所属部门</div>
+											<div class="bd">
+												<input type="text" name="department" id="department" class="txt tw160" disabled>
+											</div>
+										</li>
+										<li class="detaillist">
+											<div class="hd">地址</div>
+											<div class="bd">
+												<p class="contact"><input type="text" name="addr" class="txt tw160" style="width: 500px" disabled="disabled"></p>
+											</div>
+										</li>
+										<li class="detaillist">
+											<div class="bd detailbtn"><a href="updateselfinfo.html" class="btna">修改</a></div>
+										</li>
+									</ul>
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>
