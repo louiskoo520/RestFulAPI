@@ -1,5 +1,10 @@
 package com.lungcare.dicomfile.dao.impl;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.net.URL;
+import java.net.URLConnection;
 import java.util.Date;
 import java.util.List;
 
@@ -17,6 +22,7 @@ import com.lungcare.dicomfile.entity.Login;
 import com.lungcare.dicomfile.entity.Role;
 import com.lungcare.dicomfile.entity.Type;
 import com.lungcare.dicomfile.entity.User;
+import com.lungcare.dicomfile.util.BrowseTool;
 
 @Transactional
 public class UserDAOImp implements IUserDAO {
@@ -43,7 +49,7 @@ public class UserDAOImp implements IUserDAO {
 		return "1";
 	}
 
-	public void addLogin(HttpServletRequest request, String user_account) {
+	public void addLogin2(HttpServletRequest request, String user_account) {
 
 		Login login = new Login();
 		login.setUsername(user_account);
@@ -73,6 +79,85 @@ public class UserDAOImp implements IUserDAO {
 		} else {
 			System.out
 					.println("this.sessionFactory.getCurrentSession().is null");
+		}
+	}
+
+	public void addLogin(HttpServletRequest request, String user_account) {
+
+		Login login = new Login();
+		login.setUsername(user_account);
+		login.setRoleName(getRoleNameByUserName(user_account));
+		login.setLoginTime(new Date());
+
+		String remoteHostString = "";
+		if (request.getHeader("x-forwarded-for") == null) {
+			remoteHostString = request.getRemoteAddr();// 获取上传者的IP地址
+		} else {
+			remoteHostString = request.getHeader("x-forwarded-for");
+		}
+
+		login.setLoginIP(remoteHostString);
+
+		// 获取agent:Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36
+		// (KHTML, like Gecko) Chrome/44.0.2403.89 Safari/537.36
+		String agent = request.getHeader("user-agent");
+		System.out.println("agent:" + agent);
+
+		BrowseTool browseTool = new BrowseTool();
+
+		String userBrowse = browseTool.checkBrowse(agent);// 获取客户浏览器
+		login.setBrowser(userBrowse);
+
+		String userOS = agent.substring(agent.indexOf("(") + 1,
+				agent.indexOf(")"));// 获取客户操作系统
+		login.setPlatForm(userOS);
+
+		if (remoteHostString.equals("127.0.0.1")
+				|| remoteHostString.equals("0:0:0:0:0:0:0:1")) {
+			login.setLocation("本地");
+		} else {
+			login.setLocation(getAddressByIP(remoteHostString));
+		}
+
+		Session session = this.sessionFactory.getCurrentSession();
+		if (session != null) {
+			System.out
+					.println("this.sessionFactory.getCurrentSession().isOpen()");
+			Transaction transaction = session.beginTransaction();
+			session.save(login);
+			session.flush();
+			transaction.commit();
+			System.out.println("add login success!!!");
+		} else {
+			System.out
+					.println("this.sessionFactory.getCurrentSession().is null");
+		}
+	}
+
+	public String getAddressByIP(String strIP) {
+		try {
+			URL url = new URL("http://ip.qq.com/cgi-bin/searchip?searchip1="
+					+ strIP);
+			URLConnection conn = url.openConnection();
+			BufferedReader reader = new BufferedReader(new InputStreamReader(
+					conn.getInputStream(), "GBK"));
+			String line = null;
+			StringBuffer result = new StringBuffer();
+			while ((line = reader.readLine()) != null) {
+				result.append(line);
+			}
+			reader.close();
+			strIP = result.substring(result.indexOf("该IP所在地为："));
+			strIP = strIP.substring(strIP.indexOf("：") + 1);
+			if (strIP.indexOf("内网IP") != -1) {
+				return "内网IP";
+			}
+			String province = strIP.substring(6, strIP.indexOf("省"));
+			String city = strIP.substring(strIP.indexOf("省") + 1,
+					strIP.indexOf("市"));
+			return province + "省" + city + "市";
+		} catch (IOException e) {
+			return "无法识别位置";
 		}
 	}
 
@@ -156,8 +241,15 @@ public class UserDAOImp implements IUserDAO {
 		session.beginTransaction();
 
 		@SuppressWarnings("unchecked")
-		List<Login> loginInofs = session.createQuery(
-				"select a from Login a order by loginTime").list();
+		List<Login> loginInofs = session
+				.createSQLQuery(
+						"select * from (select * from login  ORDER BY loginTime DESC) as t  group by username")
+				.addEntity(Login.class).list();
+		System.out.println("get login info result : ");
+		for (Login login : loginInofs) {
+			System.out
+					.println(login.getUsername() + ":" + login.getLoginTime());
+		}
 		session.getTransaction().commit();
 
 		if (loginInofs != null && loginInofs.size() > 0) {
@@ -190,7 +282,7 @@ public class UserDAOImp implements IUserDAO {
 	// }
 	// }
 
-	public void addUser(String user_account, String user_name,
+	public void addUser(String user_account, String user_realname,
 			String user_password, int user_age, int user_gender, int user_role,
 			String user_tel, String user_address) {
 
@@ -199,7 +291,7 @@ public class UserDAOImp implements IUserDAO {
 		user.setPassword(user_password);
 		// user.setRoleNum(user_role);
 		user.setCreateDate(new Date());
-		user.setName(user_name);
+		user.setRealName(user_realname);
 		user.setGender(user_gender);
 		user.setAge(user_age);
 		user.setTel(user_tel);

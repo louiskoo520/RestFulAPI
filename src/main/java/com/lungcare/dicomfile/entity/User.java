@@ -12,12 +12,15 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
 
+import org.hibernate.annotations.GenericGenerator;
+
 @XmlRootElement
 @Entity
 @Table
 public class User {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GenericGenerator(name = "persistenceGenerator", strategy = "increment")
 	private int id;
 
 	private String name;// 账户

@@ -16,17 +16,18 @@ $(function(){
 	}*/
 	$.ajax({
 		async: false,
-		url: "role/listRole",
+		type:"get",
+		url: "../rest/role/listRole",
 		dataType: "json",
 		success: function(data){
-			$.each(data, function(index, info){
-				$("#auth").append("<option value='"+info['id']+"'>"+info['name']+"</option>");
+			$.each(data.role, function(index, info){
+				$("#auth").append("<option value='"+info['roleNum']+"'>"+info['name']+"</option>");
 			});
 		}
 	});
 	var departmentArr = [];
 	departmentArr = getDeptList();
-	departmentArr = new Array("超级管理员","管理员","用户");
+	//departmentArr = new Array("超级管理员","管理员","用户");
 	var html3;
 	for(var i in departmentArr){
 		html3 += "<option value="+departmentArr[i]+">"+departmentArr[i]+"</option>";
@@ -107,7 +108,7 @@ $(function(){
 										<li class="detaillist">
 											<div class="hd lh28">真实姓名</div>
 											<div class="bd">
-												<input type="text" name="user_name" class="txt tw160" nullmsg="请输入真实姓名！" errormsg="用户名长度不能超过8个字符！">
+												<input type="text" name="user_realname" class="txt tw160" nullmsg="请输入真实姓名！" errormsg="用户名长度不能超过8个字符！">
 											</div>
 										</li>
 										<li class="detaillist">
@@ -125,7 +126,7 @@ $(function(){
 												</select>
 											</div>
 										</li>
-										<li class="detaillist">
+										<!-- <li class="detaillist">
 											<div class="hd lh30">级别</div>
 											<div class="bd">
 												<select name="type" class="selt tw160" id="userType">
@@ -133,14 +134,14 @@ $(function(){
 													<option value="4">服务端管理员</option>
 												</select>
 											</div>
-										</li>
+										</li> -->
 										<li class="detaillist">
 											<div class="hd lh30">权限</div>
 											<div class="bd">
 												<select name="roleId" id="auth" class="selt tw160">
-												  <option value="1">超级管理员</option>
+												  <!-- <option value="1">超级管理员</option>
 													<option value="2">管理员</option>
-													<option value="3">用户</option>
+													<option value="3">用户</option> -->
 												</select>
 											</div>
 										</li>

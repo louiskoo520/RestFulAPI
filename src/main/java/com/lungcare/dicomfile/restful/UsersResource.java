@@ -1,8 +1,10 @@
 package com.lungcare.dicomfile.restful;
 
+import java.io.IOException;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.FormParam;
 import javax.ws.rs.GET;
@@ -58,18 +60,25 @@ public class UsersResource {
 	@Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
 	@Path("/addUser")
 	public void addUser(@FormParam("user_account") String user_account,
-			@FormParam("user_name") String user_name,
+			@FormParam("user_realname") String user_realname,
 			@FormParam("user_password") String user_password,
 			@FormParam("user_age") int user_age,
 			@FormParam("gender") int user_gender,
 			@FormParam("user_role") int user_role,
 			@FormParam("user_tel") String user_tel,
 			@FormParam("user_address") String user_address,
-			@FormParam("qq") String qq) {
+			@FormParam("qq") String qq, @Context HttpServletResponse response) {
 		System.out.println("user_role:" + user_role);
 		System.out.println("qq : " + qq);
-		userEntityService.addUser(user_account, user_name, user_password,
+		userEntityService.addUser(user_account, user_realname, user_password,
 				user_age, user_gender, user_role, user_tel, user_address);
+		try {
+			response.sendRedirect("../../jpmp/userlist.html");
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			System.err.println(e.getMessage());
+		}
 	}
 
 	@GET

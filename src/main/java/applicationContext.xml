@@ -60,6 +60,11 @@
      <property name="sessionFactory" ref="sessionFactory"></property>
   </bean>
   
+  <!-- roleDAO -->
+  <bean id="roleService" class="com.lungcare.dicomfile.service.impl.RoleServiceImp"></bean>
+  <bean id="roleDAO" class="com.lungcare.dicomfile.dao.impl.RoleDAOImp">
+     <property name="sessionFactory" ref="sessionFactory"></property>
+  </bean>
   
   
   <!-- dicomFileDAO -->
