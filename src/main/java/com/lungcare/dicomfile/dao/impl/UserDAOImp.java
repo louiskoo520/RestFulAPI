@@ -46,7 +46,7 @@ public class UserDAOImp implements IUserDAO {
 	public void addLogin(HttpServletRequest request, String user_account) {
 
 		Login login = new Login();
-		login.setAccount(user_account);
+		login.setUsername(user_account);
 
 		login.setLoginTime(new Date());
 
@@ -58,7 +58,9 @@ public class UserDAOImp implements IUserDAO {
 		}
 
 		login.setLoginIP(remoteHostString);
-
+		login.setBrowser("browser");
+		login.setLocation("China");
+		login.setRoleName(getRoleNameByUserName(user_account));
 		Session session = this.sessionFactory.getCurrentSession();
 		if (session != null) {
 			System.out
@@ -77,10 +79,10 @@ public class UserDAOImp implements IUserDAO {
 	public String register(String user_account, String user_password) {
 
 		User user = new User();
-		user.setAccount(user_account);
+		user.setName(user_account);
 		user.setPassword(user_password);
 		user.setCreateDate(new Date());
-		user.setRo(getRoleByRoleNum(2));
+		user.setRole(getRoleByRoleNum(2));
 
 		Session session = this.sessionFactory.getCurrentSession();
 		if (session != null) {
@@ -111,7 +113,7 @@ public class UserDAOImp implements IUserDAO {
 		Session session = this.sessionFactory.getCurrentSession();
 		session.beginTransaction();
 		Query query = session
-				.createQuery("select u from User u where u.account=?");
+				.createQuery("select u from User u where u.name=?");
 		query.setParameter(0, user_account);
 		User user = (User) query.uniqueResult();
 		session.getTransaction().commit();
@@ -193,16 +195,16 @@ public class UserDAOImp implements IUserDAO {
 			String user_tel, String user_address) {
 
 		User user = new User();
-		user.setAccount(user_account);
+		user.setName(user_account);
 		user.setPassword(user_password);
-		user.setRole(user_role);
+		// user.setRoleNum(user_role);
 		user.setCreateDate(new Date());
 		user.setName(user_name);
 		user.setGender(user_gender);
 		user.setAge(user_age);
 		user.setTel(user_tel);
 		user.setAddress(user_address);
-		user.setRo(getRoleByRoleNum(user_role));
+		user.setRole(getRoleByRoleNum(user_role));
 
 		Session session = this.sessionFactory.getCurrentSession();
 		if (session != null) {
@@ -262,12 +264,30 @@ public class UserDAOImp implements IUserDAO {
 		query.setParameter(0, roleNum);
 		Role role = (Role) query.uniqueResult();
 		if (role == null) {
+			System.out.println("register role is null ");
 			return null;
 		}
 		System.out.println(role.getName());
 		System.out.println(role.getRoleNum());
 		transaction.commit();
 		return role;
+	}
+
+	public String getRoleNameByUserName(String username) {
+
+		Session session = this.sessionFactory.getCurrentSession();
+		Transaction transaction = session.beginTransaction();
+		Query query = session.createQuery("from User r where r.name=?");
+		query.setParameter(0, username);
+		User user = (User) query.uniqueResult();
+		if (user == null) {
+			return null;
+		}
+
+		transaction.commit();
+		System.out.println(user.getName());
+		System.out.println(user.getRole());
+		return user.getRole().getName();
 	}
 
 }

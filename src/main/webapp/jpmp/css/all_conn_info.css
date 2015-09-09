@@ -1,0 +1,86 @@
+.genzong{
+	text-align: center;
+}
+.portlet-body2{
+	height: 350px;
+}
+#msg_content{
+	border:1px solid #ababab;
+	position: absolute;
+	width: 250px;
+	min-height: 100px;
+	display: none;
+}
+.msf-content-title{
+	height: 28px;
+	background-color: #FCFCFC;
+	font-size: 12px;
+    font-weight: bold;
+    line-height: 28px;
+    padding-left: 5px;
+    border-bottom: 1px solid #ababab;
+}
+.msf-content-text{
+	height: 100%;
+	width:248px;
+	height: 80px;
+	background-color: #FCFCFC;
+	border:none;
+}
+.send-btn{
+	margin-left: 10px;
+	font-weight: lighter;
+	cursor: pointer;
+}
+.history-btn{
+	margin-left: 35px;
+	font-weight: lighter;
+	cursor: pointer;
+}
+.close-btn{
+	margin-left: 10px;
+	cursor: pointer;
+}
+a {
+	cursor: pointer;
+}
+.online-title {
+	margin-top: 5px;
+	width: 202px;
+	padding: 5px;
+	background-color: #f10022;
+}
+.outline-title {
+	margin-top: 5px;
+	width: 202px;
+	padding: 5px;
+	background-color: #cac6c6;
+}
+.user-list {
+	height: 213px;
+	width: 210px;
+	border: 1px solid #ababab;
+	OVERFLOW-Y: auto;
+}
+.user-list li {
+	height: 30px;
+	padding: 3px;
+}
+.user-list li div {
+	width: 50px;
+	height: 30px;
+	line-height: 25px;
+	float: left;
+	overflow: hidden;
+	margin-right: 5px;
+	text-align: center;
+}
+.user-list li a {
+	vertical-align: middle;
+	margin-left: 15px;
+}
+.user-list li img {
+	width: 20px;
+	height: 20px;
+	margin-left: 10px;
+}

@@ -1,0 +1,75 @@
+/*********base***********/
+body, h1, h2, h3, h4, h5, h6, hr, p, blockquote, dl, dt, dd, menu, ul, ol, li, pre, form, fieldset, legend, button, input, textarea, th, td { 
+	margin:0; 
+	padding:0;
+	outline:none; 
+}
+html { 
+	overflow-y: scroll; 
+}
+body { 
+	background:#eee;
+    font: 12px/26px "宋体","微软雅黑",Arial;
+    color: rgb(102, 102, 102);
+	text-align:center; 
+}
+textarea { 
+	overflow:auto; 
+}
+strong, b { 
+	font-weight: bold; 
+}
+ol, menu, ul, li { 
+	list-style: none outside none; 
+}
+img { 
+	border:0; 
+}
+textarea {
+	resize:none;
+}
+address, caption, cite, code, dfn, em, i, th, var, s { 
+	font-style: normal; 
+	font-weight: normal; 
+}
+table { 
+	border-collapse:collapse; 
+	border-spacing:0; 
+}
+h1, h2, h3, h4, h5, h6 { 
+	font-weight:700; 
+}
+h1 { font-size:18px }
+h2 { font-size:16px }
+h3 { font-size:14px }
+h4 { font-size:14px }
+h5 { font-size:12px }
+h6 { font-size:12px }
+label{outline:0;zoom:1}
+.hide { display:none; }/*不占位隐藏*/
+.invisible { visibility:hidden; }/*占位隐藏*/
+.clear:after { 
+	content:'\20'; 
+	display:block;
+	height:0; 
+	clear:both; 
+}/*清除浮动*/
+.clear {
+	*zoom:1; 
+	clear:both; 
+	height:0px; 
+	line-height:0px; 
+	font-size:0px;
+}
+a:hover { 
+	text-decoration:none; 
+	cursor: pointer;
+	color: rgb(255, 204, 51);
+}
+a { 
+	text-decoration: none;
+}
+*:focus { 
+	outline: medium none;
+}
+/*********end base***********/
