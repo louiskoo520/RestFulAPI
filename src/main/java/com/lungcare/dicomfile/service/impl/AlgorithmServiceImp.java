@@ -7,9 +7,9 @@ import com.lungcare.dicomfile.service.IAlgorithmService;
 
 public class AlgorithmServiceImp implements IAlgorithmService {
 	@Autowired
-	private IAlgorithmDAO algorithmDAOImp;
-	
-	public void dicomSegmentation(String dicomPathString ,String bmpSavePath){
-		algorithmDAOImp.dicomSegmentation(dicomPathString, bmpSavePath);
+	private IAlgorithmDAO algorithmDAO;
+
+	public void dicomSegmentation(String dicomPathString, String bmpSavePath) {
+		algorithmDAO.dicomSegmentation(dicomPathString, bmpSavePath);
 	}
 }

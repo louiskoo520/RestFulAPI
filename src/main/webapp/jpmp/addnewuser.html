@@ -21,6 +21,7 @@ $(function(){
 		dataType: "json",
 		success: function(data){
 			$.each(data.role, function(index, info){
+				alert(info['roleNum']);
 				$("#auth").append("<option value='"+info['roleNum']+"'>"+info['name']+"</option>");
 			});
 		}

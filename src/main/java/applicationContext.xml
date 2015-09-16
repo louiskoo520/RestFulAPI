@@ -66,11 +66,28 @@
      <property name="sessionFactory" ref="sessionFactory"></property>
   </bean>
   
+  <!-- authDAO -->
+  <bean id="authorityService" class="com.lungcare.dicomfile.service.impl.AuthorityServiceImp"></bean>
+  <bean id="authorityDAO" class="com.lungcare.dicomfile.dao.impl.AuthorityDAOImp">
+     <property name="sessionFactory" ref="sessionFactory"></property>
+  </bean>
   
   <!-- dicomFileDAO -->
   <bean id="dicomFileDAO" class="com.lungcare.dicomfile.dao.impl.DicomFileDAOImp"></bean>
   
   <!-- fileDAO -->
   <bean id="fileDAO" class="com.lungcare.dicomfile.dao.impl.FileDAOImp"></bean>
+  
+    <!-- SurgeryDataDAO -->
+  <bean id="SurgeryDataService" class="com.lungcare.dicomfile.service.impl.SurgeryDataServiceImp"></bean>
+  <bean id="SurgeryDataDAO" class="com.lungcare.dicomfile.dao.impl.SurgeryDataDAOImp">
+     <property name="sessionFactory" ref="sessionFactory"></property>
+  </bean>
+  
+  <!-- SurgeryFileDAO -->
+  <bean id="SurgeryFileService" class="com.lungcare.dicomfile.service.impl.SurgeryFileServiceImp"></bean>
+  <bean id="SurgeryFileDAO" class="com.lungcare.dicomfile.dao.impl.SurgeryFileDAOImp">
+     <property name="sessionFactory" ref="sessionFactory"></property>
+  </bean>
   
 </beans>

@@ -349,7 +349,7 @@ public class UserDAOImp implements IUserDAO {
 	}
 
 	public Role getRoleByRoleNum(int roleNum) {
-
+		System.out.println("getRoleByRoleNum : " + roleNum);
 		Session session = this.sessionFactory.getCurrentSession();
 		Transaction transaction = session.beginTransaction();
 		Query query = session.createQuery("from Role r where r.roleNum=?");

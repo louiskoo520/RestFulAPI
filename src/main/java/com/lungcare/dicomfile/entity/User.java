@@ -2,7 +2,6 @@ package com.lungcare.dicomfile.entity;
 
 import java.util.Date;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -54,7 +53,7 @@ public class User {
 
 	private String email;// 用户邮箱
 
-	@ManyToOne(cascade = { CascadeType.PERSIST }, fetch = FetchType.EAGER)
+	@ManyToOne(/* cascade = { CascadeType.PERSIST }, */fetch = FetchType.EAGER)
 	private Role role;
 
 	public String getEmail() {

@@ -64,7 +64,7 @@ public class UsersResource {
 			@FormParam("user_password") String user_password,
 			@FormParam("user_age") int user_age,
 			@FormParam("gender") int user_gender,
-			@FormParam("user_role") int user_role,
+			@FormParam("roleId") int user_role,
 			@FormParam("user_tel") String user_tel,
 			@FormParam("user_address") String user_address,
 			@FormParam("qq") String qq, @Context HttpServletResponse response) {

@@ -7,6 +7,13 @@
 		<script type="text/javascript" src="layer/layer.min.js" ></script>
 		<script type="text/javascript" src="js/tasklist.js" ></script>
 		<script language="JavaScript" type="text/javascript" src="js/My97DatePicker/WdatePicker.js"></script>
+		
+		<!-- <link rel="stylesheet" href="../css/bootstrap.min.css"> -->
+		<link rel="stylesheet" href="../css/complete.css">
+		<script type="text/javascript" src="../js/jquery-1.9.1.js"></script>
+	
+		<script  src="../js/bootstrap.min.js"></script>
+		
 	</head>
 	<body>
 		<div class="wrap">
@@ -22,16 +29,43 @@
 							</div>
 							<div class="main">
 								<div class="header">
-									<a class="current">未处理</a><a>处理中</a><a>已完成</a><a>已关闭</a>
+									<a class="current" id="a_undo">未处理</a><a id="a_doing">处理中</a><a id="a_done">已完成</a><a>已关闭</a>
 								</div>
+								
 								<div class="main-body">
-									
+									<div  style="text-align: center;">
+										<!-- <button class="btn btn-primary " id="refreshComplete" type="submit">Refresh</button> -->
+										<form id="downloadForm"></form>	
+											<table class="table table-bordered table-hover">
+												<tr style="background-color:#3399CC">
+													<td colspan="9" style="color: white;">Surgery</td>
+												</tr>
+												<tr>
+													<td>ID</td>
+													<td>InstitutionName</td>
+													<td>PatientName</td>
+													<td>StudyDate</td>
+													<td>DownCTmhd</td>
+													<td>LeakingDataSelect</td>
+													<td>LeakingUp</td>
+													<td>LeakingDown</td>
+													<td>Delete</td>
+												</tr>
+												<tbody id="tb3">
+												</tbody>
+											</table>
+										<ul class="pagination">
+											<li><a href="#" id="lastPage3">&laquo;</a></li>
+											<li><a href="#" id="currentPage3">1</a></li>
+											<li><a href="#" id="nextPage3">&raquo;</a></li>
+										</ul>
+									</div>
 								</div>
 								<div class="page-">
 					                	<div class="page-1">
 					                		<div class="record first"><<</div><div class="record last">>></div>
 					                	</div>
-					                </div>
+					            </div>
 								<!-- <div class="bottom"></div> -->
 							</div>
 						</div>
@@ -40,4 +74,159 @@
 			</div>
 		</div>
 	</body>
+	
+<script type="text/javascript">
+ 	var id=null;
+	var currentPage3 = parseInt($('#currentPage3').html());
+	var pageSize = 50;
+	var state = 0;
+ 	$(function() {
+		$('#a_undo').on("click",function(){
+			state = 0;
+			findCompleteByCurrentPage(state);
+		});
+		$('#a_doing').on("click",function(){
+			state = 1;
+			findCompleteByCurrentPage(state);
+		});
+		$('#a_done').on("click",function(){
+			state = 2;
+			findCompleteByCurrentPage(state);
+		});
+		findCompleteByCurrentPage(state);
+ 		$('#refreshComplete').on("click",function(){
+ 			findCompleteByCurrentPage(state);
+ 		}); 
+ 		
+ 		$('#lastPage3').click(function() {
+			currentPage3 -= 1;
+			findCompleteByCurrentPage(state);
+			$('#currentPage3').html(currentPage3 + '');
+		});
+
+		$('#nextPage3').click(function() {
+			currentPage3 += 1;
+			findCompleteByCurrentPage(state);
+			$('#currentPage3').html(currentPage3 + '');
+		});
+ 	})
+	 	
+ 	function findCompleteByCurrentPage(state) {
+		var dataObj;
+		$.ajax({
+			type : 'get',
+			url : '/transfer/rest/surgeryData/getCompleteReceiveEntity',
+			data : {},
+			dataType : 'JSON',
+			async:false,
+			success : function(result) {
+				if (result == "" || result == null) {
+					alert("there is no data in the table surgeryData!");
+				} else {
+					dataObj = result['surgeryData'];
+					
+					$('#tb3').empty();
+					var maxPage = Math.ceil(dataObj.length / pageSize);
+					if (currentPage3 < 1) {
+						currentPage3 = 1;
+					}
+					
+					if (currentPage3 > maxPage) {
+						currentPage3 = maxPage;
+					}
+					
+					var firstIndex = (currentPage3 - 1) * pageSize;
+					var lastIndex = currentPage3 * pageSize;
+			
+					if (currentPage3 == maxPage) {
+						lastIndex = dataObj.length;
+					}
+					
+					var item;
+					//判断是否只有一条记录
+					if(typeof(dataObj.id)=="string"){
+						lastIndex = 1;
+					}
+					
+					
+					for ( var i = firstIndex; i < lastIndex; i++) {
+						//判断是否只有一条记录
+						if(lastIndex==1){
+							item = dataObj;
+						}else{
+							item = dataObj[i];
+						}
+						if(item.state!=state){
+							continue;
+						}
+						var date = item.date;
+						date = date.replace("T"," ");
+						date = date.substring(0,date.indexOf("+"));
+						$('#tb3').append('<tr><td>' + item.id 
+						+ '</td><td>' + item.institutionName 
+						+ '</td><td>' + item.patientName 
+						+ '</td><td>' + item.studyDate 
+						+ '</td><td><button class="btn btn-default" type="submit"><img src="../img/myicons/download16.png"></button>'
+						+ '</td><td><form class="form-inline" role="form" method="post" enctype="multipart/form-data" id='+item.id+'><input type="file" class="btn btn-sm" name="singlefile"><form>'
+						+ '</td><td><button class="btn btn-default" type="submit"><img src="../img/myicons/upload16.png"></button>'
+						+ '</td><td><button class="btn btn-default" type="submit"><img src="../img/myicons/download16.png"></button>'
+						+ '</td><td><button class="btn btn-default btn-bmp" type="submit"><img alt="demo" src="../img/myicons/del.png"></button></td></tr></form>');
+					}
+					$('table tr').find('td:first').hide();
+					$('table tr:first').find('td:first').show();
+ 					$('#tb3 tr').find('td:eq(4)').on("click",function(){
+						id = $(this).parents('tr').find('td:eq(0)').text();
+						if(id!=null){
+							$('#downloadForm').attr("action","../rest/surgeryData/downloadCTmhd/"+id);
+							$('#downloadForm').submit();
+						}
+					});
+					
+ 					$('#tb3 tr').find('td:eq(6)').on("click",function(){
+						id = $(this).parents('tr').find('td:eq(0)').text();
+						if(id!=null){
+							$('#'+id).attr("action","../rest/surgeryData/uploadLeakingData/"+id);
+							$('#'+id).submit();
+						}
+					});
+					
+ 					$('#tb3 tr').find('td:eq(7)').on("click",function(){
+						id = $(this).parents('tr').find('td:eq(0)').text();
+						if(id!=null){
+							$('#downloadForm').attr("action","../rest/surgeryData/downloadLeakingData/"+id);
+							$('#downloadForm').submit();
+						}
+					});
+					
+					$('#tb3 tr').find('td:last').on("click", function() {
+						id = $(this).parents('tr').find('td:first').text();
+						if(confirm("Are you sure to delete this data?")){
+							if (id != null) {
+								deleteCompleteData(id);
+								findCompleteByCurrentPage(state);
+							}
+						}else{
+							alert("cancel delete operation!");
+						}
+					});
+					
+				}
+			}
+		});
+		
+	}
+	
+	function deleteCompleteData(id){
+		$.ajax({
+			type:'post',
+			url:'/transfer/rest/surgeryData/deleteCompleteData/'+id,
+			data:{},
+			dataType:'JSON',
+			async:false,
+			success:function(result){
+				//alert("delete success!");
+			}
+		});
+	}
+</script>
 </html>

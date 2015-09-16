@@ -7,5 +7,10 @@ import com.lungcare.dicomfile.entity.Role;
 public interface IRoleDAO {
 	public void addRole();
 
+	public boolean addRole(String rolename, String authUpload,
+			String authHandle, String authUsers);
+
 	public List<Role> getallRoles();
+
+	public boolean isExistRoleName(String name);
 }
