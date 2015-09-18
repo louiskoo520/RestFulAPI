@@ -82,13 +82,12 @@
 		});
 	});
 	function getHTML() {
-		var tmp = '<tr id="'+authorityId+'"><td><select id="taskCategory'+authorityId
-				  +'" style="width:200px;" class="span6 m-wrap" data-placeholder="Choose a Category" tabindex="1">'
-				  +taskCategorys+'</select></td>'
-			  +'<td><input id="roleC'+authorityId+'" type="checkbox" class="toggle" checked="checked" /></td>'
-			  +'<td><input id="roleR'+authorityId+'" type="checkbox" class="toggle" checked="checked" /></td>'
+		var tmp = '<tr id="'+authorityId+'">'
+			  +'<td><input id="authUpload'+authorityId+'" type="checkbox" class="toggle" checked="checked" /></td>'
+			  +'<td><input id="authHandler'+authorityId+'" type="checkbox" class="toggle" checked="checked" /></td>'
 			  //+'<td><input id="roleU'+authorityId+'" type="checkbox" class="toggle" checked="checked" /></td>'
-			  +'<td><input id="roleD'+authorityId+'" type="checkbox" class="toggle" checked="checked" /></td>'
+			  +'<td><input id="authDownload'+authorityId+'" type="checkbox" class="toggle" checked="checked" /></td>'
+			  +'<td><input id="authUser'+authorityId+'" type="checkbox" class="toggle" checked="checked" /></td>'
 			  +'<td><a id="'+authorityId+'" class="deltype" href="#">×</a><input id="id'+authorityId+'" type="hidden" value="0"></td></tr>';
 		return tmp;
 	}
@@ -124,10 +123,10 @@
 			var reqStr ="{roleName:'"+roleName+"',";
 			for(var i=1;i<=authorityId;++i){
 				//reqStr += "taskCategoryId:"+$("#taskCategory"+i).val()+",";
-				reqStr += 'roleC:"'+$("#roleC"+i).attr("checked")+'",';
-				reqStr += 'roleR:"'+$("#roleR"+i).attr("checked")+'",';
-				reqStr += 'roleU:"undefind"'+',';
-				reqStr += 'roleD:"'+$("#roleD"+i).attr("checked")+'"';
+				reqStr += 'authUpload:"'+$("#authUpload"+i).attr("checked")+'",';
+				reqStr += 'authHandler:"'+$("#authHandler"+i).attr("checked")+'",';
+				reqStr += 'authDownload:"'+$("#authDownload"+i).attr("checked")+'",';
+				reqStr += 'authUser:"'+$("#authUser"+i).attr("checked")+'"';
 				//reqStr += "id:"+$("#id"+i).val()+";";
 			}
 
@@ -221,12 +220,12 @@
 
 									<thead>
 										<tr>
-											<th width="16%">类别</th>
-											<th width="26%">上传数据权限</th>
-											<th width="26%" class="hidden-480">处理任务权限</th>
 											
+											<th width="20%">上传数据权限</th>
+											<th width="20%" class="hidden-480">处理任务权限</th>
+											<th width="20%" class="hidden-480">下载数据权限</th>
 											
-											<th width="26%" class="hidden-480">用户管理权限</th>
+											<th width="20%" class="hidden-480">用户管理权限</th>
 											<th width="2%" class="hidden-480"></th>
 										</tr>
 

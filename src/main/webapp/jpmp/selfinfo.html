@@ -14,11 +14,11 @@ function reset() {
 	$("input[name='id']").val(sessionUserInfo['id']);
 	$("input[name='name']").val(sessionUserInfo['name']);
 	$("input[name='age']").val(sessionUserInfo['age']);
-	$("input#type").val(types[sessionUserInfo['type']]);
+	$("input#type").val(sessionUserInfo['role']['name']);
 	$("input[name='tel']").val(sessionUserInfo['tel']);
 	$("input[name='qq']").val(sessionUserInfo['qq']);
-	$("input#department").val(sessionUserInfo['department']);
-	$("input[name='addr']").val(sessionUserInfo['addr']);
+	
+	$("input[name='addr']").val(sessionUserInfo['address']);
 }
 $(function(){
 	reset();
@@ -77,12 +77,7 @@ $(function(){
 												<p class="contact"><input type="text" name="qq" class="txt tw160" disabled="disabled"></p>
 											</div>
 										</li>
-										<li class="detaillist">
-											<div class="hd lh30">所属部门</div>
-											<div class="bd">
-												<input type="text" name="department" id="department" class="txt tw160" disabled>
-											</div>
-										</li>
+										
 										<li class="detaillist">
 											<div class="hd">地址</div>
 											<div class="bd">

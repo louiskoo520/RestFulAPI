@@ -107,4 +107,31 @@ public class UsersResource {
 		userEntityService.test();
 	}
 
+	@GET
+	@Path("/getSessionUser")
+	@Produces(MediaType.APPLICATION_JSON)
+	@Consumes(MediaType.APPLICATION_JSON)
+	public User getSessionUser() {
+		System.out.println("test");
+		User user = userEntityService.getSessionUser();
+		if (user == null) {
+			return null;
+		} else {
+			return user;
+		}
+	}
+
+	@POST
+	@Path("/logout")
+	@Produces(MediaType.APPLICATION_JSON)
+	@Consumes(MediaType.APPLICATION_JSON)
+	public void logout(@Context HttpServletResponse response) {
+		userEntityService.logout();
+		try {
+			response.sendRedirect("../../htmls/login.html");
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 }

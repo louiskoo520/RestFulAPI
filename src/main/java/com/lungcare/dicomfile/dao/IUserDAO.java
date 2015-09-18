@@ -25,4 +25,8 @@ public interface IUserDAO {
 	public String checkUserName(String user_account);
 
 	public List<Login> getAllLoginInfo();
+
+	public User getSessionUser();
+
+	public void logout();
 }

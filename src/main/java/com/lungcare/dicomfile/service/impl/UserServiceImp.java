@@ -49,4 +49,16 @@ public class UserServiceImp implements IUserService {
 		// TODO Auto-generated method stub
 		return userEntityDAO.getAllLoginInfo();
 	}
+
+	@Override
+	public User getSessionUser() {
+		// TODO Auto-generated method stub
+		return userEntityDAO.getSessionUser();
+	}
+
+	@Override
+	public void logout() {
+		// TODO Auto-generated method stub
+		userEntityDAO.logout();
+	}
 }

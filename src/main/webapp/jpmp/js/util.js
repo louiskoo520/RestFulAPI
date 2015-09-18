@@ -89,12 +89,12 @@ $(function(){
 	});	
 	$.ajax({
 		async: false,
-		url:"user/getSessionUser",
+		url:"../rest/user/getSessionUser",
 		dataType:"json",
 		success:function(data){
-			if(!data.name){
+			if(!data){
 				alert("你还未登录或者登录已经断开");
-				window.location.href = "login.html";
+				window.location.href = "../htmls/login.html";
 			}else{
 				sessionUserInfo = data;
 				var t = setTimeout(function(){
@@ -126,10 +126,10 @@ $(function(){
 	$(".top .quit").parent().click(function(){
 		$.ajax({
 			type:"post",
-			url:"user/logout",
+			url:"../rest/user/logout",
 			dataType:"html",
 			success:function(){
-				window.location.href="login.html";
+				window.location.href="../htmls/login.html";
 			}
 		});
 	});

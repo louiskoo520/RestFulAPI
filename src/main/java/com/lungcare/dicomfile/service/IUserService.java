@@ -23,5 +23,9 @@ public interface IUserService {
 
 	public void test();
 
+	public User getSessionUser();
+
 	public List<Login> getAllLoginInfo();
+
+	public void logout();
 }

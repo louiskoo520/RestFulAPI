@@ -8,7 +8,7 @@ public interface IRoleDAO {
 	public void addRole();
 
 	public boolean addRole(String rolename, String authUpload,
-			String authHandle, String authUsers);
+			String authHandle, String authDownload, String authUsers);
 
 	public List<Role> getallRoles();
 

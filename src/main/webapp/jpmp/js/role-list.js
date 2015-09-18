@@ -29,38 +29,27 @@ $(document).ready(function(){
 	function getRoleList(){
 		$.ajax({
 			async:false,
-			type:"post",
-			url:"role/listRole2",
+			type:"get",
+			url:"../rest/role/listRole",
 			data:{pageIndex:pageIndex},
 			dataType:"json",
 			success:function(data){
-				pageIndex = data[0].pageIndex;
-				pageCount = data[0].pageCount;
-				$.each(data, function(index, info){
-					var auth = "无权限";
-					if (info.taskMetaName) {						
-						auth = info.taskMetaName+"：";
-						var c = info.C;
-						var r = info.R;
-						var u = info.U;
-						var d = info.D;
-						if (c == "1") {
-							auth += "->上报问题";
-						}
-						if (r == "1") {
-							auth += "->处理任务";
-						}
-						/*
-						if (u == "1") {
-							auth += "->任务更新";
-						}*/
-						if (d == "1") {
-							auth += "->更新任务";
-						}
-					}
+				/*pageIndex = data[0].pageIndex;
+				pageCount = data[0].pageCount;*/
+				$.each(data.role, function(index, info){
+                    var auth = "权限 : ";
+                    if(info.authorities !=null && info.authorities!='undefined'){
+
+
+
+                     $.each(info.authorities , function(i , item){
+                         auth+=item.name+"  ";
+                     });
+                 }
+					
 					if ($("ul#"+info["id"]).attr("class")) {
 						$("li#"+info["id"]).append("<li>"+auth+"</li>");
-					} else {
+					} 
 						$("div.con").append("<ul id='"+info['id']+"' class='head clearfix' style='height:auto;background: none repeat scroll 0% 0% #fff;'>"
 								+ "<li style='width: 120px; line-height:60px' class='kind'>"+info['name']+"</li>"
 								+ "<li style='width: 200px; line-height:60px' class='cont'>"+info['createDate']+"</li>"
@@ -70,7 +59,7 @@ $(document).ready(function(){
 								+info['id']+"' class='gray del' style='margin-left: 20px'>删除</a></li>"
 								+ "</ul>"
 						);	
-					}
+					
 				});
 				$(".del[id='38']").remove();
 				//showPage(pageIndex,pageCount,startOrEnd);

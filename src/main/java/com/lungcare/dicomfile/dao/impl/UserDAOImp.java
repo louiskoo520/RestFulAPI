@@ -9,6 +9,7 @@ import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.hibernate.Query;
 import org.hibernate.Session;
@@ -40,6 +41,13 @@ public class UserDAOImp implements IUserDAO {
 		if (user != null) {
 			if (checkUserPassword(user, user_password)) {
 				addLogin(request, user_account);
+				this.request = request;
+				request.getSession().setAttribute("user", user);
+				if (request.getSession().getAttribute("user") != null) {
+					User savedUser = (User) request.getSession().getAttribute(
+							"user");
+					System.out.println("savedUser : " + savedUser.getName());
+				}
 				return "0";
 			} else {
 				return "2";
@@ -382,4 +390,29 @@ public class UserDAOImp implements IUserDAO {
 		return user.getRole().getName();
 	}
 
+	private HttpServletRequest request;
+	private HttpServletResponse response;
+
+	@Override
+	public User getSessionUser() {
+		// TODO Auto-generated method stub
+		if (this.request != null) {
+			if (this.request.getSession().getAttribute("user") == null) {
+				System.out.println("saved user is null");
+				return null;
+			} else {
+				System.out.println("saved user is not null");
+				return (User) this.request.getSession().getAttribute("user");
+			}
+		}
+		return null;
+	}
+
+	@Override
+	public void logout() {
+		// TODO Auto-generated method stub
+		if (this.request != null) {
+			this.request.getSession().removeAttribute("user");
+		}
+	}
 }
